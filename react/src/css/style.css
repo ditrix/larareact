@@ -4,3 +4,25 @@
     max-width: 50%;
     border: 1px solid lightgray;
 }
+
+.search-form input {
+	margin: auto 0px;
+	height: 100%;
+	width: 300px;
+    padding: 5px;
+    border: 1px solid lightgray
+}
+
+
+
+.awesome-spinner {
+	color: #add8e6;
+	display: flex;
+	justify-content: center;	
+}
+
+.search-form span {
+    border: 2px #add8e6 solid; padding: 4px 5px;
+    background-color: #add8e6;
+    color: #3d7e9a;
+}

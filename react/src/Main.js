@@ -1,56 +1,80 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
+import {Spinner} from './component/Spinner'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 class Main extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      searchVehicleStr: '',
+      searching: false,
+    }
+
+  }
+
+  handleButtonVehicleClick(){
+    console.log('do search')
+  }
+
+  handleInputSearchVehicleClick(){
+    this.setState({searchVehicleStr:''})
+  }
+
+  handleKeyDown(e){
+    if(e.keyCode === 13){
+      e.preventDefault()
+      this.handleButtonVehicleClick()
+    }
+  }
+
+  handleInputVehicleChange(e){
+    this.setState({searchVehicleStr: e.currentTarget.value})
+    console.log(this.state.searchVehicleStr)
+  }
+
     render(){
         return(
+          <div>
+          <form className='search-form app-form'>
+            <input type="text" 
+              onClick={this.handleInputSearchVehicleClick.bind(this)} 
+              onKeyDown={this.handleKeyDown.bind(this)}
+              value={this.state.searchVehicleStr} 
+              placeholder="гос номер тс..." 
+              onChange={this.handleInputVehicleChange.bind(this)} 
+           />
+            <span>
+              <FontAwesomeIcon icon={faSearch} onClick={this.handleButtonVehicleClick.bind(this)} />
+            </span>
+          </form>
+          <div className="search-result">
+            <Spinner />
+          </div>
+          <hr />
            <div className="app-form">
             <input type="submit" className="btn btn-primary" onClick={this.loadByAxios.bind(this)} value="send axios"/><hr />
-            <input type="submit" className="btn btn-primary" onClick={this.loadByFetch.bind(this)} value="send fetch"/>
+         
+         
            </div>
+          </div> 
     )}
 
 
     loadByAxios(e){
-      //  e.preventDefault()
+        e.preventDefault()
         console.log('LoadByAxios -----------------------------')
-        axios.get('http://larareact/public/vehicle',
-           {
-		    headers: {
-			    'Access-Control-Allow-Origin': '*',
-			    'Content-Type': 'application/json',
-		        },
-             } 
-             )
+        axios.get('http://test.askods.com/public/vehicle')
             .then(response => console.log('response: ', response))
             .catch(error => console.log('some error: ',error))
         console.log('--------------------------LoadByAxios') 
     }
 
-    loadByFetch(e){
-        e.preventDefault()
-        console.log('loadByFetch ------------------------')
-
-        const url = this.state.url
-        let data = this.state.data        
-        fetch(url, {
-            method: 'POST', // или 'PUT'
-            mode: 'no-cors',
-            body: data, // данные могут быть 'строкой' или {объектом}!
-            headers: {
-			    'Access-Control-Allow-Origin': '*',
-			    'Accept': 'application/json',
-			    'Content-Type': 'application/json',
-
-            }
-          })
-          .then(response => response.json())
-          .then(data => console.log(data))
-          .catch(error => console.log(error))
-
-        console.log('------------------------ loadByFetch')
-
-    }
+ 
 
 
 
