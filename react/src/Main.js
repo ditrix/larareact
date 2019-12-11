@@ -18,7 +18,13 @@ class Main extends Component {
   }
 
   handleButtonVehicleClick(){
-    console.log('do search')
+    
+    const vehicleNo = this.state.searchVehicleStr
+    this.setState({searching: true})
+    axios.get('http://larareact/public/vehicle','2222')
+        .then(response => console.log('response: ', response, ' searching:',this.state.searching))
+        .catch(error => console.log('some error: ',error))
+        .finally(this.setState({searching:false}))
   }
 
   handleInputSearchVehicleClick(){
@@ -34,7 +40,7 @@ class Main extends Component {
 
   handleInputVehicleChange(e){
     this.setState({searchVehicleStr: e.currentTarget.value})
-    console.log(this.state.searchVehicleStr)
+  
   }
 
     render(){
@@ -53,7 +59,7 @@ class Main extends Component {
             </span>
           </form>
           <div className="search-result">
-            <Spinner />
+            {(this.state.searching)&&<Spinner />}
           </div>
           <hr />
            <div className="app-form">

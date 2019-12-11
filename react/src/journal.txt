@@ -1,0 +1,19 @@
+дока мтсбу
+http://policy.mtsbu.ua/DpApiDoc/doc/#api-_footer
+
+проверялка от алексея
+
+function trigger_regno_mask() {
+  var RegNo = $('#id_RegNo');
+  var id_mreo = $('#id_DCityID');
+  RegNo.unmask();
+  if (id_mreo.val() === foreignRegistrationId) {
+    RegNo.mask('AAAAAAAAAA', {'translation': {A: {pattern: /[A-Za-zyА-Яа-я0-9]/}}});
+  } else {
+    RegNo.mask('AAAAAAAAAA', {'translation': {A: {pattern: /[ABCEHIKMOPTXYabcehikmoptxyА-Яа-я0-9]/}}});
+  }
+}
+
+либа от алексея
+https://github.com/igorescobar/jQuery-Mask-Plugin
+

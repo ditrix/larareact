@@ -9,7 +9,14 @@ class VehicleController extends Controller {
 
 
 	public function getVehicle(Request $request){
-		return response()->json(['result' => 'vehicle']);
+		$vehicleNo = $request->vehicleNo;
+		//$vehicleNo = 123;
+		if($request->vehicleNo !== null){
+			return response()->json(['result' => $vehicleNo]);
+		}else{
+			return response()->json(['result' => 'no Request->vehicleNo']);
+		}	
+
 	}
 
 	/**
