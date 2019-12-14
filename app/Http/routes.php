@@ -15,10 +15,19 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-//Route::get('vehicle','VehicleComtrol')
-Route::resource('vehicle', 'VehicleController@getVehicle');
 
+//Route::post('vehicle','VehicleComtrol@postVehicle');
+Route::controller('vehicle', 'VehicleController');
+/*Route::get('vehicle','VehicleComtrol@getVehicle');*/
+
+/* основной смысл обхода post\get ограничений - разные роуты в один контролер*/
+Route::resource('vehicle', 'VehicleController@getVehicle');
+Route::resource('vehicleset', 'VehicleController@postVehicle');
+
+
+/*
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+*/

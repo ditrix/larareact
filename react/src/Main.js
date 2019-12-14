@@ -13,15 +13,42 @@ class Main extends Component {
     this.state = {
       searchVehicleStr: '',
       searching: false,
+      mail:{
+				emailTo : 'ditrix@mail.com',
+			},
     }
 
+  }
+
+
+
+  testPostResponse(){
+    
+
+    axios.post('http://larareact/public/vehicleset',{'data':'value'})
+        .then(response => console.log('response: ', response, ' searching:',this.state.searching))
+        .catch(error => console.log('some error: ',error))
+        .finally(this.setState({searching:false}))
+  }
+
+
+ testGetResponse(){
+    
+
+    axios.get('http://larareact/public/vehicle')
+        .then(response => console.log('response: ', response, ' searching:',this.state.searching))
+        .catch(error => console.log('some error: ',error))
+        .finally(this.setState({searching:false}))
   }
 
   handleButtonVehicleClick(){
     
     const vehicleNo = this.state.searchVehicleStr
     this.setState({searching: true})
-    axios.get('http://larareact/public/vehicle','2222')
+
+    console.log(this.state.mail)
+
+    axios.get('http://larareact/public/vehicle',{'data':'value'})
         .then(response => console.log('response: ', response, ' searching:',this.state.searching))
         .catch(error => console.log('some error: ',error))
         .finally(this.setState({searching:false}))
@@ -62,11 +89,21 @@ class Main extends Component {
             {(this.state.searching)&&<Spinner />}
           </div>
           <hr />
-           <div className="app-form">
+          <div className="app-form">
+            <input type="submit" className="btn btn-primary" onClick={this.testPostResponse.bind(this)} value="test post"/><hr />
+           </div>
+                    <hr />
+          <div className="app-form">
+            <input type="submit" className="btn btn-primary" onClick={this.testGetResponse.bind(this)} value="test get"/><hr />
+           </div>
+ 
+          <hr />
+{/*           <div className="app-form">
             <input type="submit" className="btn btn-primary" onClick={this.loadByAxios.bind(this)} value="send axios"/><hr />
          
          
-           </div>
+           </div>*/}
+
           </div> 
     )}
 
