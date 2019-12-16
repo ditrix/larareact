@@ -27,3 +27,11 @@
     background-color: #add8e6;
     color: #3d7e9a;
 }
+
+.form-input-valid input {
+    border: 1px blue solid;
+}
+
+.form-input-error input {
+    border: 1px red solid;
+}
