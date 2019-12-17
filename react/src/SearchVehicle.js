@@ -12,7 +12,7 @@ import './css/style.css'
 
 
 
-class GetVehicle extends Component {
+class SearchVehicle extends Component {
     constructor(props){
        super(props) 
        this.state = {
@@ -50,33 +50,53 @@ class GetVehicle extends Component {
     }
 
     handleVehicleClick(){
-       // this.setState({searchVehicleStr:''})
+        this.setState({searchVehicleStr:''})
     }  
 
     handleButtonVehicleClick(){
         if(this.validInputData()){
            
-        this.setState({request: true, loaded: false})
+        this.setState({request: true, loaded: false, message:''})
         axios.get(`http://larareact/public/vehicle?num=${this.state.searchVehicleStr}`,)
             .then(response => {console.log('response: ', response.data.result, ' searching:',this.state.searching)
                 this.setState({vehicle: response.data.result, message:'',loaded:true})
+                (!this.state.vehicle)&&this.setState({vehicle: null, message:'ошибка'})
                 console.log(this.state.vehicle)
                 }
             )
             .catch(error => {console.log('some error: ',error) 
-            this.setState({vehicle: null, message:'ошибка',loaded:true})
+                this.setState({vehicle: null, message:'ошибка',loaded:true})
             })
             .finally(this.setState({request:false,loaded:true}))
         }
     }
       
-
-
-    render(){
+   render(){
         return(
-        <div>   
-        <div className='search-form app-form'>
+        <div>
+
+
+
+        <div className='search-form'>
+        <div className="input-group">
+                <input type="text" className="form-control" 
+                
+                required 
+            onClick={this.handleVehicleClick.bind(this)} 
+            onKeyDown={this.handleVehicleKeyDown.bind(this)}
+            value={this.state.searchVehicleStr} 
+            placeholder="гос номер тс..." 
+            onChange={this.handleInputVehicleChange}                    
+                />
+                <div className="input-group-append">
+                    <span className="input-group-text"><span><FontAwesomeIcon icon={faSearch} onClick={this.handleButtonVehicleClick.bind(this)} /></span></span>
+                </div>
+            </div>
+        
+        
+        {/*
         <div className="form-input-item">
+        
         <input             
             type="text" 
             required 
@@ -85,15 +105,13 @@ class GetVehicle extends Component {
             value={this.state.searchVehicleStr} 
             placeholder="гос номер тс..." 
             onChange={this.handleInputVehicleChange} />
-             <span>
-          <FontAwesomeIcon icon={faSearch} onClick={this.handleButtonVehicleClick.bind(this)} />
-        </span>
+            <span><FontAwesomeIcon icon={faSearch} onClick={this.handleButtonVehicleClick.bind(this)} /></span>
         </div>    
-          
-       
+        */}
+            
       </div>
-            <div className="form-message">{this.state.message}</div>
-            <div className="form-result">
+            <div className="_form-message">{this.state.message}</div>
+            <div className="_form-result">
                 {(this.state.loaded)?(this.state.vehicle)?<h1>{this.state.vehicle.AutoDescr}</h1>:<span>not found</span>:<span>loading..</span>
                 }
             </div>    
@@ -103,4 +121,4 @@ class GetVehicle extends Component {
     }
 }
 
-export default GetVehicle
+export default SearchVehicle

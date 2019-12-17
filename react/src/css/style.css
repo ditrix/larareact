@@ -1,3 +1,6 @@
+.debug {
+    border: 1px red solid;
+}
 
 .app-form {
     padding: 15px;
@@ -6,7 +9,7 @@
     border: 1px solid lightgray;
 }
 
-.search-form input {
+.form-input-item input {
 	margin: auto 0px;
 	height: 100%;
 	width: 300px;
@@ -14,6 +17,20 @@
     border: 1px solid lightgray
 }
 
+.form-input-item select {
+	margin: auto 0px;
+	height: 100%;
+	width: 80%;
+    padding: 5px;
+    border: 1px solid lightgray;
+    color: #007bff;
+}
+
+.form-input-item span {
+    border: 2px #add8e6 solid; padding: 4px 5px;
+    background-color: #add8e6;
+    color: #3d7e9a;
+}
 
 
 .awesome-spinner {
@@ -22,10 +39,8 @@
 	justify-content: center;	
 }
 
-.search-form span {
-    border: 2px #add8e6 solid; padding: 4px 5px;
-    background-color: #add8e6;
-    color: #3d7e9a;
+.search-form, .parameter-form{ 
+    margin: 10px;
 }
 
 .form-input-valid input {
@@ -36,6 +51,35 @@
     border: 1px red solid;
 }
 
+
+
 .get-vehicle-form {
     border: 1px gray solid;
+}
+
+.search-form {
+    width: 80%;
+}
+
+.vehicle-parameters {
+    width: 40%;
+}
+.city-paraqmeters {
+    width: 40%;
+    padding: 10px;
+}
+
+.city-paraqmeters select {
+    color: #007bff;
+    width: 90%;
+    padding: .375rem .75rem;
+} 
+
+.input-group-text {
+    background-color: #007bff;
+    color: white;
+}
+
+.search-form input:focus {
+    box-shadow: none;
 }
