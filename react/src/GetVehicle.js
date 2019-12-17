@@ -75,7 +75,7 @@ class GetVehicle extends Component {
     render(){
         return(
         <div>   
-        <form className='search-form app-form'>
+        <div className='search-form app-form'>
         <div className="form-input-item">
         <input             
             type="text" 
@@ -91,7 +91,7 @@ class GetVehicle extends Component {
         </div>    
           
        
-      </form>
+      </div>
             <div className="form-message">{this.state.message}</div>
             <div className="form-result">
                 {(this.state.loaded)?(this.state.vehicle)?<h1>{this.state.vehicle.AutoDescr}</h1>:<span>not found</span>:<span>loading..</span>

@@ -35,3 +35,7 @@
 .form-input-error input {
     border: 1px red solid;
 }
+
+.get-vehicle-form {
+    border: 1px gray solid;
+}
