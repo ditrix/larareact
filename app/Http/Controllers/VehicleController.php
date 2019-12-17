@@ -7,12 +7,45 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller {
 
+//CURLOPT_POSTFIELDS => "{\"PlateNum\": \"BH3003CM\"}",
 
+// TODO: URL tOKEN УЛОЖИТЬ В ENV !!!!
 	public function getVehicle(Request $request){
-		//$vehicleNo = $request->val;
-		//$vehicleNo = 123;
 
-		return response()->json(['result' => 'get']);
+		$curl = curl_init();
+
+		$post_fields = '"{\"PlateNum\": \"'.'BH3003CM'.'\"}"';
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => "https://epolissbx.askods.dn.ua/api/v2/get_vehicle/ByPlateNum/",
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "POST",
+		  //CURLOPT_POSTFIELDS => "{\"PlateNum\": \"BH3003CM\"}",
+		
+		  CURLOPT_HTTPHEADER => array(
+			"Authorization: Token eaa9405c0eff7515106528d5850e89cbd411fb35"
+		  ),
+		));
+		
+		curl_setopt($curl,CURLOPT_POSTFIELDS,"{\"PlateNum\": \"".$request->num."\"}");
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+	
+		curl_close($curl);
+		
+		$result = str_replace('FContract.','',$response);
+		$result = str_replace('FContract.','',$response);
+		$resultArr = json_decode($result)->SearchResult;
+		//$data = end($resultArr);
+
+		$data = json_decode($result)->SearchResult[0];
+
+		return response()->json(['result' => $data]);
 
 	}
 
