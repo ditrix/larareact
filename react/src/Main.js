@@ -24,21 +24,18 @@ class Main extends Component {
     render(){
 
         return(
-          <div>
+          <div className="calc-home-page" >
 
-          <div className="debug vehicle-parameters">
+          <div className="vehicle-parameters">
            <ul className="nav nav-pills">
               <li className="nav-item">
-                <span className={(this.state.searchVehicle)?"nav-link active":"nav-link"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</span>
+                <span className={(this.state.searchVehicle)?"nav-link active":"nav-link passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</span>
               </li>
               <li className="nav-item">
-                <span className={(this.state.searchVehicle)?"nav-link":"nav-link active"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</span>
+                <span className={(this.state.searchVehicle)?"nav-link  passive":"nav-link active"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</span>
               </li>
             </ul>
-          
-
           {(this.state.searchVehicle)?<SearchVehicle />:<GetK1  />}
-          
           </div>
           <div className="city-paraqmeters">
             <GetK2 />

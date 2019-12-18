@@ -17,3 +17,10 @@ function trigger_regno_mask() {
 либа от алексея
 https://github.com/igorescobar/jQuery-Mask-Plugin
 
+
+
+Ok BH3003CM
+Ok AA1111AA
+
+Err  АА9908ІЕ
+
