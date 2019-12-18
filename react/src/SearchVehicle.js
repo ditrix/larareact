@@ -17,11 +17,19 @@ function SearchResultTemplate(data){
         if(data){
             return(
             <div className="vehicle-info">
+            <ul>
             {    
-            (data.VIN)&&<span>VIN:{data.VIN}</span>}<br />
+            (data.VIN)&&<li><label>VIN:</label><span>{data.VIN}</span></li>}
             {
-            (data.AutoDescr)&&<span>Авто:{data.AutoDescr}</span>
+            (data.DMarkName !== "")&&<li><label>марка:</label><span>{data.DMarkName}</span></li>
             }
+            {
+            (data.DModelName !== "")&&<li><label>модель:</label><span>{data.DModelName}</span></li>
+            }
+            {
+            (data.AutoDescr !=="")&&<li><label>описание:</label><span>{data.AutoDescr}</span></li>
+            }
+            </ul>
             </div>
             )
         }
@@ -92,7 +100,7 @@ class SearchVehicle extends Component {
       
     render(){
         return(
-        <div>
+        <div className="search-vehicle-wrapper">
             <div className='search-form'>
                 <div className="input-group">
                     <input type="text" className="form-control" 
@@ -109,7 +117,7 @@ class SearchVehicle extends Component {
                     </div>
                 </div>
             </div>
-            <div className="_form-message">
+            <div className="form-message">
                 {(this.state.request)&&<Spinner />}
                 {(this.state.loaded)?
                     <>{

@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import SearchVehicle from './SearchVehicle'
 import {GetK1} from './component/GetK1'
 import {GetK2} from './component/GetK2'
+import {GetK3} from './component/GetK3'
+
 
 class Main extends Component {
 
@@ -37,10 +39,15 @@ class Main extends Component {
             </ul>
           {(this.state.searchVehicle)?<SearchVehicle />:<GetK1  />}
           </div>
+          <hr />
           <div className="city-paraqmeters">
             <GetK2 />
           </div>
-          
+          <hr />
+          <div className="k3-parameter">
+          {/* подымается только для K1 in ("B1","B2","B3","B4","B5","D1")  */}
+             <GetK3 />
+          </div>
           </div> 
     )}
 

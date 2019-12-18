@@ -39,7 +39,8 @@ class VehicleController extends Controller {
 		curl_close($curl);
 		
 		$result = str_replace('FContract.','',$response);
-		$result = str_replace('FContract.','',$response);
+		//$result = str_replace('FContract.','',$response);
+		$result = str_replace('.','',$result);
 		$resultArr = json_decode($result)->SearchResult;
 		//$data = end($resultArr);
 
