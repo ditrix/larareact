@@ -6,6 +6,9 @@ import {GetTaxi} from './component/GetTaxi'
 import {GetFranshise} from './component/GetFranshise'
 import {GetTerm} from './component/GetTerm'
 import {GetPrivilege} from './component/GetPrivilege'
+import GetOtk from './component/GetOtk'
+
+
 
 
 class Main extends Component {
@@ -45,6 +48,7 @@ class Main extends Component {
  
             <GetK2 />
              <GetTaxi />
+             <GetOtk />
           <hr />
            <GetFranshise />
            <GetTerm /> 

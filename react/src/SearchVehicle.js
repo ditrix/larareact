@@ -4,8 +4,9 @@ import axios from 'axios'
 import {Spinner} from './component/Spinner'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faLeaf } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
+// eslint-disable-next-line
 import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from './constants'
 
 import './css/style.css'
@@ -45,6 +46,7 @@ class SearchVehicle extends Component {
     }
 
     validInputData(){
+        // eslint-disable-next-line
         let regex = /^[a-zA-Zа-яА-ЯїЇіІ0-9./]{0,15}$/
         // ...
         return true

@@ -186,7 +186,19 @@ label {
   .small-select {
       width: 50%;
   }
+ 
+  .form-input-item-small span {
+      border: none;
+      background: none;
+  }
 
+  .react-datetime-picker__inputGroup__input:invalid {
+    background:#e5e6e9;
+  }
+
+  .react-datetime-picker__wrapper {
+      background: thin solid white;
+  }
   /*
   .select-widget {
    
