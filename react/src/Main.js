@@ -8,8 +8,7 @@ import {GetTerm} from './component/GetTerm'
 import {GetPrivilege} from './component/GetPrivilege'
 import GetOtk from './component/GetOtk'
 
-
-
+import GetDate from './component/GetDate'
 
 class Main extends Component {
 
@@ -49,6 +48,8 @@ class Main extends Component {
             <GetK2 />
              <GetTaxi />
              <GetOtk />
+             <hr />
+             <GetDate />
           <hr />
            <GetFranshise />
            <GetTerm /> 
