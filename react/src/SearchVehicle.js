@@ -18,17 +18,10 @@ function SearchResultTemplate(data){
             return(
             <div className="vehicle-info">
             <ul>
-            {    
-            (data.VIN)&&<li><label>VIN:</label><span>{data.VIN}</span></li>}
-            {
-            (data.DMarkName !== "")&&<li><label>марка:</label><span>{data.DMarkName}</span></li>
-            }
-            {
-            (data.DModelName !== "")&&<li><label>модель:</label><span>{data.DModelName}</span></li>
-            }
-            {
-            (data.AutoDescr !=="")&&<li><label>описание:</label><span>{data.AutoDescr}</span></li>
-            }
+            {(data.VIN)&&<li><label>VIN:</label><span>{data.VIN}</span></li>}
+            {(data.DMarkName !== "")&&<li><label>марка:</label><span>{data.DMarkName}</span></li>}
+            {(data.DModelName !== "")&&<li><label>модель:</label><span>{data.DModelName}</span></li>}
+            {(data.AutoDescr !=="")&&<li><label>опис:</label><span>{data.AutoDescr}</span></li>}
             </ul>
             </div>
             )
@@ -66,7 +59,6 @@ class SearchVehicle extends Component {
     
     handleInputVehicleChange(e){
         this.setState({searchVehicleStr: e.currentTarget.value})
-        //console.log(this.state.searchVehicleSt)
     }
 
     handleVehicleClick(){
@@ -86,14 +78,13 @@ class SearchVehicle extends Component {
                 if(response.status === 200){
                     console.log(response.data.result)
                     this.setState({vehicle:response.data.result})
-                    //console.log('vehicle info: ',this.state.vehicle)
                 } else {
-                    this.setState({message:'системная ошибка, воспользуйтесь вводом параметров авто'})
+                    this.setState({message:'не знайдено, воспользуйтесь вводом параметров ТЗ'})
                 }                
                 this.setState({request:false,loaded:true})
             })
             .catch(error => {
-                this.setState({loaded:true,request:false, message:'не найдено, воспользуйтесь вводом параметров авто'})
+                this.setState({loaded:true,request:false, message:'не знайдено, скористайтеся введенням параметрів ТЗ'})
             })
         }
     }
@@ -102,13 +93,14 @@ class SearchVehicle extends Component {
         return(
         <div className="search-vehicle-wrapper">
             <div className='search-form'>
+                <label className="block-label">держ номер транспортного засобу</label>
                 <div className="input-group">
                     <input type="text" className="form-control" 
                         required 
                         onClick={this.handleVehicleClick.bind(this)} 
                         onKeyDown={this.handleVehicleKeyDown.bind(this)}
                         value={this.state.searchVehicleStr} 
-                        placeholder="гос номер тс..." 
+                        placeholder="держ номер..." 
                         onChange={this.handleInputVehicleChange} />
                     <div className="input-group-append">
                         <span className="input-group-text">
