@@ -8,8 +8,6 @@ import {GetTerm} from './component/GetTerm'
 import {GetPrivilege} from './component/GetPrivilege'
 import GetOtk from './component/GetOtk'
 
-import GetDate from './component/GetDate'
-
 class Main extends Component {
 
   constructor(props){
@@ -17,7 +15,6 @@ class Main extends Component {
     this.state = {
       searchVehicle: true,
     }
-
   }
 
   parametersVehicleClick(){
@@ -49,11 +46,14 @@ class Main extends Component {
              <GetTaxi />
              <GetOtk />
              <hr />
-             <GetDate />
+    
+
           <hr />
            <GetFranshise />
            <GetTerm /> 
            <GetPrivilege />
+           <hr />
+           
           </div> 
     )}
 

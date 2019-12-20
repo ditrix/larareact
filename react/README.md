@@ -21,8 +21,13 @@ BOOTSTRAP  (https://getbootstrap.com/)   NB! возможно откажусь
 node -v 9.11.2
 npm -v 5.6.0
 
-for locale need to use   import 'moment/locale/fr.js';
+for locale need to use   import 'moment/locale/fr.js';  !
 https://momentjs.com/docs/
+
+date widgets   https://react-day-picker.js.org/
+z
+
+https://react-day-picker.js.org/docs/input/  !
 
 
 look here (https://rawgit.com/buildo/react-semantic-datepicker/master/examples/build/index.html)

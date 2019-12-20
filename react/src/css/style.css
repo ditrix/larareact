@@ -24,6 +24,11 @@ body {
     border: 1px red solid;
 }
 
+.debug-form{
+    border: 1px red solid;
+    padding: 10px;
+}
+
 label {
     margin: 1px 5px;
     color: gray;
@@ -192,13 +197,6 @@ label {
       background: none;
   }
 
-  .react-datetime-picker__inputGroup__input:invalid {
-    background:#e5e6e9;
-  }
-
-  .react-datetime-picker__wrapper {
-      background: thin solid white;
-  }
   /*
   .select-widget {
    
