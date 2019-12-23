@@ -45,13 +45,14 @@ class Main extends Component {
             <GetK2 />
              <GetTaxi />
              <GetOtk />
+             <GetPrivilege />
              <hr />
     
 
           <hr />
            <GetFranshise />
            <GetTerm /> 
-           <GetPrivilege />
+           
            <hr />
            
           </div> 

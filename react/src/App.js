@@ -1,19 +1,16 @@
 import React from 'react';
-import Main from './Main'
-
-// eslint-disable-next-line
-import {AskodsHeader} from './component/askods/AskodsHeader'
 import './css/style.css'
+
+//import Main from './Main'
+import PolisParameters from './container/PolisParameters'
 
 function App() {
   return (
     <div className="container">
       <header>
-       {/* <AskodsHeader />*/}
       </header>
       <main>
-        <hr />
-        <Main />
+        <PolisParameters />
       </main>
       <footer>footer</footer>
     </div>

@@ -15,6 +15,10 @@ export default function GetDateUA() {
     
     <div className="form-input-item-small">
       <label>дата отк:</label>
+      <input type="date"/> 
+
+    
+
       <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}

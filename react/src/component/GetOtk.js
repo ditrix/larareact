@@ -44,11 +44,18 @@ class GetOtk extends Component {
         this.state= {
        //     useOtk: false,
       //      dateOtk: new Date(),
-            date: new Date(),
+          useOtk: "0",
+          date: new Date(),
         }
     }
 
     onChange = date => this.setState({ date })
+
+    handleIsOtkChange(e){
+      //console.log(e.currentTarget.value)  
+      this.setState({useOtk:e.currentTarget.value})
+
+    }
 
     render(){
 
@@ -60,13 +67,15 @@ class GetOtk extends Component {
           <div className="form-input-item-small">
             <div>
                <label>отк:</label>
-              <select>
-                  <option value='0'>ні</option>
-                  <option value='1'>так</option>
+              <select onChange={this.handleIsOtkChange.bind(this)}>
+                  <option value="0">ні</option>
+                  <option value="1">так</option>
               </select>  
             </div>
-            
-             <GetDateUA />
+            {
+              (this.state.useOtk == "1")?<GetDateUA />:<></>
+            }  
+             
         </div>
 
         )
