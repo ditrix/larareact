@@ -2,9 +2,9 @@ import React from 'react'
 
 export const GetTaxi = () => {
     return(
-        <div className="form-input-item-small">
+        <div className="form-input-item">
 
-        <label>таксі:</label>
+        <label className="block-label">таксі:</label>
         <select>
             <option value='0'>ні</option>
             <option value='1'>так</option>

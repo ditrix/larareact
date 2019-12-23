@@ -13,12 +13,11 @@ import 'moment/locale/ua';
 export default function GetDateUA() {
   return (
     
-    <div className="form-input-item-small">
+    <div className="form-input-item-date">
       <label>дата отк:</label>
-      <input type="date"/> 
-
+  
     
-
+  
       <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}
@@ -32,6 +31,7 @@ export default function GetDateUA() {
         onDayChange={day => console.log(day)}
 
       />
+
     </div>
     
   );

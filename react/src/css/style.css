@@ -30,7 +30,6 @@ body {
 }
 
 label {
-    margin: 1px 5px;
     color: gray;
 }
 
@@ -42,15 +41,16 @@ label {
     max-width: 50%;
     border: 1px solid lightgray;
 }
-
+/*
 .form-input-item input {
 	margin: auto 0px;
 	height: 100%;
 	width: 300px;
-    padding: 5px;
+    padding: 0px;
     border: 1px solid lightgray
 }
-
+*/
+/*
 .form-input-item select {
 	margin: auto 0px;
 	height: 100%;
@@ -59,18 +59,35 @@ label {
     border: 1px solid lightgray;
     color: #007bff;
 }
-
+*/
+/*
 .form-input-item span {
     border: 2px #add8e6 solid; padding: 4px 5px;
     background-color: #add8e6;
     color: #3d7e9a;
+}
+*/
+
+
+.polis-parameters {
+    border: 1px gray solid;
+    padding: 15px;
+}
+
+.polis-parameters select {
+	margin: auto 0px;
+	width: 100%;
+    padding: 5px 0px;
+    border: 1px solid lightgray;
+    color: #007bff;
+
 }
 
 .form-input-item-small select {
 	margin: auto 0px;
 	height: 100%;
 	width: 25%;
-    padding: 5px;
+    padding: 5px 0px;
     border: 1px solid lightgray;
     color: #007bff;
 }
@@ -84,7 +101,8 @@ label {
 
 .form-input-item,
 .form-input-item-small {
-    padding: 5px;
+    padding: 0px;
+    width: 100%;
 }
 
 .awesome-spinner {
@@ -196,6 +214,8 @@ label {
       border: none;
       background: none;
   }
+
+  
 
   /*
   .select-widget {

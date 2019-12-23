@@ -64,16 +64,17 @@ class GetOtk extends Component {
         const locale = "ua"
         return(
 
-          <div className="form-input-item-small">
-            <div>
-               <label>отк:</label>
+          <div className="row">
+          
+            <div className="col-sm-3">
+               <label  className="block-label">отк:</label>
               <select onChange={this.handleIsOtkChange.bind(this)}>
                   <option value="0">ні</option>
                   <option value="1">так</option>
               </select>  
             </div>
             {
-              (this.state.useOtk == "1")?<GetDateUA />:<></>
+              (this.state.useOtk == "1")?<div className="col-sm-4"><GetDateUA /></div>:<></>
             }  
              
         </div>
