@@ -31,18 +31,19 @@ class PolisParameters extends Component{
     }
 
     
-    setDiscount(valueK1){
+    setDiscount(){
         return (['A1','A2','B1','B2','B3','D1'].indexOf(this.state.valueK1) !== -1)
     }
 
     getK1Value(e){
 
         this.setState({valueK1:e.currentTarget.value})
-        console.log(this.state.valueK1)
+        console.log('getK1Value', this.state.valueK1)
     }
 
     render(){
         const k1 = dataK1
+        console.log(this.state)
         return(
             <div className="container polis-parameters">
                <div className="row">
