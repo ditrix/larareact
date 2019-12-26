@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-import {Spinner} from './component/Spinner'
+import {Spinner} from '../component/Spinner'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 // eslint-disable-next-line
-import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from './constants'
+import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 
-import './css/style.css'
+//import './css/style.css'
 
 
 

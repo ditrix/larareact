@@ -72,6 +72,7 @@ label {
 .polis-parameters {
     border: 1px gray solid;
     padding: 15px;
+    width: 50%;
 }
 
 .polis-parameters select {
@@ -219,6 +220,10 @@ label {
     color: #007bff;
   }
 
+  .col-polis-parameter {
+      display: inline-block;
+      margin: 5px;
+  }
   /*
   .select-widget {
    

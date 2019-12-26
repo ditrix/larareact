@@ -14,11 +14,8 @@ import 'moment/locale/ua';
 export default function GetDateUA() {
   return (
     
-    <div className="form-input-item-date">
-      <label>дата отк:</label>
-  
-    
-  
+    <>
+      <div><label>дата отк:</label></div>
       <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}
@@ -33,7 +30,7 @@ export default function GetDateUA() {
 
       />
 
-    </div>
+    </>
     
   );
 }
