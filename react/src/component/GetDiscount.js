@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 
 class GetDiscount extends Component {
-    constructor(props){
-        super(props)
-    }
 
-    getValue(value){
-        this.props.isDiscount(value)
+    getValue = event => this.props.isDiscount(event.currentTarget.value)
+    
+    componentWillUnmount(){
+        this.props.isDiscount('0')
     }
 
     render(){

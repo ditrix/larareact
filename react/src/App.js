@@ -2,6 +2,7 @@ import React from 'react';
 import './css/style.css'
 
 //import Main from './Main'
+//import SearchVehicle from './SearchVehicle'
 import PolisParameters from './container/PolisParameters'
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <header>
       </header>
       <main>
+        {/*<SearchVehicle />*/}
         <PolisParameters />
       </main>
       <footer>footer</footer>
