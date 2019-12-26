@@ -1,7 +1,8 @@
 import React from 'react';
 import './css/style.css'
 
-import {AskodsHeader} from './component/AskodsHeader'
+import {AskodsHeader} from './component/askods/AskodsHeader'
+import {AskodsFooter} from './component/askods/AskodsFooter' 
 //import Main from './Main'
 //import SearchVehicle from './SearchVehicle'
 import PolisParameters from './container/PolisParameters'
@@ -16,7 +17,7 @@ function App() {
         {/*<SearchVehicle />*/}
         <PolisParameters />
       </main>
-      <footer>footer</footer>
+      <footer><AskodsFooter/></footer>
     </div>
   );
 }

@@ -1,3 +1,20 @@
+
+:root {
+	--common-blue-color: #1fb6ff;
+	--dark-blue-color: #0077d3;
+	
+	--dark-gray-color: #40464b;
+	--main-color: #4d4d4d;
+	--header-background: #e5e6e9;
+	--link-active-color: #364657;
+	--link-color: #1fb6ff;
+  
+	--red-button-color: #e21b2d;
+	--blue-button-color: #009fe2;
+	--dark-block-color: #2e3d4d;
+  
+	--common-dark-gray: #384657;
+  } 
 /*styles for askods-header component*/
 .askods-wrapper { width: 100%;	display: flex;	flex-direction: row;	flex-wrap: wrap; }
 .askods-header {
@@ -36,3 +53,115 @@
  }
 
  .askods-lang a { color: gray; text-decoration: underline;}
+
+ footer a {
+	color: lightgray;
+  }
+ 
+.askods-footer {}
+
+.footer-wrapper {
+	background-color: #e5e6e9;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	padding-top: 15px;
+	padding-bottom: 15px;
+  }
+  
+  .footer-wrapper h1 {
+	  color:var(--common-blue-color);
+	  font-size: 1.2em;
+  }
+
+  .footer-block li {
+	  list-style: none;
+  }
+
+  .footer-info-block p {
+	
+	font-size: small;
+  }
+
+
+  .footer-block {
+	font-weight: 400;
+	font-size: smaller;
+  }
+  
+  
+  .footer-block ul {
+	display: flex;
+	flex-direction: column;
+	padding: 0px;
+	line-height: normal;
+  } 
+  
+  .footer-block p {
+	color: black;
+	font-size: large;
+	padding: 0px;
+	margin: 0px;
+  }
+  
+  .footer-block a {
+	color: var(--common-blue-color);
+  }
+  
+  .footer-logo img {
+	width: 100%;
+  }
+  
+  .footer-contacts {
+	line-height: 1.0;
+	text-align: center;
+	max-width: 250px;
+  }
+  
+  .footer-contacts h1 {
+	margin: 0px;
+	padding: 0px;
+	font-size: x-large;
+	font-weight: 700;
+  }
+  
+  .footer-contacts p {
+	margin: 0px;
+	padding: 0px;
+	font-size:smaller;
+  }
+  
+  .social-info ul {
+	  position: relative;
+	  display: grid;
+	  grid-template-columns: 25% 25% 25% 25%; 
+	  width: 100%;
+  }
+  
+.social-info img {	width: 60%; }
+.social-info ul li {
+	vertical-align: top;
+	display: inline-block;
+  } 
+  .footer-logo-block {max-width: 20%;}
+  .social-info {
+	  margin: 5px auto;
+	  width: 80%;
+  }
+
+  
+.copyright {
+	display: inline-block;
+	float: left;
+	background-color: var(--dark-gray-color);
+	width: 100%;
+	margin: 0px; 
+	padding: 10px;
+	color: white;
+	font-size: x-small;
+}
+	
+.copyright a:hover { 
+	text-decoration: none; color: white;
+}

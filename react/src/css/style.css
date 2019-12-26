@@ -33,6 +33,10 @@ label {
     color: gray;
 }
 
+main {
+    min-height: 460px;
+}
+
 .block-label { display:block;}
 
 .app-form {
@@ -70,8 +74,9 @@ label {
 
 
 .polis-parameters {
-    border: 1px gray solid;
+    border: 1px lightgray solid;
     padding: 15px;
+    margin: 15px auto;
     width: 50%;
 }
 
@@ -178,10 +183,14 @@ label {
 }
 
 .calc-home-page {
-    width:40%;
+    width:100%;
+
+    
+
     margin: 10px auto;
     background-color: #efefef;
 }
+
 
 
 
