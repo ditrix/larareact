@@ -55,13 +55,8 @@ class PolisParameters extends Component{
                         <GetDiscount isDiscount={this.getDiscount} />:<></>}
                     </div>
                     <div className="col-sm-1">
-                    {(
-                ((this.state.valueDiscount === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.state.valueK1) !== -1))
-                ||(['D1'].indexOf(this.state.valueK1) !== -1)
-                        //(this.state.valueDiscount === "0") // NB! is OK!!!!
-                        /*||((['A1','A2','C1','C2','D2','E','F'].indexOf(this.state.valueK1) === -1))*/
-                        //||(['A1','A2'].indexOf(this.state.valueK1) == -1)
-                        )?
+                    {(((this.state.valueDiscount === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.state.valueK1) !== -1))
+                        ||(['D1'].indexOf(this.state.valueK1) !== -1))?
                         <GetTaxi isTaxi={this.getTaxi} />:<></>}
                     </div>
                     <div className="col-sm-4">
