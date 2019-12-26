@@ -13,8 +13,7 @@ class PolisParameters extends Component{
             valueDiscount: '0',
             valueTaxi: '0',
 
-            isTaxi: '0',
-            //isDiscount:true,
+ 
             isOtk: false,
 
         }
@@ -26,14 +25,9 @@ class PolisParameters extends Component{
 
     }
 
-    setTaxi(value){
-        this.setState({isTaxi:!value})
-
-        return
-    }
-
+ 
     setDiscount(){
-        return (['A1','B1','B2','B3','D1'].indexOf(this.state.valueK1) !== -1)
+        return (['A1','A2','B1','B2','B3'].indexOf(this.state.valueK1) !== -1)
     }
 
     getK1Value(value){
@@ -61,10 +55,18 @@ class PolisParameters extends Component{
                         <GetDiscount isDiscount={this.getDiscount} />:<></>}
                     </div>
                     <div className="col-sm-1">
-                    { (this.state.valueDiscount === "0")?<GetTaxi isTaxi={this.getTaxi} />:<></>            }
+                    {(
+                ((this.state.valueDiscount === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.state.valueK1) !== -1))
+                ||(['D1'].indexOf(this.state.valueK1) !== -1)
+                        //(this.state.valueDiscount === "0") // NB! is OK!!!!
+                        /*||((['A1','A2','C1','C2','D2','E','F'].indexOf(this.state.valueK1) === -1))*/
+                        //||(['A1','A2'].indexOf(this.state.valueK1) == -1)
+                        )?
+                        <GetTaxi isTaxi={this.getTaxi} />:<></>}
                     </div>
                     <div className="col-sm-4">
-                        <GetOtk />
+                    {((this.state.valueTaxi === "1")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
+                        <GetOtk />:<></>}
                     </div>
                 </div>
             </div>   

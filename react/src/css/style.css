@@ -215,7 +215,9 @@ label {
       background: none;
   }
 
-  
+  .DayPickerInput  input {
+    color: #007bff;
+  }
 
   /*
   .select-widget {
