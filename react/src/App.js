@@ -3,19 +3,19 @@ import './css/style.css'
 
 import {AskodsHeader} from './component/askods/AskodsHeader'
 import {AskodsFooter} from './component/askods/AskodsFooter' 
-//import Main from './Main'
-//import SearchVehicle from './SearchVehicle'
-import PolisParameters from './container/PolisParameters'
+import Lang from './component/Lang'
+
+import Main from './Main'
 
 function App() {
   return (
     <div className="container">
       <header>
         <AskodsHeader />
+        <nav><Lang /></nav>
       </header>
       <main>
-        {/*<SearchVehicle />*/}
-        <PolisParameters />
+        <Main />
       </main>
       <footer><AskodsFooter/></footer>
     </div>

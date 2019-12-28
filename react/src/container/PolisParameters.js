@@ -13,8 +13,6 @@ class PolisParameters extends Component{
             valueK1: 'B1',
             valueDiscount: '0',
             valueTaxi: '0',
-
- 
             isOtk: false,
             searchVehicle: true,
 
@@ -56,17 +54,18 @@ class PolisParameters extends Component{
      
         return(
             
-            <div className="container polis-parameters">
+            <div className="polis-parameters">
 
             <div className="vehicle-parameters">
            <ul className="nav nav-pills">
               <li className="nav-item">
-                <span className={(this.state.searchVehicle)?"nav-link active":"nav-link passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</span>
+                <button className={(this.state.searchVehicle)?"parameters-link-active":"parameters-link-passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</button>
               </li>
               <li className="nav-item">
-                <span className={(this.state.searchVehicle)?"nav-link  passive":"nav-link active"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</span>
+                <button className={(this.state.searchVehicle)?"parameters-link-passive":"parameters-link-active"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</button>
               </li>
             </ul>
+           
           {(this.state.searchVehicle)?<SearchVehicle />:<GetK1 getK1={this.getK1Value} />  }
             </div>
               <GetK2 />  
