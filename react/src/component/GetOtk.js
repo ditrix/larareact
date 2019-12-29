@@ -1,39 +1,6 @@
 import React, {Component} from 'react'
-//import DateTimePicker from 'react-datetime-picker';
-//import DatePicker from 'react-date-picker';
-
 
 import GetDateUA from './GetDateUA'
-
-
-
- /*
-          <div className="form-input-item-small">
-          
-            <label>дата</label>
-            <span>DatePicker</span>
-            <DatePicker onChange={this.onChange} value={this.state.date} locale="ua-UA"/>
-
-            <hr />
-            <span>DayPickerInput</span>
-            <DayPickerInput />
-            
-            
-            
-            <hr />
-
-            <span>DayPicker</span>
-            <DayPicker locale={locale} months={MONTHS[locale]} 
-              weekdaysLong={WEEKDAYS_LONG[locale]} weekdaysShort={WEEKDAYS_SHORT[locale]} 
-              firstDayOfWeek={FIRST_DAY_OF_WEEK[locale]} labels={LABELS[locale]} />;
- 
-     
-            </div>
-             */
-
-
-import 'moment/locale/ru.js';
-import 'moment/locale/ua.js';  
 
 import 'react-day-picker/lib/style.css';
 
@@ -58,10 +25,6 @@ class GetOtk extends Component {
     }
 
     render(){
-
-        // cdk-overlay-pane mat-datepicker-popup
-        const { startDate } = this.state;
-        const locale = "ua"
         return(
 
           <div className="row">
@@ -74,7 +37,7 @@ class GetOtk extends Component {
               </select>  
             </div>
             {
-              (this.state.useOtk == "1")?<div className="col-sm-4"><GetDateUA /></div>:<></>
+              (this.state.useOtk === "1")?<div className="col-sm-4"><GetDateUA /></div>:<></>
             }  
              
         </div>
@@ -85,29 +48,3 @@ class GetOtk extends Component {
 
 export default GetOtk
 
-
-
-  /*
-          <div className="form-input-item-small">
-          
-            <label>дата</label>
-            <span>DatePicker</span>
-            <DatePicker onChange={this.onChange} value={this.state.date} locale="ua-UA"/>
-
-            <hr />
-            <span>DayPickerInput</span>
-            <DayPickerInput />
-            
-            
-            
-            <hr />
-
-            <span>DayPicker</span>
-            <DayPicker locale={locale} months={MONTHS[locale]} 
-              weekdaysLong={WEEKDAYS_LONG[locale]} weekdaysShort={WEEKDAYS_SHORT[locale]} 
-              firstDayOfWeek={FIRST_DAY_OF_WEEK[locale]} labels={LABELS[locale]} />;
- 
-     
-            </div>
-             */
-        

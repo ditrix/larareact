@@ -8,6 +8,7 @@ import MomentLocaleUtils, {
   parseDate,
 } from 'react-day-picker/moment';
 
+import 'moment/locale/ru.js';
 import 'moment/locale/ua';
 
 export default function GetDateUA() {
