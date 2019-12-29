@@ -1,20 +1,23 @@
 import React from 'react';
 import './css/style.css'
 
-//import Main from './Main'
-//import SearchVehicle from './SearchVehicle'
-import PolisParameters from './container/PolisParameters'
+import {AskodsHeader} from './component/askods/AskodsHeader'
+import {AskodsFooter} from './component/askods/AskodsFooter' 
+import Lang from './component/Lang'
+
+import Main from './Main'
 
 function App() {
   return (
-    <div className="container">
+    <div className="_container">
       <header>
+        <AskodsHeader />
+        <nav><Lang /></nav>
       </header>
       <main>
-        {/*<SearchVehicle />*/}
-        <PolisParameters />
+        <Main />
       </main>
-      <footer>footer</footer>
+      <footer><AskodsFooter/></footer>
     </div>
   );
 }

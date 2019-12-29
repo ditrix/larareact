@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import GetK1 from '../component/GetK1'
+import {GetK2} from '../component/GetK2'
 import GetTaxi from '../component/GetTaxi'
 import GetDiscount from '../component/GetDiscount'
 import GetOtk from '../component/GetOtk'
-
+import SearchVehicle from './SearchVehicle'
 
 class PolisParameters extends Component{
     constructor(props){
@@ -12,10 +13,8 @@ class PolisParameters extends Component{
             valueK1: 'B1',
             valueDiscount: '0',
             valueTaxi: '0',
-
-            isTaxi: '0',
-            //isDiscount:true,
             isOtk: false,
+            searchVehicle: true,
 
         }
         
@@ -26,14 +25,17 @@ class PolisParameters extends Component{
 
     }
 
-    setTaxi(value){
-        this.setState({isTaxi:!value})
-
-        return
-    }
+    parametersVehicleClick(){
+        this.setState({searchVehicle:false})
+     }
+   
+     searchVehicleClick(){
+       this.setState({searchVehicle:true})
+     }
+   
 
     setDiscount(){
-        return (['A1','B1','B2','B3','D1'].indexOf(this.state.valueK1) !== -1)
+        return (['A1','A2','B1','B2','B3'].indexOf(this.state.valueK1) !== -1)
     }
 
     getK1Value(value){
@@ -49,22 +51,40 @@ class PolisParameters extends Component{
     }
 
     render(){
-        console.log(this.state)
+     
         return(
-            <div className="container polis-parameters">
-               <div className="row">
-                    <div className="col-sm-5">
-                        <GetK1 getK1={this.getK1Value} />  
-                    </div>
-                    <div className="col-sm-2">
+            
+            <div className="polis-parameters">
+
+            <div className="vehicle-parameters">
+           <ul className="nav nav-pills">
+              <li className="nav-item">
+                <button className={(this.state.searchVehicle)?"parameters-link-active":"parameters-link-passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</button>
+              </li>
+              <li className="nav-item">
+                <button className={(this.state.searchVehicle)?"parameters-link-passive":"parameters-link-active"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</button>
+              </li>
+            </ul>
+           
+          {(this.state.searchVehicle)?<SearchVehicle />:<GetK1 getK1={this.getK1Value} />  }
+            </div>
+              <GetK2 />  
+                <div className="row_">   
+                    <div className="col-polis-parameter">
+                    {/*  если мото,  легков -> покажем выбор льгот */}
                     {(this.setDiscount(this.state.valueK1))?
                         <GetDiscount isDiscount={this.getDiscount} />:<></>}
                     </div>
-                    <div className="col-sm-1">
-                    { (this.state.valueDiscount === "0")?<GetTaxi isTaxi={this.getTaxi} />:<></>            }
+                    <div className="col-polis-parameter">
+                    {/* если нет льгот и легковой или автобус до 20 мест -> покажем выбор такси */}
+                    {(((this.state.valueDiscount === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.state.valueK1) !== -1))
+                        ||(['D1'].indexOf(this.state.valueK1) !== -1))?
+                        <GetTaxi isTaxi={this.getTaxi} />:<></>}
                     </div>
-                    <div className="col-sm-4">
-                        <GetOtk />
+                    <div className="col-polis-parameter">
+                    {/* если такси или грузовик автобус прицепы -> покажем выбор техосмотра */}
+                    {((this.state.valueTaxi === "1")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
+                        <GetOtk />:<></>}
                     </div>
                 </div>
             </div>   

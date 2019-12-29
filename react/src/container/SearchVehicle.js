@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-import {Spinner} from './component/Spinner'
+import {Spinner} from '../component/Spinner'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 // eslint-disable-next-line
-import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from './constants'
+import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 
-import './css/style.css'
+//import './css/style.css'
 
 
 
@@ -18,7 +18,7 @@ function SearchResultTemplate(data){
         if(data){
             return(
             <div className="vehicle-info">
-            <ul>
+            <ul className="vehicle-info-search-result">
             {(data.VIN)&&<li><label>VIN:</label><span>{data.VIN}</span></li>}
             {(data.DMarkName !== "")&&<li><label>марка:</label><span>{data.DMarkName}</span></li>}
             {(data.DModelName !== "")&&<li><label>модель:</label><span>{data.DModelName}</span></li>}
@@ -71,10 +71,11 @@ class SearchVehicle extends Component {
         if(this.state.searchVehicleStr === ''){
             return;
         }
+        const url = `${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
         if(this.validInputData()){
          console.log('search...')  
         this.setState({loaded: true, vehicle:null,request:true})
-        axios.get(`http://larareact/public/vehicle?num=${this.state.searchVehicleStr}`,)
+        axios.get(url)
             .then(response => {
                 console.log(response)
                 if(response.status === 200){
@@ -125,6 +126,5 @@ class SearchVehicle extends Component {
 }
 
 export default SearchVehicle
-{/*
-BH3003CM
-*/} 
+// BH3003CM
+ 

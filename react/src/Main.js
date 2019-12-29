@@ -1,68 +1,84 @@
-import React, {Component} from 'react'
-import SearchVehicle from './SearchVehicle'
-import {GetK1} from './component/GetK1'
-import {GetK2} from './component/GetK2'
-import {GetTaxi} from './component/GetTaxi'
-import {GetFranshise} from './component/GetFranshise'
-import {GetTerm} from './component/GetTerm'
-import {GetPrivilege} from './component/GetPrivilege'
-import GetOtk from './component/GetOtk'
+import React,{Component} from 'react';
+import './css/style.css'
+import PolisParameters from './container/PolisParameters'
+import Client from './container/Client'
+import Object from './container/Object'
+
+const TAB_PARAMETERS = 'TAB_PARAMETERS'
+const TAB_CLIENT = 'TAB_CLIENT'
+const TAB_OBJECT = 'TAB_OBJECT' 
+// TODO валидаторы  и контроль ввода и актив/пасс виджетов
 
 class Main extends Component {
-
   constructor(props){
     super(props)
     this.state = {
-      searchVehicle: true,
+      currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
+      labelBtnNext:'наступна',
+      labelBtnPrev: 'попередня',
+      enabledBtnPrev: '0',
+      enabledBtnNext: '1'
+
     }
+    this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
+    this.handlePrevButtonClick = this.handlePrevButtonClick.bind(this)
+     
   }
 
-  parametersVehicleClick(){
-     this.setState({searchVehicle:false})
-  }
+  handleNextButtonClick(e){
+    e.preventDefault() 
+    switch(this.state.currentTab){
+      case TAB_PARAMETERS:
+         this.setState({currentTab:TAB_CLIENT,enabledBtnNext:'1',enabledBtnPrev:'1'})
+         break;
+      case TAB_CLIENT:
+          this.setState({currentTab:TAB_OBJECT,enabledBtnNext:'0',enabledBtnPrev:'1'})
+          break;
+      }        
+      console.log(this.state)
+  }  
 
-  searchVehicleClick(){
-    this.setState({searchVehicle:true})
-  }
+  handlePrevButtonClick(e){
+    e.preventDefault()
+    switch(this.state.currentTab){
+      case TAB_OBJECT:
+         this.setState({currentTab:TAB_CLIENT,enabledBtnNext:'1',enabledBtnPrev:'1'})
+         break;
+      case TAB_CLIENT:
+          this.setState({currentTab:TAB_PARAMETERS,enabledBtnNext:'1',enabledBtnPrev:'0'})
+          break;
+      }        
+    }
 
-    render(){
+  
+  render(){
+    console.log(this.state)
+    return (
+        <form className="main-form clearfix">
+                   
 
-        return(
-          <div className="calc-home-page" >
-
-          <div className="vehicle-parameters">
-           <ul className="nav nav-pills">
-              <li className="nav-item">
-                <span className={(this.state.searchVehicle)?"nav-link active":"nav-link passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</span>
-              </li>
-              <li className="nav-item">
-                <span className={(this.state.searchVehicle)?"nav-link  passive":"nav-link active"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</span>
-              </li>
-            </ul>
-          {(this.state.searchVehicle)?<SearchVehicle />:<GetK1  />}
-          </div>
- 
-            <GetK2 />
-             <GetTaxi />
-             <GetOtk />
-             <GetPrivilege />
-             <hr />
-    
-
-          <hr />
-           <GetFranshise />
-           <GetTerm /> 
-           
-           <hr />
-           
-          </div> 
+        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters/>}
+        {(this.state.currentTab === TAB_CLIENT)&&<Client />}
+        {(this.state.currentTab === TAB_OBJECT)&&<Object />}
+        <footer>
+            <nav  className="clearfix">
+              {(this.state.enabledBtnPrev == '1')&&
+              <button 
+                className="btn-main-form-navigate btn-prev" 
+                onClick={this.handlePrevButtonClick} >{this.state.labelBtnPrev}
+              </button>
+              } 
+              {(this.state.enabledBtnNext == '1')&&
+              <button 
+                className="btn-main-form-navigate btn-next" 
+                onClick={this.handleNextButtonClick} >{this.state.labelBtnNext}
+              </button> 
+              }
+            </nav>
+        </footer>
+    </form>
     )}
-
-
-   
-
-
-
+  
 }
 
-export default Main
+export default Main;

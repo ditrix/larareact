@@ -27,9 +27,9 @@ class GetOtk extends Component {
     render(){
         return(
 
-          <div className="row">
+          <>
           
-            <div className="col-sm-3">
+            <div className="col-polis-parameter">
                <label  className="block-label">отк:</label>
               <select onChange={this.handleIsOtkChange.bind(this)}>
                   <option value="0">ні</option>
@@ -37,10 +37,10 @@ class GetOtk extends Component {
               </select>  
             </div>
             {
-              (this.state.useOtk === "1")?<div className="col-sm-4"><GetDateUA /></div>:<></>
+              (this.state.useOtk === "1")?<div className="col-polis-parameter"><GetDateUA /></div>:<></>
             }  
              
-        </div>
+        </>
 
         )
     }
