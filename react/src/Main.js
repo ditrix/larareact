@@ -9,15 +9,22 @@ const TAB_CLIENT = 'TAB_CLIENT'
 const TAB_OBJECT = 'TAB_OBJECT' 
 // TODO валидаторы  и контроль ввода и актив/пасс виджетов
 
+
+// полный стейт приложения держим в main
+// в локальные стейты скидываем отсюда все пропсами
+// ????  обновлять этой супер-пупер-стейт ?????? таки store ;)
+
+
 class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
+      currentTab: '', // ?? componentDidMount ???
       labelBtnNext:'наступна',
       labelBtnPrev: 'попередня',
       enabledBtnPrev: '0',
-      enabledBtnNext: '1'
+      enabledBtnNext: '1',
+      beginPolis: '',
 
     }
     this.handleNextButtonClick = this.handleNextButtonClick.bind(this)

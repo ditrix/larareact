@@ -61,7 +61,7 @@ class Client extends Component {
     render(){
         return(
             
-            <form className="client-form">
+            <div className="client-form">
                 <header><h3>Страхувальник</h3></header>
                 <main>
                 <div className="form-input-item">
@@ -168,7 +168,7 @@ class Client extends Component {
                 <footer>
                     сгоден на обробку даних
                 </footer>                
-            </form>
+            </div>
             
             
         )
