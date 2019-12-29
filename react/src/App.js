@@ -12,7 +12,7 @@ function App() {
     <div className="_container">
       <header>
         <AskodsHeader />
-        <nav><Lang /></nav>
+  
       </header>
       <main>
         <Main />

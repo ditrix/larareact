@@ -23,25 +23,41 @@ class Client extends Component {
                 lname: '',
                 sname: '',
                 fname: '',
-                inn: '',
+                ipn: '',
                 dob: '',
                 
                 doc:{
-                  type:'',  
+                  type:'',   // если   id-паспорт громодянина України  
+                             // seria не спрашиваем для остальных - есть
                   seria: '',
                   no:'',
                   dtget: '',
                   source: '',                  
                 },
-                addr: {
-                    city:'',
-                    street:'',
-                    house:'',
-                    flat:'',
-                },
+                addr: '',
+                phone: '',
+                email: '',
             },
         }
     }
+
+    handleLNameChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleSNameChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleFNameChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleIPNChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleDOBChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    
+    handleDocTypeChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleDocSeriaChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleDocNoChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleDtGetChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleDocSourceChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+
+    handleAddrChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handlePhoneChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleEmailChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+
+
     render(){
         return(
             
@@ -50,21 +66,21 @@ class Client extends Component {
                 <main>
                 <div className="form-input-item">
                     <label className="block-label">Прізвище:</label>
-                    <input value={this.state.client.laname} />
+                    <input value={this.state.client.laname} onClick={this.handleLNameChanged.bind(this)} />
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Ім'я:</label>
-                    <input value={this.state.client.faname} />
+                    <input value={this.state.client.faname} onChange={this.handleFNameChanged.bind(this)} />
                 </div>                
                 <div className="form-input-item">
                     <label className="block-label">По батькові:</label>
-                    <input value={this.state.client.saname} />
+                    <input value={this.state.client.saname} onChange={this.handleSNameChanged.bind(this)} />
                 </div>                
 
                 <div className="form-input-row">
                     <div className="form-input-item input-inn">
                         <label className="block-label">Індивідуальний податковий номер (ІПН):</label>
-                        <input value={this.state.client.inn} />
+                        <input value={this.state.client.inn} onChange={this.handleIPNChanged.bind(this)} />
                     </div>                
                     
                     <div className="form-input-item input-dob">
@@ -78,14 +94,14 @@ class Client extends Component {
                             locale: 'ua',
                             localeUtils: MomentLocaleUtils,
                             }}
-                            onDayChange={day => console.log(day)}
+                            onDayChange={this.handleDOBChanged.bind(this)}
                         />
                     </div>                
                 </div>
                 <div className="form-input-row">
                 <div>
                 <label>документ:</label>
-                <select>
+                <select onChange={this.handleDocTypeChanged.bind(this)}>
                     <option value='12'>Водійське посвідчення</option>
                             
                     <option value='12'>паспорт</option>
@@ -103,11 +119,11 @@ class Client extends Component {
                 <div className="form-input-row">
                 <div className="form-input-item doc-seria">
                         <label className="block-label">Серія:</label>
-                        <input value={this.state.client.doc.seria} />
+                        <input value={this.state.client.doc.seria} onChange={this.handleDocSeriaChanged.bind(this)} />
                     </div>       
                     <div className="form-input-item doc-no">
                         <label className="block-label">Номер:</label>
-                        <input value={this.state.client.doc.no} />
+                        <input value={this.state.client.doc.no} onChange={this.handleDocNoChanged.bind(this)} />
                     </div>       
                 </div>    
               
@@ -123,31 +139,26 @@ class Client extends Component {
                             locale: 'ua',
                             localeUtils: MomentLocaleUtils,
                             }}
-                            onDayChange={day => console.log(day)}
+                            onDayChange={this.handleDtGetChanged.bind(this)}
                         />
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Ким виданий:</label>
-                    <input value={this.state.client.doc.source} />
+                    <input value={this.state.client.doc.source} onChange={this.handleDocSourceChanged.bind(this)} />
                 </div>              
 
 {/**/}
-                <label className="block-label">Дареса</label>           
                 <div className="form-input-item">
-                    <label className="block-label">Місто:</label>
-                    <input value={this.state.client.addr.city} />
+                    <label className="block-label">Адреса:</label>
+                    <input value={this.state.client.addr} onChange={this.handleAddrChanged.bind(this)} />
                 </div>
                 <div className="form-input-item">
-                    <label className="block-label">Вулиця:</label>
-                    <input value={this.state.client.addr.street} />
+                    <label className="block-label">Телефон:</label>
+                    <input value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
                 </div>                
                 <div className="form-input-item">
-                    <label className="block-label">Дім:</label>
-                    <input value={this.state.client.addr.house} />
-                </div>                
-                <div className="form-input-item">
-                    <label className="block-label">Квартира:</label>
-                    <input value={this.state.client.addr.flat} />
+                    <label className="block-label">Email:</label>
+                    <input value={this.state.client.email} onChange={this.handleEmailChanged.bind(this)} />
                 </div>                
 
 

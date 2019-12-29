@@ -25,6 +25,10 @@ class Main extends Component {
      
   }
 
+  componentDidMount(){
+    this.setState({currentTab:TAB_CLIENT})
+  }
+
   handleNextButtonClick(e){
     e.preventDefault() 
     switch(this.state.currentTab){

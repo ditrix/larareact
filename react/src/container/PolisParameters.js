@@ -25,11 +25,13 @@ class PolisParameters extends Component{
 
     }
 
-    parametersVehicleClick(){
+    parametersVehicleClick(e){
+        e.preventDefault()
         this.setState({searchVehicle:false})
      }
    
-     searchVehicleClick(){
+     searchVehicleClick(e){
+        e.preventDefault()  
        this.setState({searchVehicle:true})
      }
    

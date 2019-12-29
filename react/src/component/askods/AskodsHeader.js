@@ -2,11 +2,12 @@ import React from 'react';
 import logo from './logo.png';
 
 import './askods.css'
+import Lang from '../Lang'
 
 export const  AskodsHeader = () => {
 	
 	return(
-			<div className="askods-wrapper row">
+			<div className="askods-wrapper">
 					<div className="askods-header text-center">
 						<div className="askods-item">
 							<img src={logo} className="App-logo" alt="logo" />
@@ -20,7 +21,7 @@ export const  AskodsHeader = () => {
 							<p>вартість дзвінків відповідно до тарифів Вашого оператора</p>
 						</div>
 			  	</div>
-		
+				<div className="lang-sqitcher"><Lang /></div>
 	  	</div>
     )
 
