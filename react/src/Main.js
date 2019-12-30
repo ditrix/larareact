@@ -46,7 +46,7 @@ class Main extends Component {
           this.setState({currentTab:TAB_OBJECT,enabledBtnNext:'0',enabledBtnPrev:'1'})
           break;
       }        
-      console.log(this.state)
+     // console.log(this.state)
   }  
 
   handlePrevButtonClick(e){
@@ -63,7 +63,7 @@ class Main extends Component {
 
   
   render(){
-    console.log(this.state)
+    //console.log(this.state)
     return (
         <form className="main-form clearfix">
                    
@@ -73,13 +73,13 @@ class Main extends Component {
         {(this.state.currentTab === TAB_OBJECT)&&<Object />}
         <footer>
             <nav  className="clearfix">
-              {(this.state.enabledBtnPrev == '1')&&
+              {(this.state.enabledBtnPrev === '1')&&
               <button 
                 className="btn-main-form-navigate btn-prev" 
                 onClick={this.handlePrevButtonClick} >{this.state.labelBtnPrev}
               </button>
               } 
-              {(this.state.enabledBtnNext == '1')&&
+              {(this.state.enabledBtnNext === '1')&&
               <button 
                 className="btn-main-form-navigate btn-next" 
                 onClick={this.handleNextButtonClick} >{this.state.labelBtnNext}

@@ -1,4 +1,5 @@
 import React, {Component} from 'react' 
+import {dateFormatApi} from '../lib/functions'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -24,7 +25,7 @@ class Client extends Component {
                 sname: 'sname',
                 fname: 'fname',
                 ipn: '1234567890',
-                dob: '2011-12-30',
+                dob: '2012-01-01',
                 
                 doc:{
                   type:'1',   // если   id-паспорт громодянина України  
@@ -42,7 +43,9 @@ class Client extends Component {
         this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
     }
 
+
     filterEnterKeyCode(e){
+        console.log('key')
         if(e.keyCode === 13){
              e.preventDefault()
              return
@@ -74,13 +77,11 @@ class Client extends Component {
     }
   
     handleDOBChanged = (value) => { 
-        //console.log('dob changed: ',event)
         const client = this.state.client; 
-        client.dob = value
+        client.dob = dateFormatApi(value)
         this.setState({client:client})
-        console.log('dob value', value)
-        console.log('dob formated value',formatDate(value, 'L', 'it'))
-    }
+        console.log(this.state.client)
+     }
     
     handleDocTypeChanged = (event) => { 
     
@@ -100,7 +101,7 @@ class Client extends Component {
 
 
     render(){
-        //const dateDob  = 
+        const dateDob  = (this.state.client.dob === '')? new Date(): this.state.client.dob
         return(
             
             <div className="client-form">
@@ -148,7 +149,7 @@ class Client extends Component {
                             formatDate={formatDate}
                             parseDate={parseDate}
                             format="L"
-                            placeholder={`${formatDate(this.state.client.dob, 'L', 'ua')}`}
+                            placeholder={`${formatDate(dateDob, 'L', 'ua')}`}
                             dayPickerProps={{
                             locale: 'ua',
                             localeUtils: MomentLocaleUtils,

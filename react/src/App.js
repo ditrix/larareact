@@ -3,7 +3,7 @@ import './css/style.css'
 
 import {AskodsHeader} from './component/askods/AskodsHeader'
 import {AskodsFooter} from './component/askods/AskodsFooter' 
-import Lang from './component/Lang'
+
 
 import Main from './Main'
 
