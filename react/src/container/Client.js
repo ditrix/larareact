@@ -21,33 +21,74 @@ class Client extends Component {
         this.state={
             client:{
                 lname: '',
-                sname: '',
-                fname: '',
-                ipn: '',
-                dob: '',
+                sname: 'sname',
+                fname: 'fname',
+                ipn: '1234567890',
+                dob: '2011-12-30',
                 
                 doc:{
-                  type:'',   // если   id-паспорт громодянина України  
+                  type:'1',   // если   id-паспорт громодянина України  
                              // seria не спрашиваем для остальных - есть
-                  seria: '',
-                  no:'',
-                  dtget: '',
-                  source: '',                  
+                  seria: 'AA',
+                  no:'123',
+                  dtget: '22.22.2222',
+                  source: 'source',                  
                 },
-                addr: '',
-                phone: '',
-                email: '',
+                addr: 'addr',
+                phone: '+38066064633',
+                email: 'mail@mail.com',
             },
         }
+        this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
     }
 
-    handleLNameChanged = (event) => { const client = this.state.client; this.setState({client:client})}
-    handleSNameChanged = (event) => { const client = this.state.client; this.setState({client:client})}
-    handleFNameChanged = (event) => { const client = this.state.client; this.setState({client:client})}
-    handleIPNChanged = (event) => { const client = this.state.client; this.setState({client:client})}
-    handleDOBChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    filterEnterKeyCode(e){
+        if(e.keyCode === 13){
+             e.preventDefault()
+             return
+        }        
+       return
+    }
+
+    handleLNameChanged = (event) => { 
+        event.preventDefault()
+        const client = this.state.client; 
+        client.lname = event.currentTarget.value
+        this.setState({client:client})
+    }
+    handleSNameChanged = (event) => { 
+        const client = this.state.client; 
+        client.sname = event.currentTarget.value
+        this.setState({client:client})
+    }
+    handleFNameChanged = (event) => { 
+        const client = this.state.client; 
+        client.fname = event.currentTarget.value
+        this.setState({client:client})
+    }
     
-    handleDocTypeChanged = (event) => { const client = this.state.client; this.setState({client:client})}
+    handleIPNChanged = (event) => { 
+        const client = this.state.client; 
+        client.ipn = event.currentTarget.value
+        this.setState({client:client})
+    }
+  
+    handleDOBChanged = (value) => { 
+        //console.log('dob changed: ',event)
+        const client = this.state.client; 
+        client.dob = value
+        this.setState({client:client})
+        console.log('dob value', value)
+        console.log('dob formated value',formatDate(value, 'L', 'it'))
+    }
+    
+    handleDocTypeChanged = (event) => { 
+    
+        console.log(event)
+     //   const client = this.state.client; 
+     //   client.doc.type = event.currentTarget.value
+     //   this.setState({client:client})
+    }
     handleDocSeriaChanged = (event) => { const client = this.state.client; this.setState({client:client})}
     handleDocNoChanged = (event) => { const client = this.state.client; this.setState({client:client})}
     handleDtGetChanged = (event) => { const client = this.state.client; this.setState({client:client})}
@@ -59,6 +100,7 @@ class Client extends Component {
 
 
     render(){
+        //const dateDob  = 
         return(
             
             <div className="client-form">
@@ -66,21 +108,38 @@ class Client extends Component {
                 <main>
                 <div className="form-input-item">
                     <label className="block-label">Прізвище:</label>
-                    <input value={this.state.client.laname} onClick={this.handleLNameChanged.bind(this)} />
+                    <input 
+                        value={this.state.client.lname} 
+                        onChange={this.handleLNameChanged.bind(this)} 
+                        onKeyDown={this.filterEnterKeyCode}
+                        type="text"
+                    />
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Ім'я:</label>
-                    <input value={this.state.client.faname} onChange={this.handleFNameChanged.bind(this)} />
+                    <input 
+                        value={this.state.client.fname} 
+                        onChange={this.handleFNameChanged.bind(this)} 
+                        onKeyDown={this.filterEnterKeyCode}
+                    />
                 </div>                
                 <div className="form-input-item">
                     <label className="block-label">По батькові:</label>
-                    <input value={this.state.client.saname} onChange={this.handleSNameChanged.bind(this)} />
+                    <input 
+                        value={this.state.client.sname} 
+                        onChange={this.handleSNameChanged.bind(this)} 
+                        onKeyDown={this.filterEnterKeyCode}
+                    />
                 </div>                
 
                 <div className="form-input-row">
                     <div className="form-input-item input-inn">
                         <label className="block-label">Індивідуальний податковий номер (ІПН):</label>
-                        <input value={this.state.client.inn} onChange={this.handleIPNChanged.bind(this)} />
+                        <input 
+                            value={this.state.client.ipn} 
+                            onChange={this.handleIPNChanged.bind(this)} 
+                            onKeyDown={this.filterEnterKeyCode}
+                        />
                     </div>                
                     
                     <div className="form-input-item input-dob">
@@ -89,7 +148,7 @@ class Client extends Component {
                             formatDate={formatDate}
                             parseDate={parseDate}
                             format="L"
-                            placeholder={`${formatDate(new Date(), 'L', 'ua')}`}
+                            placeholder={`${formatDate(this.state.client.dob, 'L', 'ua')}`}
                             dayPickerProps={{
                             locale: 'ua',
                             localeUtils: MomentLocaleUtils,
@@ -167,6 +226,7 @@ class Client extends Component {
                 </main>
                 <footer>
                     сгоден на обробку даних
+                   
                 </footer>                
             </div>
             
