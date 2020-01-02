@@ -52,6 +52,8 @@ class Object extends Component {
                     <label className="block-label">рік випуску:</label>
                     <input value={this.state.auto.year} onChange={this.handleYearChanged.bind(this)} />
                 </div>
+
+
                 <div className="form-input-item">
                     <label className="block-label">держномер:</label>
                     <input value={this.state.auto.no} onChange={this.handleNoChanged.bind(this)} />
@@ -68,7 +70,10 @@ class Object extends Component {
 
 
                 </main>
-                <footer></footer>
+                <footer>
+ 
+                
+                </footer>
             </div>
                 
         )

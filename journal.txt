@@ -17,3 +17,8 @@ Route::resource('vehicleset', 'VehicleController@postVehicle');
 TODO:
 гоняют разные символы пока не найдется
 ABCXTI
+
+TODO:
+0 page OBJECT (marka model !!!!)
+1 VALIDATE
+2 EVENTS NEXT+PREV

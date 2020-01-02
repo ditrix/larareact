@@ -52,7 +52,7 @@ main {
     border: 1px solid lightgray;
 }
 
-.client-form {
+.client-form, .object-form {
     width: 100%;
 }
 
@@ -87,7 +87,7 @@ main {
     margin: 0 auto;
 }
 
-.client-form {
+.client-form, .object-form {
     border: 1px lightgray solid;
     padding: 15px;
     margin: 15px auto;
@@ -98,6 +98,15 @@ main {
 .client-form input {
     width: 100%;
 }
+
+.object-form input {
+    width: 100%;
+}
+
+.client-form footer, .object-form footer {
+   padding: inherit;
+}
+
 
 .polis-parameters {
   

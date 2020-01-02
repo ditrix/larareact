@@ -55,7 +55,7 @@ class PolisParameters extends Component{
     render(){
      
         return(
-            
+        <form className="parameters-form">    
             <div className="polis-parameters">
 
             <div className="vehicle-parameters">
@@ -89,7 +89,8 @@ class PolisParameters extends Component{
                         <GetOtk />:<></>}
                     </div>
                 </div>
-            </div>   
+            </div>
+        </form>       
         )
     }
 }
