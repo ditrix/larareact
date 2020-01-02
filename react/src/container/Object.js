@@ -17,12 +17,33 @@ class Object extends Component {
         }
     }
 
-    handleMarkaChanged(){}
-    handleModelChanged(){}
-    handleNoChanged(){}
-    handleVINChanged(){}
-    handleYearChanged(){}
-    handleDescrChanged(){}
+    handleMarkaChanged(event){}
+    handleModelChanged(event){}
+
+    handleNoChanged(event){
+        const auto = this.state.auto
+        auto.no = event.currentTarget.value
+        this.setState({auto:auto})
+    }
+
+    handleVINChanged(event){
+        const auto = this.state.auto
+        auto.vin = event.currentTarget.value
+        this.setState({auto:auto})
+    }
+
+    handleYearChanged(event){
+        const auto = this.state.auto
+        auto.year = event.currentTarget.value
+        this.setState({auto:auto})
+
+    }
+
+    handleDescrChanged(event){
+        const auto = this.state.auto
+        auto.descr = event.currentTarget.value
+        this.setState({auto:auto})
+    }
 
     render(){
         return(
