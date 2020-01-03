@@ -48,11 +48,6 @@ class Client extends Component {
 
 
 
-    
-    componentDidMount(){
-        console.log(this.props.client)
-    }    
-
     filterEnterKeyCode(e){
         if(e.keyCode === 13){
              e.preventDefault()
@@ -160,12 +155,7 @@ class Client extends Component {
     }
 
 
-    componentWillUnmount(){
-        console.log('Client validate')
     
-    }    
-
-
     
     render(){
    

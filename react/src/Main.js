@@ -11,34 +11,14 @@ class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
+      currentTab: TAB_OBJECT, // ?? componentDidMount ???
       labelBtnNext:'наступна',
       labelBtnPrev: 'попередня',
       enabledBtnPrev: '0',
       enabledBtnNext: '1',
 
 
-      client:{ 
-        idResident: undefined, // вычисляется по типу документа
-        lname: '',  // validate required, size & characters 
-        sname: '',  // validate required, size & characters
-        fname: '',  // validate required, size & characters
-        ipn: '',    // validate required, size & characters
-        dob: undefined,
-        
-        doc:{
-          type:'1',   // если   id-паспорт громодянина України  
-                     // seria не спрашиваем для остальных - есть
-          seria: 'AA',
-          no:'123',
-          dtget: undefined,
-          source: 'source',                  
-        },
-        addr: 'addr',
-        phone: '+38066064633',
-        email: 'mail@mail.com',
-    },
-
+ 
 
     }
     this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
@@ -89,7 +69,7 @@ class Main extends Component {
           break;
       }
         
-      console.log('handleNextButtonClick event',e.currentTarget.value)
+   //   console.log('handleNextButtonClick event',e.currentTarget.value)
   }  
 
   handlePrevButtonClick(e){
@@ -106,7 +86,7 @@ class Main extends Component {
 
   
   render(){
-    console.log(this.state)
+   // console.log(this.state)
     return (
         <div className="main-form clearfix">
                    

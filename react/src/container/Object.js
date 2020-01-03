@@ -15,6 +15,8 @@ class Object extends Component {
                 no: '',
                 vin: '',
                 descr: '',
+                markaId: null,
+                modelId: null,
             },
             models:null,
         }
@@ -22,9 +24,21 @@ class Object extends Component {
 
 
     handleMarkaChanged(event){
-        console.log(event.currentTarget.value)
+        const markaID = event.currentTarget.value
+        const auto = this.state.auto
+        auto.markaID = markaID
+        const modelsArr = models.filter(item => item.DMarkID === markaID)
+        this.setState({models:modelsArr,auto:auto})
     }
-    handleModelChanged(event){}
+    handleModelChanged(event){
+        const auto = this.state.auto
+        const modelID = event.currentTarget.value
+        auto.modelID = modelID
+        const selectedModel = this.state.models.filter(model=> model.DModelID === modelID )
+        auto.model = selectedModel.Name
+        this.setState({auto:auto})
+        console.log(this.state)
+    }
 
     handleNoChanged(event){
         const auto = this.state.auto
@@ -61,9 +75,7 @@ class Object extends Component {
                     <label>марка:</label>
                     <select onChange={this.handleMarkaChanged.bind(this)}>
                         {markList.map((mark,index) =>    
-                            
-                                <option key={index} value={mark.MarkID}>{mark.Name}</option>
-                            
+                            (mark.IsActive === '1')&&<option key={index} value={mark.DMarkID}>{mark.Name}</option>
                         )}
                     </select>  
                     </div>  
@@ -72,8 +84,9 @@ class Object extends Component {
                     <div>
                     <label>модель:</label>
                     <select onChange={this.handleModelChanged.bind(this)}>
+                    
                     {(this.state.models)&&this.state.models.map((model) =>    
-                        <option key={model.ModelID} value={model.ModelID}>{model.Name}</option>
+                        <option key={model.DModelID} value={model.DModelID}>{model.Name}</option>
                     )}
                     </select>  
                     </div>  
