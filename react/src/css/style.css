@@ -23,8 +23,24 @@
   
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: whitesmoke;
+
 }
 
+h1, h2, h3, h4 {
+    color: var(--common-blue-color);
+}
+
+input, select {
+    color: var(--dark-blue-color);
+    border: 1px solid lightgray;
+}
+
+form {
+    background-color: white;
+    line-height: inherit;
+}
 
 .debug {
     border: 1px red solid;

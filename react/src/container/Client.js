@@ -4,7 +4,6 @@ import {dateFormatApi, checkIpn} from '../lib/functions'
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT } from '../constants'
 
 
 import MomentLocaleUtils, {
@@ -33,13 +32,13 @@ class Client extends Component {
                 doc:{
                   type:'1',   // если   id-паспорт громодянина України  
                              // seria не спрашиваем для остальных - есть
-                  seria: 'AA',
-                  no:'123',
+                  seria: '',
+                  no:'',
                   dtget: undefined,
-                  source: 'source',                  
+                  source: '',                  
                 },
-                addr: 'addr',
-                phone: '+38066064633',
+                addr: '',
+                phone: '',
                 email: 'mail@mail.com',
             },
         }
@@ -93,7 +92,7 @@ class Client extends Component {
     }
   
     handleDOBChanged = (selectedDay, modifiers, dayPickerInput) => { 
-        const input = dayPickerInput.getInput()    
+        //const input = dayPickerInput.getInput()    
         const client = this.state.client; 
         client.dob = dateFormatApi(selectedDay)
         this.setState({client:client})
@@ -130,7 +129,7 @@ class Client extends Component {
         this.setState({client:client})
     }
     handleDtGetChanged = (selectedDay, modifiers, dayPickerInput) => { 
-        const input = dayPickerInput.getInput()    
+        
         const client = this.state.client; 
         client.doc.dtget = dateFormatApi(selectedDay)
         this.setState({client:client})
@@ -286,7 +285,7 @@ class Client extends Component {
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Телефон:</label>
-                    <input value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
+                    <input placeholder={'+38'}  value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
                 </div>                
                 <div className="form-input-item">
                     <label className="block-label">Email:</label>

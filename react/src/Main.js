@@ -11,7 +11,7 @@ class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: TAB_CLIENT, // ?? componentDidMount ???
+      currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
       labelBtnNext:'наступна',
       labelBtnPrev: 'попередня',
       enabledBtnPrev: '0',
@@ -53,7 +53,7 @@ class Main extends Component {
   }
 
   setAction(action){
-    console.log('setActoion ',action)
+    
     switch(this.state.currentTab){
       case TAB_PARAMETERS:
          this.setState({currentTab:TAB_PARAMETERS})
@@ -116,13 +116,13 @@ class Main extends Component {
         {(this.state.currentTab === TAB_OBJECT)&&<Object />}
         <footer>
             <nav  className="clearfix">
-              {(this.state.enabledBtnPrev == '1')&&
+              {(this.state.enabledBtnPrev === '1')&&
               <button 
                 className="btn-main-form-navigate btn-prev" 
                 onClick={this.handlePrevButtonClick} >{this.state.labelBtnPrev}
               </button>
               } 
-              {(this.state.enabledBtnNext == '1')&&
+              {(this.state.enabledBtnNext === '1')&&
               <button 
                 className="btn-main-form-navigate btn-next" 
                 onClick={this.handleNextButtonClick} >{this.state.labelBtnNext}

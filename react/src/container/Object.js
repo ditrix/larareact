@@ -1,5 +1,7 @@
 import React, {Component} from 'react' 
 
+import {markList} from '../data/marks.js'
+import {models} from '../data/models.js'
 // ввод даних про об'ект страхування
 class Object extends Component {
     constructor(props){
@@ -13,11 +15,15 @@ class Object extends Component {
                 no: '',
                 vin: '',
                 descr: '',
-            }
+            },
+            models:null,
         }
     }
 
-    handleMarkaChanged(event){}
+
+    handleMarkaChanged(event){
+        console.log(event.currentTarget.value)
+    }
     handleModelChanged(event){}
 
     handleNoChanged(event){
@@ -54,8 +60,11 @@ class Object extends Component {
                     <div>
                     <label>марка:</label>
                     <select onChange={this.handleMarkaChanged.bind(this)}>
-                        <option value='12'>ваз</option>
-                        <option value='9'>бмв</option>
+                        {markList.map((mark,index) =>    
+                            
+                                <option key={index} value={mark.MarkID}>{mark.Name}</option>
+                            
+                        )}
                     </select>  
                     </div>  
                 </div>
@@ -63,8 +72,9 @@ class Object extends Component {
                     <div>
                     <label>модель:</label>
                     <select onChange={this.handleModelChanged.bind(this)}>
-                        <option value='12'>2106</option>
-                        <option value='12'>2107</option>
+                    {(this.state.models)&&this.state.models.map((model) =>    
+                        <option key={model.ModelID} value={model.ModelID}>{model.Name}</option>
+                    )}
                     </select>  
                     </div>  
                 </div>                

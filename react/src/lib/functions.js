@@ -1,6 +1,6 @@
 // функции загального призначення
 export const checkIpn  = (value,length=10) => {
-    return ((value.length <= length)&&((value.match(/^\d+$/) !== null) || value.length == 0))
+    return ((value.length <= length)&&((value.match(/^\d+$/) !== null) || value.length === 0))
 }
 
 export const checkVehicleNo = () => {
