@@ -44,8 +44,6 @@ class Client extends Component {
             },
         }
         this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
-        this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
-        this.handlePrevButtonClick = this.handlePrevButtonClick.bind(this)
         
     }
 
@@ -57,7 +55,6 @@ class Client extends Component {
     }    
 
     filterEnterKeyCode(e){
-       
         if(e.keyCode === 13){
              e.preventDefault()
              return
@@ -65,13 +62,6 @@ class Client extends Component {
        return
     }
 
-    handleNextButtonClick(){
-        this.props.setAction(TAB_OBJECT)
-    }
-    handlePrevButtonClick(e){
-       
-        this.props.setAction(TAB_PARAMETERS)
-    }
 
 
     handleLNameChanged = (event) => { 
@@ -92,11 +82,10 @@ class Client extends Component {
     }
     
     handleIPNChanged = (event) => { 
-
-   
-        const client = this.state.client; 
-        client.ipn = event.currentTarget.value
-
+        const client = this.state.client;
+        if( (event.currentTarget.value.length <= 10)&&(event.currentTarget.value.match(/^\d+$/) !== null )){
+            client.ipn = event.currentTarget.value
+        }    
         this.setState({client:client})
 
         if(this.state.client.dob){
@@ -104,8 +93,6 @@ class Client extends Component {
         } else{
             this.GetDobFromIpn()
         }
-        
-
     }
   
     handleDOBChanged = (selectedDay, modifiers, dayPickerInput) => { 
