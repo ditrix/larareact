@@ -1,6 +1,6 @@
 // функции загального призначення
-export const checkInn  = () => {
-    return false
+export const checkIpn  = (value,length=10) => {
+    return ((value.length <= length)&&((value.match(/^\d+$/) !== null) || value.length == 0))
 }
 
 export const checkVehicleNo = () => {
@@ -10,3 +10,5 @@ export const checkVehicleNo = () => {
 export const dateFormatApi = date => {
     return (date)?date.toLocaleDateString('en-CA'):new Date().toLocaleDateString('en-CA')    
 }
+
+

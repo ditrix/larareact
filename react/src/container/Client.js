@@ -1,5 +1,5 @@
 import React, {Component} from 'react' 
-import {dateFormatApi} from '../lib/functions'
+import {dateFormatApi, checkIpn} from '../lib/functions'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -82,17 +82,14 @@ class Client extends Component {
     }
     
     handleIPNChanged = (event) => { 
-        const client = this.state.client;
-        if( (event.currentTarget.value.length <= 10)&&(event.currentTarget.value.match(/^\d+$/) !== null )){
+        if(checkIpn(event.currentTarget.value))
+        {    
+            const client = this.state.client;
             client.ipn = event.currentTarget.value
-        }    
-        this.setState({client:client})
-
-        if(this.state.client.dob){
-            console.log('todo check date vs ipn')
-        } else{
+            this.setState({client:client})
             this.GetDobFromIpn()
-        }
+        
+        } 
     }
   
     handleDOBChanged = (selectedDay, modifiers, dayPickerInput) => { 
@@ -100,14 +97,27 @@ class Client extends Component {
         const client = this.state.client; 
         client.dob = dateFormatApi(selectedDay)
         this.setState({client:client})
-     }
-    
+    }
+
+     GetDobFromIpn(){
+        const client = this.state.client
+        if(this.state.client.ipn.length >= 10){
+            const inndate = 1*this.state.client.ipn.slice(0,5)      
+            var D = new Date(1900,0,0);
+            D.setDate(D.getDate() + inndate); 
+            const dobstr = D.toLocaleDateString('uk').slice(6,10)+'-'+ D.toLocaleDateString('uk').slice(3,5)+ '-'+D.toLocaleDateString('uk').slice(0,2)
+            client.dob = dobstr
+        }
+        this.setState({client:client})
+    }
+
 
     handleDocTypeChanged = (event) => { 
         const client = this.state.client; 
         client.doc.type = event.currentTarget.value
         this.setState({client:client})
     }
+    
     handleDocSeriaChanged = (event) => { 
         const client = this.state.client
         client.doc.seria = event.currentTarget.value
@@ -156,19 +166,6 @@ class Client extends Component {
     
     }    
 
-    GetDobFromIpn(){
-        if(this.state.client.ipn.length >= 5){
-            const inndate = 1*this.state.client.ipn.slice(0,4)      
-            var D = new Date(1900,0,0);
-            D.setDate(D.getDate() + inndate); 
-            const client = this.state.client
-            const dobstr = D.toLocaleDateString('uk').slice(6,10)+'-'+ D.toLocaleDateString('uk').slice(3,5)+ '-'+D.toLocaleDateString('uk').slice(0,2)
-            console.log(dobstr)
-            client.dob = dobstr
-            this.setState({client:client})
-         }
-    }
-
 
     
     render(){
@@ -211,7 +208,6 @@ class Client extends Component {
                     <div className="form-input-item input-inn">
                         <label className="block-label">Індивідуальний податковий номер (ІПН):</label>
                         <input 
-                                              
                             value={this.state.client.ipn} 
                             onChange={this.handleIPNChanged.bind(this)} 
                             onKeyDown={this.filterEnterKeyCode}
