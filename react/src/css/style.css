@@ -312,6 +312,10 @@ main {
     margin: 10px auto;
 }
 
+.main-form footer {
+    padding: 10px;
+}
+
 .main-form nav {
     margin: 0px auto; 
 }
@@ -471,6 +475,35 @@ nav button {
     border: 1px lightgray solid;
   }
   
+  .date-input {
+    color: var(--dark-blue-color);
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+    background-color: white;
+    width: 100%;
+  }
+  .date-input:after {
+    background-color: #1fb6ff;
+    color:white;
+    content: "▼";
+    padding: 5px;
+    font-size: 10px;
+    position: absolute;
+    right: -25px;
+    top: 6px;
+    z-index: 1;
+    text-align: center;
+    vertical-align: middle;
+    width: 45px;
+    height: 75%;
+    pointer-events: none;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px lightgray solid;
+  }
+
+
   select {
 
     font-size: 1.1em;
@@ -495,6 +528,15 @@ nav button {
   }
 
   .check-select-block {
-      width: 150px;
-      border: 1px green solid;
+      width: 200px;
+ 
+  }
+
+  .addition-parameters {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      vertical-align: middle;
+      flex-wrap: wrap;
+    
   }

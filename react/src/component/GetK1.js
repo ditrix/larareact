@@ -13,13 +13,15 @@ class GetK1 extends Component {
   render(){
     const k1 = dataK1
     return(
-      <div className="form-input-item">
+      <div className="select-widget">
         <label className="block-label">тип транспортного засобу</label>
+        <div className="select-input">
         <select placeholder="параметри авто" onChange={this.handleSelectK1Changed.bind(this)} >
         {(k1)&&k1.map((data,index) => 
             <option key={index} value={data.KO}>{data.nameUA}</option>
           )}
         </select>
+        </div>
       </div>  
     )
   }      

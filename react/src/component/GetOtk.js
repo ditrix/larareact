@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import GetDateUA from './GetDateUA'
+import GetDateOtk from './GetDateOtk'
 
 import 'react-day-picker/lib/style.css';
 
@@ -26,7 +26,7 @@ class GetOtk extends Component {
 
     render(){
         return(
-          <>
+          <div>
             <div className="select-widget">
               <label  className="block-label">отк:</label>
               <div className="select-input">
@@ -37,9 +37,9 @@ class GetOtk extends Component {
               </div>
             </div>
             {
-              (this.state.useOtk === "1")?<div className="col-polis-parameter"><GetDateUA /></div>:<></>
+              (this.state.useOtk === "1")?<div className="select-widget"><GetDateOtk /></div>:<></>
             }
-          </>    
+          </div>    
         )
     }
 }
