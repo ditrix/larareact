@@ -101,10 +101,11 @@ main {
 .main-form {
     width: 50%;
     margin: 0 auto;
+    background-color: white;
 }
 
 .client-form, .object-form {
-    border: 1px lightgray solid;
+   
     padding: 15px;
     margin: 15px auto;
     width: 100%;
@@ -248,7 +249,10 @@ main {
 }
 
 
-
+.form-row {
+    width: 100%;
+    border: 1px red solid;
+}
 
 .nav-item .active {
     background-color: #1fb6ff;
@@ -281,15 +285,23 @@ main {
       background: none;
   }
 
+  .DayPickerInput  {
+      
+  }
+
   .DayPickerInput  input {
     color: #007bff;
+    width: 150px;
   }
 
   .col-polis-parameter {
-      display: inline-block;
+
       margin: 5px;
   }
 
+  .discount-block {
+      width: 250px;
+  }
 
 .active-lang {color: red;}
 .unactive-lang {color: blue;}  
@@ -381,6 +393,8 @@ nav button {
     float: right;
 }
 
+
+
 .form-input-row {
     display: flex;
     flex-direction: row;
@@ -408,69 +422,79 @@ nav button {
     color: #007bff;
 
 }
-  /*
-  .select-widget {
-   
-    font-weight: 400;
+
+.make-polis-dialog {
+    background-color: white;
+}
+
+.select-widget {
     background-color: white;
     position: relative;
-    float: left;
+    display: inline-block;
+    width: 90%;
   }
   
-  .select-widget option {
-    color: var(--main-color);
-     background-color: white;
-  }
+.select-widget label {
+    font-weight: 400;
+}
+
+  .select-input option {
+    color: inherit;
+ }
+ 
   
-  
-  
-  
-  .select-widget {
-    border: 2px #ccc solid;
-  }
-  
-  
-  .select {
+  .select-input {
+    color: var(--dark-blue-color);
     position: relative;
     display: inline-block;
-    padding: 10px;
-  
+    padding: 5px;
+    background-color: white;
+    width: 100%;
   }
-  .select:after {
+  .select-input:after {
     background-color: #1fb6ff;
     color:white;
     content: "▼";
-    padding: 8px;
+    padding: 5px;
     font-size: 10px;
     position: absolute;
-    right: 2px;
-    top: 5px;
+    right: 5px;
+    top: 6px;
     z-index: 1;
     text-align: center;
     vertical-align: middle;
-    width: 12%;
-    height: 80%;
+    width: 45px;
+    height: 75%;
     pointer-events: none;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 2px;
+    border: 1px lightgray solid;
   }
   
   select {
-    font-size: 1.3em;
+
+    font-size: 1.1em;
     color: #5184d8;
-    border-radius: 5px;
-    padding: 5px 30px 5px 30px;
-    font-size: 80%;  
-    width: 22em;
+    border-radius: 2px;    
+    border: 1px lightgray solid;
+    padding: 0px 30px 0px 5px;
+    width: 100%;
+    background-color: white;
   }
   
   
   select {
-    padding-right: 12px;
+    
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 7px;
-    border: none;
+    
   }
-  */
+  .city-parameters {
+      width:100%;
+  }
+
+  .check-select-block {
+      width: 150px;
+      border: 1px green solid;
+  }

@@ -7,13 +7,15 @@ class GetTaxi extends Component {
     }
     render(){
         return(
-            <div className="form-input-item">
+            <div className="select-widget">
 
             <label className="block-label">таксі:</label>
+            <div className="select-input">
             <select onChange={this.getValue.bind(this)}>
                 <option value='0'>ні</option>
                 <option value='1'>так</option>
             </select>  
+            </div>
             </div>
         )
     }

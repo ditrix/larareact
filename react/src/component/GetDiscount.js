@@ -10,8 +10,9 @@ class GetDiscount extends Component {
 
     render(){
         return(
-            <div className="form-input-item">
-                <label className="block-label">пільга</label>
+        <div className="select-widget">
+            <label className="block-label">пільга</label>
+            <div className="select-input">
                 <select onChange={this.getValue.bind(this)}>
                     <option value='0'>без пільг</option>
                     <option value='1'>Учасник війни</option>
@@ -20,6 +21,7 @@ class GetDiscount extends Component {
                     <option value='1'>Пенсіонер</option>
                 </select>  
             </div>
+        </div>
         )
     }
 }

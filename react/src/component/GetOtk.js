@@ -26,22 +26,20 @@ class GetOtk extends Component {
 
     render(){
         return(
-
           <>
-          
-            <div className="col-polis-parameter">
-               <label  className="block-label">отк:</label>
+            <div className="select-widget">
+              <label  className="block-label">отк:</label>
+              <div className="select-input">
               <select onChange={this.handleIsOtkChange.bind(this)}>
                   <option value="0">ні</option>
                   <option value="1">так</option>
               </select>  
+              </div>
             </div>
             {
               (this.state.useOtk === "1")?<div className="col-polis-parameter"><GetDateUA /></div>:<></>
-            }  
-             
-        </>
-
+            }
+          </>    
         )
     }
 }
