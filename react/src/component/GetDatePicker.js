@@ -11,10 +11,6 @@ import 'moment/locale/ua';
 
 class GetDatePicker extends Component {
 
-    constructor(props){
-      super(props)
-    }
-
     handleDateChanged = (selectedDay, modifiers, dayPickerInput) => this.props.getDate(selectedDay)
 
     render(){

@@ -2,20 +2,9 @@ import React, {Component} from 'react'
 import {dateFormatApi, checkIpn} from '../lib/functions'
 import GetDatePicker from '../component/GetDatePicker'
 
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+
 import 'react-day-picker/lib/style.css';
-import PaySumm from '../component/PaySumm'
-
-
-
-import MomentLocaleUtils, {
-    formatDate,
-    parseDate,
-  } from 'react-day-picker/moment';
-  
-  import 'moment/locale/ru.js';
-  import 'moment/locale/ua';
-  
+import {PaySumm} from '../component/PaySumm'
 
 // ввод даних про страхувальника
 class Client extends Component {
@@ -167,7 +156,7 @@ class Client extends Component {
             <div className="make-polis-dialog">
                 <header>
                     <div className="title"><h3>Страхувальник</h3></div>
-                    <div className="result"><PaySumm summ={100500} /></div>
+                    <div className="result">{PaySumm(100500,'ru')}</div>
                 </header>
             <form className="client-form">
                 

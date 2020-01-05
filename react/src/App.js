@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/style.css'
+import './css/response.css'
 
 import {AskodsHeader} from './component/askods/AskodsHeader'
 import {AskodsFooter} from './component/askods/AskodsFooter' 

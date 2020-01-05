@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import './css/style.css'
 import PolisParameters from './container/PolisParameters'
 import Client from './container/Client'
-import Object from './container/Object'
+import InsObject from './container/InsObject'
 
 import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT } from './constants'
 
@@ -51,7 +51,7 @@ class Main extends Component {
       <div className="main-form clearfix">
         {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
         {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
-        {(this.state.currentTab === TAB_OBJECT)&&<Object prevTab={this.actionPrevTab} />}
+        {(this.state.currentTab === TAB_OBJECT)&&<InsObject prevTab={this.actionPrevTab} />}
       </div>
     )}
   

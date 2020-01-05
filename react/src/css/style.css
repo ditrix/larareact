@@ -72,6 +72,20 @@ main {
     width: 100%;
 }
 
+.form-input-item-sm input{
+    max-width: 120px;
+}
+
+.form-input-item-md input{
+    max-width: 270px;
+}
+
+
+.form-input-item-xxl input {
+    width: 640px;
+}
+
+
 /*
 .form-input-item input {
 	margin: auto 0px;
@@ -404,6 +418,7 @@ nav button {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+
 }
 
 .form-input-row .form-input-item {
@@ -416,7 +431,16 @@ nav button {
     width: 100%;
 }   
 
+.input-object-form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 
+.input-object-form-row .select-widget {
+    max-width: 300px;
+}
 
 .form-input-row select {
 	margin: auto 0px;
@@ -585,4 +609,12 @@ nav button {
 
   .pl-summ label, .pl-summ h4, .pl-summ h5{
       display: inline-block; margin: 0px 5px;
+  }
+
+  .input-error-message {
+      color: red;
+      font-size: 0.8em;
+      display: block;
+      padding-bottom: 0.5em;
+      height: 1.5em;
   }

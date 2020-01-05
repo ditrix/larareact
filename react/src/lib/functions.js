@@ -17,3 +17,7 @@ export const dateFormatApi = date => {
 }
 
 
+export const getCurrentYear = () => {
+    const today =  new Date();
+    return today.getFullYear();   // TODO 
+}

@@ -5,7 +5,7 @@ import GetTaxi from '../component/GetTaxi'
 import GetDiscount from '../component/GetDiscount'
 import GetOtk from '../component/GetOtk'
 import SearchVehicle from './SearchVehicle'
-import PaySumm from '../component/PaySumm'
+import {PaySumm} from '../component/PaySumm'
 
 import { exists } from 'fs';
 
@@ -65,7 +65,7 @@ render(){
         <div className="make-polis-dialog">
             <header>
                 <div className="title"><h3>Розрахунок</h3></div>
-                <div className="result"><PaySumm summ={100500} /></div>
+                <div className="result">{PaySumm(100500,'ru')}</div>
             </header>   
             <form>    
                 <div className="vehicle-parameters">
