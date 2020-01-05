@@ -4,6 +4,7 @@ import GetDatePicker from '../component/GetDatePicker'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import PaySumm from '../component/PaySumm'
 
 
 
@@ -164,7 +165,10 @@ class Client extends Component {
         const dateGetDoc = (this.state.client.doc.dtget === undefined)?new Date():this.state.client.doc.dtget
         return(
             <div className="make-polis-dialog">
-                <header><h3>Страхувальник</h3></header>
+                <header>
+                    <div className="title"><h3>Страхувальник</h3></div>
+                    <div className="result"><PaySumm summ={100500} /></div>
+                </header>
             <form className="client-form">
                 
                 <main>

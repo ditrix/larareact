@@ -28,7 +28,7 @@ body {
 
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     color: var(--common-blue-color);
 }
 
@@ -497,6 +497,7 @@ nav button {
     padding: 0px;
     background-color: white;
     width: 100%;
+    z-index: 2;
   }
   .date-input:after {
     background-color: #1fb6ff;
@@ -573,4 +574,15 @@ nav button {
   }
   .item-doc-type, .item-doc-source {
       width: 600px;
+  }
+
+  .make-polis-dialog header {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+
+  .pl-summ label, .pl-summ h4, .pl-summ h5{
+      display: inline-block; margin: 0px 5px;
   }

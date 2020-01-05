@@ -5,6 +5,8 @@ import GetTaxi from '../component/GetTaxi'
 import GetDiscount from '../component/GetDiscount'
 import GetOtk from '../component/GetOtk'
 import SearchVehicle from './SearchVehicle'
+import PaySumm from '../component/PaySumm'
+
 import { exists } from 'fs';
 
 class PolisParameters extends Component{
@@ -62,7 +64,8 @@ render(){
     return(
         <div className="make-polis-dialog">
             <header>
-                <h3>Розрахунок</h3>
+                <div className="title"><h3>Розрахунок</h3></div>
+                <div className="result"><PaySumm summ={100500} /></div>
             </header>   
             <form>    
                 <div className="vehicle-parameters">

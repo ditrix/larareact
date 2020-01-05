@@ -3,6 +3,9 @@ import {checkIntegerStr} from '../lib/functions'
 
 import {markList} from '../data/marks.js'
 import {models} from '../data/models.js'
+import PaySumm from '../component/PaySumm'
+
+
 // ввод даних про об'ект страхування
 class Object extends Component {
     constructor(props){
@@ -70,9 +73,14 @@ class Object extends Component {
 
     render(){
         return(
-            <div className="client-form">
-                <header><h3>Об'єкт страхування</h3></header>
+            <div className="make-polis-dialog">
+                <header>
+                    <div className="title"><h3>Обєкт страхування</h3></div>
+                    <div className="result"><PaySumm summ={100500} /></div>
+                </header>
+                <form>    
                 <main>
+               
                 <div className="form-input-row">
                     <div className="select-widget">
                     <label className="block-label">марка:</label>
@@ -118,7 +126,9 @@ class Object extends Component {
                 </div>                
 
 
+                
                 </main>
+                </form>
                 <footer>
             <nav  className="clearfix">
             
