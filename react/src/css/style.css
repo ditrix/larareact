@@ -160,7 +160,7 @@ main {
 .form-input-item,
 .form-input-item-small {
     padding: 0px;
-    width: 100%;
+
 }
 
 .awesome-spinner {
@@ -407,8 +407,8 @@ nav button {
 }
 
 .form-input-row .form-input-item {
-    margin: 1em;
-    width: 40%;
+    margin: 1em 0em;
+    /*width: 40%;*/
 }
 
 
@@ -474,12 +474,27 @@ nav button {
     border-radius: 2px;
     border: 1px lightgray solid;
   }
+
+.date-picker-widget
+  {
+    background-color: white;
+    position: relative;
+    display: inline-block;   
+  }
   
+  .date-picker-widget label {
+    font-weight: 400;
+}
+
+  .select-input option {
+    color: inherit;
+ }
+
   .date-input {
     color: var(--dark-blue-color);
     position: relative;
     display: inline-block;
-    padding: 5px;
+    padding: 0px;
     background-color: white;
     width: 100%;
   }
@@ -490,13 +505,14 @@ nav button {
     padding: 5px;
     font-size: 10px;
     position: absolute;
-    right: -25px;
-    top: 6px;
+    /*right: -18px;*/
+    left: 120px;
+    top: 0px;
     z-index: 1;
     text-align: center;
     vertical-align: middle;
-    width: 45px;
-    height: 75%;
+    width: 40px;
+    height: 100%;
     pointer-events: none;
     box-sizing: border-box;
     border-radius: 2px;
@@ -539,4 +555,22 @@ nav button {
       vertical-align: middle;
       flex-wrap: wrap;
     
+  }
+
+  .client-doc-row {
+      display:flex;
+      flex-direction: row;
+      align-items: flex-start;
+      vertical-align: bottom;
+      flex-wrap: wrap;
+  }
+
+  .item-doc-seria {
+      width: 100px;
+  }
+  .item-doc-seria, .item-doc-no, .item-date-get {
+      margin: 5px;
+  }
+  .item-doc-type, .item-doc-source {
+      width: 600px;
   }

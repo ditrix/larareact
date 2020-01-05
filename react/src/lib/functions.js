@@ -1,6 +1,11 @@
 // функции загального призначення
-export const checkIpn  = (value,length=10) => {
+
+export const checkIntegerStr = (value,length=10) => {
     return ((value.length <= length)&&((value.match(/^\d+$/) !== null) || value.length === 0))
+}
+
+export const checkIpn = (value) => {
+    return checkIntegerStr(value,10)
 }
 
 export const checkVehicleNo = () => {

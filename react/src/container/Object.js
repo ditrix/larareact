@@ -1,4 +1,5 @@
 import React, {Component} from 'react' 
+import {checkIntegerStr} from '../lib/functions'
 
 import {markList} from '../data/marks.js'
 import {models} from '../data/models.js'
@@ -53,10 +54,12 @@ class Object extends Component {
     }
 
     handleYearChanged(event){
-        const auto = this.state.auto
-        auto.year = event.currentTarget.value
-        this.setState({auto:auto})
-
+        // контроль  нга цифр и длину
+        if(checkIntegerStr(event.currentTarget.value,4)){
+            const auto = this.state.auto
+            auto.year = event.currentTarget.value
+            this.setState({auto:auto})
+        }
     }
 
     handleDescrChanged(event){
@@ -68,27 +71,29 @@ class Object extends Component {
     render(){
         return(
             <div className="client-form">
-                <header><h3>авто</h3></header>
+                <header><h3>Об'єкт страхування</h3></header>
                 <main>
                 <div className="form-input-row">
-                    <div>
-                    <label>марка:</label>
+                    <div className="select-widget">
+                    <label className="block-label">марка:</label>
+                    <div  className="select-input">
                     <select onChange={this.handleMarkaChanged.bind(this)}>
                         {markList.map((mark,index) =>    
                             (mark.IsActive === '1')&&<option key={index} value={mark.DMarkID}>{mark.Name}</option>
                         )}
-                    </select>  
+                    </select>
                     </div>  
-                </div>
-                <div className="form-input-row">
-                    <div>
-                    <label>модель:</label>
+                    </div>  
+                    <div className="select-widget">
+                    <label className="block-label">модель:</label>
+                    <div  className="select-input">
                     <select onChange={this.handleModelChanged.bind(this)}>
                     
                     {(this.state.models)&&this.state.models.map((model) =>    
                         <option key={model.DModelID} value={model.DModelID}>{model.Name}</option>
                     )}
                     </select>  
+                    </div>
                     </div>  
                 </div>                
                 

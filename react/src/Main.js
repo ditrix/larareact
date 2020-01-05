@@ -5,6 +5,8 @@ import Client from './container/Client'
 import Object from './container/Object'
 
 import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT } from './constants'
+
+
 // TODO валидаторы  и контроль ввода и актив/пасс виджетов
 
 class Main extends Component {
@@ -67,6 +69,8 @@ class Main extends Component {
       case TAB_CLIENT:
           this.setState({currentTab:TAB_OBJECT,enabledBtnNext:'0',enabledBtnPrev:'1'})
           break;
+      default:
+          return;    
       }
         
    //   console.log('handleNextButtonClick event',e.currentTarget.value)
@@ -81,17 +85,23 @@ class Main extends Component {
       case TAB_CLIENT:
           this.setState({currentTab:TAB_PARAMETERS,enabledBtnNext:'1',enabledBtnPrev:'0'})
           break;
-      }        
-    }
+      default:
+          return;    
+     }        
+  }
 
+  clickNext(){
+    console.log('click next')
+  }  
   
   render(){
    // console.log(this.state)
     return (
         <div className="main-form clearfix">
                    
+    
 
-        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters/>}
+        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.handleNextButtonClick} />}
         {(this.state.currentTab === TAB_CLIENT)&&<Client data={this.state.client} setAction={this.setAction} />}
         {(this.state.currentTab === TAB_OBJECT)&&<Object />}
         <footer>

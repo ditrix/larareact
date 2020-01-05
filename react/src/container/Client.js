@@ -1,5 +1,6 @@
 import React, {Component} from 'react' 
 import {dateFormatApi, checkIpn} from '../lib/functions'
+import GetDatePicker from '../component/GetDatePicker'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -39,7 +40,7 @@ class Client extends Component {
                 },
                 addr: '',
                 phone: '',
-                email: 'mail@mail.com',
+                email: '',
             },
         }
         this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
@@ -91,6 +92,7 @@ class Client extends Component {
         const client = this.state.client; 
         client.dob = dateFormatApi(selectedDay)
         this.setState({client:client})
+        console.log(this.state.client.dob)
     }
 
      GetDobFromIpn(){
@@ -200,75 +202,63 @@ class Client extends Component {
                             value={this.state.client.ipn} 
                             onChange={this.handleIPNChanged.bind(this)} 
                             onKeyDown={this.filterEnterKeyCode}
-                        />
-                    </div>                
+                        />                        
+                    </div>
                     <div className="form-input-item input-dob">
+                        <GetDatePicker 
+                            lang ='ru' 
+                            label = 'дата рождения'
+                            getDate={this.handleDOBChanged.bind(this)}
+                            dateValue={this.state.client.dob}
+                        />                
 
-                        <label className="block-label">Дата народження:</label>
-                        <DayPickerInput
-                           
-                            formatDate={formatDate}
-                            parseDate={parseDate}
-                            format="L"
-                            placeholder={`${formatDate(this.state.client.dob, 'L', 'ua')}`}
-                            dayPickerProps={{
-                            locale: 'ua',
-                            localeUtils: MomentLocaleUtils,
-                            }}
-                            onDayChange={this.handleDOBChanged.bind(this)}
-                        />
                     </div>                
                 </div>
-                <div className="form-input-row">
-                <div>
-                <label>документ:</label>
-                <select onChange={this.handleDocTypeChanged.bind(this)}>
-                    <option value='12'>Водійське посвідчення</option>
-                            
-                    <option value='12'>паспорт</option>
-                    <option value='10'>id-паспорт громодянина України</option>
-                    <option value='9'>Паспорт іниземного громодянина</option>
-                    <option value='9'>Посвідчення водія іноземного громодянина</option>
+                
+                <div className="client-doc-row">
 
-                    <option value='9'>Посвідчення інваліда</option>
-                    <option value='9'>Уорнобильске посвідчення</option>
-                    <option value='9'>Учасника війни інваліда</option>
-                    <option value='9'>Пенсійне посвідчення</option>
-                </select>  
-                </div>  
-                </div>
-                <div className="form-input-row">
-                <div className="form-input-item doc-seria">
+                    <div className="select-widget item-doc-type">
+                        <label className="block-label">документ:</label>
+                        <div className="select-input">
+                            <select onChange={this.handleDocTypeChanged.bind(this)}>
+                                <option value='12'>Водійське посвідчення</option>
+                                        
+                                <option value='12'>паспорт</option>
+                                <option value='10'>id-паспорт громодянина України</option>
+                                <option value='9'>Паспорт іниземного громодянина</option>
+                                <option value='9'>Посвідчення водія іноземного громодянина</option>
+
+                                <option value='9'>Посвідчення інваліда</option>
+                                <option value='9'>Уорнобильске посвідчення</option>
+                                <option value='9'>Учасника війни інваліда</option>
+                                <option value='9'>Пенсійне посвідчення</option>
+                            </select>  
+                        </div>
+                    </div>  
+                
+                
+                    <div className="item-doc-seria">
                         <label className="block-label">Серія:</label>
                         <input value={this.state.client.doc.seria} onChange={this.handleDocSeriaChanged.bind(this)} />
                     </div>       
-                    <div className="form-input-item doc-no">
+                    <div className="item-doc-no">
                         <label className="block-label">Номер:</label>
                         <input value={this.state.client.doc.no} onChange={this.handleDocNoChanged.bind(this)} />
                     </div>       
-                </div>    
-              
-                <div className="form-input-item">
-                   
-                    <label className="block-label">Дата видачі:</label>
-                        <DayPickerInput
-                            formatDate={formatDate}
-                            parseDate={parseDate}
-                            format="L"
-                            placeholder={`${formatDate(dateGetDoc, 'L', 'ua')}`}
-                            dayPickerProps={{
-                            locale: 'ua',
-                            localeUtils: MomentLocaleUtils,
-                            }}
-                            onDayChange={this.handleDtGetChanged.bind(this)}
+                    <div className="item-date-get">
+                        <GetDatePicker 
+                            lang='ua' 
+                            label='Дата видачі'
+                            dateValue={dateGetDoc}
+                            getDate={this.handleDtGetChanged.bind(this)}
                         />
-                </div>
-                <div className="form-input-item">
-                    <label className="block-label">Ким виданий:</label>
-                    <input value={this.state.client.doc.source} onChange={this.handleDocSourceChanged.bind(this)} />
-                </div>              
-
-{/**/}
+                    </div>
+                    <div className="item-doc-source">
+                        <label className="block-label">Ким виданий:</label>
+                        <input value={this.state.client.doc.source} onChange={this.handleDocSourceChanged.bind(this)} />
+                    </div>              
+                </div>    
+               
                 <div className="form-input-item">
                     <label className="block-label">Адреса:</label>
                     <input value={this.state.client.addr} onChange={this.handleAddrChanged.bind(this)} />

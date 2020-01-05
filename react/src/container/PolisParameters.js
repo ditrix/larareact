@@ -5,6 +5,7 @@ import GetTaxi from '../component/GetTaxi'
 import GetDiscount from '../component/GetDiscount'
 import GetOtk from '../component/GetOtk'
 import SearchVehicle from './SearchVehicle'
+import { exists } from 'fs';
 
 class PolisParameters extends Component{
     constructor(props){
@@ -52,6 +53,10 @@ class PolisParameters extends Component{
         this.setState({valueTaxi:value})
     }
 
+    nextPage(){
+        this.props.nextTab()
+    }
+ 
 render(){
      
     return(
@@ -95,7 +100,15 @@ render(){
                         <GetOtk />:<></>}
                     </div>
                 </div>
-        </form>       
+            </form>       
+            <footer>
+            <nav  className="clearfix">
+                <button 
+                    className="btn-main-form-navigate btn-next" 
+                    onClick={this.props.nextTab} >>>
+                </button> 
+            </nav>
+            </footer>
         </div>
         )
     }
