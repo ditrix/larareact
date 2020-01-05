@@ -105,8 +105,7 @@ render(){
             <nav  className="clearfix">
                 <button 
                     className="btn-main-form-navigate btn-next" 
-                    onClick={this.props.nextTab} >>>
-                </button> 
+                    onClick={this.props.nextTab} >наступна</button> 
             </nav>
             </footer>
         </div>

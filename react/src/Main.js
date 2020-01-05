@@ -14,113 +14,45 @@ class Main extends Component {
     super(props)
     this.state = {
       currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
-      labelBtnNext:'наступна',
-      labelBtnPrev: 'попередня',
-      enabledBtnPrev: '0',
-      enabledBtnNext: '1',
-
-
- 
-
     }
-    this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
-    this.handlePrevButtonClick = this.handlePrevButtonClick.bind(this)
-
-    this.setAction = this.setAction.bind(this) 
-
-
-    this.onHandleClientNext = this.onHandleClientNext.bind(this)
-    this.onHandleClientPrev = this.onHandleClientPrev.bind(this)    
-
-  }
-
-  setAction(action){
-    
-    switch(this.state.currentTab){
-      case TAB_PARAMETERS:
-         this.setState({currentTab:TAB_PARAMETERS})
-         break;
-      case TAB_CLIENT:
-          this.setState({currentTab:TAB_CLIENT})
-          break;
-      
-      case TAB_OBJECT:
-         this.setState({currentTab:TAB_OBJECT})
-         break;
-      default:   
-      }
-  }
-
-  onHandleClientNext(client){
-    this.setState({client:client})
-  }
-  
-  onHandleClientPrev(client){
-    this.setState({client:client})
+    this.actionNextTab = this.actionNextTab.bind(this)
+    this.actionPrevTab = this.actionPrevTab.bind(this)
   }
 
 
-  handleNextButtonClick(e){
-    //e.preventDefault() 
+
+  actionNextTab(){
    switch(this.state.currentTab){
       case TAB_PARAMETERS:
-         this.setState({currentTab:TAB_CLIENT,enabledBtnNext:'1',enabledBtnPrev:'1'})
+         this.setState({currentTab:TAB_CLIENT})
          break;
       case TAB_CLIENT:
-          this.setState({currentTab:TAB_OBJECT,enabledBtnNext:'0',enabledBtnPrev:'1'})
+          this.setState({currentTab:TAB_OBJECT})
           break;
       default:
           return;    
       }
-        
-   //   console.log('handleNextButtonClick event',e.currentTarget.value)
   }  
 
-  handlePrevButtonClick(e){
-    //e.preventDefault()
+  actionPrevTab(){
     switch(this.state.currentTab){
       case TAB_OBJECT:
-         this.setState({currentTab:TAB_CLIENT,enabledBtnNext:'1',enabledBtnPrev:'1'})
+         this.setState({currentTab:TAB_CLIENT})
          break;
       case TAB_CLIENT:
-          this.setState({currentTab:TAB_PARAMETERS,enabledBtnNext:'1',enabledBtnPrev:'0'})
+          this.setState({currentTab:TAB_PARAMETERS})
           break;
       default:
           return;    
      }        
   }
-
-  clickNext(){
-    console.log('click next')
-  }  
-  
   render(){
-   // console.log(this.state)
     return (
-        <div className="main-form clearfix">
-                   
-    
-
-        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.handleNextButtonClick} />}
-        {(this.state.currentTab === TAB_CLIENT)&&<Client data={this.state.client} setAction={this.setAction} />}
-        {(this.state.currentTab === TAB_OBJECT)&&<Object />}
-        <footer>
-            <nav  className="clearfix">
-              {(this.state.enabledBtnPrev === '1')&&
-              <button 
-                className="btn-main-form-navigate btn-prev" 
-                onClick={this.handlePrevButtonClick} >{this.state.labelBtnPrev}
-              </button>
-              } 
-              {(this.state.enabledBtnNext === '1')&&
-              <button 
-                className="btn-main-form-navigate btn-next" 
-                onClick={this.handleNextButtonClick} >{this.state.labelBtnNext}
-              </button> 
-              }
-            </nav>
-        </footer>
-    </div>
+      <div className="main-form clearfix">
+        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
+        {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
+        {(this.state.currentTab === TAB_OBJECT)&&<Object prevTab={this.actionPrevTab} />}
+      </div>
     )}
   
 }

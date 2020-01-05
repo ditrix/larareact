@@ -163,8 +163,10 @@ class Client extends Component {
    
         const dateGetDoc = (this.state.client.doc.dtget === undefined)?new Date():this.state.client.doc.dtget
         return(
-            <form className="client-form">
+            <div className="make-polis-dialog">
                 <header><h3>Страхувальник</h3></header>
+            <form className="client-form">
+                
                 <main>
                 <div className="form-input-item">
                     <label className="block-label">Прізвище:</label>
@@ -272,12 +274,22 @@ class Client extends Component {
                     <input value={this.state.client.email} onChange={this.handleEmailChanged.bind(this)} />
                 </div>                
                 </main>
-                <footer>
-    
-                </footer>     
                    
             </form>
+            <footer>
+            <nav  className="clearfix">
             
+              <button 
+                className="btn-main-form-navigate btn-prev" 
+                onClick={this.props.prevTab} >попередня
+                    </button>
+              <button 
+                className="btn-main-form-navigate btn-next" 
+                onClick={this.props.nextTab} >наступна</button> 
+            </nav>
+        </footer>
+            
+        </div>
             
         )
     }

@@ -120,9 +120,16 @@ class Object extends Component {
 
                 </main>
                 <footer>
- 
+            <nav  className="clearfix">
+            
+              <button 
+                className="btn-main-form-navigate btn-prev" 
+                onClick={this.props.prevTab} >попередня
+                    </button>
+  
                 
-                </footer>
+            </nav>
+            </footer>    
             </div>
                 
         )
