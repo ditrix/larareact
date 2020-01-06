@@ -13,16 +13,18 @@ class InsObject extends Component {
         this.state = {
 
             auto: {
+                markaID: '0',
+                modelID: '0',
+
                 marka: '',
                 model: '',
                 year: '',
                 no: '',
                 vin: '',
                 descr: '',
-                markaId: 0,
-                modelId: 0,
             },
             models:null,
+            modelsLength:0,
             dataValid: false,
 
             msgValidMarka:'',
@@ -34,40 +36,54 @@ class InsObject extends Component {
     }
 
     handleNextButton(){
+        // eslint-disable-next-line
         let dataValid= true;
         const auto = this.state.auto;
-        
+    
         if( ( +auto.year < 1950 ) || ( +auto.year > getCurrentYear()) ){
             dataValid = false;
             this.setState({msgValidYear: 'некорректні данні'})
         }
 
-        if( (auto.no.length == 0)|| (auto.no.length > 10) ){
+        if( (auto.no.length === 0)|| (auto.no.length > 10) ){
             dataValid = false;
             this.setState({msgValidNo: 'незаповнені, або некоректні данні'})
         }
 
-        if( (auto.no.length == 0)|| (auto.no.length > 20) ){
+        if( (auto.vin.length === 0)|| (auto.no.length > 20) ){
             dataValid = false;
             this.setState({msgValidVin: 'незаповнені, або некоректні данні'})
         }
 
-        auto.markaId = 100
+        if(auto.markaID === '0'){
+            dataValid = false;
+            this.setState({msgValidMarka: 'незаповнені, або некоректні данні'})
+        }
+
+        if(auto.modelID === '0'){
+            dataValid = false;
+            this.setState({msgValidModel: 'незаповнені, або некоректні данні'})
+        }
         this.setState({auto:auto})
+
+
+
 
     }    
 
 
     componentDidMount(){
-        console.log(this.state.auto)
+        console.log('componentDidMount: ', this.state.auto)
     }
 
     handleMarkaChanged(event){
         const markaID = event.currentTarget.value
         const auto = this.state.auto
         auto.markaID = markaID
+        auto.modelID = 0
         const modelsArr = models.filter(item => item.DMarkID === markaID)
-        this.setState({models:modelsArr,auto:auto})
+        this.setState({models:modelsArr,auto:auto,msgValidMarka:''})
+        console.log('handleMarkaChanged: ', this.state.auto)
     }
 
     handleModelChanged(event){
@@ -76,8 +92,8 @@ class InsObject extends Component {
         auto.modelID = modelID
         const selectedModel = this.state.models.filter(model=> model.DModelID === modelID )
         auto.model = selectedModel.Name
-        this.setState({auto:auto})
-        console.log('model changed',this.state.auto)
+        this.setState({auto:auto,msgValidModel:''})
+        console.log('handleModelChanged: ', this.state.auto)
     }
 
     handleNoChanged(event){
@@ -109,6 +125,8 @@ class InsObject extends Component {
     }
 
     render(){
+        const markArray = markList.filter(item=> item.IsActive === "1")
+ 
         return(
             <div className="make-polis-dialog">
                 <header>
@@ -123,24 +141,33 @@ class InsObject extends Component {
                     <label className="block-label">марка:</label>
                     <div  className="select-input">
                     <select onChange={this.handleMarkaChanged.bind(this)}>
-                        {markList.map((mark,index) =>    
-                            (mark.DMarkID === this.state.auto.markaID)?
-                            <option key={index} selected value={mark.DMarkID}>{mark.Name}</option>
-                            :<option key={index}  value={mark.DMarkID}>{mark.Name}</option>
+                    <option value="0">---</option>
+                        { markArray.map((mark,index) =>
+                        (mark.DMarkID == this.state.auto.markaID)?
+                          <option key={index}  selected value={mark.DMarkID}>{mark.Name}</option>
+                          :<option key={index}  value={mark.DMarkID}>{mark.Name}</option>      
+
                         )}
                     </select>
+                    
                     </div>  
+                    <span className="input-error-message">{this.state.msgValidMarka}</span>
                     </div>  
                     <div className="select-widget">
                     <label className="block-label">модель:</label>
                     <div  className="select-input">
                     <select onChange={this.handleModelChanged.bind(this)}>
-                    
-                    {(this.state.models)&&this.state.models.map((model) =>    
-                        <option key={model.DModelID} value={model.DModelID}>{model.Name}</option>
+                    <option value="0">---</option>
+                    {(this.state.models)&&this.state.models.map((model) =>  
+                        
+                       
+                        (model.DModelID === this.state.auto.modelID)?  
+                            <option key={model.DModelID} selected value={model.DModelID}>{model.Name}</option>
+                            :<option key={model.DModelID} value={model.DModelID}>{model.Name}</option>
                     )}
                     </select>  
                     </div>
+                    <span className="input-error-message">{this.state.msgValidModel}</span>
                     </div>  
                 </div>                
                 <div className="input-object-form-row">

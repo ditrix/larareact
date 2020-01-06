@@ -1,10 +1,11 @@
 import React, {Component} from 'react' 
 import {dateFormatApi, checkIpn} from '../lib/functions'
 import GetDatePicker from '../component/GetDatePicker'
-
-
 import 'react-day-picker/lib/style.css';
 import {PaySumm} from '../component/PaySumm'
+import {INVALID_DATA_MMESSAGE_UA} from '../constants'
+
+
 
 // ввод даних про страхувальника
 class Client extends Component {
@@ -32,12 +33,72 @@ class Client extends Component {
                 phone: '',
                 email: '',
             },
+            msgLNameValid: '',
+            msgFNameValid: '',
+            msgSNameValid: '',
+            msgIpnValid: '',
+            msgDOBValid: '',
+            msgDocTypeValid: '',
+            msgDocSeriaValid: '',
+            msgDocNoValid: '',
+            msgDocDtGetValid: '',
+            msgDocSourceValid: '',
+            msgAddrValid: '',
+            msgPhoneValid: '',
+            msgEmailValid:'',
+            formValid:false,
         }
         this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
-        
+        this.validateData = this.validateData.bind(this)
     }
 
+    validateData(){
+        let formValid = true
+        if(this.state.client.lname === ''){
+            formValid = false
+            this.setState({msgLNameValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        if(this.state.client.fname === ''){
+            formValid = false
+            this.setState({msgFNameValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        if(this.state.client.sname === ''){
+            formValid = false
+            this.setState({msgSNameValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        if(this.state.client.ipn.langth !== 10){
+            formValid = false
+            this.setState({msgIpnValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        if(this.state.client.dob === undefined){
+            formValid = false
+            this.setState({msgDOBValid: INVALID_DATA_MMESSAGE_UA})
+        }
 
+        // если   id-паспорт громодянина України  SERIA спрашиваем
+        if(this.state.client.doc.type === ''){
+            formValid = false
+            this.setState({msgDocTypeValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        
+        if(this.state.client.doc.seria === ''){
+            formValid = false
+            this.setState({msgDocSeriaValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        if(this.state.client.doc.no === ''){
+            formValid = false
+            this.setState({msgDocNoValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        if(this.state.client.doc.dtget === undefined){
+            formValid = false
+            this.setState({msgDocDtGetValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        if(this.state.client.doc.source === ''){
+            formValid = false
+            this.setState({msgDocSourceValid: INVALID_DATA_MMESSAGE_UA})
+        }
+        this.setState({formValid:formValid})
+    }
 
     filterEnterKeyCode(e){
         if(e.keyCode === 13){
@@ -170,6 +231,7 @@ class Client extends Component {
                         onKeyDown={this.filterEnterKeyCode}
                         type="text"
                     />
+                     <span className="input-error-message">сообщение об ошибке</span>
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Ім'я:</label>
