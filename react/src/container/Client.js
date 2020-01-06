@@ -50,7 +50,12 @@ class Client extends Component {
         }
         this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
         this.validateData = this.validateData.bind(this)
+        this.handleButtonNextClicked = this.handleButtonNextClicked.bind(this)
     }
+
+
+
+
 
     validateData(){
         let formValid = true
@@ -66,7 +71,7 @@ class Client extends Component {
             formValid = false
             this.setState({msgSNameValid: INVALID_DATA_MMESSAGE_UA})
         }
-        if(this.state.client.ipn.langth !== 10){
+        if(this.state.client.ipn.length !== 10){
             formValid = false
             this.setState({msgIpnValid: INVALID_DATA_MMESSAGE_UA})
         }
@@ -97,8 +102,35 @@ class Client extends Component {
             formValid = false
             this.setState({msgDocSourceValid: INVALID_DATA_MMESSAGE_UA})
         }
+
+        if(this.state.client.addr === ''){
+            formValid = false
+            this.setState({msgAddrValid: INVALID_DATA_MMESSAGE_UA})
+        }
+
+        if(this.state.client.phone === ''){
+            formValid = false
+            this.setState({msgPhoneValid: INVALID_DATA_MMESSAGE_UA})
+        }
+
+        if(this.state.client.email === ''){
+            formValid = false
+            this.setState({msgEmailValid: INVALID_DATA_MMESSAGE_UA})
+        }
+
+
         this.setState({formValid:formValid})
+        return formValid
     }
+
+
+    handleButtonNextClicked(){
+        this.validateData()
+        if(this.state.formValid){ 
+            this.props.nextTab()
+        }
+    }
+
 
     filterEnterKeyCode(e){
         if(e.keyCode === 13){
@@ -114,17 +146,17 @@ class Client extends Component {
         event.preventDefault()
         const client = this.state.client; 
         client.lname = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client, msgLNameValid:''})
     }
     handleSNameChanged = (event) => { 
         const client = this.state.client; 
         client.sname = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client, msgSNameValid:''})
     }
     handleFNameChanged = (event) => { 
         const client = this.state.client; 
         client.fname = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client, msgFNameValid:''})
     }
     
     handleIPNChanged = (event) => { 
@@ -136,13 +168,14 @@ class Client extends Component {
             this.GetDobFromIpn()
         
         } 
+        this.setState({msgIpnValid:''})
     }
   
     handleDOBChanged = (selectedDay, modifiers, dayPickerInput) => { 
         //const input = dayPickerInput.getInput()    
         const client = this.state.client; 
         client.dob = dateFormatApi(selectedDay)
-        this.setState({client:client})
+        this.setState({client:client, msgDOBValid:''})
         console.log(this.state.client.dob)
     }
 
@@ -155,59 +188,61 @@ class Client extends Component {
             const dobstr = D.toLocaleDateString('uk').slice(6,10)+'-'+ D.toLocaleDateString('uk').slice(3,5)+ '-'+D.toLocaleDateString('uk').slice(0,2)
             client.dob = dobstr
         }
-        this.setState({client:client})
+        this.setState({client:client, msgDOBValid:''})
     }
 
 
     handleDocTypeChanged = (event) => { 
         const client = this.state.client; 
         client.doc.type = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client, msgDocTypeValid:''})
     }
     
     handleDocSeriaChanged = (event) => { 
         const client = this.state.client
         client.doc.seria = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client,msgDocSeriaValid:''})
     }
    
     handleDocNoChanged = (event) => { 
         const client = this.state.client; 
         client.doc.no = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client,msgDocNoValid:''})
     }
+
     handleDtGetChanged = (selectedDay, modifiers, dayPickerInput) => { 
-        
         const client = this.state.client; 
         client.doc.dtget = dateFormatApi(selectedDay)
-        this.setState({client:client})
+        this.setState({client:client, msgDocDtGetValid:''})
     }
     
     handleDocSourceChanged = (event) => { 
         const client = this.state.client; 
         client.doc.source = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client, msgDocSourceValid:''})
     }
 
     handleAddrChanged = (event) => { 
         const client = this.state.client; 
         client.addr = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client, msgAddrValid:''})
     }
     
     handlePhoneChanged = (event) => { 
         const client = this.state.client;
         client.phone = event.currentTarget.value 
-        this.setState({client:client})
+        this.setState({client:client, msgPhoneValid:''})
     }
     
     handleEmailChanged = (event) => { 
         const client = this.state.client
         client.email = event.currentTarget.value
-        this.setState({client:client})
+        this.setState({client:client, msgEmailValid:''})
     }
 
-
+    nextTab(value){
+        //()=>{this.props.nextTab}
+    }
     
     
     render(){
@@ -231,7 +266,7 @@ class Client extends Component {
                         onKeyDown={this.filterEnterKeyCode}
                         type="text"
                     />
-                     <span className="input-error-message">сообщение об ошибке</span>
+                     <span className="input-error-message">{this.state.msgLNameValid}</span>
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Ім'я:</label>
@@ -241,6 +276,7 @@ class Client extends Component {
                         onChange={this.handleFNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
                     />
+                    <span className="input-error-message">{this.state.msgFNameValid}</span>
                 </div>                
                 <div className="form-input-item">
                     <label className="block-label">По батькові:</label>
@@ -250,6 +286,7 @@ class Client extends Component {
                         onChange={this.handleSNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
                     />
+                    <span className="input-error-message">{this.state.msgSNameValid}</span>
                 </div>                
 
                 <div className="form-input-row">
@@ -260,6 +297,7 @@ class Client extends Component {
                             onChange={this.handleIPNChanged.bind(this)} 
                             onKeyDown={this.filterEnterKeyCode}
                         />                        
+                        <span className="input-error-message">{this.state.msgIpnValid}</span>
                     </div>
                     <div className="form-input-item input-dob">
                         <GetDatePicker 
@@ -268,7 +306,7 @@ class Client extends Component {
                             getDate={this.handleDOBChanged.bind(this)}
                             dateValue={this.state.client.dob}
                         />                
-
+                        <span className="input-error-message">{this.state.msgDOBValid}</span>
                     </div>                
                 </div>
                 
@@ -291,16 +329,19 @@ class Client extends Component {
                                 <option value='9'>Пенсійне посвідчення</option>
                             </select>  
                         </div>
+                        <span className="input-error-message">{this.state.msgDocTypeValid}</span>
                     </div>  
                 
                 
                     <div className="item-doc-seria">
                         <label className="block-label">Серія:</label>
                         <input value={this.state.client.doc.seria} onChange={this.handleDocSeriaChanged.bind(this)} />
+                        <span className="input-error-message">{this.state.msgDocSeriaValid}</span>
                     </div>       
                     <div className="item-doc-no">
                         <label className="block-label">Номер:</label>
                         <input value={this.state.client.doc.no} onChange={this.handleDocNoChanged.bind(this)} />
+                        <span className="input-error-message">{this.state.msgDocNoValid}</span>
                     </div>       
                     <div className="item-date-get">
                         <GetDatePicker 
@@ -309,24 +350,29 @@ class Client extends Component {
                             dateValue={dateGetDoc}
                             getDate={this.handleDtGetChanged.bind(this)}
                         />
+                        <span className="input-error-message">{this.state.msgDocDtGetValid}</span>
                     </div>
                     <div className="item-doc-source">
                         <label className="block-label">Ким виданий:</label>
                         <input value={this.state.client.doc.source} onChange={this.handleDocSourceChanged.bind(this)} />
+                        <span className="input-error-message">{this.state.msgDocSourceValid}</span>
                     </div>              
                 </div>    
                
                 <div className="form-input-item">
                     <label className="block-label">Адреса:</label>
                     <input value={this.state.client.addr} onChange={this.handleAddrChanged.bind(this)} />
+                    <span className="input-error-message">{this.state.msgAddrValid}</span>
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Телефон:</label>
                     <input placeholder={'+38'}  value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
+                    <span className="input-error-message">{this.state.msgPhoneValid}</span>
                 </div>                
                 <div className="form-input-item">
                     <label className="block-label">Email:</label>
                     <input value={this.state.client.email} onChange={this.handleEmailChanged.bind(this)} />
+                    <span className="input-error-message">{this.state.msgEmailValid}</span>
                 </div>                
                 </main>
                    
@@ -340,7 +386,7 @@ class Client extends Component {
                     </button>
               <button 
                 className="btn-main-form-navigate btn-next" 
-                onClick={this.props.nextTab} >наступна</button> 
+                onClick={this.handleButtonNextClicked} >наступна</button> 
             </nav>
         </footer>
             
