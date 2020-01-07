@@ -1,11 +1,14 @@
 import React, {Component} from 'react' 
 import {checkIntegerStr,getCurrentYear} from '../lib/functions'
-
-import {markList} from '../data/marks.js'
-import {models} from '../data/models.js'
-//import {markList} from '../data/dmarks.js'
-//import {models} from '../data/dmodels.js'
 import {PaySumm} from '../component/PaySumm'
+
+
+import {markDS} from '../data/markds.js'
+import {modelDS} from '../data/modelds.js'
+
+//import {markDS} from '../data/devmarkds.js'
+//import {modelDS} from '../data/devmodelds.js'
+
 
 
 // ввод даних про об'ект страхування
@@ -67,25 +70,15 @@ class InsObject extends Component {
             this.setState({msgValidModel: 'незаповнені, або некоректні данні'})
         }
         this.setState({auto:auto})
-
-
-
-
     }    
-
-
-    componentDidMount(){
-        console.log('componentDidMount: ', this.state.auto)
-    }
 
     handleMarkaChanged(event){
         const markaID = event.currentTarget.value
         const auto = this.state.auto
         auto.markaID = markaID
         auto.modelID = 0
-        const modelsArr = models.filter(item => item.DMarkID === markaID)
+        const modelsArr = modelDS.filter(item => item.mark_id === markaID)
         this.setState({models:modelsArr,auto:auto,msgValidMarka:''})
-        console.log('handleMarkaChanged: ', this.state.auto)
     }
 
     handleModelChanged(event){
@@ -95,7 +88,6 @@ class InsObject extends Component {
         const selectedModel = this.state.models.filter(model=> model.DModelID === modelID )
         auto.model = selectedModel.Name
         this.setState({auto:auto,msgValidModel:''})
-        console.log('handleModelChanged: ', this.state.auto)
     }
 
     handleNoChanged(event){
@@ -127,7 +119,7 @@ class InsObject extends Component {
     }
 
     render(){
-        const markArray = markList.filter(item=> item.IsActive === "1")
+        const markArray = markDS
  
         return(
             <div className="make-polis-dialog">
@@ -143,12 +135,11 @@ class InsObject extends Component {
                     <label className="block-label">марка:</label>
                     <div  className="select-input">
                     <select onChange={this.handleMarkaChanged.bind(this)}>
-                    <option value="0">---</option>
+                    <option key={0} value="0">---</option>
                         { markArray.map((mark,index) =>
-                        (mark.DMarkID == this.state.auto.markaID)?
-                          <option key={index}  selected value={mark.DMarkID}>{mark.Name}</option>
-                          :<option key={index}  value={mark.DMarkID}>{mark.Name}</option>      
-
+                        (mark.id === this.state.auto.markaID)?
+                          <option key={index}  selected value={mark.id}>{mark.name}</option>
+                          :<option key={index}  value={mark.id}>{mark.name}</option>      
                         )}
                     </select>
                     
@@ -159,14 +150,14 @@ class InsObject extends Component {
                     <label className="block-label">модель:</label>
                     <div  className="select-input">
                     <select onChange={this.handleModelChanged.bind(this)}>
-                    <option value="0">---</option>
-                    {(this.state.models)&&this.state.models.map((model) =>  
-                        
-                       
-                        (model.DModelID === this.state.auto.modelID)?  
-                            <option key={model.DModelID} selected value={model.DModelID}>{model.Name}</option>
-                            :<option key={model.DModelID} value={model.DModelID}>{model.Name}</option>
-                    )}
+                    <option key="0" value="0">---</option>
+                    {(this.state.models)&&
+                        this.state.models.map((model,index) =>
+                        (model.id === this.state.auto.modelID)? 
+                        <option key={index} selected value={model.id}>{model.name}</option>
+                        :<option key={index} value={model.id}>{model.name}</option>
+                        )
+                    }
                     </select>  
                     </div>
                     <span className="input-error-message">{this.state.msgValidModel}</span>
