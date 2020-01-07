@@ -1,8 +1,10 @@
 import React, {Component} from 'react' 
 import {checkIntegerStr,getCurrentYear} from '../lib/functions'
 
-import {markList} from '../data/dmarks.js'
-import {models} from '../data/dmodels.js'
+import {markList} from '../data/marks.js'
+import {models} from '../data/models.js'
+//import {markList} from '../data/dmarks.js'
+//import {models} from '../data/dmodels.js'
 import {PaySumm} from '../component/PaySumm'
 
 

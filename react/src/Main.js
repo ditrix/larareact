@@ -13,7 +13,7 @@ class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: TAB_CLIENT, // ?? componentDidMount ???
+      currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
     }
     this.actionNextTab = this.actionNextTab.bind(this)
     this.actionPrevTab = this.actionPrevTab.bind(this)
