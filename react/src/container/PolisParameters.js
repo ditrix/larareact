@@ -6,10 +6,13 @@ import GetDiscount from '../component/GetDiscount'
 import GetOtk from '../component/GetOtk'
 import SearchVehicle from './SearchVehicle'
 import {PaySumm} from '../component/PaySumm'
-import GetCity from '../component/GetCity'
+import GetCity,{defaultCityInfo} from '../component/GetCity'
 
 
 import { exists } from 'fs';
+
+
+
 
 class PolisParameters extends Component{
     constructor(props){
@@ -20,13 +23,16 @@ class PolisParameters extends Component{
             valueTaxi: '0',
             isOtk: false,
             searchVehicle: true,
-            city: null,
+            city: defaultCityInfo(),
         }
         
         this.getK1Value = this.getK1Value.bind(this)
         this.setDiscount = this.setDiscount.bind(this)
         this.getDiscount = this.getDiscount.bind(this)
         this.getTaxi = this.getTaxi.bind(this)
+
+        this.getCity = this.getCity.bind(this)
+
 
     }
 
@@ -61,10 +67,12 @@ class PolisParameters extends Component{
         this.props.nextTab()
     }
  
-    getCity(value){        
-//        this.state.city = value;
-        this.setState({city:value})
-        console.log('setCity.res: ',this.state.city)
+    getCity(value){    
+        if(value !== null){    
+            const newState = this.state;
+            newState.city = value
+            this.setState(newState)
+        }
     }
 
 
@@ -87,11 +95,11 @@ render(){
                         </li>
                     </ul>
                     <div className="vehicle-result">
-            {(this.state.searchVehicle)?<SearchVehicle />:<GetK1 getK1={this.getK1Value} />  }
+            {(this.state.searchVehicle)?<SearchVehicle />:<GetK1  getK1={this.getK1Value} />  }
                     </div>               
                 </div>
                 <div className="city-parameters">
-                   <GetCity city={this.state.city} setCity={this.getCity.bind(this)} /> 
+                   <GetCity city={this.state.city} setCity={this.getCity} /> 
                 </div>
                     
                 <div className="addition-parameters">   
