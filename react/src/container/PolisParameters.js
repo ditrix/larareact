@@ -6,6 +6,8 @@ import GetDiscount from '../component/GetDiscount'
 import GetOtk from '../component/GetOtk'
 import SearchVehicle from './SearchVehicle'
 import {PaySumm} from '../component/PaySumm'
+import GetCity from '../component/GetCity'
+
 
 import { exists } from 'fs';
 
@@ -18,7 +20,7 @@ class PolisParameters extends Component{
             valueTaxi: '0',
             isOtk: false,
             searchVehicle: true,
-
+            city: null,
         }
         
         this.getK1Value = this.getK1Value.bind(this)
@@ -59,6 +61,13 @@ class PolisParameters extends Component{
         this.props.nextTab()
     }
  
+    getCity(value){        
+//        this.state.city = value;
+        this.setState({city:value})
+        console.log('setCity.res: ',this.state.city)
+    }
+
+
 render(){
      
     return(
@@ -82,7 +91,7 @@ render(){
                     </div>               
                 </div>
                 <div className="city-parameters">
-                    <GetK2 />      
+                   <GetCity city={this.state.city} setCity={this.getCity.bind(this)} /> 
                 </div>
                     
                 <div className="addition-parameters">   

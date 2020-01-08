@@ -1,5 +1,4 @@
 /vendor
 /node_modules
 /react/node_modules
-!/react/node_modules/moment/locale/ua.js
 .env
