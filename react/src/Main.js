@@ -6,7 +6,7 @@ import InsObject from './container/InsObject'
 
 import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT } from './constants'
 
-
+import {defaultCityInfo} from './component/GetCity'
 // TODO валидаторы  и контроль ввода и актив/пасс виджетов
 
 class Main extends Component {
@@ -14,6 +14,10 @@ class Main extends Component {
     super(props)
     this.state = {
       currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
+      paramPolis:{
+        city: defaultCityInfo()  
+      }
+      
     }
     this.actionNextTab = this.actionNextTab.bind(this)
     this.actionPrevTab = this.actionPrevTab.bind(this)
@@ -46,10 +50,23 @@ class Main extends Component {
           return;    
      }        
   }
+
+
+  getParam(value){
+    const nextState = this.state
+    nextState.paramPolis.city = value
+    this.setState(nextState)
+    console.log('Main',this.state)
+  }
+
   render(){
     return (
       <div className="main-form clearfix">
-        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
+        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters 
+            nextTab={this.actionNextTab} 
+            data={this.state.paramPolis}
+            getParam={this.getParam.bind(this)}
+          />}
         {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
         {(this.state.currentTab === TAB_OBJECT)&&<InsObject prevTab={this.actionPrevTab} />}
       </div>

@@ -3,11 +3,11 @@ import {checkIntegerStr,getCurrentYear} from '../lib/functions'
 import {PaySumm} from '../component/PaySumm'
 
 
-import {markDS} from '../data/markds.js'
-import {modelDS} from '../data/modelds.js'
+//import {markDS} from '../data/markds.js'
+//import {modelDS} from '../data/modelds.js'
 
-//import {markDS} from '../data/devmarkds.js'
-//import {modelDS} from '../data/devmodelds.js'
+import {markDS} from '../data/devmarkds.js'
+import {modelDS} from '../data/devmodelds.js'
 
 
 

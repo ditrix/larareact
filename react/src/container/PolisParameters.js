@@ -23,7 +23,7 @@ class PolisParameters extends Component{
             valueTaxi: '0',
             isOtk: false,
             searchVehicle: true,
-            city: defaultCityInfo(),
+            city: this.props.data.city,
         }
         
         this.getK1Value = this.getK1Value.bind(this)
@@ -35,6 +35,8 @@ class PolisParameters extends Component{
 
 
     }
+
+
 
     parametersVehicleClick(e){
         e.preventDefault()
@@ -72,12 +74,15 @@ class PolisParameters extends Component{
             const newState = this.state;
             newState.city = value
             this.setState(newState)
+            console.log(this.state.city)
+            this.props.getParam(this.state.city)
         }
     }
 
 
 render(){
-     
+    console.log('PolisParameters.state.city',this.state.city)    
+    console.log('PolisParameters.props.data.city',this.props.data.city)    
     return(
         <div className="make-polis-dialog">
             <header>
