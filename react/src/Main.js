@@ -8,10 +8,8 @@ import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT, } from './constants'
 
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from './action'
 
-import {defaultCityInfo} from './component/GetCity'
-// TODO валидаторы  и контроль ввода и актив/пасс виджетов
-
-
+import {initialCity} from './reducers/city'
+import {initialVehicle} from './reducers/vehicle'
 
 
 class Main extends Component {
@@ -21,8 +19,9 @@ class Main extends Component {
       currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
       paramPolis:{
         valueK1: '',
-        city: defaultCityInfo(),
-        action:  ACTION_SEARCH_VEHICLE, 
+        city: initialCity(),
+        action:  ACTION_SEARCH_VEHICLE,
+        vehicle: initialVehicle(),  
       }
       
     }

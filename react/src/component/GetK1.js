@@ -1,8 +1,11 @@
 import React,{Component} from 'react'
 import {dataK1} from '../data/dataK1'
 
-class GetK1 extends Component {
 
+
+
+
+class GetK1 extends Component {
 
   handleSelectK1Changed(event){
     console.log(event.currentTarget.value)

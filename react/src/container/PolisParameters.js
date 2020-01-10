@@ -6,14 +6,14 @@ import GetDiscount from '../component/GetDiscount'
 import GetOtk from '../component/GetOtk'
 import SearchVehicle from './SearchVehicle'
 import {PaySumm} from '../component/PaySumm'
-import GetCity,{defaultCityInfo} from '../component/GetCity'
+import GetCity from '../component/GetCity'
 
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../action'
 
 
 
 import { exists } from 'fs';
-
+import { initialVehicle } from '../reducers/vehicle'
 
 
 
@@ -26,9 +26,9 @@ class PolisParameters extends Component{
             valueDiscount: '0',
             valueTaxi: '0',
             isOtk: false,
-            searchVehicle: true,
             city: this.props.data.city,
-            action: this.props.data.action
+            action: this.props.data.action,
+            vehicle: this.props.data.vehicle,
         }
         
         this.getK1Value = this.getK1Value.bind(this)
@@ -41,10 +41,9 @@ class PolisParameters extends Component{
 
     parametersVehicleClick(e){
         e.preventDefault()
-
-        //this.setState({...this.state,action: ACTION_GET_VEHICLE})
         const newState = this.state
         newState.action  = ACTION_GET_VEHICLE  
+        newState.valueK1 = '00'
         console.log('PolisParameters.parametersVehicleClick: ',newState.action)
         this.setState(newState)
         this.props.getParam(newState)
@@ -52,12 +51,11 @@ class PolisParameters extends Component{
    
      searchVehicleClick(e){
         e.preventDefault()  
-        //const newState = {...this.state,action: ACTION_SEARCH_VEHICLE}
         const newState = this.state
         newState.action = ACTION_SEARCH_VEHICLE
+        newState.valueK1 = '00'
         this.setState(newState,)
         this.props.getParam(newState)
-        
      }
    
 
@@ -91,15 +89,22 @@ class PolisParameters extends Component{
             const newState = this.state
             newState.city = value
             this.setState(newState)
-            //console.log(this.state.city)
             this.props.getParam(this.state)
         }
     }
 
-render(){
+    getVehicle(value){
+        console.log('PolisParameters.getVehicle.value: ', value)
+        const vehicle = (value !== null)?value:initialVehicle()
+        const newState = this.state
+        newState.valueK1 = vehicle.DVehicleTypeType
+        newState.vehicle = vehicle
+        this.setState(newState)
+        this.props.getParam(this.state)
 
-//    console.log('PolisParameters.state.city',this.state.city)    
-//    console.log('PolisParameters.props.data.city',this.props.data.city)    
+    }
+
+render(){
 
     return(
         <div className="make-polis-dialog">
@@ -124,7 +129,10 @@ render(){
                         </li>
                     </ul>
                     <div className="vehicle-result">
-            {(this.state.action === ACTION_SEARCH_VEHICLE)?<SearchVehicle />:<GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value} />  }
+                    {(this.state.action === ACTION_SEARCH_VEHICLE)?
+                        <SearchVehicle dataVehicle={this.state.vehicle} getVehicle={this.getVehicle.bind(this)} />
+                       :<GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value} /> 
+                     }
                     </div>               
                 </div>
                 <div className="city-parameters">

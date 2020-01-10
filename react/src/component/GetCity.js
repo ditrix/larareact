@@ -1,19 +1,7 @@
 import React,{Component} from 'react'
 
 import {cityDS} from '../data/cityds'
-
-export const defaultCityInfo = () => {
-   
-    return {
-        "id": "0",
-        "nameRu": "--место регистрации--",
-        "nameUa": "--місце реєстрації--",
-        "zone": "0",
-        "zone_dgo": "0"
-      }
-}
-
-
+import {initialCity} from '../reducers/city'
 
 class GetCity extends Component {
     constructor(props){
@@ -28,7 +16,7 @@ class GetCity extends Component {
         if(cityRes !== 0) {
             this.props.setCity(cityRes[0])
         }else{
-            this.props.setCity(defaultCityInfo())
+            this.props.setCity(initialCity())
         }
         
     }

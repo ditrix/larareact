@@ -11,7 +11,7 @@ import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 
 //import './css/style.css'
 
-
+import {initialVehicle} from '../reducers/vehicle'
 
 function SearchResultTemplate(data){
     
@@ -36,7 +36,7 @@ class SearchVehicle extends Component {
     constructor(props){
        super(props) 
        this.state = {
-        vehicle: null,
+        vehicle: initialVehicle(),
         searchVehicleStr: '',
         loaded:false,
         request:false,
@@ -73,22 +73,26 @@ class SearchVehicle extends Component {
         }
         const url = `${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
         if(this.validInputData()){
-         console.log('search...')  
-        this.setState({loaded: true, vehicle:null,request:true})
-        axios.get(url)
-            .then(response => {
-                console.log(response)
-                if(response.status === 200){
-                    console.log(response.data.result)
-                    this.setState({vehicle:response.data.result})
-                } else {
-                    this.setState({message:'не знайдено, воспользуйтесь вводом параметров ТЗ'})
-                }                
-                this.setState({request:false,loaded:true})
-            })
-            .catch(error => {
-                this.setState({loaded:true,request:false, message:'не знайдено, скористайтеся введенням параметрів ТЗ'})
-            })
+            this.setState({loaded: true, vehicle:initialVehicle(),request:true})
+            axios.get(url)
+                .then(response => {
+                    console.log(response)
+                    if(response.status === 200){
+                        console.log(response.data.result)
+                        this.setState({vehicle:response.data.result})
+                        this.props.getVehicle(response.data.result)
+                    } else {
+                        this.setState({message:'не знайдено, воспользуйтесь вводом параметров ТЗ'})
+                        this.setState({vehicle:initialVehicle()})
+                        this.props.getVehicle(initialVehicle())
+                    }                
+                    this.setState({request:false,loaded:true})
+                })
+                .catch(error => {
+                    this.setState({loaded:true,request:false, message:'не знайдено, скористайтеся введенням параметрів ТЗ'})
+                    this.setState({vehicle:initialVehicle()})
+                    this.props.getVehicle(initialVehicle())
+                })
         }
     }
       
