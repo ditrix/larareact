@@ -8,6 +8,9 @@ import SearchVehicle from './SearchVehicle'
 import {PaySumm} from '../component/PaySumm'
 import GetCity,{defaultCityInfo} from '../component/GetCity'
 
+import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../action'
+
+
 
 import { exists } from 'fs';
 
@@ -17,33 +20,32 @@ import { exists } from 'fs';
 class PolisParameters extends Component{
     constructor(props){
         super(props)
-        this.state = {
-            valueK1: 'B1',
-            valueDiscount: '0',
-            valueTaxi: '0',
-            isOtk: false,
-            searchVehicle: true,
-            city: defaultCityInfo(),
-        }
+        this.state = this.props.param
         
         this.getK1Value = this.getK1Value.bind(this)
         this.setDiscount = this.setDiscount.bind(this)
         this.getDiscount = this.getDiscount.bind(this)
         this.getTaxi = this.getTaxi.bind(this)
-
         this.getCity = this.getCity.bind(this)
-
-
     }
 
+
+    
     parametersVehicleClick(e){
         e.preventDefault()
-        this.setState({searchVehicle:false})
+        const newState = this.state
+        newState.action = ACTION_GET_VEHICLE
+        this.setState(newState)
+        this.props.setParams(newState)
      }
    
      searchVehicleClick(e){
         e.preventDefault()  
-       this.setState({searchVehicle:true})
+        const newState = this.state
+        newState.action = ACTION_SEARCH_VEHICLE
+        this.setState(newState)
+        this.props.setParams(newState)
+        
      }
    
 
@@ -52,7 +54,10 @@ class PolisParameters extends Component{
     }
 
     getK1Value(value){
-        this.setState({valueK1:value})
+        const newState = this.state
+        newState.valueK1 = value
+        this.setState(newState)
+        this.props.setParams(newState)
     }
 
     getDiscount(value){
@@ -67,17 +72,19 @@ class PolisParameters extends Component{
         this.props.nextTab()
     }
  
-    getCity(value){    
+    getCity(value){  
+        console.log('params.city: ',value)  
         if(value !== null){    
             const newState = this.state;
             newState.city = value
             this.setState(newState)
+            this.props.setParams(newState)
         }
     }
 
 
 render(){
-     
+     const params = this.state
     return(
         <div className="make-polis-dialog">
             <header>
@@ -88,18 +95,18 @@ render(){
                 <div className="vehicle-parameters">
                     <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <button className={(this.state.searchVehicle)?"parameters-link-active":"parameters-link-passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</button>
+                            <button className={(params.action === ACTION_SEARCH_VEHICLE)?"parameters-link-active":"parameters-link-passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</button>
                         </li>
                         <li className="nav-item">
-                            <button className={(this.state.searchVehicle)?"parameters-link-passive":"parameters-link-active"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</button>
+                            <button className={(params.action === ACTION_GET_VEHICLE)?"parameters-link-active":"parameters-link-passive"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</button>
                         </li>
                     </ul>
                     <div className="vehicle-result">
-            {(this.state.searchVehicle)?<SearchVehicle />:<GetK1  getK1={this.getK1Value} />  }
+            {(params.action === ACTION_SEARCH_VEHICLE)?<SearchVehicle />:<GetK1  getK1={this.getK1Value} />  }
                     </div>               
                 </div>
                 <div className="city-parameters">
-                   <GetCity city={this.state.city} setCity={this.getCity} /> 
+                   <GetCity city={params.city} setCity={this.getCity} /> 
                 </div>
                     
                 <div className="addition-parameters">   

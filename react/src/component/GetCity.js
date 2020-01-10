@@ -34,6 +34,7 @@ class GetCity extends Component {
 
     render(){
         const currentCityID = (this.props.city !== null )?this.props.city.id:'0'
+        console.log('GetCity ',this.props.city)
         return(
             <div className="select-widget">
                 <label className="block-label">місце реєстрації власника ТЗ</label>
