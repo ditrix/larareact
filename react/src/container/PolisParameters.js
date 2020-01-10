@@ -20,7 +20,16 @@ import { exists } from 'fs';
 class PolisParameters extends Component{
     constructor(props){
         super(props)
-        this.state = this.props.param
+
+        this.state = {
+            valueK1: this.props.data.valueK1,
+            valueDiscount: '0',
+            valueTaxi: '0',
+            isOtk: false,
+            searchVehicle: true,
+            city: this.props.data.city,
+            action: this.props.data.action
+        }
         
         this.getK1Value = this.getK1Value.bind(this)
         this.setDiscount = this.setDiscount.bind(this)
@@ -30,21 +39,24 @@ class PolisParameters extends Component{
     }
 
 
-    
     parametersVehicleClick(e){
         e.preventDefault()
+
+        //this.setState({...this.state,action: ACTION_GET_VEHICLE})
         const newState = this.state
-        newState.action = ACTION_GET_VEHICLE
+        newState.action  = ACTION_GET_VEHICLE  
+        console.log('PolisParameters.parametersVehicleClick: ',newState.action)
         this.setState(newState)
-        this.props.setParams(newState)
+        this.props.getParam(newState)
      }
    
      searchVehicleClick(e){
         e.preventDefault()  
+        //const newState = {...this.state,action: ACTION_SEARCH_VEHICLE}
         const newState = this.state
         newState.action = ACTION_SEARCH_VEHICLE
-        this.setState(newState)
-        this.props.setParams(newState)
+        this.setState(newState,)
+        this.props.getParam(newState)
         
      }
    
@@ -54,10 +66,12 @@ class PolisParameters extends Component{
     }
 
     getK1Value(value){
+        console.log('PolisParameters.getK1Value: ',value)
         const newState = this.state
         newState.valueK1 = value
         this.setState(newState)
-        this.props.setParams(newState)
+        this.props.getParam(this.state)
+
     }
 
     getDiscount(value){
@@ -72,19 +86,21 @@ class PolisParameters extends Component{
         this.props.nextTab()
     }
  
-    getCity(value){  
-        console.log('params.city: ',value)  
+    getCity(value){    
         if(value !== null){    
-            const newState = this.state;
+            const newState = this.state
             newState.city = value
             this.setState(newState)
-            this.props.setParams(newState)
+            //console.log(this.state.city)
+            this.props.getParam(this.state)
         }
     }
 
-
 render(){
-     const params = this.state
+
+//    console.log('PolisParameters.state.city',this.state.city)    
+//    console.log('PolisParameters.props.data.city',this.props.data.city)    
+
     return(
         <div className="make-polis-dialog">
             <header>
@@ -95,18 +111,24 @@ render(){
                 <div className="vehicle-parameters">
                     <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <button className={(params.action === ACTION_SEARCH_VEHICLE)?"parameters-link-active":"parameters-link-passive"} onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером</button>
+                            <button 
+                                className={(this.state.action === ACTION_SEARCH_VEHICLE)?"parameters-link-active":"parameters-link-passive"} 
+                                onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером
+                            </button>
                         </li>
                         <li className="nav-item">
-                            <button className={(params.action === ACTION_GET_VEHICLE)?"parameters-link-active":"parameters-link-passive"}  onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто</button>
+                            <button 
+                                className={(this.state.action === ACTION_GET_VEHICLE)?"parameters-link-active":"parameters-link-passive"}  
+                                onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто
+                            </button>
                         </li>
                     </ul>
                     <div className="vehicle-result">
-            {(params.action === ACTION_SEARCH_VEHICLE)?<SearchVehicle />:<GetK1  getK1={this.getK1Value} />  }
+            {(this.state.action === ACTION_SEARCH_VEHICLE)?<SearchVehicle />:<GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value} />  }
                     </div>               
                 </div>
                 <div className="city-parameters">
-                   <GetCity city={params.city} setCity={this.getCity} /> 
+                   <GetCity city={this.state.city} setCity={this.getCity} /> 
                 </div>
                     
                 <div className="addition-parameters">   

@@ -3,11 +3,12 @@ import './css/style.css'
 import PolisParameters from './container/PolisParameters'
 import Client from './container/Client'
 import InsObject from './container/InsObject'
-import GetCity,{defaultCityInfo} from './component/GetCity'
-import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT } from './constants'
+//import GetCity,{defaultCityInfo} from './component/GetCity'
+import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT, } from './constants'
 
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from './action'
 
+import {defaultCityInfo} from './component/GetCity'
 // TODO валидаторы  и контроль ввода и актив/пасс виджетов
 
 
@@ -18,20 +19,12 @@ class Main extends Component {
     super(props)
     this.state = {
       currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
-      param: {
-        valueK1: 'B1',
-        valueDiscount: '0',
-        valueTaxi: '0',
-        isOtk: false,
-        action: ACTION_SEARCH_VEHICLE,
-        city:  {
-          "id": "0",
-          "nameRu": "--место регистрации--",
-          "nameUa": "--місце реєстрації--",
-          "zone": "0",
-          "zone_dgo": "0"
-        },
+      paramPolis:{
+        valueK1: '',
+        city: defaultCityInfo(),
+        action:  ACTION_SEARCH_VEHICLE, 
       }
+      
     }
 
     this.actionNextTab = this.actionNextTab.bind(this)
@@ -66,24 +59,23 @@ class Main extends Component {
      }        
   }
 
-  setParams(value){
-    const newState =  this.state
-    newState.param = value;
-    console.log('Main.value',value)
-    this.setState(newState)
-    console.log('Main.state',this.state)
-  }
 
+  getParam(value){
+    console.log('Main.getParam',value)
+    const nextState = this.state
+    nextState.paramPolis = value
+    this.setState(nextState)
+    console.log('Main',this.state)
+  }
 
   render(){
     return (
       <div className="main-form clearfix">
-        {(this.state.currentTab === TAB_PARAMETERS)&&
-          <PolisParameters 
+        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters 
             nextTab={this.actionNextTab} 
-            param={this.state.param} 
-            setParams={this.setParams.bind(this)} 
-            />}
+            data={this.state.paramPolis}
+            getParam={this.getParam.bind(this)}
+          />}
         {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
         {(this.state.currentTab === TAB_OBJECT)&&<InsObject prevTab={this.actionPrevTab} />}
       </div>

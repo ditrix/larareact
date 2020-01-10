@@ -3,6 +3,7 @@ import React,{Component} from 'react'
 import {cityDS} from '../data/cityds'
 
 export const defaultCityInfo = () => {
+   
     return {
         "id": "0",
         "nameRu": "--место регистрации--",
@@ -34,16 +35,14 @@ class GetCity extends Component {
 
     render(){
         const currentCityID = (this.props.city !== null )?this.props.city.id:'0'
-        console.log('GetCity ',this.props.city)
+//        console.log('GetCity ',this.props.city)
         return(
             <div className="select-widget">
                 <label className="block-label">місце реєстрації власника ТЗ</label>
                 <div className="select-input">
-                    <select onChange={this.handleCityChange} >
+                    <select onChange={this.handleCityChange} defaultValue={currentCityID} >
                     {cityDS.map( (city,index) =>                        
-                        (city.id == currentCityID)?
-                        <option key={index} defaultValue value={city.id}>{city.nameUa}</option>
-                        :<option key={index} value={city.id}>{city.nameUa}</option>
+                        <option key={index} value={city.id}>{city.nameUa}</option>
                     )}
                     </select>  
                 </div>

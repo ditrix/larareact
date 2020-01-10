@@ -258,9 +258,9 @@ class Client extends Component {
                 
                 <main>
                 <div className="form-input-item">
-                    <label className="block-label">Прізвище:</label>
+                    {/*<label className="block-label">Прізвище:</label>*/}
                     <input 
-                        
+                        placeholder='прізвище:'
                         value={this.state.client.lname} 
                         onChange={this.handleLNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
@@ -269,9 +269,9 @@ class Client extends Component {
                      <span className="input-error-message">{this.state.msgLNameValid}</span>
                 </div>
                 <div className="form-input-item">
-                    <label className="block-label">Ім'я:</label>
+                    {/*<label className="block-label">Ім'я:</label>*/}
                     <input 
-                         
+                        placeholder='ім`я' 
                         value={this.state.client.fname} 
                         onChange={this.handleFNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
@@ -279,9 +279,9 @@ class Client extends Component {
                     <span className="input-error-message">{this.state.msgFNameValid}</span>
                 </div>                
                 <div className="form-input-item">
-                    <label className="block-label">По батькові:</label>
+                    {/* <label className="block-label">По батькові:</label> */}
                     <input 
-                         
+                        placeholder='По батькові:' 
                         value={this.state.client.sname} 
                         onChange={this.handleSNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
@@ -291,8 +291,9 @@ class Client extends Component {
 
                 <div className="form-input-row">
                     <div className="form-input-item input-inn">
-                        <label className="block-label">Індивідуальний податковий номер (ІПН):</label>
+                        {/* <label className="block-label">Індивідуальний податковий номер (ІПН):</label> */}
                         <input 
+                            placeholder='Індивідуальний податковий номер (ІПН):'
                             value={this.state.client.ipn} 
                             onChange={this.handleIPNChanged.bind(this)} 
                             onKeyDown={this.filterEnterKeyCode}
@@ -311,57 +312,82 @@ class Client extends Component {
                 </div>
                 
                 <div className="client-doc-row">
+                    <div className="form-input-row">
+ `                       <div className="select-widget `item-doc-type`">
+                            {/* <label className="block-label">документ:</label> */}
+                            <div className="select-input">
+                                <select onChange={this.handleDocTypeChanged.bind(this)}>
+                                    <option value='12'>документ:</option>
+                                    
+                                    <option value='12'>Водійське посвідчення</option>
+                                            
+                                    <option value='12'>паспорт</option>
+                                    <option value='10'>id-паспорт громодянина України</option>
+                                    <option value='9'>Паспорт іниземного громодянина</option>
+                                    <option value='9'>Посвідчення водія іноземного громодянина</option>
 
-                    <div className="select-widget item-doc-type">
-                        <label className="block-label">документ:</label>
-                        <div className="select-input">
-                            <select onChange={this.handleDocTypeChanged.bind(this)}>
-                                <option value='12'>Водійське посвідчення</option>
-                                        
-                                <option value='12'>паспорт</option>
-                                <option value='10'>id-паспорт громодянина України</option>
-                                <option value='9'>Паспорт іниземного громодянина</option>
-                                <option value='9'>Посвідчення водія іноземного громодянина</option>
+                                    <option value='9'>Посвідчення інваліда</option>
+                                    <option value='9'>Уорнобильске посвідчення</option>
+                                    <option value='9'>Учасника війни інваліда</option>
+                                    <option value='9'>Пенсійне посвідчення</option>
+                                </select>  
+                            </div>
+                            <span className="input-error-message">{this.state.msgDocTypeValid}</span>
+                        </div>  
+                    
+                    
+                        <div className="item-doc-seria">
+                            {/* <label className="block-label">Серія:</label> */}
+                            <input 
+                                placeholder='Серія:'
+                                value={this.state.client.doc.seria} 
+                                onChange={this.handleDocSeriaChanged.bind(this)} 
 
-                                <option value='9'>Посвідчення інваліда</option>
-                                <option value='9'>Уорнобильске посвідчення</option>
-                                <option value='9'>Учасника війни інваліда</option>
-                                <option value='9'>Пенсійне посвідчення</option>
-                            </select>  
+                                />
+                            <span className="input-error-message">{this.state.msgDocSeriaValid}</span>
+                        </div>       
+                        <div className="item-doc-no">
+                            {/* <label className="block-label">Номер:</label> */}
+                            <input
+                                placeholder='Номер:' 
+                                value={this.state.client.doc.no} 
+                                onChange={this.handleDocNoChanged.bind(this)} 
+                            />
+                            <span className="input-error-message">{this.state.msgDocNoValid}</span>
+                        </div> 
+                    </div> 
+                    <div className="form-input-row">     
+                           {/* <label className="block-label">Ким виданий:</label> */}
+                           <div className="item-doc-source">
+                            <input
+                                placeholder='Ким виданий'  
+                                value={this.state.client.doc.source} 
+                                onChange={this.handleDocSourceChanged.bind(this)}                                 
+                            />
+                            <span className="input-error-message">{this.state.msgDocSourceValid}</span>
+                        </div>                     
+                        <div className="item-date-get">
+                            <GetDatePicker 
+                                lang='ua' 
+                                label='Дата видачі'
+                                dateValue={dateGetDoc}
+                                getDate={this.handleDtGetChanged.bind(this)}
+                            />
+                            <span className="input-error-message">{this.state.msgDocDtGetValid}</span>
                         </div>
-                        <span className="input-error-message">{this.state.msgDocTypeValid}</span>
-                    </div>  
-                
-                
-                    <div className="item-doc-seria">
-                        <label className="block-label">Серія:</label>
-                        <input value={this.state.client.doc.seria} onChange={this.handleDocSeriaChanged.bind(this)} />
-                        <span className="input-error-message">{this.state.msgDocSeriaValid}</span>
-                    </div>       
-                    <div className="item-doc-no">
-                        <label className="block-label">Номер:</label>
-                        <input value={this.state.client.doc.no} onChange={this.handleDocNoChanged.bind(this)} />
-                        <span className="input-error-message">{this.state.msgDocNoValid}</span>
-                    </div>       
-                    <div className="item-date-get">
-                        <GetDatePicker 
-                            lang='ua' 
-                            label='Дата видачі'
-                            dateValue={dateGetDoc}
-                            getDate={this.handleDtGetChanged.bind(this)}
-                        />
-                        <span className="input-error-message">{this.state.msgDocDtGetValid}</span>
-                    </div>
-                    <div className="item-doc-source">
-                        <label className="block-label">Ким виданий:</label>
-                        <input value={this.state.client.doc.source} onChange={this.handleDocSourceChanged.bind(this)} />
-                        <span className="input-error-message">{this.state.msgDocSourceValid}</span>
-                    </div>              
+                        
+ 
+                    </div>             
                 </div>    
                
                 <div className="form-input-item">
-                    <label className="block-label">Адреса:</label>
-                    <input value={this.state.client.addr} onChange={this.handleAddrChanged.bind(this)} />
+                    {/* <label className="block-label">Адреса:</label> */}
+                    <input 
+                        placeholder='Адреса:'
+                        value={this.state.client.addr} 
+                        onChange={this.handleAddrChanged.bind(this)} 
+
+                    />
                     <span className="input-error-message">{this.state.msgAddrValid}</span>
                 </div>
                 <div className="form-input-item">
@@ -370,8 +396,12 @@ class Client extends Component {
                     <span className="input-error-message">{this.state.msgPhoneValid}</span>
                 </div>                
                 <div className="form-input-item">
-                    <label className="block-label">Email:</label>
-                    <input value={this.state.client.email} onChange={this.handleEmailChanged.bind(this)} />
+                    {/* <label className="block-label">Email:</label> */}
+                    <input 
+                        value={this.state.client.email} 
+                        onChange={this.handleEmailChanged.bind(this)} 
+                        placeholder='email:'
+                    />
                     <span className="input-error-message">{this.state.msgEmailValid}</span>
                 </div>                
                 </main>

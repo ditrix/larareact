@@ -275,6 +275,9 @@ main {
     background-color: lightgray;
 }
 
+
+.input-inn {width: 40%;}
+
 /**/
 .clearfix::after {
     content: "";
@@ -316,6 +319,16 @@ main {
   .discount-block {
       width: 250px;
   }
+
+
+  .otk-parameters .select-widget {
+      width: 50%;
+  }
+
+  .otk-parameters  {
+    width: 400px;
+}
+
 
 .active-lang {color: red;}
 .unactive-lang {color: blue;}  
@@ -596,10 +609,14 @@ nav button {
   .item-doc-seria, .item-doc-no, .item-date-get {
       margin: 5px;
   }
-  .item-doc-type, .item-doc-source {
-      width: 600px;
+  .item-doc-type {
+      width: 50%;
   }
 
+
+  .item-doc-source {
+    width: 500px;
+}
   .make-polis-dialog header {
       display: flex;
       flex-direction: row;

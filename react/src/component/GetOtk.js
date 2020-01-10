@@ -26,7 +26,7 @@ class GetOtk extends Component {
 
     render(){
         return(
-          <div>
+          <div className="otk-parameters">
             <div className="select-widget">
               <label  className="block-label">отк:</label>
               <div className="select-input">
