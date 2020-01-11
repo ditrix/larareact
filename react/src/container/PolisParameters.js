@@ -25,7 +25,7 @@ class PolisParameters extends Component{
 
         this.state = {
             valueK1: this.props.data.valueK1,
-            valueDiscount: '0',
+            valueDiscount: this.props.data.discount,
             valueTaxi: '0',
             isOtk: false,
             city: this.props.data.city,
@@ -73,11 +73,17 @@ class PolisParameters extends Component{
         newState.valueK1 = value
         this.setState(newState)
         this.props.getParam(this.state)
-
+        
     }
 
     getDiscount(value){
-        this.setState({valueDiscount:value})
+        //this.setState({valueDiscount:value})
+
+        const newState = this.state 
+        newState.valueDiscount = value
+        this.setState(newState)
+        console.log('PolisParameters.getDiscount',this.state.valueDiscount)
+        this.props.getParam(this.state)
     }
 
     getTaxi(value){
@@ -150,7 +156,7 @@ render(){
                     <div className="discount-block">
                     {/*  если мото,  легков -> покажем выбор льгот */}
                     {(this.setDiscount(this.state.valueK1))?
-                        <GetDiscount isDiscount={this.getDiscount} />:<></>}
+                        <GetDiscount discount={this.props.data.discount} isDiscount={this.getDiscount} />:<></>}
                     </div>
                     <div className="check-select-block">
                     {/* если нет льгот и легковой или автобус до 20 мест -> покажем выбор такси */}

@@ -23,6 +23,7 @@ class Main extends Component {
         city: initialCity(),
         action:  ACTION_SEARCH_VEHICLE,
         vehicle: initialVehicle(),  
+        discount:'0',
       }
       
     }
