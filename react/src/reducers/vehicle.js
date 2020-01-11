@@ -2,7 +2,7 @@
 
 export const initialVehicle = () => {
     return {
-        VIN: "0",
+        VIN: "",
         RegNo: '',
         DMarkID: '',
         DMarkName: '',

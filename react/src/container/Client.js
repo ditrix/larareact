@@ -313,7 +313,7 @@ class Client extends Component {
                 
                 <div className="client-doc-row">
                     <div className="form-input-row">
- `                       <div className="select-widget `item-doc-type`">
+                        <div className="select-widget `item-doc-type`">
                             {/* <label className="block-label">документ:</label> */}
                             <div className="select-input">
                                 <select onChange={this.handleDocTypeChanged.bind(this)}>

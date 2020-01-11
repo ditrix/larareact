@@ -8,6 +8,8 @@ import SearchVehicle from './SearchVehicle'
 import {PaySumm} from '../component/PaySumm'
 import GetCity from '../component/GetCity'
 
+import {SearchResultTemplate} from '../component/SearchResultTemplate'
+
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../action'
 
 
@@ -44,6 +46,7 @@ class PolisParameters extends Component{
         const newState = this.state
         newState.action  = ACTION_GET_VEHICLE  
         newState.valueK1 = '00'
+        newState.vehicle = initialVehicle()
         console.log('PolisParameters.parametersVehicleClick: ',newState.action)
         this.setState(newState)
         this.props.getParam(newState)
@@ -54,6 +57,7 @@ class PolisParameters extends Component{
         const newState = this.state
         newState.action = ACTION_SEARCH_VEHICLE
         newState.valueK1 = '00'
+        newState.vehicle = initialVehicle()
         this.setState(newState,)
         this.props.getParam(newState)
      }
@@ -130,7 +134,10 @@ render(){
                     </ul>
                     <div className="vehicle-result">
                     {(this.state.action === ACTION_SEARCH_VEHICLE)?
-                        <SearchVehicle dataVehicle={this.state.vehicle} getVehicle={this.getVehicle.bind(this)} />
+                        <div>
+                            <SearchVehicle dataVehicle={this.state.vehicle}  getVehicle={this.getVehicle.bind(this)} />
+                            {SearchResultTemplate(this.state.vehicle)}
+                        </div>    
                        :<GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value} /> 
                      }
                     </div>               

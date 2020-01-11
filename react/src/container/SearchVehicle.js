@@ -13,23 +13,7 @@ import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 
 import {initialVehicle} from '../reducers/vehicle'
 
-function SearchResultTemplate(data){
-    
-        if(data){
-            return(
-            <div className="vehicle-info">
-            <ul className="vehicle-info-search-result">
-            {(data.VIN)&&<li><label>VIN:</label><span>{data.VIN}</span></li>}
-            {(data.DMarkName !== "")&&<li><label>марка:</label><span>{data.DMarkName}</span></li>}
-            {(data.DModelName !== "")&&<li><label>модель:</label><span>{data.DModelName}</span></li>}
-            {(data.AutoDescr !=="")&&<li><label>опис:</label><span>{data.AutoDescr}</span></li>}
-            </ul>
-            </div>
-            )
-        }
 
-    return(<span>no VIN</span>)
-}
 
 
 class SearchVehicle extends Component {
@@ -71,6 +55,7 @@ class SearchVehicle extends Component {
         if(this.state.searchVehicleStr === ''){
             return;
         }
+        this.setState({message:''})
         const url = `${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
         if(this.validInputData()){
             this.setState({loaded: true, vehicle:initialVehicle(),request:true})
@@ -118,12 +103,7 @@ class SearchVehicle extends Component {
             </div>
             <div className="form-message">
                 {(this.state.request)&&<Spinner />}
-                {(this.state.loaded)?
-                    <>{
-                        (this.state.vehicle)?<span>{SearchResultTemplate(this.state.vehicle)}</span>
-                        :<span>{this.state.message}</span>
-                    }</>
-                :<></>}
+                {(this.state.loaded)&&<span>{this.state.message}</span>}
             </div>
         </div>
     )}

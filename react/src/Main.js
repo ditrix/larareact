@@ -3,9 +3,10 @@ import './css/style.css'
 import PolisParameters from './container/PolisParameters'
 import Client from './container/Client'
 import InsObject from './container/InsObject'
-//import GetCity,{defaultCityInfo} from './component/GetCity'
+
 import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT, } from './constants'
 
+// eslint-disable-next-line
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from './action'
 
 import {initialCity} from './reducers/city'
