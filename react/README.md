@@ -36,3 +36,4 @@ https://github.com/buildo/rc-datepicker/blob/master/examples/examples.js
 
 ~~~  https://reactjsexample.com/tag/date/
 
+20200113 before redux
