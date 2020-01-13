@@ -4,15 +4,6 @@ class GetDiscount extends Component {
 
     getValue = event => this.props.isDiscount(event.currentTarget.value)
     
-     componentWillUnmount(){
-         this.props.isDiscount('0')
-     }
-
-
-     componentDidMount(){
-         console.log('GetDiscount.componentDidMount',this.props)
-     }
-
     render(){
         return(
         <div className="select-widget">
@@ -21,9 +12,9 @@ class GetDiscount extends Component {
                 <select onChange={this.getValue.bind(this)} defaultValue={this.props.discount}>
                     <option value='0'>без пільг</option>
                     <option value='1'>Учасник війни</option>
-                    <option value='1'>Інвалід</option>
-                    <option value='1'>Чорнобилець</option>
-                    <option value='1'>Пенсіонер</option>
+                    <option value='2'>Інвалід</option>
+                    <option value='3'>Чорнобилець</option>
+                    <option value='4'>Пенсіонер</option>
                 </select>  
             </div>
         </div>

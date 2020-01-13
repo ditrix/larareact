@@ -1,30 +1,20 @@
 import React,{Component} from 'react';
 import './css/style.css'
+
 import PolisParameters from './container/PolisParameters'
 import Client from './container/Client'
 import InsObject from './container/InsObject'
 
 import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT, } from './constants'
 
-// eslint-disable-next-line
-import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from './action'
-
-import {initialCity} from './reducers/city'
-import {initialVehicle} from './reducers/vehicle'
+//import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from './action'
 
 
 class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: TAB_PARAMETERS, // ?? componentDidMount ???
-      paramPolis:{
-        valueK1: '',
-        city: initialCity(),
-        action:  ACTION_SEARCH_VEHICLE,
-        vehicle: initialVehicle(),  
-        discount:'0',
-      }
+      currentTab: TAB_PARAMETERS, 
       
     }
 
@@ -72,11 +62,7 @@ class Main extends Component {
   render(){
     return (
       <div className="main-form clearfix">
-        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters 
-            nextTab={this.actionNextTab} 
-            data={this.state.paramPolis}
-            getParam={this.getParam.bind(this)}
-          />}
+        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
         {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
         {(this.state.currentTab === TAB_OBJECT)&&<InsObject prevTab={this.actionPrevTab} />}
       </div>

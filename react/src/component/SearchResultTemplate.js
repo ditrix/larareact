@@ -4,7 +4,7 @@ import React from 'react'
 export const  SearchResultTemplate = data => {
     
     if(data){
-        console.log('SearchResultTemplate',data)
+ 
         return(
         <div className="vehicle-info">
         <ul className="vehicle-info-search-result">

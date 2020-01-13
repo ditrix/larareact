@@ -2,6 +2,8 @@ import React from 'react';
 import './css/style.css'
 import './css/response.css'
 
+import {Provider} from 'react-redux'
+import store from './store/configureStore' 
 // eslint-disable-next-line
 import {AskodsHeader} from './component/askods/AskodsHeader'
 
@@ -19,7 +21,9 @@ function App() {
   
       </header>
       <main>
+      <Provider store={store}>
         <Main />
+        </Provider>
       </main>
       <footer>
 

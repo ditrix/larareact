@@ -16,6 +16,9 @@ export const dateFormatApi = date => {
     return (date)?date.toLocaleDateString('en-CA'):new Date().toLocaleDateString('en-CA')    
 }
 
+export const getCurrentDate = () => {
+    return new Date().toLocaleDateString('en-CA')    
+}
 
 export const getCurrentYear = () => {
     const today =  new Date();
