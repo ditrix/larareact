@@ -60,7 +60,8 @@ class PolisParameters extends Component{
         const newState = this.state
         newState.action = ACTION_SEARCH_VEHICLE
         newState.valueK1 = '00'
-        this.setState(newState,)
+        newState.validateMes = ''
+        this.setState(newState)
      }
    
 
@@ -126,9 +127,6 @@ class PolisParameters extends Component{
         this.setState(newState)
     }
 
-    searchVehicleClick(){
-        this.setState({validateMess:''})
-    }
 
 render(){
   
@@ -160,16 +158,16 @@ render(){
                             <SearchVehicle dataVehicle={this.state.vehicle}  getVehicle={this.getVehicle.bind(this)} />
                             {SearchResultTemplate(this.state.vehicle)}
                         </div>    
-                       :<GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} /> 
+                       :<div className='form-input-row'><GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} /></div>
                      }
                     </div>               
                 </div>
 
-                <div className="city-parameters">
+                <div className="city-parameters form-input-row">
                     <GetCity city={this.props.parameters.city} setCity={this.getCity.bind(this)} />                    
                 </div>
                     
-                <div className="addition-parameters">   
+                <div className="addition-parameters form-input-row">   
                     <div className="discount-block">
                     {/*  если мото,  легков -> покажем выбор льгот */}
                     

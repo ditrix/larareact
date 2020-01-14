@@ -7,136 +7,96 @@ import {PaySumm} from '../component/PaySumm'
 import {INVALID_DATA_MMESSAGE_UA} from '../constants'
 import {actionSaveClient} from '../action/ClientAction'
 
-
 // ввод даних про страхувальника
 class Client extends Component {
     constructor(props){
         super(props)
         this.state = this.props.client
-        // this.state={
-        //     client:{ 
-        //         idResident: undefined, // вычисляется по типу документа
-        //         lname: '',  // validate required, size & characters 
-        //         sname: '',  // validate required, size & characters
-        //         fname: '',  // validate required, size & characters
-        //         ipn: '',    // validate required, size & characters
-        //         dob: undefined,
-                
-        //         doc:{
-        //           type:'1',   // если   id-паспорт громодянина України  
-        //                      // seria не спрашиваем для остальных - есть
-        //           seria: '',
-        //           no:'',
-        //           dtget: undefined,
-        //           source: '',                  
-        //         },
-        //         addr: '',
-        //         phone: '',
-        //         email: '',
-        //     },
-        //     msgLNameValid: '',
-        //     msgFNameValid: '',
-        //     msgSNameValid: '',
-        //     msgIpnValid: '',
-        //     msgDOBValid: '',
-        //     msgDocTypeValid: '',
-        //     msgDocSeriaValid: '',
-        //     msgDocNoValid: '',
-        //     msgDocDtGetValid: '',
-        //     msgDocSourceValid: '',
-        //     msgAddrValid: '',
-        //     msgPhoneValid: '',
-        //     msgEmailValid:'',
-        //     formValid:false,
-        // }
+       
         this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
         this.validateData = this.validateData.bind(this)
-      //  this.handleButtonNextClicked = this.handleButtonNextClicked.bind(this)
         this.clearMessages = this.clearMessages.bind(this)
     }
 
-
     clearMessages(){
-        this.setState({
-            msgLNameValid: '',
-            msgFNameValid: '',
-            msgSNameValid: '',
-            msgIpnValid: '',
-            msgDocTypeValid: '',
-            msgDOBValid: '',
-            msgDocSeriaValid: '',
-            msgDocNoValid: '',
-            msgDocDtGetValid: '',
-            msgDocSourceValid: '',
-            msgAddrValid: '',
-            msgPhoneValid: '',
-            msgEmailValid:''
-        })
+        
+        const nexState = this.state
+        nexState.msgLNameValid = 
+        nexState.msgFNameValid = 
+        nexState.msgSNameValid = 
+        nexState.msgIpnValid = 
+        nexState.msgDocTypeValid = 
+        nexState.msgDOBValid = 
+        nexState.msgDocSeriaValid = 
+        nexState.msgDocNoValid = 
+        nexState.msgDocDtGetValid = 
+        nexState.msgDocSourceValid = 
+        nexState.msgAddrValid = 
+        nexState.msgEmailValid = ''
+
+        this.setState(nexState)
                 
     }
 
 
     validateData(){
+        console.log('validateData()')
         let formValid = true
+        const nextState = this.state
         if(this.state.client.lname === ''){
+            console.log('no lname')
             formValid = false
-            this.setState({msgLNameValid: INVALID_DATA_MMESSAGE_UA})
+            //this.setState({msgLNameValid: INVALID_DATA_MMESSAGE_UA})
+            //console.log(this.state.msgLNameValid)
+            nextState.msgLNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.fname === ''){
             formValid = false
-            this.setState({msgFNameValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgFNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.sname === ''){
             formValid = false
-            this.setState({msgSNameValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgSNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.ipn.length !== 10){
             formValid = false
-            this.setState({msgIpnValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgIpnValid = INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.dob === undefined){
             formValid = false
-            this.setState({msgDOBValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgDOBValid= INVALID_DATA_MMESSAGE_UA
         }
 
-        // если   id-паспорт громодянина України  SERIA спрашиваем
-        if(this.state.client.doc.type === ''){
-            formValid = false
-            this.setState({msgDocTypeValid: INVALID_DATA_MMESSAGE_UA})
-        }
-        
-        if(this.state.client.doc.seria === ''){
-            formValid = false
-            this.setState({msgDocSeriaValid: INVALID_DATA_MMESSAGE_UA})
-        }
         if(this.state.client.doc.no === ''){
             formValid = false
-            this.setState({msgDocNoValid: INVALID_DATA_MMESSAGE_UA})
-        }
-        if(this.state.client.doc.dtget === undefined){
-            formValid = false
-            this.setState({msgDocDtGetValid: INVALID_DATA_MMESSAGE_UA})
-        }
-        if(this.state.client.doc.source === ''){
-            formValid = false
-            this.setState({msgDocSourceValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
         }
 
+        if(this.state.client.doc.type === '0'){
+            formValid = false
+            nextState.msgDocTypeValid= INVALID_DATA_MMESSAGE_UA
+        }
+
+        if(this.state.client.doc.no === ''){
+            formValid = false
+            nextState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
+        }
+     
         if(this.state.client.addr === ''){
             formValid = false
-            this.setState({msgAddrValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgAddrValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.phone === ''){
             formValid = false
-            this.setState({msgPhoneValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgPhoneValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.email === ''){
             formValid = false
-            this.setState({msgEmailValid: INVALID_DATA_MMESSAGE_UA})
+            nextState.msgEmailValid= INVALID_DATA_MMESSAGE_UA
         }
-        const nextState = this.state;
+     //   const nextState = this.state;
         nextState.formValid = formValid
         this.setState(nextState)
         return formValid
@@ -164,13 +124,14 @@ class Client extends Component {
         if(e.keyCode === 13){
              e.preventDefault()
              return
-        }        
-       return
+        }     
+        return 
     }
 
 
 
     handleLNameChanged = (event) => { 
+        console.log('handleLNameChanged()')
         event.preventDefault()
         const client = this.state.client; 
         client.lname = event.currentTarget.value
@@ -274,7 +235,7 @@ class Client extends Component {
     
     
     render(){
-   
+        console.log('discount:', this.props.discount)
         const dateGetDoc = (this.state.client.doc.dtget === undefined)?new Date():this.state.client.doc.dtget
         return(
             <div className="make-polis-dialog">
@@ -344,20 +305,17 @@ class Client extends Component {
                         <div className="select-widget `item-doc-type`">
                             {/* <label className="block-label">документ:</label> */}
                             <div className="select-input">
-                                <select onChange={this.handleDocTypeChanged.bind(this)}>
-                                    <option value='12'>документ:</option>
-                                    
-                                    <option value='12'>Водійське посвідчення</option>
-                                            
-                                    <option value='12'>паспорт</option>
-                                    <option value='10'>id-паспорт громодянина України</option>
-                                    <option value='9'>Паспорт іниземного громодянина</option>
-                                    <option value='9'>Посвідчення водія іноземного громодянина</option>
-
-                                    <option value='9'>Посвідчення інваліда</option>
-                                    <option value='9'>Уорнобильске посвідчення</option>
-                                    <option value='9'>Учасника війни інваліда</option>
-                                    <option value='9'>Пенсійне посвідчення</option>
+                                <select onChange={this.handleDocTypeChanged.bind(this)} defaultValue={this.state.client.doc.type}>
+                                    <option value='0'>документ:</option>
+                                    {(this.props.discount === "0")&&<option value='1'>Водійське посвідчення</option>}
+                                    {(this.props.discount === "0")&&<option value='2'>паспорт</option>}
+                                    {(this.props.discount === "0")&&<option value='3'>id-паспорт громaдянина України</option>}
+                                    {(this.props.discount === "0")&&<option value='4'>Паспорт іноземного громaдянина</option>}
+                                   
+                                    {(this.props.discount === "2")&&<option value='6'>Посвідчення інваліда</option>}
+                                    {(this.props.discount === "3")&&<option value='7'>Чорнобильске посвідчення</option>}
+                                    {(this.props.discount === "1")&&<option value='8'>Посвідчення учасника війни</option>}
+                                    {(this.props.discount === "4")&& <option value='9'>Пенсійне посвідчення</option>}
                                 </select>  
                             </div>
                             <span className="input-error-message">{this.state.msgDocTypeValid}</span>
@@ -459,6 +417,7 @@ class Client extends Component {
 const mapStateToProps = store => {
     return {
         client: store.client,
+        discount: store.parameters.valueDiscount
     }
 }
 

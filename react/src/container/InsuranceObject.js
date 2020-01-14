@@ -11,7 +11,7 @@ import {modelDS} from '../data/devmodelds.js'
 
 
 // ввод даних про об'ект страхування
-class InsObject extends Component {
+class InsuranceObject extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -129,7 +129,7 @@ class InsObject extends Component {
                 <form  className="client-form">    
                 <main>
                
-                <div className="input-object-form-row">
+                <div className="input-object-form-row form-input-row">
                     <div className="select-widget">
                     <label className="block-label">марка:</label>
                     <div  className="select-input">
@@ -219,4 +219,4 @@ class InsObject extends Component {
     }
 }
 
-export default InsObject
+export default InsuranceObject
