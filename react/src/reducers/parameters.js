@@ -26,6 +26,7 @@ const initialState = {
             DVehicleTypeType: "00",
             FContractID: '',
         },
+        validateMess:'',
 }
 
 export const reducerPolisParameters = (state = initialState, action) => {

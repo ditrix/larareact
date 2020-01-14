@@ -32,14 +32,20 @@ import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
 
 // TODO: set state according values
+// TODO валидатор
+//  мин тип и город д.б. определены.
 
 class PolisParameters extends Component{
     constructor(props){
         super(props)
         this.state = this.props.parameters
         this.setDiscount = this.setDiscount.bind(this)
+        this.validateForm = this.validateForm.bind(this) 
     }
 
+    validateForm(){        
+        return (this.state.valueK1 !== '00') && (this.state.city.id !== '0')
+    }
 
     parametersVehicleClick(e){
         e.preventDefault()
@@ -60,36 +66,45 @@ class PolisParameters extends Component{
 
     setDiscount(){
         return (['A1','A2','B1','B2','B3'].indexOf(this.state.valueK1) !== -1)
+        
     }
 
     getK1Value(value){
         const newState = this.state
         newState.valueK1 = value
+        newState.validateMess = ''
         this.setState(newState)
     }
 
     getDiscount(value){    
-        this.setState({valueDiscount:value})
+        this.setState({valueDiscount:value,validateMess:''})
     }
 
     getOtk(value){
-        this.setState({isOtk:value})
+        this.setState({isOtk:value,validateMess:''})
     }
 
     getTaxi(value){
-        this.setState({valueTaxi:value})
+        this.setState({valueTaxi:value,validateMess:''})
     }
 
     nextPage(data){
-        const parameters= this.state
-        this.props.saveParameters(parameters)
-        this.props.nextTab()
+        if(this.validateForm()){
+            this.setState({validateMess:''})
+            const parameters= this.state
+            this.props.saveParameters(parameters)
+            this.props.nextTab()
+    
+        } else {
+            this.setState({validateMess:'відсутні данні стасовно типу ТЗ або міста реєстрації'})
+        }
     }
  
     getCity(value){    
         if(value !== null){    
             const newState = this.state
             newState.city = value
+            newState.validateMess = ''
             this.setState(newState)
 
         }
@@ -100,13 +115,19 @@ class PolisParameters extends Component{
         const newState = this.state
         newState.valueK1 = vehicle.DVehicleTypeType
         newState.vehicle = vehicle
+        newState.validateMess = ''
         this.setState(newState)
     }
 
     getDateOtk(value){
         const newState = this.state
         newState.dateOtk = (value !== undefined)?value:dateFormatApi(new Date())
+        newState.validateMess = ''
         this.setState(newState)
+    }
+
+    searchVehicleClick(){
+        this.setState({validateMess:''})
     }
 
 render(){
@@ -185,12 +206,15 @@ render(){
                     </div>
                 </div>
             </form>       
+            
             <footer>
+            
             <nav  className="clearfix">
                 <button 
                     className="btn-main-form-navigate btn-next" 
                     onClick={this.nextPage.bind(this)} >наступна</button> 
             </nav>
+            <span className="input-error-message">{this.state.validateMess}</span>
             </footer>
         </div>
         )
