@@ -10,7 +10,6 @@ import {markDS} from '../data/devmarkds.js'
 import {modelDS} from '../data/devmodelds.js'
 
 
-
 // ввод даних про об'ект страхування
 class InsObject extends Component {
     constructor(props){
@@ -127,7 +126,7 @@ class InsObject extends Component {
                     <div className="title"><h3>Об`єкт страхування</h3></div>
                     <div className="result">{PaySumm(100500,'ru')}</div>                    
                 </header>
-                <form>    
+                <form  className="client-form">    
                 <main>
                
                 <div className="input-object-form-row">
@@ -180,8 +179,8 @@ class InsObject extends Component {
                             onChange={this.handleNoChanged.bind(this)} 
                         />
                         <span className="input-error-message">{this.state.msgValidNo}</span>
-                    </div>                
-
+                    </div>   
+                                 
                     <div className="form-input-item-md">
                         <label className="block-label">VIN:</label>
                         <input 
@@ -191,15 +190,15 @@ class InsObject extends Component {
                         <span className="input-error-message">{this.state.msgValidVin}</span>
                     </div>                
 
-                </div>
+                 </div>
+
+
+          
 
                 <div className="input-object-form-row">        
-                    <div className="form-input-item-xxl">
-                        <label className="block-label">опис:</label>
-                        <input value={this.state.auto.descr} onChange={this.handleDescrChanged.bind(this)} />
-                    </div>                
+                    <label className="block-label">опис:</label>
+                    <input value={this.state.auto.descr} onChange={this.handleDescrChanged.bind(this)} />
                 </div>
-
 
                 
                 </main>

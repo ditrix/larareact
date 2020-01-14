@@ -80,38 +80,16 @@ main {
     max-width: 270px;
 }
 
+.form-input-item-xxl {
+    border: 1px red solid;
+    width: 100%;
+}
 
 .form-input-item-xxl input {
-    width: 640px;
+    width: 100%;
 }
 
 
-/*
-.form-input-item input {
-	margin: auto 0px;
-	height: 100%;
-	width: 300px;
-    padding: 0px;
-    border: 1px solid lightgray
-}
-*/
-/*
-.form-input-item select {
-	margin: auto 0px;
-	height: 100%;
-	width: 90%;
-    padding: 5px;
-    border: 1px solid lightgray;
-    color: #007bff;
-}
-*/
-/*
-.form-input-item span {
-    border: 2px #add8e6 solid; padding: 4px 5px;
-    background-color: #add8e6;
-    color: #3d7e9a;
-}
-*/
 .main-form {
     width: 50%;
     margin: 0 auto;

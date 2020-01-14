@@ -1,4 +1,4 @@
-import {VALIDATE_POLIS_PARAMETERS, SAVE_POLIS_PARAMETERS,ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../constants'
+import {SAVE_POLIS_PARAMETERS,ACTION_SEARCH_VEHICLE } from '../constants'
 import {getCurrentDate} from '../lib/functions'
 
 const initialState = {
@@ -33,8 +33,7 @@ export const reducerPolisParameters = (state = initialState, action) => {
     switch(action.type){
         case SAVE_POLIS_PARAMETERS:
             return action.payload
-        case VALIDATE_POLIS_PARAMETERS:
-            return state
+ 
         default:
             return state        
     }

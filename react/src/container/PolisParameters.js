@@ -138,7 +138,7 @@ render(){
                 <div className="title"><h3>Розрахунок</h3></div>
                 <div className="result">{PaySumm(100500,'ru')}</div>
             </header>   
-            <form>    
+            <form className="client-form">    
                 <div className="vehicle-parameters">
                     <ul className="nav nav-pills">
                         <li className="nav-item">

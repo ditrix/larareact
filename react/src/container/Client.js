@@ -1,60 +1,79 @@
-import React, {Component} from 'react' 
+import React, {Component} from 'react'
+import {connect} from 'react-redux' 
 import {dateFormatApi, checkIpn} from '../lib/functions'
 import GetDatePicker from '../component/GetDatePicker'
 import 'react-day-picker/lib/style.css';
 import {PaySumm} from '../component/PaySumm'
 import {INVALID_DATA_MMESSAGE_UA} from '../constants'
-
+import {actionSaveClient} from '../action/ClientAction'
 
 
 // ввод даних про страхувальника
 class Client extends Component {
     constructor(props){
         super(props)
-
-        this.state={
-            client:{ 
-                idResident: undefined, // вычисляется по типу документа
-                lname: '',  // validate required, size & characters 
-                sname: '',  // validate required, size & characters
-                fname: '',  // validate required, size & characters
-                ipn: '',    // validate required, size & characters
-                dob: undefined,
+        this.state = this.props.client
+        // this.state={
+        //     client:{ 
+        //         idResident: undefined, // вычисляется по типу документа
+        //         lname: '',  // validate required, size & characters 
+        //         sname: '',  // validate required, size & characters
+        //         fname: '',  // validate required, size & characters
+        //         ipn: '',    // validate required, size & characters
+        //         dob: undefined,
                 
-                doc:{
-                  type:'1',   // если   id-паспорт громодянина України  
-                             // seria не спрашиваем для остальных - есть
-                  seria: '',
-                  no:'',
-                  dtget: undefined,
-                  source: '',                  
-                },
-                addr: '',
-                phone: '',
-                email: '',
-            },
+        //         doc:{
+        //           type:'1',   // если   id-паспорт громодянина України  
+        //                      // seria не спрашиваем для остальных - есть
+        //           seria: '',
+        //           no:'',
+        //           dtget: undefined,
+        //           source: '',                  
+        //         },
+        //         addr: '',
+        //         phone: '',
+        //         email: '',
+        //     },
+        //     msgLNameValid: '',
+        //     msgFNameValid: '',
+        //     msgSNameValid: '',
+        //     msgIpnValid: '',
+        //     msgDOBValid: '',
+        //     msgDocTypeValid: '',
+        //     msgDocSeriaValid: '',
+        //     msgDocNoValid: '',
+        //     msgDocDtGetValid: '',
+        //     msgDocSourceValid: '',
+        //     msgAddrValid: '',
+        //     msgPhoneValid: '',
+        //     msgEmailValid:'',
+        //     formValid:false,
+        // }
+        this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
+        this.validateData = this.validateData.bind(this)
+      //  this.handleButtonNextClicked = this.handleButtonNextClicked.bind(this)
+        this.clearMessages = this.clearMessages.bind(this)
+    }
+
+
+    clearMessages(){
+        this.setState({
             msgLNameValid: '',
             msgFNameValid: '',
             msgSNameValid: '',
             msgIpnValid: '',
-            msgDOBValid: '',
             msgDocTypeValid: '',
+            msgDOBValid: '',
             msgDocSeriaValid: '',
             msgDocNoValid: '',
             msgDocDtGetValid: '',
             msgDocSourceValid: '',
             msgAddrValid: '',
             msgPhoneValid: '',
-            msgEmailValid:'',
-            formValid:false,
-        }
-        this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
-        this.validateData = this.validateData.bind(this)
-        this.handleButtonNextClicked = this.handleButtonNextClicked.bind(this)
+            msgEmailValid:''
+        })
+                
     }
-
-
-
 
 
     validateData(){
@@ -117,20 +136,29 @@ class Client extends Component {
             formValid = false
             this.setState({msgEmailValid: INVALID_DATA_MMESSAGE_UA})
         }
-
-
-        this.setState({formValid:formValid})
+        const nextState = this.state;
+        nextState.formValid = formValid
+        this.setState(nextState)
         return formValid
     }
 
 
     handleButtonNextClicked(){
+        console.log('handleButtonNextClicked 1')
         this.validateData()
+        this.props.saveClient()
         if(this.state.formValid){ 
-            this.props.nextTab()
+            console.log('handleButtonNextClicked 2')
+        
+         this.props.nextTab()
         }
     }
 
+    handleButtonPrevClicked(){
+        this.clearMessages()
+        this.props.saveClient()
+        this.props.prevTab()
+    }
 
     filterEnterKeyCode(e){
         if(e.keyCode === 13){
@@ -412,11 +440,12 @@ class Client extends Component {
             
               <button 
                 className="btn-main-form-navigate btn-prev" 
-                onClick={this.props.prevTab} >попередня
-                    </button>
+                onClick={this.handleButtonPrevClicked.bind(this)} >попередня
+              </button>
+              
               <button 
                 className="btn-main-form-navigate btn-next" 
-                onClick={this.handleButtonNextClicked} >наступна</button> 
+                onClick={this.handleButtonNextClicked.bind(this)} >наступна</button> 
             </nav>
         </footer>
             
@@ -426,4 +455,17 @@ class Client extends Component {
     }
 }
 
-export default Client
+//export default Client
+const mapStateToProps = store => {
+    return {
+        client: store.client,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        saveClient: (client) => dispatch(actionSaveClient(client)),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Client)
