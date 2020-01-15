@@ -52,6 +52,11 @@ class PolisParameters extends Component{
         const newState = this.state
         newState.action  = ACTION_GET_VEHICLE  
         newState.valueK1 = '00'
+        newState.vehicle.AutoDescr = ''
+        newState.vehicle.DMarkName = ''
+        newState.vehicle.DModelName = ''
+        newState.vehicle.RegNo = ''
+        newState.vehicle.VIN = ''
         this.setState(newState)
      }
    
@@ -136,7 +141,7 @@ render(){
                 <div className="title"><h3>Розрахунок</h3></div>
                 <div className="result">{PaySumm(100500,'ru')}</div>
             </header>   
-            <form className="client-form">    
+            <form className="tab-form">    
                 <div className="vehicle-parameters">
                     <ul className="nav nav-pills">
                         <li className="nav-item">

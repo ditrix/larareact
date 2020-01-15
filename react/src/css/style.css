@@ -96,7 +96,7 @@ main {
     background-color: white;
 }
 
-.client-form, .object-form {
+.tab-form {
    
     padding: 15px;
     margin: 15px auto;
@@ -104,16 +104,12 @@ main {
 
 }
 
-.client-form input {
+.tab-form input {
     width: 100%;
     padding: 5px 0px;
 }
 
-.object-form input {
-    width: 100%;
-}
-
-.client-form footer, .object-form footer {
+.tab-form footer {
    padding: inherit;
 }
 
@@ -610,4 +606,16 @@ nav button {
       display: block;
       padding-bottom: 0.6em;
       height: 1.8em;
+  }
+
+  .tab-form-row {
+  
+    border-radius: 2px;
+    border: 1px lightgray solid;
+    padding: 5px;
+  }
+
+
+  .parameters-data {
+      line-height: 0.1px;
   }

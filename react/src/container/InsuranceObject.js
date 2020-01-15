@@ -7,8 +7,8 @@ import {checkIntegerStr,getCurrentYear} from '../lib/functions'
 import {PaySumm} from '../component/PaySumm'
 
 
-// import {markDS} from '../data/markds.js'
-// import {modelDS} from '../data/modelds.js'
+ //import {markDS} from '../data/markds.js'
+ //import {modelDS} from '../data/modelds.js'
 
 import {markDS} from '../data/devmarkds.js'
 import {modelDS} from '../data/devmodelds.js'
@@ -31,7 +31,21 @@ class InsuranceObject extends Component {
         }
         this.validateData = this.validateData.bind(this)
         this.clearMessages = this.clearMessages.bind(this)
+     
     }
+
+    
+
+    getModelsList(DMarkID = '0'){
+        let models = []
+        modelDS.forEach(element => {
+            if(element.mark_id === this.props.vehicle.DMarkID){
+                models.push(element)
+            }
+        });
+        return models     
+    }
+
 
     validateData(){
         const nextState = this.state
@@ -67,29 +81,15 @@ class InsuranceObject extends Component {
 
     clearMessages(){
         const nextState = this.state
-        nextState.msgValidMarka = '';
-        nextState.msgValidModel = '';
-        nextState.msgValidYear = '';
-        nextState.msgValidNo = '';
+        nextState.msgValidMarka = 
+        nextState.msgValidModel = 
+        nextState.msgValidYear = 
+        nextState.msgValidNo = 
         nextState.msgValidVin = '';
         this.setState(nextState)
     }
 
-    initInsObject(){
-        // если объект пустой - проверим верхикл и примем его если он не пуст
-        const auto = this.state.auto
-        if(auto.markaID === '0'){
-            if(this.props.vehicle.DMarkID !== '0'){
-                auto.markaID = this.props.vehicle.DMarkID
-                auto.modelID = this.props.vehicle.DModelID
-                auto.vin = this.props.vehicle.VIN
-                auto.no =  this.props.vehicle.RegNo
-                auto.year = this.props.vehicle.ProdYear
-                auto.descr = this.props.vehicle.AutoDescr
-            }
-        } 
-    }
-
+ 
     handleNextButton(){
    
         this.validateData()
@@ -156,7 +156,7 @@ class InsuranceObject extends Component {
                     <div className="title"><h3>Об`єкт страхування</h3></div>
                     <div className="result">{PaySumm(100500,'ru')}</div>                    
                 </header>
-                <form  className="client-form">    
+                <form  className="tab-form">    
                 <main>
                
                 <div className="input-object-form-row form-input-row">
@@ -176,7 +176,7 @@ class InsuranceObject extends Component {
                     <div className="select-widget">
                     <label className="block-label">модель:</label>
                     <div  className="select-input">
-                    <select onChange={this.handleModelChanged.bind(this)} defaultValue={this.state.auto.DModelID}>
+                    <select onChange={this.handleModelChanged.bind(this)} defaultValue={this.state.auto.DModelID} >
                     <option key="0" value="0">---</option>
                     {(this.state.models)&&
                         this.state.models.map((model,index) =>

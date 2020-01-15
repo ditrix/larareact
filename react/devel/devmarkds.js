@@ -26,5 +26,9 @@ export const markDS = [
   {
     "id": "10",
     "name": "SCANIA"
+  },
+  {
+    "id": "386",
+    "name": "NISSAN"
   }
 ]

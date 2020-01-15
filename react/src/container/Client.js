@@ -235,7 +235,7 @@ class Client extends Component {
     
     
     render(){
-        console.log('discount:', this.props.discount)
+    
         const dateGetDoc = (this.state.client.doc.dtget === undefined)?new Date():this.state.client.doc.dtget
         return(
             <div className="make-polis-dialog">
@@ -243,7 +243,7 @@ class Client extends Component {
                     <div className="title"><h3>Страхувальник</h3></div>
                     <div className="result">{PaySumm(100500,'ru')}</div>
                 </header>
-            <form className="client-form">
+            <form className="tab-form">
                 
                 <main>
                 <div className="form-input-item">
