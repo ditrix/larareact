@@ -1,32 +1,24 @@
 import React, {Component} from 'react' 
+import {connect} from 'react-redux' 
+
+import {actionSaveInsObject} from '../action/InsObjectAction'
+
 import {checkIntegerStr,getCurrentYear} from '../lib/functions'
 import {PaySumm} from '../component/PaySumm'
 
 
-//import {markDS} from '../data/markds.js'
-//import {modelDS} from '../data/modelds.js'
+// import {markDS} from '../data/markds.js'
+// import {modelDS} from '../data/modelds.js'
 
 import {markDS} from '../data/devmarkds.js'
 import {modelDS} from '../data/devmodelds.js'
-
 
 // ввод даних про об'ект страхування
 class InsuranceObject extends Component {
     constructor(props){
         super(props)
         this.state = {
-
-            auto: {
-                markaID: '0',
-                modelID: '0',
-
-                marka: '',
-                model: '',
-                year: '',
-                no: '',
-                vin: '',
-                descr: '',
-            },
+            auto: this.props.vehicle,
             models:null,
             modelsLength:0,
             dataValid: false,
@@ -37,67 +29,105 @@ class InsuranceObject extends Component {
             msgValidNo:'',
             msgValidVin:'',            
         }
+        this.validateData = this.validateData.bind(this)
+        this.clearMessages = this.clearMessages.bind(this)
+    }
+
+    validateData(){
+        const nextState = this.state
+        const auto = this.state.auto;
+        nextState.dataValid = true
+        if( ( +auto.ProdYear < 1950 ) || ( +auto.ProdYear > getCurrentYear()) ){
+            nextState.dataValid = false
+            nextState.msgValidYear= 'незаповнені, або некоректні данні'
+        }
+
+        if( (auto.RegNo.length === 0)|| (auto.RegNo.length > 10) ){
+            nextState.dataValid = false
+            nextState.msgValidNo = 'незаповнені, або некоректні данні'
+        }
+
+        if( (auto.VIN.length === 0)|| (auto.VIN.length > 20) ){
+            nextState.dataValid = false;
+            nextState.msgValidVin= 'незаповнені, або некоректні данні'
+        }
+
+        if((auto.DMarkID === '')||(auto.DMarkID === '0')){
+            nextState.dataValid = false;
+            nextState.msgValidMarka= 'незаповнені, або некоректні данні'
+        }
+
+        if((auto.DModelID === '')||(auto.DModelID === '0')||(auto.DModelID === 0)){
+            nextState.dataValid = false;
+            nextState.msgValidModel= 'незаповнені, або некоректні данні'
+        }
+        this.setState(nextState)
+      
+    }
+
+    clearMessages(){
+        const nextState = this.state
+        nextState.msgValidMarka = '';
+        nextState.msgValidModel = '';
+        nextState.msgValidYear = '';
+        nextState.msgValidNo = '';
+        nextState.msgValidVin = '';
+        this.setState(nextState)
+    }
+
+    initInsObject(){
+        // если объект пустой - проверим верхикл и примем его если он не пуст
+        const auto = this.state.auto
+        if(auto.markaID === '0'){
+            if(this.props.vehicle.DMarkID !== '0'){
+                auto.markaID = this.props.vehicle.DMarkID
+                auto.modelID = this.props.vehicle.DModelID
+                auto.vin = this.props.vehicle.VIN
+                auto.no =  this.props.vehicle.RegNo
+                auto.year = this.props.vehicle.ProdYear
+                auto.descr = this.props.vehicle.AutoDescr
+            }
+        } 
     }
 
     handleNextButton(){
-        // eslint-disable-next-line
-        let dataValid= true;
-        const auto = this.state.auto;
-    
-        if( ( +auto.year < 1950 ) || ( +auto.year > getCurrentYear()) ){
-            dataValid = false;
-            this.setState({msgValidYear: 'некорректні данні'})
-        }
+   
+        this.validateData()
+        const newState = this.state 
+        this.props.saveParameters(this.state)
 
-        if( (auto.no.length === 0)|| (auto.no.length > 10) ){
-            dataValid = false;
-            this.setState({msgValidNo: 'незаповнені, або некоректні данні'})
+        if(this.state.dataValid){ 
+             this.props.nextTab()
         }
-
-        if( (auto.vin.length === 0)|| (auto.no.length > 20) ){
-            dataValid = false;
-            this.setState({msgValidVin: 'незаповнені, або некоректні данні'})
-        }
-
-        if(auto.markaID === '0'){
-            dataValid = false;
-            this.setState({msgValidMarka: 'незаповнені, або некоректні данні'})
-        }
-
-        if(auto.modelID === '0'){
-            dataValid = false;
-            this.setState({msgValidModel: 'незаповнені, або некоректні данні'})
-        }
-        this.setState({auto:auto})
     }    
 
     handleMarkaChanged(event){
-        const markaID = event.currentTarget.value
+        const DMarkID = event.currentTarget.value
         const auto = this.state.auto
-        auto.markaID = markaID
-        auto.modelID = 0
-        const modelsArr = modelDS.filter(item => item.mark_id === markaID)
+        auto.DMarkID = DMarkID
+        auto.DModelID = 0
+        const modelsArr = modelDS.filter(item => item.mark_id === DMarkID)
         this.setState({models:modelsArr,auto:auto,msgValidMarka:''})
     }
 
     handleModelChanged(event){
         const auto = this.state.auto
-        const modelID = event.currentTarget.value
-        auto.modelID = modelID
-        const selectedModel = this.state.models.filter(model=> model.DModelID === modelID )
+        const DModelID = event.currentTarget.value
+        auto.DModelID = DModelID
+        const selectedModel = this.state.models.filter(model=> model.DModelID === DModelID )
         auto.model = selectedModel.Name
         this.setState({auto:auto,msgValidModel:''})
     }
 
     handleNoChanged(event){
         const auto = this.state.auto
-        auto.no = event.currentTarget.value
+        auto.RegNo = event.currentTarget.value
         this.setState({auto:auto, msgValidNo:''})
     }
 
     handleVINChanged(event){
         const auto = this.state.auto
-        auto.vin = event.currentTarget.value
+        auto.VIN = event.currentTarget.value
         this.setState({auto:auto, msgValidVin:''})
     }
 
@@ -105,7 +135,7 @@ class InsuranceObject extends Component {
         // контроль  нга цифр и длину
         if(checkIntegerStr(event.currentTarget.value,4)){
             const auto = this.state.auto
-            auto.year = event.currentTarget.value
+            auto.ProdYear = event.currentTarget.value
             this.setState({auto:auto})
         }
         this.setState({msgValidYear:''})
@@ -113,7 +143,7 @@ class InsuranceObject extends Component {
 
     handleDescrChanged(event){
         const auto = this.state.auto
-        auto.descr = event.currentTarget.value
+        auto.AutoDescr = event.currentTarget.value
         this.setState({auto:auto})
     }
 
@@ -133,12 +163,10 @@ class InsuranceObject extends Component {
                     <div className="select-widget">
                     <label className="block-label">марка:</label>
                     <div  className="select-input">
-                    <select onChange={this.handleMarkaChanged.bind(this)}>
+                    <select onChange={this.handleMarkaChanged.bind(this)} defaultValue={this.state.auto.DMarkID}>
                     <option key={0} value="0">---</option>
                         { markArray.map((mark,index) =>
-                        (mark.id === this.state.auto.markaID)?
-                          <option key={index}  selected value={mark.id}>{mark.name}</option>
-                          :<option key={index}  value={mark.id}>{mark.name}</option>      
+                            <option key={index}  value={mark.id}>{mark.name}</option>      
                         )}
                     </select>
                     
@@ -148,15 +176,12 @@ class InsuranceObject extends Component {
                     <div className="select-widget">
                     <label className="block-label">модель:</label>
                     <div  className="select-input">
-                    <select onChange={this.handleModelChanged.bind(this)}>
+                    <select onChange={this.handleModelChanged.bind(this)} defaultValue={this.state.auto.DModelID}>
                     <option key="0" value="0">---</option>
                     {(this.state.models)&&
                         this.state.models.map((model,index) =>
-                        (model.id === this.state.auto.modelID)? 
-                        <option key={index} selected value={model.id}>{model.name}</option>
-                        :<option key={index} value={model.id}>{model.name}</option>
-                        )
-                    }
+                            <option key={index} value={model.id}>{model.name}</option>
+                    )}
                     </select>  
                     </div>
                     <span className="input-error-message">{this.state.msgValidModel}</span>
@@ -166,7 +191,7 @@ class InsuranceObject extends Component {
                     <div className="form-input-item-sm">
                         <label className="block-label">рік випуску:</label>
                         <input 
-                            value={this.state.auto.year} 
+                            value={this.state.auto.ProdYear} 
                             onChange={this.handleYearChanged.bind(this)} 
                         />
                         <span className="input-error-message">{this.state.msgValidYear}</span>
@@ -175,7 +200,7 @@ class InsuranceObject extends Component {
                     <div className="form-input-item-md">
                         <label className="block-label">держномер:</label>
                         <input 
-                            value={this.state.auto.no} 
+                            value={this.state.auto.RegNo} 
                             onChange={this.handleNoChanged.bind(this)} 
                         />
                         <span className="input-error-message">{this.state.msgValidNo}</span>
@@ -184,7 +209,7 @@ class InsuranceObject extends Component {
                     <div className="form-input-item-md">
                         <label className="block-label">VIN:</label>
                         <input 
-                            value={this.state.auto.vin} 
+                            value={this.state.auto.VIN} 
                             onChange={this.handleVINChanged.bind(this)} 
                         />
                         <span className="input-error-message">{this.state.msgValidVin}</span>
@@ -192,12 +217,9 @@ class InsuranceObject extends Component {
 
                  </div>
 
-
-          
-
                 <div className="input-object-form-row">        
                     <label className="block-label">опис:</label>
-                    <input value={this.state.auto.descr} onChange={this.handleDescrChanged.bind(this)} />
+                    <input value={this.state.auto.AutoDescr} onChange={this.handleDescrChanged.bind(this)} />
                 </div>
 
                 
@@ -219,4 +241,19 @@ class InsuranceObject extends Component {
     }
 }
 
-export default InsuranceObject
+
+const mapStateToProps = store => {
+    return {
+        insobject: store.insobject,
+        vehicle: store.parameters.vehicle,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        saveParameters: (vehicle) => dispatch(actionSaveInsObject(vehicle)),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(InsuranceObject)
+

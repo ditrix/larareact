@@ -6,6 +6,7 @@ export const REG_EXP_VEHICLE_NO = '^[a-zA-Zа-яА-ЯїЇіІ0-9./]{0,15}$'
 export const TAB_PARAMETERS = 'TAB_PARAMETERS'
 export const TAB_CLIENT = 'TAB_CLIENT'
 export const TAB_OBJECT = 'TAB_OBJECT' 
+export const TAB_COMMIT = 'TAB_COMMIT'
 
 export const INVALID_DATA_MMESSAGE_UA = 'незаповнені, або некоректні данні'
 
@@ -18,3 +19,4 @@ export const ACTION_GET_VEHICLE = 'ACTION_GET_VEHICLE'
 export const SAVE_CLIENT = 'SAVE_CLIENT'
 export const ACTION_SAVE_CLIENT = 'ACTION_SAVE_CLIENT'
 
+export const ACTION_SAVE_INSOBJECT = 'ACTION_SAVE_INSOBJECT'

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import GetK1 from '../component/GetK1'
-import {GetK2} from '../component/GetK2'
+// import {GetK2} from '../component/GetK2'
 import GetTaxi from '../component/GetTaxi'
 import GetDiscount from '../component/GetDiscount'
 

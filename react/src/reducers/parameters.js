@@ -25,6 +25,7 @@ const initialState = {
             AutoDescr: '',
             DVehicleTypeType: "00",
             FContractID: '',
+            ProdYear:'',
         },
         validateMess:'',
 }
