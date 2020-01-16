@@ -3,9 +3,11 @@ import {connect} from 'react-redux'
 import {dateFormatApi, checkIpn} from '../lib/functions'
 import GetDatePicker from '../component/GetDatePicker'
 import 'react-day-picker/lib/style.css';
-import {PaySumm} from '../component/PaySumm'
+
 import {INVALID_DATA_MMESSAGE_UA} from '../constants'
 import {actionSaveClient} from '../action/ClientAction'
+import FormHeader from '../component/FormHeader'
+
 
 // ввод даних про страхувальника
 class Client extends Component {
@@ -20,21 +22,21 @@ class Client extends Component {
 
     clearMessages(){
         
-        const nexState = this.state
-        nexState.msgLNameValid = 
-        nexState.msgFNameValid = 
-        nexState.msgSNameValid = 
-        nexState.msgIpnValid = 
-        nexState.msgDocTypeValid = 
-        nexState.msgDOBValid = 
-        nexState.msgDocSeriaValid = 
-        nexState.msgDocNoValid = 
-        nexState.msgDocDtGetValid = 
-        nexState.msgDocSourceValid = 
-        nexState.msgAddrValid = 
-        nexState.msgEmailValid = ''
+        const tmpState = this.state
+        tmpState.msgLNameValid = 
+        tmpState.msgFNameValid = 
+        tmpState.msgSNameValid = 
+        tmpState.msgIpnValid = 
+        tmpState.msgDocTypeValid = 
+        tmpState.msgDOBValid = 
+        tmpState.msgDocSeriaValid = 
+        tmpState.msgDocNoValid = 
+        tmpState.msgDocDtGetValid = 
+        tmpState.msgDocSourceValid = 
+        tmpState.msgAddrValid = 
+        tmpState.msgEmailValid = ''
 
-        this.setState(nexState)
+        this.setState(tmpState)
                 
     }
 
@@ -42,63 +44,63 @@ class Client extends Component {
     validateData(){
         console.log('validateData()')
         let formValid = true
-        const nextState = this.state
+        const tmpState = this.state
         if(this.state.client.lname === ''){
             console.log('no lname')
             formValid = false
             //this.setState({msgLNameValid: INVALID_DATA_MMESSAGE_UA})
             //console.log(this.state.msgLNameValid)
-            nextState.msgLNameValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgLNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.fname === ''){
             formValid = false
-            nextState.msgFNameValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgFNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.sname === ''){
             formValid = false
-            nextState.msgSNameValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgSNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.ipn.length !== 10){
             formValid = false
-            nextState.msgIpnValid = INVALID_DATA_MMESSAGE_UA
+            tmpState.msgIpnValid = INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.dob === undefined){
             formValid = false
-            nextState.msgDOBValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDOBValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.doc.no === ''){
             formValid = false
-            nextState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.doc.type === '0'){
             formValid = false
-            nextState.msgDocTypeValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDocTypeValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.doc.no === ''){
             formValid = false
-            nextState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
         }
      
         if(this.state.client.addr === ''){
             formValid = false
-            nextState.msgAddrValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgAddrValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.phone === ''){
             formValid = false
-            nextState.msgPhoneValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgPhoneValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.email === ''){
             formValid = false
-            nextState.msgEmailValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgEmailValid= INVALID_DATA_MMESSAGE_UA
         }
-     //   const nextState = this.state;
-        nextState.formValid = formValid
-        this.setState(nextState)
+     //   const tmpState = this.state;
+        tmpState.formValid = formValid
+        this.setState(tmpState)
         return formValid
     }
 
@@ -240,8 +242,7 @@ class Client extends Component {
         return(
             <div className="make-polis-dialog">
                 <header>
-                    <div className="title"><h3>Страхувальник</h3></div>
-                    <div className="result">{PaySumm(100500,'ru')}</div>
+                    <FormHeader title="Страхувальник" />
                 </header>
             <form className="tab-form">
                 

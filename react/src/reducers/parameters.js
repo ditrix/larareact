@@ -38,5 +38,4 @@ export const reducerPolisParameters = (state = initialState, action) => {
         default:
             return state        
     }
-    return state
 }

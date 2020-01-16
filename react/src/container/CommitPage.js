@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux' 
 import {PaySumm} from '../component/PaySumm'
 import {dataK1} from '../data/dataK1'
+import GetFranshize from '../component/GetFranshize'
 
 class CommitPage extends Component {
 
@@ -79,6 +80,7 @@ class CommitPage extends Component {
             <div className="make-polis-dialog">
                 <header>
                     <div className="title"><h3>Оформлення</h3></div>
+                    <div className="result"><GetFranshize /></div>
                     <div className="result">{PaySumm(100500,'ru')}</div>                    
                 </header>
                 <form  className="tab-form"> 
@@ -92,7 +94,7 @@ class CommitPage extends Component {
 
                             <div className="parameters-data">
                                 <label>пільги</label>
-                                <span>{(data.parameters.valueDiscount==0)?<h6>немає пільг</h6>:<h6>TODO значение</h6>
+                                <span>{(data.parameters.valueDiscount===0)?<h6>немає пільг</h6>:<h6>TODO значение</h6>
                                 }</span>
                             </div>
 

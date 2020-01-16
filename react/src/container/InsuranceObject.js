@@ -4,7 +4,10 @@ import {connect} from 'react-redux'
 import {actionSaveInsObject} from '../action/InsObjectAction'
 
 import {checkIntegerStr,getCurrentYear} from '../lib/functions'
-import {PaySumm} from '../component/PaySumm'
+
+import FormHeader from '../component/FormHeader'
+import {QuestionDropdown} from '../component/QuestionDropdown'
+
 
 
  //import {markDS} from '../data/markds.js'
@@ -48,52 +51,50 @@ class InsuranceObject extends Component {
 
 
     validateData(){
-        const nextState = this.state
+        const tmpState = this.state
         const auto = this.state.auto;
-        nextState.dataValid = true
+        tmpState.dataValid = true
         if( ( +auto.ProdYear < 1950 ) || ( +auto.ProdYear > getCurrentYear()) ){
-            nextState.dataValid = false
-            nextState.msgValidYear= 'незаповнені, або некоректні данні'
+            tmpState.dataValid = false
+            tmpState.msgValidYear= 'незаповнені, або некоректні данні'
         }
 
         if( (auto.RegNo.length === 0)|| (auto.RegNo.length > 10) ){
-            nextState.dataValid = false
-            nextState.msgValidNo = 'незаповнені, або некоректні данні'
+            tmpState.dataValid = false
+            tmpState.msgValidNo = 'незаповнені, або некоректні данні'
         }
 
         if( (auto.VIN.length === 0)|| (auto.VIN.length > 20) ){
-            nextState.dataValid = false;
-            nextState.msgValidVin= 'незаповнені, або некоректні данні'
+            tmpState.dataValid = false;
+            tmpState.msgValidVin= 'незаповнені, або некоректні данні'
         }
 
         if((auto.DMarkID === '')||(auto.DMarkID === '0')){
-            nextState.dataValid = false;
-            nextState.msgValidMarka= 'незаповнені, або некоректні данні'
+            tmpState.dataValid = false;
+            tmpState.msgValidMarka= 'незаповнені, або некоректні данні'
         }
 
         if((auto.DModelID === '')||(auto.DModelID === '0')||(auto.DModelID === 0)){
-            nextState.dataValid = false;
-            nextState.msgValidModel= 'незаповнені, або некоректні данні'
+            tmpState.dataValid = false;
+            tmpState.msgValidModel= 'незаповнені, або некоректні данні'
         }
-        this.setState(nextState)
+        this.setState(tmpState)
       
     }
 
     clearMessages(){
-        const nextState = this.state
-        nextState.msgValidMarka = 
-        nextState.msgValidModel = 
-        nextState.msgValidYear = 
-        nextState.msgValidNo = 
-        nextState.msgValidVin = '';
-        this.setState(nextState)
+        const tmpState = this.state
+        tmpState.msgValidMarka = 
+        tmpState.msgValidModel = 
+        tmpState.msgValidYear = 
+        tmpState.msgValidNo = 
+        tmpState.msgValidVin = '';
+        this.setState(tmpState)
     }
 
  
     handleNextButton(){
-   
-        this.validateData()
-        const newState = this.state 
+           this.validateData()
         this.props.saveParameters(this.state)
 
         if(this.state.dataValid){ 
@@ -153,8 +154,7 @@ class InsuranceObject extends Component {
         return(
             <div className="make-polis-dialog">
                 <header>
-                    <div className="title"><h3>Об`єкт страхування</h3></div>
-                    <div className="result">{PaySumm(100500,'ru')}</div>                    
+                    <FormHeader title="Об`єкт страхування" />            
                 </header>
                 <form  className="tab-form">    
                 <main>
@@ -207,11 +207,22 @@ class InsuranceObject extends Component {
                     </div>   
                                  
                     <div className="form-input-item-md">
+                        
                         <label className="block-label">VIN:</label>
+                        <div className="vin-widget">
                         <input 
                             value={this.state.auto.VIN} 
                             onChange={this.handleVINChanged.bind(this)} 
+
                         />
+                        {QuestionDropdown('Vehicle Identification Number (VIN) - це унікальний ідентифікаційний номер автомобіля, в якому міститься 17 символів.')} 
+                        {/* <div className="dropdown">
+                            <h3>[?]</h3>
+                            <div class="dropdown-content">
+                                <p>Vehicle Identification Number (VIN) - це унікальний ідентифікаційний номер автомобіля, в якому міститься 17 символів.</p>
+                            </div>
+                        </div> */}
+                        </div> 
                         <span className="input-error-message">{this.state.msgValidVin}</span>
                     </div>                
 

@@ -1,16 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import GetK1 from '../component/GetK1'
-// import {GetK2} from '../component/GetK2'
 import GetTaxi from '../component/GetTaxi'
 import GetDiscount from '../component/GetDiscount'
-
-//import GetOtk from '../component/GetOtk'
-
-//import GetDateOtk from './component/GetDateOtk'
-
 import SearchVehicle from './SearchVehicle'
-import {PaySumm} from '../component/PaySumm'
+
 import GetCity from '../component/GetCity'
 
 import {SearchResultTemplate} from '../component/SearchResultTemplate'
@@ -18,18 +12,15 @@ import {SearchResultTemplate} from '../component/SearchResultTemplate'
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../action'
 
 import {actionSavePolisParameters} from '../action/PolisParametersAction'
-
-
 import {dateFormatApi} from '../lib/functions'
-
-
-import { exists } from 'fs';
-
 
 import {emptyVehical} from '../data/emptyVehical'
 
 import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
+import FormHeader from '../component/FormHeader'
+
+
 
 // TODO: set state according values
 // TODO валидатор
@@ -49,24 +40,24 @@ class PolisParameters extends Component{
 
     parametersVehicleClick(e){
         e.preventDefault()
-        const newState = this.state
-        newState.action  = ACTION_GET_VEHICLE  
-        newState.valueK1 = '00'
-        newState.vehicle.AutoDescr = ''
-        newState.vehicle.DMarkName = ''
-        newState.vehicle.DModelName = ''
-        newState.vehicle.RegNo = ''
-        newState.vehicle.VIN = ''
-        this.setState(newState)
+        const tmpState = this.state
+        tmpState.action  = ACTION_GET_VEHICLE  
+        tmpState.valueK1 = '00'
+        tmpState.vehicle.AutoDescr = ''
+        tmpState.vehicle.DMarkName = ''
+        tmpState.vehicle.DModelName = ''
+        tmpState.vehicle.RegNo = ''
+        tmpState.vehicle.VIN = ''
+        this.setState(tmpState)
      }
    
      searchVehicleClick(e){
         e.preventDefault()  
-        const newState = this.state
-        newState.action = ACTION_SEARCH_VEHICLE
-        newState.valueK1 = '00'
-        newState.validateMes = ''
-        this.setState(newState)
+        const tmpState = this.state
+        tmpState.action = ACTION_SEARCH_VEHICLE
+        tmpState.valueK1 = '00'
+        tmpState.validateMes = ''
+        this.setState(tmpState)
      }
    
 
@@ -76,10 +67,10 @@ class PolisParameters extends Component{
     }
 
     getK1Value(value){
-        const newState = this.state
-        newState.valueK1 = value
-        newState.validateMess = ''
-        this.setState(newState)
+        const tmpState = this.state
+        tmpState.valueK1 = value
+        tmpState.validateMess = ''
+        this.setState(tmpState)
     }
 
     getDiscount(value){    
@@ -108,28 +99,28 @@ class PolisParameters extends Component{
  
     getCity(value){    
         if(value !== null){    
-            const newState = this.state
-            newState.city = value
-            newState.validateMess = ''
-            this.setState(newState)
+            const tmpState = this.state
+            tmpState.city = value
+            tmpState.validateMess = ''
+            this.setState(tmpState)
 
         }
     }
 
     getVehicle(value){
         const vehicle = (value !== null)?value:emptyVehical
-        const newState = this.state
-        newState.valueK1 = vehicle.DVehicleTypeType
-        newState.vehicle = vehicle
-        newState.validateMess = ''
-        this.setState(newState)
+        const tmpState = this.state
+        tmpState.valueK1 = vehicle.DVehicleTypeType
+        tmpState.vehicle = vehicle
+        tmpState.validateMess = ''
+        this.setState(tmpState)
     }
 
     getDateOtk(value){
-        const newState = this.state
-        newState.dateOtk = (value !== undefined)?value:dateFormatApi(new Date())
-        newState.validateMess = ''
-        this.setState(newState)
+        const tmpState = this.state
+        tmpState.dateOtk = (value !== undefined)?value:dateFormatApi(new Date())
+        tmpState.validateMess = ''
+        this.setState(tmpState)
     }
 
 
@@ -138,8 +129,8 @@ render(){
     return(
         <div className="make-polis-dialog">
             <header>
-                <div className="title"><h3>Розрахунок</h3></div>
-                <div className="result">{PaySumm(100500,'ru')}</div>
+                <FormHeader title='Розрахунок' />
+   
             </header>   
             <form className="tab-form">    
                 <div className="vehicle-parameters">

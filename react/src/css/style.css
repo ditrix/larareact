@@ -619,3 +619,73 @@ nav button {
   .parameters-data {
       line-height: 0.1px;
   }
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: whitesmoke;
+    padding: 5px;
+}
+
+.header-block label {
+    display: inline-block;
+}
+.block-value {
+    display: inline-block;
+}
+
+.get-fransgize-widget {
+    display: table-row;
+}
+.get-fransgize-widget label {
+    display: table-cell;
+}
+.get-fransgize-widget select {
+    display: table-cell;
+    width: 120px;
+}
+
+.vin-widget {
+    display: table-row;
+}
+
+.vin-widget input,
+.vin-widget .dropdown {
+    display: table-cell;
+    margin-top: -5px;
+}
+
+
+.question-ico {
+    
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: large;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 300px;
+    /* box-shadow: 0px 5px 5px 0px #007bff;rgba(0,0,0,0.2); */
+    border: 1px solid var(--blue-button-color);
+    padding: 10px;
+    z-index: 3;
+    right: 0;
+    font-style: italic;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.vin-widget  .dropdown-content {
+    min-width: 350px;
+}

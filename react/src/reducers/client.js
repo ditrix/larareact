@@ -44,5 +44,4 @@ export const reducerClient = (state = initialState, action) => {
          default:
             return state        
     }
-    return state
 }

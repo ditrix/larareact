@@ -4,7 +4,6 @@ import './css/style.css'
 import PolisParameters from './container/PolisParameters'
 import Client from './container/Client'
 import InsuranceObject from './container/InsuranceObject'
-
 import CommitPage from './container/CommitPage'
 
 import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT, TAB_COMMIT } from './constants'
@@ -16,7 +15,7 @@ class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: TAB_COMMIT, 
+      currentTab: TAB_OBJECT, 
       
     }
 
