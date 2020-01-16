@@ -6,7 +6,7 @@ import {actionSaveInsObject} from '../action/InsObjectAction'
 import {checkIntegerStr,getCurrentYear} from '../lib/functions'
 
 import FormHeader from '../component/FormHeader'
-import {QuestionDropdown} from '../component/QuestionDropdown'
+import {QuestionDropdown} from '../component/templates/QuestionDropdown'
 
 
 

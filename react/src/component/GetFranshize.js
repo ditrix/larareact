@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import {QuestionDropdown} from './QuestionDropdown'
-
+import {QuestionDropdown} from './templates/QuestionDropdown'
 class GetFranshize extends Component {
  
     handleFranshizeChange = event => this.props.getFeanshize(event.currentTarget.value)

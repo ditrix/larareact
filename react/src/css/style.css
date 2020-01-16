@@ -686,6 +686,12 @@ nav button {
     z-index: 3;
     right: 0;
     font-style: italic;
+    
+}
+
+
+.dropdown-content p {
+    text-align: justify;
 }
 
 .dropdown:hover .dropdown-content {
@@ -694,4 +700,9 @@ nav button {
 
 .vin-widget  .dropdown-content {
     min-width: 350px;
+}
+
+.dgo-propmis-title {
+    margin-top: 15px;
+    text-align: right;
 }

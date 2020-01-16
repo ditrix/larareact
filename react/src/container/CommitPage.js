@@ -3,7 +3,11 @@ import {connect} from 'react-redux'
 import {dataK1} from '../data/dataK1'
 import {getDateUaStr} from '../lib/functions'
 import FormHeader from '../component/FormHeader'
-import {getTypeDocumentContent, getDiscountContent, getVehicleTypeNameContent, getBoolTextContent } from '../component/templates/TemplatesStr'
+import {getTypeDocumentContent, 
+        getDiscountContent, 
+        getVehicleTypeNameContent, 
+        getBoolTextContent } from '../component/templates/TemplatesStr'
+import {QuestionDropdown} from '../component/templates/QuestionDropdown'
 
 import {commitData} from '../data/devcommitdata'
 
@@ -34,7 +38,7 @@ class CommitPage extends Component {
                      <main>
  
                         <div className="tab-form-row">
-                             <h5>Параметри</h5> 
+                             {/* <h5>Параметри</h5>  */}
                             <div className="tab-form-block">
                                 <div className="parameters-data">
                                     <label>тип транспортного засобу</label>
@@ -165,6 +169,32 @@ class CommitPage extends Component {
                                     
                             </div>    
                         </div>
+                        {/* <div className="city-parameters form-input-row">
+                        <h5>Замовити додаткове покриття</h5>
+                            <div className="select-widget">
+                                <label className="block-label"></label>
+                                <div className="select-input">
+                                    <select placeholder="параметри авто" onChange={(e)=>{console.log(e.target.value)}} defaultValue={0} >
+                                        <option  value="0">тип ДГО</option>
+                                        <option  value="1">ДГО</option>
+                                        <option  value="1">ДГО+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="select-widget">
+                                <label className="block-label"></label>
+                                <div className="select-input">
+                                    <select placeholder="параметри авто" onChange={(e)=>{console.log(e.target.value)}} defaultValue={0} >
+                                        <option  value="0">страхова сма (грн)</option>
+                                        <option  value="100000">100 000</option>
+                                        <option  value="200000">200 000</option>
+                                        <option  value="300000">300 000</option>
+                                        <option  value="400000">400 000</option>
+                                        <option  value="500000">500 000</option>
+                                    </select>
+                                </div>
+                            </div>                                               
+                        </div> */}
                     </main> 
                 </form>
                 <footer>
