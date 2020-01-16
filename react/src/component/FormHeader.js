@@ -3,8 +3,6 @@ import React, {Component} from 'react'
 import GetFranshize from './GetFranshize'
 import {PaySumm} from './PaySumm'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 class FormHeader extends Component {
     render(){

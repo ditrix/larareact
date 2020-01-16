@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux' 
-import {PaySumm} from '../component/PaySumm'
 import {dataK1} from '../data/dataK1'
-import GetFranshize from '../component/GetFranshize'
+import {getDateUaStr} from '../lib/functions'
+import FormHeader from '../component/FormHeader'
+import {getTypeDocumentContent, getDiscountContent, getVehicleTypeNameContent, getBoolTextContent } from '../component/templates/TemplatesStr'
+
+import {commitData} from '../data/devcommitdata'
+
 
 class CommitPage extends Component {
 
@@ -22,112 +26,156 @@ class CommitPage extends Component {
     render(){
 
 
-    const data= {
-        parameters:{
-            valueDiscount:"0",
-            valueTaxi:"1",
-            isOtk:"1",
-            dateOtk:"2020-01-17",
-            valueK1:"B2",
-            city:{
-                id:"24",
-                nameRu:"Борисполь",
-                nameUa:"Бориспіль",
-                zone:"2",
-                zone_dgo:"2",
-                action:"ACTION_GET_VEHICLE",
-            },
-        },
-        client: {
-            client: { 
-                lname:"иванов",
-                sname:"иванович",
-                fname:"иван",
-                ipn:"3525555555",
-                dob:"1996-07-10",
-                doc:{
-                    type:"1",
-                    seria:"СС",
-                    no:"12321",
-                    dtget:"2000-01-01",
-                    source:"Винницким отделом",
-                },
-                addr:"Ленина 122 - 221",
-                phone:"+3808080800808",
-                email:"ivan@mail.com",
-            },
-        },
-        insobject: {
-            auto: {
-                VIN:"SJWFBAJ10U1347057 ",
-                RegNo:"111 ",
-                DMarkID:"386",
-                DMarkName:"NISSAN",
-                DModelID:"10471",
-                DModelName:"QASHQAI",
-                AutoDescr:"NISSAN QASHQAI 111 ",
-                DVehicleTypeType:"B2",
-                FContractID:"676424",
-                ProdYear:"1960",
-            }
-        },
-    }
-           const autoType = this.getVehicleTypeName(data.parameters.valueK1)
-
+    const data=commitData
        return(
-
-
-            <div className="make-polis-dialog">
-                <header>
-                    <div className="title"><h3>Оформлення</h3></div>
-                    <div className="result"><GetFranshize /></div>
-                    <div className="result">{PaySumm(100500,'ru')}</div>                    
-                </header>
+        <div className="make-polis-dialog">
+                <header><FormHeader title="Оформлення" /></header>
                 <form  className="tab-form"> 
                      <main>
+ 
                         <div className="tab-form-row">
-                            <h5>Параметри</h5>
-                            <div className="parameters-data">
-                                <label>тип транспортного засобу</label>
-                                <span><h6>{autoType.nameUA}</h6></span>
+                             <h5>Параметри</h5> 
+                            <div className="tab-form-block">
+                                <div className="parameters-data">
+                                    <label>тип транспортного засобу</label>
+                                    <span><h6>{getVehicleTypeNameContent(data.parameters.valueK1)}</h6></span>
+                                </div>
+
+                                <div className="parameters-data">
+                                    <label>пільги</label>
+                                    <span>
+                                        <h6>{getDiscountContent(data.parameters.valueDiscount)}</h6>
+                                    </span>
+                                </div>
+
+                                <div className="parameters-data">
+                                    <label>таксі</label>
+                                    <span><h6>{getBoolTextContent(data.parameters.valueTaxi)}</h6></span>
+                                </div>
+
+                                <div className="parameters-data">
+                                    <label>отк</label>
+                                    <span><h6>{getBoolTextContent(data.parameters.isOtk)}</h6></span>
+                                </div>
+
+                                <div className="parameters-data">
+                                    <label>дата отк</label>
+                                    <span><h6>{getDateUaStr(data.parameters.dateOtk)}</h6></span>
+                                </div>
                             </div>
+                        </div>        
 
-                            <div className="parameters-data">
-                                <label>пільги</label>
-                                <span>{(data.parameters.valueDiscount===0)?<h6>немає пільг</h6>:<h6>TODO значение</h6>
-                                }</span>
-                            </div>
-
-                            <div className="parameters-data">
-                                <label>таксі</label>
-                                <span><h6>{this.getBoolText(data.parameters.valueTaxi)}</h6></span>
-                            </div>
-
-                            <div className="parameters-data">
-                                <label>отк</label>
-                                <span><h6>{this.getBoolText(data.parameters.isOtk)}</h6></span>
-                            </div>
-
-                            <div className="parameters-data">
-                                <label>дата отк</label>
-                                <span><h6>TODO!{data.parameters.dateOtk}</h6></span>
-                            </div>
-
-
-
-                        </div>
                         <div className="tab-form-row">
                             <h5>Страхувальник</h5>
+                            <div className="tab-form-block">
+                                <div className="parameters-data">
+                                <label>прізвище</label>
+                                    <span><h6>{data.client.client.lname}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                <label>им'я</label>
+                                    <span><h6>{data.client.client.fname}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                <label>по батькові</label>
+                                    <span><h6>{data.client.client.sname}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                    <label>ипн</label>
+                                    <span><h6>{data.client.client.ipn}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                    <label>дата народження</label>
+                                    <span><h6>{getDateUaStr(data.client.client.dob)}</h6></span>
+                                </div>
+
+                            </div>    
+                        </div>
+
+                        <div className="tab-form-row">
+                            <h5>Документ</h5>
+                            <div className="tab-form-block">
+                                <div className="parameters-data">
+                                <label>тип документа</label>
+                                    <span><h6>{getTypeDocumentContent(data.client.client.doc.type)}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                <label>серія</label>
+                                    <span><h6>{data.client.client.doc.seria}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                <label>номер</label>
+                                    <span><h6>{data.client.client.doc.no}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                    <label>дата видачі</label>
+                                    <span><h6>{getDateUaStr(data.client.client.doc.dtget)}</h6></span>
+                                </div>
+
+                                <div className="parameters-data">
+                                    <label>ким виданий</label>
+                                    <span><h6>{data.client.client.doc.source}</h6></span>
+                                </div>
+                                    
+                            </div>    
                         </div>
                         <div className="tab-form-row">
+                            <h5>Контактна інформація:</h5>
+                            <div className="tab-form-block">
+                                <div className="parameters-data">
+                                <label>Адреса:</label>
+                                    <span><h6>{data.client.client.addr}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                <label>Телефон:</label>
+                                    <span><h6>{data.client.client.phone}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                    <label>Eлектронна пошта:</label>
+                                    <span><h6>{data.client.client.email}</h6></span>
+                                </div>
+                                    
+                            </div>    
+                        </div>
+
+                        <div className="tab-form-row">
                             <h5>Об'єкт страхування</h5>
+                            <div className="tab-form-block">
+                                <div className="parameters-data">
+                                <label>Марка:</label>
+                                    <span><h6>{data.insobject.auto.DMarkName}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                <label>Модель:</label>
+                                    <span><h6>{data.insobject.auto.DModelName}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                    <label>Рік випуску:</label>
+                                    <span><h6>{data.insobject.auto.ProdYear}</h6></span>
+                                </div>
+                                <div className="parameters-data">
+                                    <label>Держномер:</label>
+                                    <span><h6>{data.insobject.auto.RegNo}</h6></span>
+                                </div>
+
+                                <div className="parameters-data">
+                                    <label>VIN:</label>
+                                    <span><h6>{data.insobject.auto.VIN}</h6></span>
+                                </div>
+                                    
+                            </div>    
                         </div>
                     </main> 
                 </form>
                 <footer>
-                    <button className="btn-main-form-navigate btn-next" 
-                        onClick={this.handleButtonCommitClick.bind(this)} >Надіслати дані
-                    </button>
+                <nav  className="clearfix">
+                        <button className="btn-main-form-navigate btn-prev" 
+                            onClick={this.props.prevTab} >попередня
+                        </button>
+                        <button className="btn-main-form-navigate btn-next" 
+                            onClick={this.props.nextTab} >надіслати заявку
+                        </button>
+                    </nav>
                 </footer>
             </div>    
         )
@@ -135,70 +183,3 @@ class CommitPage extends Component {
 }
 
 export default CommitPage
-
-/*
-valueDiscount:"0"
-valueTaxi:"1"
-isOtk:"1"
-dateOtk:"2020-01-17"
-valueK1:"B2"
-------------------------------------------------------------------------
-
-VIN:"SJWFBAJ10U1347057 "
-RegNo:"111 "
-DMarkID:"386"
-DMarkName:"NISSAN"
-DModelID:"10471"
-DModelName:"QASHQAI"
-AutoDescr:"NISSAN QASHQAI 111 "
-DVehicleTypeType:"B2"
-FContractID:"676424"
-validateMess:""
-validateMes:""
-
-data: {
-    parameters:{
-        valueDiscount:"0",
-        valueTaxi:"1",
-        isOtk:"1",
-        dateOtk:"2020-01-17",
-        valueK1:"B2",
-    },
-    client {
-        client { 
-            lname:"иванов",
-            sname:"иванович",
-            fname:"иван",
-            ipn:"3525555555",
-            dob:"1996-07-10",
-            doc:{
-                type:"1",
-                seria:"СС",
-                no:"12321",
-                dtget:"2000-01-01",
-                source:"Винницким отделом",
-            }
-            addr:"Ленина 122 - 221",
-            phone:"+3808080800808",
-            email:"ivan@mail.com",
-        },
-    },
-    insobject {
-        auto {
-            VIN:"SJWFBAJ10U1347057 ",
-            RegNo:"111 ",
-            DMarkID:"386",
-            DMarkName:"NISSAN",
-            DModelID:"10471",
-            DModelName:"QASHQAI",
-            AutoDescr:"NISSAN QASHQAI 111 ",
-            DVehicleTypeType:"B2",
-            FContractID:"676424",
-            ProdYear:"1960",
-        }
-    },
-}
-
-
-
-*/ 

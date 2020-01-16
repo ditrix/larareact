@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="_container">
       <header>
-        {/* <AskodsHeader /> */}
+        {/* <AskodsHeader />  */}
   
       </header>
       <main>
@@ -26,7 +26,7 @@ function App() {
       </main>
       <footer>
 
-      {/* <AskodsFooter/> */}
+       {/* <AskodsFooter/>  */}
       </footer>
     </div>
   );

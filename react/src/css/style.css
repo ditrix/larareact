@@ -609,12 +609,18 @@ nav button {
   }
 
   .tab-form-row {
-  
-    border-radius: 2px;
-    border: 1px lightgray solid;
+    border-top: 1px whitesmoke solid;
     padding: 5px;
   }
 
+
+.tab-form-block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
 
   .parameters-data {
       line-height: 0.1px;

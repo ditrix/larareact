@@ -15,7 +15,7 @@ class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: TAB_OBJECT, 
+      currentTab: TAB_COMMIT, 
       
     }
 

@@ -216,12 +216,6 @@ class InsuranceObject extends Component {
 
                         />
                         {QuestionDropdown('Vehicle Identification Number (VIN) - це унікальний ідентифікаційний номер автомобіля, в якому міститься 17 символів.')} 
-                        {/* <div className="dropdown">
-                            <h3>[?]</h3>
-                            <div class="dropdown-content">
-                                <p>Vehicle Identification Number (VIN) - це унікальний ідентифікаційний номер автомобіля, в якому міститься 17 символів.</p>
-                            </div>
-                        </div> */}
                         </div> 
                         <span className="input-error-message">{this.state.msgValidVin}</span>
                     </div>                

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+
 class GetDiscount extends Component {
 
     getValue = event => this.props.isDiscount(event.currentTarget.value)
@@ -11,10 +12,18 @@ class GetDiscount extends Component {
             <div className="select-input">
                 <select onChange={this.getValue.bind(this)} defaultValue={this.props.discount}>
                     <option value='0'>без пільг</option>
-                    <option value='1'>Учасник війни</option> посвічення учасника війни
-                    <option value='2'>Інвалід</option> посвічення інваліда
-                    <option value='3'>Чорнобилець</option> чорнобильске почвічення
-                    <option value='4'>Пенсіонер</option>   пенсійне посвічення
+                    
+                    {/* посвічення учасника війни   */}
+                    <option value='1'>Учасник війни</option>
+                    
+                    {/* посвічення інваліда    */}
+                    <option value='2'>Інвалід</option>
+                    
+                    {/* чорнобильске почвічення */}
+                    <option value='3'>Чорнобилець</option>
+                    
+                    {/* пенсійне посвічення */}
+                    <option value='4'>Пенсіонер</option>
                 </select>  
             </div>
         </div>

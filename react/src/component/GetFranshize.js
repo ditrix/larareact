@@ -1,18 +1,9 @@
 import React, {Component} from 'react'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import {QuestionDropdown} from './QuestionDropdown'
 
 class GetFranshize extends Component {
-  
-//    handleIsOtkChange(e){
-//       //console.log(e.currentTarget.value)  
-//       this.setState({useOtk:e.currentTarget.value})
-
-//     }
+ 
     handleFranshizeChange = event => this.props.getFeanshize(event.currentTarget.value)
-
 
     render(){
         return(
@@ -28,12 +19,6 @@ class GetFranshize extends Component {
               </div>
                <label>
                {QuestionDropdown('Франшиза - це частина збитків, яка не підлягає відшкодуванню страховиком.')}
-                {/* <div className="dropdown">
-                <FontAwesomeIcon className="question-ico" icon={faQuestionCircle} size="lg" color="#1fb6ff" />
-                <div class="dropdown-content">
-                  <p>Франшиза - це частина збитків, яка не підлягає відшкодуванню страховиком.</p>
-                </div>
-                </div> */}
               </label>
             </div>
         )
