@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component,Fragment} from 'react';
 import './css/style.css'
 
 import PolisParameters from './container/PolisParameters'

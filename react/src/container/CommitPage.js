@@ -1,19 +1,21 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux' 
 import {dataK1} from '../data/dataK1'
-import {getDateUaStr} from '../lib/functions'
+import {getDateUaStr,getStrContent} from '../lib/functions'
 import FormHeader from '../component/FormHeader'
 import {getTypeDocumentContent, 
         getDiscountContent, 
         getVehicleTypeNameContent, 
-        getBoolTextContent } from '../component/templates/TemplatesStr'
-import {QuestionDropdown} from '../component/templates/QuestionDropdown'
+        getBoolTextContent,
+        getVehicleCityContent
+         } from '../component/templates/TemplatesStr'
 
 import {commitData} from '../data/devcommitdata'
 
+import {actionCommitPolisData} from '../action/CommitActions'
+
 
 class CommitPage extends Component {
-
     handleButtonCommitClick(){
         console.log('DOIT!')
     }
@@ -28,11 +30,16 @@ class CommitPage extends Component {
     }
 
     render(){
-
-
-    const data=commitData
-       return(
-        <div className="make-polis-dialog">
+        //const data=commitData
+        const data = {
+                parameters: this.props.parameters,
+                client: this.props.client,
+                insobject:{
+                    auto: this.props.insobject,
+                }
+            }
+        return(
+            <div className="make-polis-dialog">
                 <header><FormHeader title="Оформлення" /></header>
                 <form  className="tab-form"> 
                      <main>
@@ -45,6 +52,10 @@ class CommitPage extends Component {
                                     <span><h6>{getVehicleTypeNameContent(data.parameters.valueK1)}</h6></span>
                                 </div>
 
+                                <div className="parameters-data">
+                                    <label>місто реєстрації власника ТЗ</label>
+                                    <span><h6>{getVehicleCityContent(data.parameters.city)}</h6></span>
+                                </div>
                                 <div className="parameters-data">
                                     <label>пільги</label>
                                     <span>
@@ -169,32 +180,6 @@ class CommitPage extends Component {
                                     
                             </div>    
                         </div>
-                        {/* <div className="city-parameters form-input-row">
-                        <h5>Замовити додаткове покриття</h5>
-                            <div className="select-widget">
-                                <label className="block-label"></label>
-                                <div className="select-input">
-                                    <select placeholder="параметри авто" onChange={(e)=>{console.log(e.target.value)}} defaultValue={0} >
-                                        <option  value="0">тип ДГО</option>
-                                        <option  value="1">ДГО</option>
-                                        <option  value="1">ДГО+</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="select-widget">
-                                <label className="block-label"></label>
-                                <div className="select-input">
-                                    <select placeholder="параметри авто" onChange={(e)=>{console.log(e.target.value)}} defaultValue={0} >
-                                        <option  value="0">страхова сма (грн)</option>
-                                        <option  value="100000">100 000</option>
-                                        <option  value="200000">200 000</option>
-                                        <option  value="300000">300 000</option>
-                                        <option  value="400000">400 000</option>
-                                        <option  value="500000">500 000</option>
-                                    </select>
-                                </div>
-                            </div>                                               
-                        </div> */}
                     </main> 
                 </form>
                 <footer>
@@ -212,4 +197,30 @@ class CommitPage extends Component {
     }
 }
 
-export default CommitPage
+const mapStateToProps = store => {
+    return {
+        parameters: {
+            valueDiscount: store.parameters.valueDiscount,
+            valueTaxi: store.parameters.valueTaxi,
+            isOtk: store.parameters.isOtk,
+            dateOtk: store.parameters.dateOtk,
+            valueK1: store.parameters.valueK1,
+            city:store.parameters.city,
+        },        
+        insobject: store.parameters.vehicle,
+        client: store.client,
+        calculate: store.calculate,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        commitPolsData: () => dispatch(actionCommitPolisData()),
+
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CommitPage)
+
+
+

@@ -211,7 +211,7 @@ render(){
                             <div className="select-widget">
                                 <label className="block-label"></label>
                                 <div className="select-input">
-                                    <select placeholder="параметри авто" onChange={(e)=>{console.log(e.target.value)}} defaultValue={0} >
+                                    <select placeholder="тип дго" onChange={(e)=>{console.log('TODO: тип дго', e.target.value)}} defaultValue={0} >
                                         <option  value="0">тип ДГО</option>
                                         <option  value="1">ДГО</option>
                                         <option  value="1">ДГО+</option>
@@ -221,8 +221,8 @@ render(){
                             <div className="select-widget">
                                 <label className="block-label"></label>
                                 <div className="select-input">
-                                    <select placeholder="параметри авто" onChange={(e)=>{console.log(e.target.value)}} defaultValue={0} >
-                                        <option  value="0">страхова сма (грн)</option>
+                                    <select placeholder="страхова сума дго" onChange={(e)=>{console.log('страхова сума дго',e.target.value)}} defaultValue={0} >
+                                        <option  value="0">страхова сума (грн)</option>
                                         <option  value="100000">100 000</option>
                                         <option  value="200000">200 000</option>
                                         <option  value="300000">300 000</option>

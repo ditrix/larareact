@@ -34,6 +34,12 @@ export const getVehicleTypeNameContent = (type,lang='ua') => {
     return (lang === 'ua')?dataK1.filter(item => item.KO === type)[0].nameUA:dataK1.filter(item => item.KO === type)[0].nameRU
 }
 
+export const getVehicleCityContent = (city,lang='ua') => {
+    return (lang === 'ua')?city.nameUa:city.nameRu
+
+}
+
+
 export const getBoolTextContent = (val, lang='ua') => {
     return (lang='ua')?(val==='0')?'ні':'так':(val==='0')?'нет':'да'
 }

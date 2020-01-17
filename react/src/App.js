@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Fragment} from 'react';
 
 
 import {Provider} from 'react-redux'
@@ -14,7 +14,7 @@ import Main from './Main'
 
 function App() {
   return (
-    <div className="_container">
+    <Fragment>
       <header>
         {/* <AskodsHeader />  */}
   
@@ -28,7 +28,7 @@ function App() {
 
        {/* <AskodsFooter/>  */}
       </footer>
-    </div>
+    </Fragment>
   );
 }
 

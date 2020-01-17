@@ -42,7 +42,7 @@ class Client extends Component {
 
 
     validateData(){
-        console.log('validateData()')
+ //       console.log('validateData()')
         let formValid = true
         const tmpState = this.state
         if(this.state.client.lname === ''){
@@ -106,11 +106,11 @@ class Client extends Component {
 
 
     handleButtonNextClicked(){
-        console.log('handleButtonNextClicked 1')
+    //    console.log('handleButtonNextClicked 1')
         this.validateData()
         this.props.saveClient()
         if(this.state.formValid){ 
-            console.log('handleButtonNextClicked 2')
+//            console.log('handleButtonNextClicked 2')
         
          this.props.nextTab()
         }
@@ -133,7 +133,7 @@ class Client extends Component {
 
 
     handleLNameChanged = (event) => { 
-        console.log('handleLNameChanged()')
+//        console.log('handleLNameChanged()')
         event.preventDefault()
         const client = this.state.client; 
         client.lname = event.currentTarget.value

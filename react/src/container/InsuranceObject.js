@@ -34,10 +34,44 @@ class InsuranceObject extends Component {
         }
         this.validateData = this.validateData.bind(this)
         this.clearMessages = this.clearMessages.bind(this)
+        this.saveData = this.saveData.bind(this) 
      
     }
 
     
+    saveData(){
+        // установить DMarkName DMarkID    DModelName    на основании    
+
+        const markId = this.state.auto.DMarkID
+  
+
+        const markData = markDS.filter( item => item.id === markId )
+        let markName = ''
+        if(markData.length > 0){
+            markName = markData[0].name 
+        }
+    
+        const modelId = this.state.auto.DModelID
+        const modelData = modelDS.filter( item => item.id === modelId )
+
+        let modelName = ''
+        if(modelData.length > 0){
+            modelName = modelData[0].name 
+        }
+
+        
+        
+        const tmpState = this.state
+        tmpState.auto.DMarkName = markName
+        tmpState.auto.DModelName = modelName
+
+
+        this.setState(tmpState)
+        
+ 
+    }
+
+
 
     getModelsList(DMarkID = '0'){
         let models = []
@@ -93,8 +127,10 @@ class InsuranceObject extends Component {
     }
 
  
+ 
     handleNextButton(){
-           this.validateData()
+        this.validateData()
+        this.saveData()
         this.props.saveParameters(this.state)
 
         if(this.state.dataValid){ 
@@ -104,6 +140,10 @@ class InsuranceObject extends Component {
 
     handleMarkaChanged(event){
         const DMarkID = event.currentTarget.value
+        
+        //console.log(event.currentTarget.selectedIndex)
+      //  console.log(event.currentTarget.text)        
+
         const auto = this.state.auto
         auto.DMarkID = DMarkID
         auto.DModelID = 0
@@ -150,7 +190,7 @@ class InsuranceObject extends Component {
 
     render(){
         const markArray = markDS
- 
+        const modelsArr =  this.getModelsList(this.state.auto.DMarkID) // modelDS.filter(item => item.mark_id = this.state.auto.DMarkID)
         return(
             <div className="make-polis-dialog">
                 <header>
@@ -166,7 +206,7 @@ class InsuranceObject extends Component {
                     <select onChange={this.handleMarkaChanged.bind(this)} defaultValue={this.state.auto.DMarkID}>
                     <option key={0} value="0">---</option>
                         { markArray.map((mark,index) =>
-                            <option key={index}  value={mark.id}>{mark.name}</option>      
+                            <option key={index}  value={mark.id} >{mark.name}</option>      
                         )}
                     </select>
                     
@@ -178,8 +218,8 @@ class InsuranceObject extends Component {
                     <div  className="select-input">
                     <select onChange={this.handleModelChanged.bind(this)} defaultValue={this.state.auto.DModelID} >
                     <option key="0" value="0">---</option>
-                    {(this.state.models)&&
-                        this.state.models.map((model,index) =>
+                    {(modelsArr)&&
+                        modelsArr.map((model,index) =>
                             <option key={index} value={model.id}>{model.name}</option>
                     )}
                     </select>  
