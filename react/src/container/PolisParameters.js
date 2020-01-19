@@ -23,7 +23,6 @@ import {QuestionDropdown} from '../component/templates/QuestionDropdown'
 
 
 
-
 // TODO: set state according values
 // TODO валидатор
 //  мин тип и город д.б. определены.
@@ -201,37 +200,37 @@ render(){
                       }
                     </div>
                 </div>
-                <div className="dgo-propmis-title">  
-                    <label>Замовити додаткове покриття</label>
-                    <label>{QuestionDropdown('ДЦВ - це додаткове збільшення страхової виплати. Додаткове покриття вступае в дію, коли при настанні страхової події збиток становить понад 100 000 гривень.')}</label>
-                </div>
-                <div className="form-input-row">
-                  
-                            
-                            <div className="select-widget">
-                                <label className="block-label"></label>
-                                <div className="select-input">
-                                    <select placeholder="тип дго" onChange={(e)=>{console.log('TODO: тип дго', e.target.value)}} defaultValue={0} >
-                                        <option  value="0">тип ДГО</option>
-                                        <option  value="1">ДГО</option>
-                                        <option  value="1">ДГО+</option>
-                                    </select>
-                                </div>
+                {/* dgo-parameters */}
+                <div className="dgo-parameters">
+                    <div className="dgo-propmis-title">  
+                        <label>Замовити додаткове покриття</label>
+                        <label>{QuestionDropdown('ДЦВ - це додаткове збільшення страхової виплати. Додаткове покриття вступае в дію, коли при настанні страхової події збиток становить понад 100 000 гривень.')}</label>
+                    </div>
+                    <div className="form-input-row">
+                        <div className="select-widget">
+                            <label className="block-label"></label>
+                            <div className="select-input">
+                                <select placeholder="тип дго" onChange={(e)=>{console.log('TODO: тип дго', e.target.value)}} defaultValue={0} >
+                                    <option  value="0">тип ДГО</option>
+                                    <option  value="1">ДГО</option>
+                                    <option  value="1">ДГО+</option>
+                                </select>
                             </div>
-                            <div className="select-widget">
-                                <label className="block-label"></label>
-                                <div className="select-input">
-                                    <select placeholder="страхова сума дго" onChange={(e)=>{console.log('страхова сума дго',e.target.value)}} defaultValue={0} >
-                                        <option  value="0">страхова сума (грн)</option>
-                                        <option  value="100000">100 000</option>
-                                        <option  value="200000">200 000</option>
-                                        <option  value="300000">300 000</option>
-                                        <option  value="400000">400 000</option>
-                                        <option  value="500000">500 000</option>
-                                    </select>
-                                </div>
-                            </div>                                               
-                    
+                        </div>
+                        <div className="select-widget">
+                            <label className="block-label"></label>
+                            <div className="select-input">
+                                <select placeholder="страхова сума дго" onChange={(e)=>{console.log('страхова сума дго',e.target.value)}} defaultValue={0} >
+                                    <option  value="0">страхова сума (грн)</option>
+                                    <option  value="100000">100 000</option>
+                                    <option  value="200000">200 000</option>
+                                    <option  value="300000">300 000</option>
+                                    <option  value="400000">400 000</option>
+                                    <option  value="500000">500 000</option>
+                                </select>
+                            </div>
+                        </div>                                               
+                    </div>
                 </div>
 
             </form>       
