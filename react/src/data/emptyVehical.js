@@ -1,7 +1,5 @@
-
-
-export const initialVehicle = () => {
-    return {
+/*vehicle.js*/
+export const emptyVehical = {
         VIN: "",
         RegNo: '',
         DMarkID: '',
@@ -11,6 +9,5 @@ export const initialVehicle = () => {
         AutoDescr: '',
         DVehicleTypeType: "00",
         FContractID: '',
-    }
   } 
-
+ 

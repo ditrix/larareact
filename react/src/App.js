@@ -1,7 +1,8 @@
-import React from 'react';
-import './css/style.css'
-import './css/response.css'
+import React,{Fragment} from 'react';
 
+
+import {Provider} from 'react-redux'
+import store from './store/configureStore' 
 // eslint-disable-next-line
 import {AskodsHeader} from './component/askods/AskodsHeader'
 
@@ -13,19 +14,21 @@ import Main from './Main'
 
 function App() {
   return (
-    <div className="_container">
+    <Fragment>
       <header>
-        {/* <AskodsHeader /> */}
+        {/* <AskodsHeader />  */}
   
       </header>
       <main>
+      <Provider store={store}>
         <Main />
+        </Provider>
       </main>
       <footer>
 
-      {/* <AskodsFooter/> */}
+       {/* <AskodsFooter/>  */}
       </footer>
-    </div>
+    </Fragment>
   );
 }
 

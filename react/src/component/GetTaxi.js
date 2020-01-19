@@ -1,17 +1,15 @@
 import React, {Component} from 'react'
 
 class GetTaxi extends Component {
-    getValue = event => this.props.isTaxi(event.currentTarget.value)
-    componentWillUnmount(){
-        this.props.isTaxi('0')
-    }
+    getValue = event => this.props.getTaxi(event.currentTarget.value)
+ 
     render(){
         return(
             <div className="select-widget">
 
             <label className="block-label">таксі:</label>
             <div className="select-input">
-            <select onChange={this.getValue.bind(this)}>
+            <select onChange={this.getValue.bind(this)} defaultValue={this.props.valueTaxi}>
                 <option value='0'>ні</option>
                 <option value='1'>так</option>
             </select>  

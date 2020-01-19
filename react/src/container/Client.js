@@ -1,148 +1,139 @@
-import React, {Component} from 'react' 
+import React, {Component} from 'react'
+import {connect} from 'react-redux' 
 import {dateFormatApi, checkIpn} from '../lib/functions'
 import GetDatePicker from '../component/GetDatePicker'
 import 'react-day-picker/lib/style.css';
-import {PaySumm} from '../component/PaySumm'
-import {INVALID_DATA_MMESSAGE_UA} from '../constants'
 
+import {INVALID_DATA_MMESSAGE_UA} from '../constants'
+import {actionSaveClient} from '../action/ClientAction'
+import FormHeader from '../component/FormHeader'
 
 
 // ввод даних про страхувальника
 class Client extends Component {
     constructor(props){
         super(props)
-
-        this.state={
-            client:{ 
-                idResident: undefined, // вычисляется по типу документа
-                lname: '',  // validate required, size & characters 
-                sname: '',  // validate required, size & characters
-                fname: '',  // validate required, size & characters
-                ipn: '',    // validate required, size & characters
-                dob: undefined,
-                
-                doc:{
-                  type:'1',   // если   id-паспорт громодянина України  
-                             // seria не спрашиваем для остальных - есть
-                  seria: '',
-                  no:'',
-                  dtget: undefined,
-                  source: '',                  
-                },
-                addr: '',
-                phone: '',
-                email: '',
-            },
-            msgLNameValid: '',
-            msgFNameValid: '',
-            msgSNameValid: '',
-            msgIpnValid: '',
-            msgDOBValid: '',
-            msgDocTypeValid: '',
-            msgDocSeriaValid: '',
-            msgDocNoValid: '',
-            msgDocDtGetValid: '',
-            msgDocSourceValid: '',
-            msgAddrValid: '',
-            msgPhoneValid: '',
-            msgEmailValid:'',
-            formValid:false,
-        }
+        this.state = this.props.client
+       
         this.filterEnterKeyCode = this.filterEnterKeyCode.bind(this)
         this.validateData = this.validateData.bind(this)
-        this.handleButtonNextClicked = this.handleButtonNextClicked.bind(this)
+        this.clearMessages = this.clearMessages.bind(this)
+    }
+
+    clearMessages(){
+        
+        const tmpState = this.state
+        tmpState.msgLNameValid = 
+        tmpState.msgFNameValid = 
+        tmpState.msgSNameValid = 
+        tmpState.msgIpnValid = 
+        tmpState.msgDocTypeValid = 
+        tmpState.msgDOBValid = 
+        tmpState.msgDocSeriaValid = 
+        tmpState.msgDocNoValid = 
+        tmpState.msgDocDtGetValid = 
+        tmpState.msgDocSourceValid = 
+        tmpState.msgAddrValid = 
+        tmpState.msgEmailValid = ''
+
+        this.setState(tmpState)
+                
     }
 
 
-
-
-
     validateData(){
+ //       console.log('validateData()')
         let formValid = true
+        const tmpState = this.state
         if(this.state.client.lname === ''){
+            console.log('no lname')
             formValid = false
-            this.setState({msgLNameValid: INVALID_DATA_MMESSAGE_UA})
+            //this.setState({msgLNameValid: INVALID_DATA_MMESSAGE_UA})
+            //console.log(this.state.msgLNameValid)
+            tmpState.msgLNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.fname === ''){
             formValid = false
-            this.setState({msgFNameValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgFNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.sname === ''){
             formValid = false
-            this.setState({msgSNameValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgSNameValid= INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.ipn.length !== 10){
             formValid = false
-            this.setState({msgIpnValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgIpnValid = INVALID_DATA_MMESSAGE_UA
         }
         if(this.state.client.dob === undefined){
             formValid = false
-            this.setState({msgDOBValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgDOBValid= INVALID_DATA_MMESSAGE_UA
         }
 
-        // если   id-паспорт громодянина України  SERIA спрашиваем
-        if(this.state.client.doc.type === ''){
-            formValid = false
-            this.setState({msgDocTypeValid: INVALID_DATA_MMESSAGE_UA})
-        }
-        
-        if(this.state.client.doc.seria === ''){
-            formValid = false
-            this.setState({msgDocSeriaValid: INVALID_DATA_MMESSAGE_UA})
-        }
         if(this.state.client.doc.no === ''){
             formValid = false
-            this.setState({msgDocNoValid: INVALID_DATA_MMESSAGE_UA})
-        }
-        if(this.state.client.doc.dtget === undefined){
-            formValid = false
-            this.setState({msgDocDtGetValid: INVALID_DATA_MMESSAGE_UA})
-        }
-        if(this.state.client.doc.source === ''){
-            formValid = false
-            this.setState({msgDocSourceValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
         }
 
+        if(this.state.client.doc.type === '0'){
+            formValid = false
+            tmpState.msgDocTypeValid= INVALID_DATA_MMESSAGE_UA
+        }
+
+        if(this.state.client.doc.no === ''){
+            formValid = false
+            tmpState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
+        }
+     
         if(this.state.client.addr === ''){
             formValid = false
-            this.setState({msgAddrValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgAddrValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.phone === ''){
             formValid = false
-            this.setState({msgPhoneValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgPhoneValid= INVALID_DATA_MMESSAGE_UA
         }
 
         if(this.state.client.email === ''){
             formValid = false
-            this.setState({msgEmailValid: INVALID_DATA_MMESSAGE_UA})
+            tmpState.msgEmailValid= INVALID_DATA_MMESSAGE_UA
         }
-
-
-        this.setState({formValid:formValid})
+     //   const tmpState = this.state;
+        tmpState.formValid = formValid
+        this.setState(tmpState)
         return formValid
     }
 
 
     handleButtonNextClicked(){
+    //    console.log('handleButtonNextClicked 1')
         this.validateData()
+        this.props.saveClient()
         if(this.state.formValid){ 
-            this.props.nextTab()
+//            console.log('handleButtonNextClicked 2')
+        
+         this.props.nextTab()
         }
     }
 
+    handleButtonPrevClicked(){
+        this.clearMessages()
+        this.props.saveClient()
+        this.props.prevTab()
+    }
 
     filterEnterKeyCode(e){
         if(e.keyCode === 13){
              e.preventDefault()
              return
-        }        
-       return
+        }     
+        return 
     }
 
 
 
     handleLNameChanged = (event) => { 
+//        console.log('handleLNameChanged()')
         event.preventDefault()
         const client = this.state.client; 
         client.lname = event.currentTarget.value
@@ -246,15 +237,14 @@ class Client extends Component {
     
     
     render(){
-   
+    
         const dateGetDoc = (this.state.client.doc.dtget === undefined)?new Date():this.state.client.doc.dtget
         return(
             <div className="make-polis-dialog">
                 <header>
-                    <div className="title"><h3>Страхувальник</h3></div>
-                    <div className="result">{PaySumm(100500,'ru')}</div>
+                    <FormHeader title="Страхувальник" />
                 </header>
-            <form className="client-form">
+            <form className="tab-form">
                 
                 <main>
                 <div className="form-input-item">
@@ -316,20 +306,17 @@ class Client extends Component {
                         <div className="select-widget `item-doc-type`">
                             {/* <label className="block-label">документ:</label> */}
                             <div className="select-input">
-                                <select onChange={this.handleDocTypeChanged.bind(this)}>
-                                    <option value='12'>документ:</option>
-                                    
-                                    <option value='12'>Водійське посвідчення</option>
-                                            
-                                    <option value='12'>паспорт</option>
-                                    <option value='10'>id-паспорт громодянина України</option>
-                                    <option value='9'>Паспорт іниземного громодянина</option>
-                                    <option value='9'>Посвідчення водія іноземного громодянина</option>
-
-                                    <option value='9'>Посвідчення інваліда</option>
-                                    <option value='9'>Уорнобильске посвідчення</option>
-                                    <option value='9'>Учасника війни інваліда</option>
-                                    <option value='9'>Пенсійне посвідчення</option>
+                                <select onChange={this.handleDocTypeChanged.bind(this)} defaultValue={this.state.client.doc.type}>
+                                    <option value='0'>документ:</option>
+                                    {(this.props.discount === "0")&&<option value='1'>Водійське посвідчення</option>}
+                                    {(this.props.discount === "0")&&<option value='2'>паспорт</option>}
+                                    {(this.props.discount === "0")&&<option value='3'>id-паспорт громaдянина України</option>}
+                                    {(this.props.discount === "0")&&<option value='4'>Паспорт іноземного громaдянина</option>}
+                                   
+                                    {(this.props.discount === "2")&&<option value='6'>Посвідчення інваліда</option>}
+                                    {(this.props.discount === "3")&&<option value='7'>Чорнобильске посвідчення</option>}
+                                    {(this.props.discount === "1")&&<option value='8'>Посвідчення учасника війни</option>}
+                                    {(this.props.discount === "4")&& <option value='9'>Пенсійне посвідчення</option>}
                                 </select>  
                             </div>
                             <span className="input-error-message">{this.state.msgDocTypeValid}</span>
@@ -412,11 +399,12 @@ class Client extends Component {
             
               <button 
                 className="btn-main-form-navigate btn-prev" 
-                onClick={this.props.prevTab} >попередня
-                    </button>
+                onClick={this.handleButtonPrevClicked.bind(this)} >попередня
+              </button>
+              
               <button 
                 className="btn-main-form-navigate btn-next" 
-                onClick={this.handleButtonNextClicked} >наступна</button> 
+                onClick={this.handleButtonNextClicked.bind(this)} >наступна</button> 
             </nav>
         </footer>
             
@@ -426,4 +414,18 @@ class Client extends Component {
     }
 }
 
-export default Client
+//export default Client
+const mapStateToProps = store => {
+    return {
+        client: store.client,
+        discount: store.parameters.valueDiscount
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        saveClient: (client) => dispatch(actionSaveClient(client)),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Client)

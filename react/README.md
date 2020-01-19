@@ -10,6 +10,9 @@ REACT-DATETIME-PICKER (http://projects.wojtekmaj.pl/react-datetime-picker/)  NB!
 
 BOOTSTRAP  (https://getbootstrap.com/)   NB! возможно откажусь
 
+React Font Awesome (https://github.com/FortAwesome/react-fontawesome)   (https://fontawesome.com/how-to-use/on-the-web/using-with/react)
+
+
 [MATERIALS]  
 
 рассмотреть   MATERIAL-UI (https://material-ui.com/)
@@ -36,3 +39,4 @@ https://github.com/buildo/rc-datepicker/blob/master/examples/examples.js
 
 ~~~  https://reactjsexample.com/tag/date/
 
+20200113 before redux

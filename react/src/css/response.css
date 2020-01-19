@@ -1,1 +1,31 @@
 /* https://basicweb.ru/css/css_pr_media.php */
+
+
+ /* Большие девайсы (большие десктопы, < 1200px) */
+@media (max-width: 1199.98px) { 
+    .main-form{
+        width:75%;
+    }
+}
+
+
+/* // Средние девайсы («таблетки», < 992px)  */
+@media (max-width: 991.98px) { 
+    .main-form {
+        width: 75%;
+    }
+}
+
+ /* Малые девайсы («ландшафтные», < 768px) */
+@media (max-width: 767.98px) { 
+    .main-form {
+        width: 100%;
+    }
+ }
+
+  /* Экстрамалые девайсы («телефоны», < 576px) */
+@media (max-width: 575.98px) {  
+    .main-form {
+        width: 100%;
+    }
+}

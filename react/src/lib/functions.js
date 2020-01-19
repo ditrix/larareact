@@ -16,8 +16,21 @@ export const dateFormatApi = date => {
     return (date)?date.toLocaleDateString('en-CA'):new Date().toLocaleDateString('en-CA')    
 }
 
+export const getCurrentDate = () => {
+    return new Date().toLocaleDateString('en-CA')    
+}
 
 export const getCurrentYear = () => {
     const today =  new Date();
     return today.getFullYear();   // TODO 
+}
+
+export const getDateUaStr = (dtStr) => {
+   
+   return ((!dtStr)||(dtStr.length !== 10))?'':`${dtStr[8]+ dtStr[9]}.${dtStr[5] + dtStr[6]}.${dtStr[0]+dtStr[1]+dtStr[2]+dtStr[3]}`
+}
+
+export const getStrContent = (str = '') => {
+    return (!str)?'':str
+    
 }
