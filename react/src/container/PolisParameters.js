@@ -11,7 +11,7 @@ import {SearchResultTemplate} from '../component/SearchResultTemplate'
 
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../action'
 
-import {actionSavePolisParameters} from '../action/PolisParametersAction'
+import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
 import {dateFormatApi} from '../lib/functions'
 
 import {emptyVehical} from '../data/emptyVehical'
@@ -19,10 +19,6 @@ import {emptyVehical} from '../data/emptyVehical'
 import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
 import FormHeader from '../component/FormHeader'
-
-
-
-
 
 // TODO: set state according values
 // TODO валидатор
@@ -73,10 +69,17 @@ class PolisParameters extends Component{
         tmpState.valueK1 = value
         tmpState.validateMess = ''
         this.setState(tmpState)
+
+        if(value !== null){
+        const calculate = this.props.calculate
+        calculate.valueK1 = value
+        this.props.calculatePl(calculate)
+        }
     }
 
     getDiscount(value){    
         this.setState({valueDiscount:value,validateMess:''})
+        this.props.calculatePl({valueDiscount:value})
     }
 
     getOtk(value){
@@ -85,6 +88,7 @@ class PolisParameters extends Component{
 
     getTaxi(value){
         this.setState({valueTaxi:value,validateMess:''})
+        this.props.calculatePl({valueK3:value})
     }
 
     nextPage(data){
@@ -105,8 +109,11 @@ class PolisParameters extends Component{
             tmpState.city = value
             tmpState.validateMess = ''
             this.setState(tmpState)
-
+            const calculate = this.props.calculate
+            calculate.valueK2 = value.zone
+            this.props.calculatePl(calculate)
         }
+
     }
 
     getVehicle(value){
@@ -116,6 +123,8 @@ class PolisParameters extends Component{
         tmpState.vehicle = vehicle
         tmpState.validateMess = ''
         this.setState(tmpState)
+        
+        this.props.calculatePl({valueK1: vehicle.DVehicleTypeType})
     }
 
     getDateOtk(value){
@@ -221,12 +230,14 @@ render(){
 const mapStateToProps = store => {
     return {
         parameters: store.parameters,
+        calculate: store.calculate
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         saveParameters: (parameters) => dispatch(actionSavePolisParameters(parameters)),
+        calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo))
     }
 }
 

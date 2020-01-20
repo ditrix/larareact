@@ -25,4 +25,3 @@ export const ACTION_COMMIT_DATA = 'ACTION_COMMIT_DATA'
 
 export const CALCULTATE_POLIS = 'CALCULTATE_POLIS'
 
-export const GET_K1 = 'GET_K1'
