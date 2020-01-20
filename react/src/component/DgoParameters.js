@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import {QuestionDropdown} from '../component/templates/QuestionDropdown'
+// eslint-disable-next-line
 import {connect} from 'react-redux' 
 class DgoParameters extends Component {
     render(){
@@ -41,12 +42,13 @@ class DgoParameters extends Component {
 
 
 
-const mapStateToProps = () => {
+// const mapStateToProps = () => {
 
-}
+// }
 
-const mapDispatchToProps = () => {
+// const mapDispatchToProps = () => {
 
-}
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(DgoParameters)
+// export default connect(mapStateToProps,mapDispatchToProps)(DgoParameters)
+export default DgoParameters

@@ -19,7 +19,7 @@ export const getTypeDocumentContent = (valueStr, lang='ua') => {
 
 export const getDiscountContent = (valueStr, lang='ua') => {
     switch(valueStr){
-        case '1': return 'без пільг'
+        case '0': return 'без пільг'
         case '1': return 'Учасник війни'
         case '2': return 'Інвалід'
         case '3': return 'Чорнобилець'
@@ -36,9 +36,7 @@ export const getVehicleTypeNameContent = (type,lang='ua') => {
 
 export const getVehicleCityContent = (city,lang='ua') => {
     return (lang === 'ua')?city.nameUa:city.nameRu
-
 }
-
 
 export const getBoolTextContent = (val, lang='ua') => {
     return (lang='ua')?(val==='0')?'ні':'так':(val==='0')?'нет':'да'
