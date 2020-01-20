@@ -596,9 +596,15 @@ nav button {
       justify-content: space-between;
   }
 
-  .pl-summ label, .pl-summ h4, .pl-summ h5{
-      display: inline-block; margin: 0px 5px;
+  .pl-summ label {
+    display: inline-block;
   }
+
+  .pl-summ h4, .pl-summ h5{
+      display: inline-block; margin: 0px 5px; float: right;
+  }
+  
+  .pl-summ h4 { font-weight: 800;}
 
   .input-error-message {
       color: red;
@@ -643,7 +649,7 @@ nav button {
     display: inline-block;
 }
 
-.get-fransgize-widget {
+/* .get-fransgize-widget {
     display: table-row;
 }
 .get-fransgize-widget label {
@@ -652,7 +658,44 @@ nav button {
 .get-fransgize-widget select {
     display: table-cell;
     width: 120px;
+} */
+.get-fransgize-widget {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
+
+
+.get-fransgize-widget .select-input
+{
+width: 150px;
+}
+
+.dgo-parameters .form-input-row {
+    /* border: 1px red solid; */
+    margin-top: -10px;
+}
+
+.dgo-parameters .select-input select {
+    padding: 0px 30px 0px 5px;
+
+}
+
+.dgo-parameters .select-options-block {
+    display:flex;    
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.dgo-type {
+   width: 180px;  
+}
+
+.dgo-insur-sum {
+    width: auto;
+}
+
 
 .vin-widget {
     display: table-row;
@@ -701,4 +744,9 @@ nav button {
 .dgo-propmis-title {
     margin-top: 15px;
     text-align: right;
+}
+
+.axtra-calculate-options {
+    display: flex; 
+    flex-direction: column;
 }

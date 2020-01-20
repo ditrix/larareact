@@ -181,7 +181,7 @@ class CommitPage extends Component {
                             </div>    
                         </div>
                     </main> 
-                </form>
+                </form>            
                 <footer>
                 <nav  className="clearfix">
                         <button className="btn-main-form-navigate btn-prev" 

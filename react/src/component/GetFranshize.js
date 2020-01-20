@@ -6,19 +6,21 @@ class GetFranshize extends Component {
 
     render(){
         return(
+            <div>
             <div className="get-fransgize-widget">
-              <label  className="pl-summ">франшиза (грн):</label>
-              <div className="select-input block-value" defaultValue>
-              <select onChange={this.handleFranshizeChange.bind(this)} defaultValue={this.props.franshize}>
-                  <option value="1">2600</option>
-                  <option value="1">1300</option>
-                  <option value="1">0</option>
-              </select>  
-              
-              </div>
-               <label>
+
+                <label  className="pl-summ">франшиза (грн):</label>
+                <div className="select-input block-value" defaultValue>
+                    <select onChange={this.handleFranshizeChange.bind(this)} defaultValue={this.props.franshize}>
+                        <option value="2600">2600</option>
+                        <option value="1300">1300</option>
+                        <option value="0">0</option>
+                    </select>  
+                </div>
+                <label>
                {QuestionDropdown('Франшиза - це частина збитків, яка не підлягає відшкодуванню страховиком.')}
-              </label>
+                </label>
+            </div>
             </div>
         )
     }
