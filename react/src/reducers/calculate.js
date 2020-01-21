@@ -6,31 +6,23 @@ const initialState = {
     valueK1: '0',
     valueK2: '0',
     valueK3: '0',
-    valueFranshize: 0,
-    
-    calcValueK1: 0,
-    calcValueK2: 0,
-    calcValueK3: 0,
+    valueK4: '0',
+    valueK5: '0',
+    valueK6: '0',
+    valueK7: '0',
+    valueK8: '0',
 
+    valueFranshize: "0",
+    valueDiscount: "0",
 }
 
-
-
-
 export const reducerCalculate = (state = initialState, action) => {
+    console.log(action.payload)
+    console.log(state)
     switch(action.type){
         case CALCULTATE_POLIS:
-            
-            //  if(action.payload.valueK1){
-            //      return {...state, valueK1:action.payload.valueK1}
-            //  }
-            
-            //  if(action.payload.valueK2){
-            //      return {...state, valueK2:action.payload.valueK2.}
-            //  }
-            // return state
-            return {...state, state:action.payload}
-
+            const newState = Object.assign({},state,action.payload)
+            return newState
          default:
             return state        
     }

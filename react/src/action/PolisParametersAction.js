@@ -46,7 +46,7 @@ export function actionSearchVehicle(parameters){
         calcValueK1 = 0
      }
 
-     console.log('calcValueK1 =',calcValueK1)
+//     console.log('calcValueK1 =',calcValueK1)
 
      let calcValueK2 = 0;
      switch(options.valueK2){
@@ -60,19 +60,36 @@ export function actionSearchVehicle(parameters){
             calcValueK2 = 0;    
      }
 
-     console.log('calcValueK2 =',calcValueK2)
+    let calcDiscountValue = (options.valueDiscount === '1')?0.5:1
+
+//    console.log('calcValueK2 =',calcValueK2)
+
+    let calcValueK3 = 1
+     switch(options.valueK3){
+         case 0: calcValueK3 = 1; break;
+         case 1: calcValueK3 = 1.4; break;
+         default:
+             calcValueK3 = 1
+     }
+
+    let calcValueK4 = 1.6
+    let calcValueK5 = 1
+    let calcValueK6 = 1
+    let calcValueK7 = 1
+    let calcValueK8 = 0.95
 
 
-    const result = 180* calcValueK1 * calcValueK1 // TODO: проверка параметров на существование
+    const result = 180* calcValueK1 * calcValueK2 * calcDiscountValue * calcValueK3 * calcValueK4 * calcValueK5 * calcValueK6 * calcValueK7 * calcValueK8  
+    // TODO: проверка параметров на существование
 //    console.log('place for calculate', valuesKO)
-    return result;
+    return Math.ceil(result);
 }
 
 export function actionOptionValuesChange(values){
     // расчет значений
     const result = calculateOSGPO(values)
     values.resultPl = result
-    console.log(values)
+
     return {
         type: CALCULTATE_POLIS,
         payload: values

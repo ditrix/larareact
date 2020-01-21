@@ -79,7 +79,10 @@ class PolisParameters extends Component{
 
     getDiscount(value){    
         this.setState({valueDiscount:value,validateMess:''})
-        this.props.calculatePl({valueDiscount:value})
+
+        const calculate = this.props.calculate
+        calculate.valueDiscount= value
+        this.props.calculatePl(calculate)
     }
 
     getOtk(value){
