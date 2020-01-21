@@ -3,15 +3,13 @@ import {connect} from 'react-redux'
 import {dataK1} from '../data/dataK1'
 // eslint-disable-next-line
 import {getDateUaStr,getStrContent} from '../lib/functions'
-import FormHeader from '../component/FormHeader'
+import FormHeader from './FormHeader'
 import {getTypeDocumentContent, 
         getDiscountContent, 
         getVehicleTypeNameContent, 
         getBoolTextContent,
         getVehicleCityContent
          } from '../component/templates/TemplatesStr'
-
-// import {commitData} from '../data/devcommitdata'
 
 import {actionCommitPolisData} from '../action/CommitActions'
 

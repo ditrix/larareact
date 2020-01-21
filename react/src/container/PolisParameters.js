@@ -18,7 +18,7 @@ import {emptyVehical} from '../data/emptyVehical'
 
 import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
-import FormHeader from '../component/FormHeader'
+import FormHeader from './FormHeader'
 
 // TODO: set state according values
 // TODO валидатор
@@ -91,7 +91,9 @@ class PolisParameters extends Component{
 
     getTaxi(value){
         this.setState({valueTaxi:value,validateMess:''})
-        this.props.calculatePl({valueK3:value})
+        const calculate = this.props.calculate
+        calculate.valueK3= value
+        this.props.calculatePl(calculate)
     }
 
     nextPage(data){
@@ -144,7 +146,6 @@ render(){
         <div className="make-polis-dialog">
             <header>
                 <FormHeader title='Розрахунок' />
-   
             </header>   
             <form className="tab-form">    
                 <div className="vehicle-parameters">

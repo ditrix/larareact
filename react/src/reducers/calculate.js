@@ -17,8 +17,7 @@ const initialState = {
 }
 
 export const reducerCalculate = (state = initialState, action) => {
-    console.log(action.payload)
-    console.log(state)
+
     switch(action.type){
         case CALCULTATE_POLIS:
             const newState = Object.assign({},state,action.payload)

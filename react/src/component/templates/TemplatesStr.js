@@ -38,6 +38,8 @@ export const getVehicleCityContent = (city,lang='ua') => {
     return (lang === 'ua')?city.nameUa:city.nameRu
 }
 
+
 export const getBoolTextContent = (val, lang='ua') => {
+    // eslint-disable-next-line
     return (lang='ua')?(val==='0')?'ні':'так':(val==='0')?'нет':'да'
 }

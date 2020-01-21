@@ -1,15 +1,15 @@
 // FormHeader.js
 import React, {Component} from 'react'
 import {connect} from 'react-redux' 
-import GetFranshize from './GetFranshize'
-import {PaySumm,ItogSumm} from './PaySumm'
-import DgoParameters from './DgoParameters'
+import GetFranshize from '../component/GetFranshize'
+import {PaySumm,ItogSumm} from '../component/PaySumm'
+import DgoParameters from '../component/DgoParameters'
 
 
 class FormHeader extends Component {
     constructor(props){
         super(props)
-        console.log('this.props.resultOsgpo: ',this.props.resultOsgpo)
+        // console.log('this.props.resultOsgpo: ',this.props.resultOsgpo)
         this.state = {
             osagoPL: this.props.resultOsgpo,
             dgoPl: 0,
@@ -24,7 +24,7 @@ class FormHeader extends Component {
     //   }
 
     render(){
-        console.log('FormHeader.this.props.resultOsgpo',this.props.resultOsgpo)
+        // console.log('FormHeader.this.props.resultOsgpo',this.props.resultOsgpo)
 
          // eslint-disable-next-line 
         const osagoPL = this.state.osagoPl
@@ -38,7 +38,7 @@ class FormHeader extends Component {
                 <div className="header-block result">
                     {PaySumm(this.props.resultOsgpo,'нараховано ОСАГО')}
                     {PaySumm(500,'нараховано ДГО')}
-                    {ItogSumm(100500,'До сплати')}
+                    {ItogSumm(this.props.resultOsgpo,'До сплати')}
                 </div>      
             </div>
         )
@@ -46,7 +46,6 @@ class FormHeader extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.calculate.resultPl)
     return{
   
         resultOsgpo: state.calculate.resultPl,  
@@ -57,14 +56,4 @@ const mapStateToProps = state => {
 
 //export default FormHeader
 export default connect(mapStateToProps, {})(FormHeader)
-
-
-/*
-const mapStateToProps = store => {
-    return {
-        parameters: store.parameters,
-        calculate: store.calculate
-    }
-}
-*/
 

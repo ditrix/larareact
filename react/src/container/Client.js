@@ -6,7 +6,7 @@ import 'react-day-picker/lib/style.css';
 
 import {INVALID_DATA_MMESSAGE_UA} from '../constants'
 import {actionSaveClient} from '../action/ClientAction'
-import FormHeader from '../component/FormHeader'
+import FormHeader from './FormHeader'
 
 
 // ввод даних про страхувальника
