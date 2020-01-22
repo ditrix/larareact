@@ -1,4 +1,6 @@
 import {VALIDATE_POLIS_PARAMETERS, SAVE_POLIS_PARAMETERS, CALCULTATE_POLIS} from '../constants'
+import {getResultOsgpo} from '../calculate'
+
 
 export function actionValidatePolisParameters(parameters){
     return {
@@ -101,11 +103,18 @@ export function actionSearchVehicle(parameters){
         calcValues.valueK8 * 
         calcValues.valueDiscount
 
+
+
+
     return Math.ceil(result);
 }
 
 export function actionOptionValuesChange(values){
     // расчет значений
+
+
+    console.log('actionOptionValuesChange: ',values)
+
     const result = calculateOSGPO(values)
     values.resultPl = result
 

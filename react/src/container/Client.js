@@ -42,7 +42,7 @@ class Client extends Component {
 
 
     validateData(){
- //       console.log('validateData()')
+ 
         let formValid = true
         const tmpState = this.state
         if(this.state.client.lname === ''){

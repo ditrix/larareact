@@ -37,6 +37,7 @@ class PolisParameters extends Component{
     }
 
     parametersVehicleClick(e){
+        
         e.preventDefault()
         const tmpState = this.state
         tmpState.action  = ACTION_GET_VEHICLE  
@@ -47,6 +48,10 @@ class PolisParameters extends Component{
         tmpState.vehicle.RegNo = ''
         tmpState.vehicle.VIN = ''
         this.setState(tmpState)
+        const calculate = this.props.calculate
+        calculate.valueK1= '00'
+        calculate.par.k1 = '00' 
+        this.props.calculatePl(calculate)
      }
    
      searchVehicleClick(e){
@@ -73,6 +78,7 @@ class PolisParameters extends Component{
         if(value !== null){
         const calculate = this.props.calculate
         calculate.valueK1 = value
+        calculate.par.k1 = value
         this.props.calculatePl(calculate)
         }
     }
@@ -93,6 +99,7 @@ class PolisParameters extends Component{
         this.setState({valueTaxi:value,validateMess:''})
         const calculate = this.props.calculate
         calculate.valueK3= value
+        calculate.par.k3 = value
         this.props.calculatePl(calculate)
     }
 
@@ -116,6 +123,7 @@ class PolisParameters extends Component{
             this.setState(tmpState)
             const calculate = this.props.calculate
             calculate.valueK2 = value.zone
+            calculate.par.k2 = value.zone
             this.props.calculatePl(calculate)
         }
 
@@ -200,7 +208,7 @@ render(){
                     </div>
                     <div className="check-select-block">
                     {/* если такси или грузовик автобус прицепы -> покажем выбор техосмотра */}
-                    {((this.state.valueTaxi === "1")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
+                    {((this.state.valueTaxi === "3")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
                         <IsOtk isOtk={this.props.parameters.isOtk} getOtk={this.getOtk.bind(this)} />    
                         :<></>}
                     </div>
