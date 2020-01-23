@@ -18,7 +18,7 @@ class GetK1 extends Component {
     const currentK1 = (this.props.dataK1)?this.props.dataK1:'00'
     return(
       <div className="select-widget">
-        <label className="block-label">тип транспортного засобу</label>
+        {/* <label className="block-label">тип транспортного засобу</label> */}
         <div className="select-input">
         <select placeholder="параметри авто" onChange={this.handleSelectK1Changed.bind(this)} defaultValue={currentK1} >
         {(k1)&&k1.map((data,index) => 

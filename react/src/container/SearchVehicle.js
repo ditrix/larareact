@@ -86,14 +86,14 @@ class SearchVehicle extends Component {
         return(
         <div className="search-vehicle-wrapper">
             <div className='search-form'>
-                <label className="block-label">держ номер транспортного засобу</label>
+                {/* <label className="block-label">держ номер транспортного засобу</label> */}
                 <div className="input-group">
                     <input type="text" className="form-control" 
                         required 
                         onClick={this.handleVehicleClick.bind(this)} 
                         onKeyDown={this.handleVehicleKeyDown.bind(this)}
                         value={this.state.searchVehicleStr} 
-                        placeholder="держ номер..." 
+                        placeholder="держ номер транспортного засобу..." 
                         onChange={this.handleInputVehicleChange} />
                     <div className="input-group-append">
                         <span className="input-group-text">
