@@ -19,6 +19,7 @@ import {emptyVehical} from '../data/emptyVehical'
 import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
 import FormHeader from './FormHeader'
+import ParametersNav from '../component/ParametersNav'
 
 // TODO: set state according values
 // TODO валидатор
@@ -36,11 +37,12 @@ class PolisParameters extends Component{
         return (this.state.valueK1 !== '00') && (this.state.city.id !== '0')
     }
 
-    parametersVehicleClick(e){
-        
-        e.preventDefault()
+   
+   
+
+     setParameterAction(value){
         const tmpState = this.state
-        tmpState.action  = ACTION_GET_VEHICLE  
+        tmpState.action  = value  
         tmpState.valueK1 = '00'
         tmpState.vehicle.AutoDescr = ''
         tmpState.vehicle.DMarkName = ''
@@ -53,16 +55,6 @@ class PolisParameters extends Component{
         calculate.par.k1 = '00' 
         this.props.calculatePl(calculate)
      }
-   
-     searchVehicleClick(e){
-        e.preventDefault()  
-        const tmpState = this.state
-        tmpState.action = ACTION_SEARCH_VEHICLE
-        tmpState.valueK1 = '00'
-        tmpState.validateMes = ''
-        this.setState(tmpState)
-     }
-   
 
     setDiscount(){
         return (['A1','A2','B1','B2','B3'].indexOf(this.state.valueK1) !== -1)
@@ -154,23 +146,11 @@ render(){
         <div className="make-polis-dialog">
             <header>
                 <FormHeader title='Розрахунок' />
+                <ParametersNav  action={this.state.action} setParameterAction={this.setParameterAction.bind(this)} />
             </header>   
             <form className="tab-form">    
                 <div className="vehicle-parameters">
-                    <ul className="nav nav-pills">
-                        <li className="nav-item">
-                            <button 
-                                className={(this.state.action === ACTION_SEARCH_VEHICLE)?"parameters-link-active":"parameters-link-passive"} 
-                                onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером
-                            </button>
-                        </li>
-                        <li className="nav-item">
-                            <button 
-                                className={(this.state.action === ACTION_GET_VEHICLE)?"parameters-link-active":"parameters-link-passive"}  
-                                onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто
-                            </button>
-                        </li>
-                    </ul>
+ 
                     <div className="vehicle-result">
                     {(this.state.action === ACTION_SEARCH_VEHICLE)?
                         <div>
@@ -181,7 +161,6 @@ render(){
                      }
                     </div>               
                 </div>
-
                 <div className="city-parameters form-input-row">
                     <GetCity city={this.props.parameters.city} setCity={this.getCity.bind(this)} />                    
                 </div>

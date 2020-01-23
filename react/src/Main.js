@@ -66,11 +66,13 @@ class Main extends Component {
 
   render(){
     return (
-      <div className="main-form clearfix">
-        {(this.state.currentTab === TAB_COMMIT)&&<CommitPage  nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
-        {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
-        {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
-        {(this.state.currentTab === TAB_OBJECT)&&<InsuranceObject prevTab={this.actionPrevTab} nextTab={this.actionNextTab} />}
+      <div className="main-container">
+        <div className="main-form clearfix">
+          {(this.state.currentTab === TAB_COMMIT)&&<CommitPage  nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
+          {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
+          {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
+          {(this.state.currentTab === TAB_OBJECT)&&<InsuranceObject prevTab={this.actionPrevTab} nextTab={this.actionNextTab} />}
+        </div>
       </div>
     )}
   

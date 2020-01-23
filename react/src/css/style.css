@@ -91,15 +91,15 @@ main {
 
 
 .main-form {
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     background-color: white;
 }
 
 .tab-form {
    
-    padding: 15px;
-    margin: 15px auto;
+     padding: 15px;
+    /*margin: 15px auto; */
     width: 100%;
 
 }
@@ -160,6 +160,21 @@ main {
 
 .search-form, .parameter-form{ 
     margin: 10px;
+}
+
+.parameters-nav {
+    margin-left: -10px;
+    padding: 0px;
+    width: 100%;
+}
+
+.parameters-nav-item {
+    width: 50%;
+    height: 80px;
+}
+
+.parameters-nav-item button {
+    height: 100%;
 }
 
 .form-input-valid input {
@@ -307,8 +322,8 @@ main {
 
 .main-form {
     border: 1px var(--gray-border) solid;
-    padding: 10px;
-    margin: 10px auto;
+    /* padding: 10px;
+    margin: 10px auto; */
 }
 
 .main-form footer {
@@ -324,8 +339,8 @@ nav button {
     position: relative;
     display: inline-block;
     vertical-align: top;
-    width: auto;
-    min-width: 150px;
+    width: 100%;
+    /* min-width: 150px; */
     font-size: x-large;
     font-family: FuturaPT;
     font-weight: 300;
@@ -353,12 +368,12 @@ nav button {
 
 .parameters-link-active,
 .parameters-link-passive {
+    font-family: Tahoma, sans-serif;
     position: relative;
     display: inline-block;
     vertical-align: top;
-    width: auto;
-    min-width: 100px;
-    font-size: large;
+    font-size: x-large;
+    font-style: italic;
     font-family: FuturaPT;
     font-weight: 300;
     text-decoration: none;
@@ -384,16 +399,18 @@ nav button {
     transition: all .3s linear;
 }
  
-.parameters-link-active {background-color: var(--blue-button-color);}
-.parameters-link-passive {background-color: var(--gray-button-color);}
+.parameters-link-active {background-color: var(--blue-button-color); width: 100%;}
+.parameters-link-passive {background-color: var(--gray-button-color); width: 100%; color: var(--blue-button-color);}
 
 .btn-prev {
     display: inline-block;
     float: left;
+    width: 200px;
 }
 .btn-next {
     display: inline-block;
     float: right;
+    width: 200px;
 }
 
 
