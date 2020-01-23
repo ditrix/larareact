@@ -2,11 +2,13 @@ import {SAVE_POLIS_PARAMETERS,ACTION_SEARCH_VEHICLE } from '../constants'
 import {getCurrentDate} from '../lib/functions'
 
 const initialState = {
-        valueDiscount: '0',
-        valueTaxi: '0',
+        valueK10: '0',
+        valueK3: '0',
+        valueK1:'00',
+        valueK2: '0',
         isOtk: '0',
         dateOtk: getCurrentDate(),
-        valueK1:'00',
+        
         city: {
             id: "0",
             nameRu: "--место регистрации--",

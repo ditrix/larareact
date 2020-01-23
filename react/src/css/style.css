@@ -211,12 +211,12 @@ main {
 }
 
 .search-vehicle-wrapper {
-    height: 180px;
+    height: 100px; 
 }
 
 .vehicle-info {
-    padding: .375rem .375rem;
-    height: 128px;
+    /* padding: .375rem .375rem;
+    height: 128px; */
 }
 
 .vehicle-info ul {
