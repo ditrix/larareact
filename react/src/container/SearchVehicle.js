@@ -52,7 +52,9 @@ class SearchVehicle extends Component {
         if(this.state.searchVehicleStr === ''){
             return;
         }
-        this.setState({message:''})
+        const tmpState = this.state;
+        tmpState.message = ''        
+        this.setState(tmpState)
         const url = `${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
         if(this.validInputData()){
             this.setState({loaded: true, vehicle:emptyVehical,request:true})
@@ -104,7 +106,7 @@ class SearchVehicle extends Component {
             </div>
             <div className="form-message">
                 {(this.state.request)&&<Spinner />}
-                {(this.state.loaded)&&<span>{this.state.message}</span>}
+                {(this.state.loaded)?<span>{this.state.message}</span>:<span></span>}
             </div>
         </div>
     )}
