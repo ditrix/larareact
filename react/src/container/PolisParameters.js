@@ -19,6 +19,7 @@ import {emptyVehical} from '../data/emptyVehical'
 import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
 import FormHeader from './FormHeader'
+import ParametersNav from '../component/ParametersNav'
 
 // TODO: set state according values
 // TODO валидатор
@@ -28,6 +29,7 @@ class PolisParameters extends Component{
     constructor(props){
         super(props)
         this.state = this.props.parameters
+
         this.setDiscount = this.setDiscount.bind(this)
         this.validateForm = this.validateForm.bind(this) 
     }
@@ -36,10 +38,9 @@ class PolisParameters extends Component{
         return (this.state.valueK1 !== '00') && (this.state.city.id !== '0')
     }
 
-    parametersVehicleClick(e){
-        e.preventDefault()
+    setParameterAction(value){
         const tmpState = this.state
-        tmpState.action  = ACTION_GET_VEHICLE  
+        tmpState.action  = value  
         tmpState.valueK1 = '00'
         tmpState.vehicle.AutoDescr = ''
         tmpState.vehicle.DMarkName = ''
@@ -47,21 +48,14 @@ class PolisParameters extends Component{
         tmpState.vehicle.RegNo = ''
         tmpState.vehicle.VIN = ''
         this.setState(tmpState)
-     }
-   
-     searchVehicleClick(e){
-        e.preventDefault()  
-        const tmpState = this.state
-        tmpState.action = ACTION_SEARCH_VEHICLE
-        tmpState.valueK1 = '00'
-        tmpState.validateMes = ''
-        this.setState(tmpState)
-     }
-   
+        const calculate = this.props.calculate
+        calculate.valueK1= '00'
+        calculate.par.k1 = '00' 
+        this.props.calculatePl(calculate)
+    }
 
     setDiscount(){
         return (['A1','A2','B1','B2','B3'].indexOf(this.state.valueK1) !== -1)
-        
     }
 
     getK1Value(value){
@@ -69,32 +63,60 @@ class PolisParameters extends Component{
         tmpState.valueK1 = value
         tmpState.validateMess = ''
         this.setState(tmpState)
-
         if(value !== null){
-        const calculate = this.props.calculate
-        calculate.valueK1 = value
-        this.props.calculatePl(calculate)
+            const calculate = this.props.calculate
+            calculate.valueK1 = value  // TODO erase
+            calculate.par.k1 = value
+            this.props.calculatePl(calculate)
         }
     }
 
+
+    getSearchResult(value){
+        const vehicle = (value !== null)?value:emptyVehical
+        const calculate = this.props.calculate
+        calculate.par.k1 = vehicle.DVehicleTypeType 
+        calculate.valueK1 = vehicle.DVehicleTypeType
+        this.props.calculatePl(calculate)
+        const tmpState = this.state 
+        tmpState.valueK1 = value.DVehicleTypeType
+        tmpState.vehicle = value
+        this.setState(tmpState)
+    }    
+
     getDiscount(value){    
         this.setState({valueDiscount:value,validateMess:''})
-
         const calculate = this.props.calculate
         calculate.valueDiscount= value
+        calculate.par.k10 = value
+        calculate.par.k3 = '0'
         this.props.calculatePl(calculate)
-    }
-
-    getOtk(value){
-        this.setState({isOtk:value,validateMess:''})
+        this.setState({valueTaxi:(value ==='')?'0':'1',isOtk:(value!=='0')? value:'0',validateMess:''})
     }
 
     getTaxi(value){
-        this.setState({valueTaxi:value,validateMess:''})
+        this.setState({valueTaxi:value,isOtk:(value==='0')? value:'1',validateMess:''})
         const calculate = this.props.calculate
         calculate.valueK3= value
+        calculate.par.k3 = value
         this.props.calculatePl(calculate)
     }
+
+
+    getOtk(value){
+        this.setState({isOtk:value,validateMess:''})
+        this.props.saveParameters(this.state)
+    }
+
+
+    getDateOtk(value){
+        const tmpState = this.state
+        tmpState.dateOtk = (value !== undefined)?value:dateFormatApi(new Date())
+        tmpState.validateMess = ''
+        this.setState(tmpState)
+    }
+
+
 
     nextPage(data){
         if(this.validateForm()){
@@ -116,64 +138,34 @@ class PolisParameters extends Component{
             this.setState(tmpState)
             const calculate = this.props.calculate
             calculate.valueK2 = value.zone
+            calculate.par.k2 = value.zone
             this.props.calculatePl(calculate)
         }
 
     }
 
-    getVehicle(value){
-        const vehicle = (value !== null)?value:emptyVehical
-        const tmpState = this.state
-        tmpState.valueK1 = vehicle.DVehicleTypeType
-        tmpState.vehicle = vehicle
-        tmpState.validateMess = ''
-        this.setState(tmpState)
-        
-        this.props.calculatePl({valueK1: vehicle.DVehicleTypeType})
-    }
-
-    getDateOtk(value){
-        const tmpState = this.state
-        tmpState.dateOtk = (value !== undefined)?value:dateFormatApi(new Date())
-        tmpState.validateMess = ''
-        this.setState(tmpState)
-    }
-
-
 render(){
-  
     return(
         <div className="make-polis-dialog">
             <header>
-                <FormHeader title='Розрахунок' />
+                <FormHeader title='' /> 
+                <ParametersNav  action={this.state.action} setParameterAction={this.setParameterAction.bind(this)} />
             </header>   
             <form className="tab-form">    
                 <div className="vehicle-parameters">
-                    <ul className="nav nav-pills">
-                        <li className="nav-item">
-                            <button 
-                                className={(this.state.action === ACTION_SEARCH_VEHICLE)?"parameters-link-active":"parameters-link-passive"} 
-                                onClick={this.searchVehicleClick.bind(this)}>пошук за держ номером
-                            </button>
-                        </li>
-                        <li className="nav-item">
-                            <button 
-                                className={(this.state.action === ACTION_GET_VEHICLE)?"parameters-link-active":"parameters-link-passive"}  
-                                onClick={this.parametersVehicleClick.bind(this)}>внести параметри авто
-                            </button>
-                        </li>
-                    </ul>
+ 
                     <div className="vehicle-result">
                     {(this.state.action === ACTION_SEARCH_VEHICLE)?
                         <div>
-                            <SearchVehicle dataVehicle={this.state.vehicle}  getVehicle={this.getVehicle.bind(this)} />
+                            <SearchVehicle dataVehicle={this.state.vehicle}  getVehicle={this.getSearchResult.bind(this)} />
                             {SearchResultTemplate(this.state.vehicle)}
                         </div>    
-                       :<div className='form-input-row'><GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} /></div>
+                       :<div className='form-input-row'>
+                            <GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} />
+                        </div>
                      }
                     </div>               
                 </div>
-
                 <div className="city-parameters form-input-row">
                     <GetCity city={this.props.parameters.city} setCity={this.getCity.bind(this)} />                    
                 </div>
@@ -186,21 +178,21 @@ render(){
                             discount={this.props.parameters.valueDiscount} 
                             isDiscount={this.getDiscount.bind(this)} 
                         />
-                        }
+                    }
                     </div>
                     <div className="check-select-block">
                     {/* если нет льгот и легковой или автобус до 20 мест -> покажем выбор такси */}
-                    {(((this.state.valueDiscount === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.state.valueK1) !== -1))
-                        ||(['D1'].indexOf(this.state.valueK1) !== -1))?
+                     {(((this.props.calculate.par.k10 === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.props.calculate.par.k1) !== -1))
+                        ||(['D1'].indexOf(this.props.calculate.par.k1) !== -1))?
                         <GetTaxi 
                             getTaxi={this.getTaxi.bind(this)} 
                             valueTaxi={this.props.parameters.valueTaxi} 
                         />
-                        :<></>}
+                        :<></>} 
                     </div>
                     <div className="check-select-block">
                     {/* если такси или грузовик автобус прицепы -> покажем выбор техосмотра */}
-                    {((this.state.valueTaxi === "1")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
+                    {((this.props.calculate.par.k3 === "3")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
                         <IsOtk isOtk={this.props.parameters.isOtk} getOtk={this.getOtk.bind(this)} />    
                         :<></>}
                     </div>
@@ -239,6 +231,7 @@ const mapStateToProps = store => {
 }
 
 const mapDispatchToProps = dispatch => {
+
     return {
         saveParameters: (parameters) => dispatch(actionSavePolisParameters(parameters)),
         calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo))

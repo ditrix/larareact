@@ -1,14 +1,11 @@
 import React, {Component} from 'react'
 
 
+//  TODO: не позволять раньше текущей даты
 
 class IsOtk extends Component {
   
-//    handleIsOtkChange(e){
-//       //console.log(e.currentTarget.value)  
-//       this.setState({useOtk:e.currentTarget.value})
 
-//     }
     handleIsOtkChange = event => this.props.getOtk(event.currentTarget.value)
 
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 
-class GetDiscount extends Component {
+class GetK10 extends Component {
     getValue = event => this.props.isDiscount(event.currentTarget.value)
     render(){
         return(
@@ -21,4 +21,4 @@ class GetDiscount extends Component {
     }
 }
 
-export default GetDiscount
+export default GetK10

@@ -29,7 +29,7 @@ class CommitPage extends Component {
     }
 
     render(){
-        //const data=commitData
+
         const data = {
                 parameters: this.props.parameters,
                 client: this.props.client,
@@ -215,7 +215,6 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return {
         commitPolsData: () => dispatch(actionCommitPolisData()),
-
     }
 }
 
