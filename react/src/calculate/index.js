@@ -118,7 +118,7 @@ export function getResultOsgpo(bp = 180 ,
                 valueK3*
                 valueK4*
                 valueK5*
-            //    valueK6*
+                valueK6*
                 valueK7*
                 valueK8*
                 valueK9*
@@ -128,4 +128,12 @@ export function getResultOsgpo(bp = 180 ,
                 valueK13;
 
         return Math.ceil(result)
+    }
+
+    export function getResultDgo(pardgo={k2:'0',ss: '0'}){
+        return 0;
+    }
+
+    export function getResultDgoPlus(pardgo={k2:'0',ss: '0'}){
+        return 0;
     }

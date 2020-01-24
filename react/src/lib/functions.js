@@ -4,12 +4,12 @@ export const checkIntegerStr = (value,length=10) => {
     return ((value.length <= length)&&((value.match(/^\d+$/) !== null) || value.length === 0))
 }
 
-export const checkIpn = (value) => {
-    return checkIntegerStr(value,10)
+export const filterInputVehickleNo = str => {
+    return str.toUpperCase().match(/[a-zA-Zа-яА-ЯїЇіІ0-9./]{0,15}/)
 }
 
-export const checkVehicleNo = () => {
-    return
+export const checkIpn = (value) => {
+    return checkIntegerStr(value,10)
 }
 
 export const dateFormatApi = date => {

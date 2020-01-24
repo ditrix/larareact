@@ -8,6 +8,12 @@ import {INVALID_DATA_MMESSAGE_UA} from '../constants'
 import {actionSaveClient} from '../action/ClientAction'
 import FormHeader from './FormHeader'
 
+//  TODO:  проверка тел и email
+//  https://zennolab.com/discussion/threads/reguljarnoe-vyrazhenie-pod-poisk-mobilnyx-nomerov-ukrainy.46431/
+// https://ru.stackoverflow.com/questions/504463/%d0%9f%d1%80%d0%be%d0%b2%d0%b5%d1%80%d0%ba%d0%b0-%d0%bd%d0%b0-%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%bd%d0%be%d1%81%d1%82%d1%8c-%d1%83%d0%ba%d1%80%d0%b0%d0%b8%d0%bd%d1%81%d0%ba%d0%be%d0%b3%d0%be-%d0%bd%d0%be%d0%bc%d0%b5%d1%80%d0%b0-%d1%82%d0%b5%d0%bb%d0%b5%d1%84%d0%be%d0%bd%d0%b0-380-php
+// https://developer.mozilla.org/uk/docs/Web/JavaScript/Guide/Regular_Expressions
+//  4beginers   https://realadmin.ru/coding/valid-field-js.html        !!!!!!!!!!!!!!!!!!!!!!!!!!!
+//  проверку проводим в стандартном валидаторе (т.е. при проїоде на next) 
 
 // ввод даних про страхувальника
 class Client extends Component {
@@ -218,11 +224,13 @@ class Client extends Component {
         client.addr = event.currentTarget.value
         this.setState({client:client, msgAddrValid:''})
     }
-    
+  
+
     handlePhoneChanged = (event) => { 
         const client = this.state.client;
-        client.phone = event.currentTarget.value 
+        client.phone = event.currentTarget.value
         this.setState({client:client, msgPhoneValid:''})
+        console.log(event.currentTarget.value.match(/^\+380\d{3}\d{2}\d{2}\d{2}$/))
     }
     
     handleEmailChanged = (event) => { 
@@ -379,7 +387,7 @@ class Client extends Component {
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">Телефон:</label>
-                    <input placeholder={'+38'}  value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
+                    <input type="tel" placeholder={'+38'}  value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
                     <span className="input-error-message">{this.state.msgPhoneValid}</span>
                 </div>                
                 <div className="form-input-item">

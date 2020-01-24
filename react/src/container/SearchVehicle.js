@@ -9,11 +9,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 // eslint-disable-next-line
 import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 import {emptyVehical} from '../data/emptyVehical'
-/* 
-АН5339НЕ 
-АН7142СК 
-АН3900МА 
-*/
+import {filterInputVehickleNo} from '../lib/functions'
 
 class SearchVehicle extends Component {
     constructor(props){
@@ -28,13 +24,7 @@ class SearchVehicle extends Component {
        this.handleInputVehicleChange = this.handleInputVehicleChange.bind(this)
     }
 
-    validInputData(){
-        // eslint-disable-next-line
-        let regex = /^[a-zA-Zа-яА-ЯїЇіІ0-9./]{0,15}$/
-        // ...
-        return true
-    }
-
+    
     handleVehicleKeyDown(e){
         if(e.keyCode === 13){
           e.preventDefault()
@@ -43,7 +33,10 @@ class SearchVehicle extends Component {
     }
     
     handleInputVehicleChange(e){
-        this.setState({searchVehicleStr: e.currentTarget.value})
+        console.log(e.currentTarget.value)
+        const tmpState = this.state
+        tmpState.searchVehicleStr = filterInputVehickleNo(e.currentTarget.value)
+        this.setState(tmpState)
     }
 
     handleVehicleClick(){
@@ -115,5 +108,10 @@ class SearchVehicle extends Component {
 }
 
 export default SearchVehicle
-// BH3003CM
- 
+// 
+ /* 
+АН5339НЕ 
+АН7142СК 
+АН3900МА 
+BH3003CM
+*/

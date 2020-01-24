@@ -15,22 +15,27 @@
     --blue-button-color: #1fb6ff;
     --red-button-color: #e21b2d;
     --dark-block-color: #2e3d4d;
- 
     --common-dark-gray: #384657;
-
-  
-
   } 
   
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    background-color: whitesmoke;
-
+    background-color:  lightgray;
+    
 }
+
+main header footer section aside article {
+    display: block;
+}
+
 
 h1, h2, h3, h4, h5 {
     color: var(--common-blue-color);
+}
+
+.main-container {
+    padding: 50px;
 }
 
 input, select {
@@ -689,6 +694,16 @@ nav button {
 width: 150px;
 }
 
+.dgo-values {
+    display: flex;
+    flex-direction: row;
+}
+
+.dgo-parameters {
+    display: flex;
+    flex-direction: column;
+}
+
 .dgo-parameters .form-input-row {
     /* border: 1px red solid; */
     margin-top: -10px;
@@ -707,7 +722,7 @@ width: 150px;
 }
 
 .dgo-type {
-   width: 180px;  
+   width: 120px;  
 }
 
 .dgo-insur-sum {
