@@ -72,6 +72,7 @@ export function getResultOsgpo(bp = 180 ,
             default:  valueK2 = valueK62 = 0;
         }
 
+        
 
         // такси\нетакси
         switch(par.k3){
@@ -91,9 +92,9 @@ export function getResultOsgpo(bp = 180 ,
         }
 
         switch(par.k12){
-            case '2600': valueK612 = 1; break;
-            case '1300': valueK612 = 1.07; break;
-            case '0':    valueK612 = 1.14; break;
+            case '2600': valueK12=1; valueK612 = 1; break;
+            case '1300': valueK12=1.07; valueK612 = 1.07; break;
+            case '0':    valueK12=1.14; valueK612 = 1.14; break;
         }
 
         const valueK6 = 
@@ -117,7 +118,7 @@ export function getResultOsgpo(bp = 180 ,
                 valueK3*
                 valueK4*
                 valueK5*
-                valueK6*
+            //    valueK6*
                 valueK7*
                 valueK8*
                 valueK9*
@@ -125,5 +126,6 @@ export function getResultOsgpo(bp = 180 ,
                 valueK11*
                 valueK12*
                 valueK13;
-        return result
+
+        return Math.ceil(result)
     }

@@ -10,7 +10,6 @@ import {actionSavePolisParameters,actionOptionValuesChange} from '../action/Poli
 class FormHeader extends Component {
     constructor(props){
         super(props)
-        // console.log('this.props.resultOsgpo: ',this.props.resultOsgpo)
         this.state = {
             osagoPL: this.props.resultOsgpo,
             dgoPl: 0,
@@ -23,7 +22,10 @@ class FormHeader extends Component {
                 k12: value
             }
         }
-        this.props.calculatePl(valueK12)
+
+        const calculate = this.props.calculate
+        calculate.par.k12 = value
+        this.props.calculatePl(calculate)
     }
 
     render(){
@@ -32,7 +34,7 @@ class FormHeader extends Component {
             <div className="form-header">
                 <div className="header-block title"><h3>{this.props.title}</h3></div>
                 <div  className="header-block axtra-calculate-options">
-                    <GetFranshize getFeanshize={this.getFranshize.bind(this)} currentFranshize={this.props.currentFranshize} />
+                    <GetFranshize getFeanshize={this.getFranshize.bind(this)} currentFranshize={this.props.calculate.k12} />
                     <DgoParameters />
                 </div>
                 <div className="header-block result">
@@ -47,6 +49,8 @@ class FormHeader extends Component {
 
 const mapStateToProps = state => {
     return{
+        //parameters: store.parameters,
+        calculate: state.calculate,
         currentFranshize: state.calculate.par.k12,
         resultOsgpo: state.calculate.resultPl,  
     }

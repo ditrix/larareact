@@ -6,7 +6,7 @@ export const GetK2 = (lang='UA') => {
     const k2 = dataK2
     return(
         <div className="select-widget">
-            <label className="block-label">місце реєстрації власника ТЗ</label>
+            <label className="block-label">Місто реєстрації власника ТЗ</label>
             <div className="select-input">
                 <select>
                 {(k2)&&k2.map((data,index) => 

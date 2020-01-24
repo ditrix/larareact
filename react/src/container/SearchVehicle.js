@@ -8,15 +8,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 // eslint-disable-next-line
 import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
-
 import {emptyVehical} from '../data/emptyVehical'
-/*
-АН5339НЕ
-АН7142СК
-АН3900МА
-
+/* 
+АН5339НЕ 
+АН7142СК 
+АН3900МА 
 */
-
 
 class SearchVehicle extends Component {
     constructor(props){
@@ -91,7 +88,7 @@ class SearchVehicle extends Component {
         return(
         <div className="search-vehicle-wrapper">
             <div className='search-form'>
-                <label className="block-label">держ номер транспортного засобу</label>
+                <label className="block-label">Державний номер ТЗ</label>
                 <div className="input-group">
                     <input type="text" className="form-control" 
                         required 

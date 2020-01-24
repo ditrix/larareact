@@ -90,7 +90,7 @@ export function actionSearchVehicle(parameters){
     calcValues.valueK8 = 0.95
 
 
-     console.log('calcValues: ',calcValues)
+  //   console.log('calcValues: ',calcValues)
 
     const result = 180* 
         calcValues.valueK1 * 
@@ -113,9 +113,10 @@ export function actionOptionValuesChange(values){
     // расчет значений
 
 
-    console.log('actionOptionValuesChange: ',values)
+    console.log('actionOptionValuesChange: ',values.par)
 
-    const result = calculateOSGPO(values)
+   //const result = calculateOSGPO(values)
+    const result = getResultOsgpo(180,values.par)
     values.resultPl = result
 
     return {
