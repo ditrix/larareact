@@ -185,13 +185,17 @@ render(){
                     </div>
                     <div className="check-select-block">
                     {/* если нет льгот и легковой или автобус до 20 мест -> покажем выбор такси */}
-                    {(((this.state.valueDiscount === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.state.valueK1) !== -1))
-                        ||(['D1'].indexOf(this.state.valueK1) !== -1))?
+                     {(((this.props.calculate.par.k10 === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.props.calculate.par.k1) !== -1))
+                        ||(['D1'].indexOf(this.props.calculate.par.k1) !== -1))?
                         <GetTaxi 
                             getTaxi={this.getTaxi.bind(this)} 
                             valueTaxi={this.props.parameters.valueTaxi} 
                         />
-                        :<></>}
+                        :<></>} 
+                        {/* {(this.props.calculate.par.k10 === "0")&&<GetTaxi 
+                            getTaxi={this.getTaxi.bind(this)} 
+                            valueTaxi={this.props.parameters.valueTaxi} 
+                        />} */}
                     </div>
                     <div className="check-select-block">
                     {/* если такси или грузовик автобус прицепы -> покажем выбор техосмотра */}
