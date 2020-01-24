@@ -57,6 +57,7 @@ class PolisParameters extends Component{
      }
 
     setDiscount(){
+        console.log('setDiscount => ',this.state.valueK1)
         return (['A1','A2','B1','B2','B3'].indexOf(this.state.valueK1) !== -1)
         
     }
@@ -66,14 +67,28 @@ class PolisParameters extends Component{
         tmpState.valueK1 = value
         tmpState.validateMess = ''
         this.setState(tmpState)
-
         if(value !== null){
-        const calculate = this.props.calculate
-        calculate.valueK1 = value
-        calculate.par.k1 = value
-        this.props.calculatePl(calculate)
+            const calculate = this.props.calculate
+            calculate.valueK1 = value  // TODO erase
+            calculate.par.k1 = value
+            this.props.calculatePl(calculate)
         }
     }
+
+
+    getSearchResult(value){
+        const vehicle = (value !== null)?value:emptyVehical
+        const calculate = this.props.calculate
+        calculate.par.k1 = vehicle.DVehicleTypeType 
+        calculate.valueK1 = vehicle.DVehicleTypeType
+        this.props.calculatePl(calculate)
+        
+        const tmpState = this.state 
+        tmpState.valueK1 = value.DVehicleTypeType
+        tmpState.vehicle = value
+        this.setState(tmpState)
+     
+    }    
 
     getDiscount(value){    
         this.setState({valueDiscount:value,validateMess:''})
@@ -121,16 +136,7 @@ class PolisParameters extends Component{
 
     }
 
-    getVehicle(value){
-        const vehicle = (value !== null)?value:emptyVehical
-        const tmpState = this.state
-        tmpState.valueK1 = vehicle.DVehicleTypeType
-        tmpState.vehicle = vehicle
-        tmpState.validateMess = ''
-        this.setState(tmpState)
-        
-        this.props.calculatePl({valueK1: vehicle.DVehicleTypeType})
-    }
+
 
     getDateOtk(value){
         const tmpState = this.state
@@ -141,11 +147,11 @@ class PolisParameters extends Component{
 
 
 render(){
-  
+    console.log(this.state.valueK1)
     return(
         <div className="make-polis-dialog">
             <header>
-                <FormHeader title='Розрахунок' />
+                <FormHeader title='' /> 
                 <ParametersNav  action={this.state.action} setParameterAction={this.setParameterAction.bind(this)} />
             </header>   
             <form className="tab-form">    
@@ -154,10 +160,12 @@ render(){
                     <div className="vehicle-result">
                     {(this.state.action === ACTION_SEARCH_VEHICLE)?
                         <div>
-                            <SearchVehicle dataVehicle={this.state.vehicle}  getVehicle={this.getVehicle.bind(this)} />
+                            <SearchVehicle dataVehicle={this.state.vehicle}  getVehicle={this.getSearchResult.bind(this)} />
                             {SearchResultTemplate(this.state.vehicle)}
                         </div>    
-                       :<div className='form-input-row'><GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} /></div>
+                       :<div className='form-input-row'>
+                            <GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} />
+                        </div>
                      }
                     </div>               
                 </div>
@@ -173,7 +181,7 @@ render(){
                             discount={this.props.parameters.valueDiscount} 
                             isDiscount={this.getDiscount.bind(this)} 
                         />
-                        }
+                    }
                     </div>
                     <div className="check-select-block">
                     {/* если нет льгот и легковой или автобус до 20 мест -> покажем выбор такси */}
@@ -226,6 +234,7 @@ const mapStateToProps = store => {
 }
 
 const mapDispatchToProps = dispatch => {
+
     return {
         saveParameters: (parameters) => dispatch(actionSavePolisParameters(parameters)),
         calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo))

@@ -15,8 +15,6 @@ import {emptyVehical} from '../data/emptyVehical'
 АН7142СК
 АН3900МА
 
-
-
 */
 
 
