@@ -9,14 +9,14 @@ class Lang extends Component {
 		e.preventDefault()
         //this.props.setLang('ua');
 		store.lang = 'ua'
-		this.props.switchLang()
+		this.props.switchLang('ua')
 	}
 
 	handleSetRu(e){
 		e.preventDefault()
         //this.props.setLang('ru')
 		store.lang = 'ru'
-		this.props.switchLang()
+		this.props.switchLang('ru')
 	}
 
 	render(){
@@ -43,7 +43,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      switchLang: () => dispatch(actionSwitchLang()),
+      switchLang: (lang) => dispatch(actionSwitchLang(lang)),
     }
 }
 

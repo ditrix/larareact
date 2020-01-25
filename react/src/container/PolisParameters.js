@@ -9,7 +9,7 @@ import GetCity from '../component/GetCity'
 
 import {SearchResultTemplate} from '../component/SearchResultTemplate'
 
-import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../action'
+import {ACTION_SEARCH_VEHICLE} from '../action'
 
 import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
 import {dateFormatApi} from '../lib/functions'
@@ -161,13 +161,21 @@ render(){
                             {SearchResultTemplate(this.state.vehicle)}
                         </div>    
                        :<div className='form-input-row'>
-                            <GetK1 lang={this.props.lang} dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} />
+                            <GetK1 
+                                lang={this.props.lang} 
+                                dataK1={this.state.valueK1} 
+                                getK1={this.getK1Value.bind(this)} 
+                            />
                         </div>
                      }
                     </div>               
                 </div>
                 <div className="city-parameters form-input-row">
-                    <GetCity city={this.props.parameters.city} setCity={this.getCity.bind(this)} />                    
+                    <GetCity 
+                        lang={this.props.lang} 
+                        city={this.props.parameters.city} 
+                        setCity={this.getCity.bind(this)} 
+                    />
                 </div>
                     
                 <div className="addition-parameters form-input-row">   

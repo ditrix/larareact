@@ -17,12 +17,7 @@ class FormHeader extends Component {
     }
 
     getFranshize(value){
-        const valueK12 = {
-            par:{
-                k12: value
-            }
-        }
-
+ 
         const calculate = this.props.calculate
         calculate.par.k12 = value
         this.props.calculatePl(calculate)
