@@ -2,7 +2,7 @@ import {CALCULTATE_POLIS} from '../constants'
 
 const initialState = {
     par: { 
-        k1 : '0',  // тип ТС
+        k1 : '00',  // тип ТС
         k2 : '0',  // город регистрации
         k3 : '0',  // такси\нетакси  def нетакси
         k4 : '1',  // физ\юр const физ

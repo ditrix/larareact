@@ -5,6 +5,7 @@ import PolisParameters from './container/PolisParameters'
 import Client from './container/Client'
 import InsuranceObject from './container/InsuranceObject'
 import CommitPage from './container/CommitPage'
+import Lang from './component/Lang'
 
 import { TAB_PARAMETERS, TAB_CLIENT, TAB_OBJECT, TAB_COMMIT } from './constants'
 
@@ -66,12 +67,18 @@ class Main extends Component {
 
   render(){
     return (
-      <div className="main-container">
+      <div className="main-container debug">
+        <div className="main-content">
+          <Lang />
         <div className="main-form clearfix">
+        
+
+
           {(this.state.currentTab === TAB_COMMIT)&&<CommitPage  nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
           {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
           {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
           {(this.state.currentTab === TAB_OBJECT)&&<InsuranceObject prevTab={this.actionPrevTab} nextTab={this.actionNextTab} />}
+        </div>
         </div>
       </div>
     )}

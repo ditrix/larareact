@@ -22,7 +22,7 @@ class GetK1 extends Component {
         <div className="select-input">
         <select placeholder="параметри авто" onChange={this.handleSelectK1Changed.bind(this)} defaultValue={currentK1} >
         {(k1)&&k1.map((data,index) => 
-            <option key={index} value={data.KO}>{data.nameUA}</option>
+            <option key={index} value={data.KO}>{(this.props.lang === 'ua')?data.nameUA:data.nameRU}</option>
           )}
         </select>
         </div>

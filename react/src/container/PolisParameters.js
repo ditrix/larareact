@@ -161,7 +161,7 @@ render(){
                             {SearchResultTemplate(this.state.vehicle)}
                         </div>    
                        :<div className='form-input-row'>
-                            <GetK1 dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} />
+                            <GetK1 lang={this.props.lang} dataK1={this.state.valueK1} getK1={this.getK1Value.bind(this)} />
                         </div>
                      }
                     </div>               
@@ -226,7 +226,8 @@ render(){
 const mapStateToProps = store => {
     return {
         parameters: store.parameters,
-        calculate: store.calculate
+        calculate: store.calculate,
+        lang: store.appstate.lang,
     }
 }
 
