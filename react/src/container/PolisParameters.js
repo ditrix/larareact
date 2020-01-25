@@ -20,6 +20,7 @@ import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
 import FormHeader from './FormHeader'
 import ParametersNav from '../component/ParametersNav'
+import {_I18N} from '../lib/i18n'
 
 // TODO: set state according values
 // TODO валидатор
@@ -149,7 +150,11 @@ render(){
         <div className="make-polis-dialog">
             <header>
                 <FormHeader title='' /> 
-                <ParametersNav  action={this.state.action} setParameterAction={this.setParameterAction.bind(this)} />
+                <ParametersNav  
+                    lang={this.props.lang}
+                    action={this.state.action} 
+                    setParameterAction={this.setParameterAction.bind(this)} 
+                />
             </header>   
             <form className="tab-form">    
                 <div className="vehicle-parameters">
@@ -222,7 +227,7 @@ render(){
             <nav  className="clearfix">
                 <button 
                     className="btn-main-form-navigate btn-next" 
-                    onClick={this.nextPage.bind(this)} >наступна</button> 
+                    onClick={this.nextPage.bind(this)} >{_I18N('next',this.props.lang)}</button> 
             </nav>
             <span className="input-error-message">{this.state.validateMess}</span>
             </footer>

@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 
 import {ACTION_SEARCH_VEHICLE,ACTION_GET_VEHICLE} from '../action'
+import {_I18N} from '../lib/i18n'
 
 class ParametersNav extends Component {
     searchVehicleClick(){
@@ -17,13 +18,15 @@ class ParametersNav extends Component {
             <li className="parameters-nav-item">
                 <button 
                     className={(this.props.action === ACTION_SEARCH_VEHICLE)?"parameters-link-active":"parameters-link-passive"} 
-                    onClick={this.searchVehicleClick.bind(this)}>Пошук за держ номером
+                    onClick={this.searchVehicleClick.bind(this)}>
+                {_I18N('search vehicle',this.props.lang)}
                 </button>
             </li>
             <li className="parameters-nav-item">
                 <button 
                     className={(this.props.action === ACTION_GET_VEHICLE)?"parameters-link-active":"parameters-link-passive"}  
-                    onClick={this.parametersVehicleClick.bind(this)}>Внести параметри авто
+                    onClick={this.parametersVehicleClick.bind(this)}>
+                {_I18N('input parameters',this.props.lang)}
                 </button>
             </li>
         </ul>           

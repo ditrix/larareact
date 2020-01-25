@@ -7,6 +7,7 @@ import 'react-day-picker/lib/style.css';
 import {INVALID_DATA_MMESSAGE_UA} from '../constants'
 import {actionSaveClient} from '../action/ClientAction'
 import FormHeader from './FormHeader'
+import {_I18N} from '../lib/i18n'
 
 //  TODO:  проверка тел и email
 //  https://zennolab.com/discussion/threads/reguljarnoe-vyrazhenie-pod-poisk-mobilnyx-nomerov-ukrainy.46431/
@@ -407,12 +408,15 @@ class Client extends Component {
             
               <button 
                 className="btn-main-form-navigate btn-prev" 
-                onClick={this.handleButtonPrevClicked.bind(this)} >попередня
+                onClick={this.handleButtonPrevClicked.bind(this)} >
+                    {_I18N('prev',this.props.lang)}
               </button>
               
               <button 
                 className="btn-main-form-navigate btn-next" 
-                onClick={this.handleButtonNextClicked.bind(this)} >наступна</button> 
+                onClick={this.handleButtonNextClicked.bind(this)} >
+                    {_I18N('next',this.props.lang)}
+                </button> 
             </nav>
         </footer>
             
@@ -426,7 +430,8 @@ class Client extends Component {
 const mapStateToProps = store => {
     return {
         client: store.client,
-        discount: store.parameters.valueDiscount
+        discount: store.parameters.valueDiscount,
+        lang: store.appstate.lang,
     }
 }
 

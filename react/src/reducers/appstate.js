@@ -1,7 +1,7 @@
 import {ACTION_SWITCH_LANG} from '../constants'
 
 const initialState = {
-    lang:'ru',
+    lang:'ua',
 }
 export const reducerAppState = (state = initialState, action ) => {
     switch(action.type){

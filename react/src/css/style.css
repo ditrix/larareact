@@ -235,6 +235,20 @@ main {
     height: 100px; 
 }
 
+.header-switch-lang {
+ 
+    width: 120px;
+}
+
+.header-switch-lang a {
+    text-decoration: none;
+    width: 50%;
+    padding: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+
 .vehicle-info {
     /* padding: .375rem .375rem;
     height: 128px; */
@@ -323,8 +337,14 @@ main {
 }
 
 
-.active-lang {color: red;}
-.unactive-lang {color: blue;}  
+.active-lang {
+    color: white; 
+    background-color: var(--blue-button-color);
+}
+.unactive-lang {
+    color:var(--blue-button-color); 
+    background-color: var(--main-background-gray);
+}  
 
 .main-form {
     border: 1px var(--gray-border) solid;

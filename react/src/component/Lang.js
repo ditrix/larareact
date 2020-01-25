@@ -23,11 +23,11 @@ class Lang extends Component {
 		
 		return(
 			<div className="header-switch-lang clearfix">
-       <a href={"/"} onClick={this.handleSetUa.bind(this)}>
-       	<span className={(this.props.lang==='ua')?"active-lang":"unactive-lang"}>Укр</span>
+       <a  className={(this.props.lang==='ua')?"active-lang":"unactive-lang"} href={"/"} onClick={this.handleSetUa.bind(this)}>
+       	<span>Укр</span>
        </a>
-       <a href={"/"} onClick={this.handleSetRu.bind(this)}>
-       	<span className={(this.props.lang==='ru')?"active-lang":"unactive-lang"}>Рус</span>
+       <a  className={(this.props.lang==='ru')?"active-lang":"unactive-lang"} href={"/"} onClick={this.handleSetRu.bind(this)}>
+       	<span>Рус</span>
        </a>
       </div>
 		)

@@ -1,21 +1,7 @@
-// библиотека переводов сообщений
-const messagesRUS = [
-    { 'PARAMETERS': 'Расчет' },
-    { 'CLIENT' :'Страхователь' },
-]
 
-const messagesUA = [
-    { 'PARAMETERS' : 'Розрахунок' },
-    { 'CLIENT' : 'Страхователь' },
-]
+import {locales} from './locales'
 
-
-
-export const strI18N = (str,lang='ua') => {
-    // switch(lang){
-    //         case: 'rus'
-    //     default:
-    //         return str
-    // }
-    return str
+export const _I18N = (str,lang='ua') => {
+    const res = locales[lang][str]
+    return (res !== undefined)?res:''
 }
