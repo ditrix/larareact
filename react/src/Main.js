@@ -24,8 +24,6 @@ class Main extends Component {
     this.actionPrevTab = this.actionPrevTab.bind(this)
   }
 
-
-
   actionNextTab(){
    switch(this.state.currentTab){
       case TAB_PARAMETERS:

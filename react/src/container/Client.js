@@ -254,7 +254,7 @@ class Client extends Component {
             <div className="make-polis-dialog">
                 <header>
                     <FormHeader 
-                        title='страхувальник'
+                        title={_I18N(MSG.CLIENT,this.props.lang)}
 
                         lang={this.props.lang} 
                     />
@@ -265,7 +265,7 @@ class Client extends Component {
                 <div className="form-input-item">
                     {/*<label className="block-label">Прізвище:</label>*/}
                     <input 
-                        placeholder='прізвище:'
+                        placeholder={_I18N(MSG.LAST_NAME,this.props.lang)}
                         value={this.state.client.lname} 
                         onChange={this.handleLNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
@@ -276,7 +276,7 @@ class Client extends Component {
                 <div className="form-input-item">
                     {/*<label className="block-label">Ім'я:</label>*/}
                     <input 
-                        placeholder='ім`я' 
+                        placeholder={_I18N(MSG.FIRST_NAME,this.props.lang)} 
                         value={this.state.client.fname} 
                         onChange={this.handleFNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
@@ -286,7 +286,7 @@ class Client extends Component {
                 <div className="form-input-item">
                     {/* <label className="block-label">По батькові:</label> */}
                     <input 
-                        placeholder='По батькові:' 
+                        placeholder={_I18N(MSG.SECOND_NAME,this.props.lang)} 
                         value={this.state.client.sname} 
                         onChange={this.handleSNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
@@ -298,7 +298,7 @@ class Client extends Component {
                     <div className="form-input-item input-inn">
                         {/* <label className="block-label">Індивідуальний податковий номер (ІПН):</label> */}
                         <input 
-                            placeholder='Індивідуальний податковий номер (ІПН):'
+                            placeholder={_I18N(MSG.INN,this.props.lang)} 
                             value={this.state.client.ipn} 
                             onChange={this.handleIPNChanged.bind(this)} 
                             onKeyDown={this.filterEnterKeyCode}
@@ -308,7 +308,7 @@ class Client extends Component {
                     <div className="form-input-item input-dob">
                         <GetDatePicker 
                             lang ='ru' 
-                            label = 'дата рождения'
+                            label = {_I18N(MSG.BIRTHDAY,this.props.lang)} 
                             getDate={this.handleDOBChanged.bind(this)}
                             dateValue={this.state.client.dob}
                         />                
@@ -322,16 +322,16 @@ class Client extends Component {
                             {/* <label className="block-label">документ:</label> */}
                             <div className="select-input">
                                 <select onChange={this.handleDocTypeChanged.bind(this)} defaultValue={this.state.client.doc.type}>
-                                    <option value='0'>документ:</option>
-                                    {(this.props.discount === "0")&&<option value='1'>Водійське посвідчення</option>}
-                                    {(this.props.discount === "0")&&<option value='2'>паспорт</option>}
-                                    {(this.props.discount === "0")&&<option value='3'>id-паспорт громaдянина України</option>}
-                                    {(this.props.discount === "0")&&<option value='4'>Паспорт іноземного громaдянина</option>}
+                                    <option value='0'>{_I18N(MSG.DOCTITLE,this.props.lang)}</option>
+                                    {(this.props.discount === "0")&&<option value='1'>{_I18N(MSG.DOC_TYPE_1,this.props.lang)}</option>}
+                                    {(this.props.discount === "0")&&<option value='2'>{_I18N(MSG.DOC_TYPE_2,this.props.lang)}</option>}
+                                    {(this.props.discount === "0")&&<option value='3'>{_I18N(MSG.DOC_TYPE_3,this.props.lang)}</option>}
+                                    {(this.props.discount === "0")&&<option value='4'>{_I18N(MSG.DOC_TYPE_4,this.props.lang)}</option>}
                                    
-                                    {(this.props.discount === "2")&&<option value='6'>Посвідчення інваліда</option>}
-                                    {(this.props.discount === "3")&&<option value='7'>Чорнобильске посвідчення</option>}
-                                    {(this.props.discount === "1")&&<option value='8'>Посвідчення учасника війни</option>}
-                                    {(this.props.discount === "4")&& <option value='9'>Пенсійне посвідчення</option>}
+                                    {(this.props.discount === "2")&&<option value='6'>{_I18N(MSG.DOC_TYPE_6,this.props.lang)}</option>}
+                                    {(this.props.discount === "3")&&<option value='7'>{_I18N(MSG.DOC_TYPE_7,this.props.lang)}</option>}
+                                    {(this.props.discount === "1")&&<option value='8'>{_I18N(MSG.DOC_TYPE_8,this.props.lang)}</option>}
+                                    {(this.props.discount === "4")&&<option value='9'>{_I18N(MSG.DOC_TYPE_9,this.props.lang)}</option>}
                                 </select>  
                             </div>
                             <span className="input-error-message">{this.state.msgDocTypeValid}</span>
@@ -341,7 +341,7 @@ class Client extends Component {
                         <div className="item-doc-seria">
                             {/* <label className="block-label">Серія:</label> */}
                             <input 
-                                placeholder='Серія:'
+                                placeholder={_I18N(MSG.DOC_SERIA,this.props.lang)} 
                                 value={this.state.client.doc.seria} 
                                 onChange={this.handleDocSeriaChanged.bind(this)} 
 
@@ -351,7 +351,7 @@ class Client extends Component {
                         <div className="item-doc-no">
                             {/* <label className="block-label">Номер:</label> */}
                             <input
-                                placeholder='Номер:' 
+                                placeholder={_I18N(MSG.DOC_NUMBER,this.props.lang)} 
                                 value={this.state.client.doc.no} 
                                 onChange={this.handleDocNoChanged.bind(this)} 
                             />
@@ -362,7 +362,7 @@ class Client extends Component {
                            {/* <label className="block-label">Ким виданий:</label> */}
                            <div className="item-doc-source">
                             <input
-                                placeholder='Ким виданий'  
+                                placeholder={_I18N(MSG.DOC_SOURCE,this.props.lang)}  
                                 value={this.state.client.doc.source} 
                                 onChange={this.handleDocSourceChanged.bind(this)}                                 
                             />
@@ -371,7 +371,7 @@ class Client extends Component {
                         <div className="item-date-get">
                             <GetDatePicker 
                                 lang='ua' 
-                                label='Дата видачі'
+                                label={_I18N(MSG.DOC_DATE_GET,this.props.lang)} 
                                 dateValue={dateGetDoc}
                                 getDate={this.handleDtGetChanged.bind(this)}
                             />
@@ -385,7 +385,7 @@ class Client extends Component {
                 <div className="form-input-item">
                     {/* <label className="block-label">Адреса:</label> */}
                     <input 
-                        placeholder='Адреса:'
+                        placeholder={_I18N(MSG.ADDRESS,this.props.lang)} 
                         value={this.state.client.addr} 
                         onChange={this.handleAddrChanged.bind(this)} 
 
@@ -393,7 +393,7 @@ class Client extends Component {
                     <span className="input-error-message">{this.state.msgAddrValid}</span>
                 </div>
                 <div className="form-input-item">
-                    <label className="block-label">Телефон:</label>
+                    <label className="block-label">{_I18N(MSG.PHONE,this.props.lang)}</label>
                     <input type="tel" placeholder={'+38'}  value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
                     <span className="input-error-message">{this.state.msgPhoneValid}</span>
                 </div>                
@@ -402,7 +402,7 @@ class Client extends Component {
                     <input 
                         value={this.state.client.email} 
                         onChange={this.handleEmailChanged.bind(this)} 
-                        placeholder='email:'
+                        placeholder={_I18N(MSG.EMAIL,this.props.lang)} 
                     />
                     <span className="input-error-message">{this.state.msgEmailValid}</span>
                 </div>                

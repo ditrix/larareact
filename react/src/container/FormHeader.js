@@ -29,7 +29,7 @@ class FormHeader extends Component {
 
         return(
             <div className="form-header">
-                <div className="header-block title"><h3>{_I18N(this.props.title,this.props.lang)}</h3></div>
+                <div className="header-block title"><h3>{this.props.title}</h3></div>
                 <div  className="header-block axtra-calculate-options">
                     <GetFranshize 
                         lang={this.props.lang} 
