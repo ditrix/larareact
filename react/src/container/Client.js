@@ -4,9 +4,11 @@ import {dateFormatApi, checkIpn} from '../lib/functions'
 import GetDatePicker from '../component/GetDatePicker'
 import 'react-day-picker/lib/style.css';
 
-import {INVALID_DATA_MMESSAGE_UA} from '../constants'
+//import {_I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)} from '../constants'
 import {actionSaveClient} from '../action/ClientAction'
 import FormHeader from './FormHeader'
+
+import {MSG} from '../constants/messages'
 import {_I18N} from '../lib/i18n'
 
 //  TODO:  проверка тел и email
@@ -55,55 +57,55 @@ class Client extends Component {
         if(this.state.client.lname === ''){
             console.log('no lname')
             formValid = false
-            //this.setState({msgLNameValid: INVALID_DATA_MMESSAGE_UA})
+            //this.setState({msgLNameValid: _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)})
             //console.log(this.state.msgLNameValid)
-            tmpState.msgLNameValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgLNameValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
         if(this.state.client.fname === ''){
             formValid = false
-            tmpState.msgFNameValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgFNameValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
         if(this.state.client.sname === ''){
             formValid = false
-            tmpState.msgSNameValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgSNameValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
         if(this.state.client.ipn.length !== 10){
             formValid = false
-            tmpState.msgIpnValid = INVALID_DATA_MMESSAGE_UA
+            tmpState.msgIpnValid = _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
         if(this.state.client.dob === undefined){
             formValid = false
-            tmpState.msgDOBValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDOBValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
 
         if(this.state.client.doc.no === ''){
             formValid = false
-            tmpState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDocNoValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
 
         if(this.state.client.doc.type === '0'){
             formValid = false
-            tmpState.msgDocTypeValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDocTypeValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
 
         if(this.state.client.doc.no === ''){
             formValid = false
-            tmpState.msgDocNoValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgDocNoValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
      
         if(this.state.client.addr === ''){
             formValid = false
-            tmpState.msgAddrValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgAddrValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
 
         if(this.state.client.phone === ''){
             formValid = false
-            tmpState.msgPhoneValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgPhoneValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
 
         if(this.state.client.email === ''){
             formValid = false
-            tmpState.msgEmailValid= INVALID_DATA_MMESSAGE_UA
+            tmpState.msgEmailValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
         }
      //   const tmpState = this.state;
         tmpState.formValid = formValid
@@ -251,7 +253,11 @@ class Client extends Component {
         return(
             <div className="make-polis-dialog">
                 <header>
-                    <FormHeader title="Страхувальник" />
+                    <FormHeader 
+                        title='страхувальник'
+
+                        lang={this.props.lang} 
+                    />
                 </header>
             <form className="tab-form">
                 
@@ -409,13 +415,13 @@ class Client extends Component {
               <button 
                 className="btn-main-form-navigate btn-prev" 
                 onClick={this.handleButtonPrevClicked.bind(this)} >
-                    {_I18N('prev',this.props.lang)}
+                    {_I18N(MSG.PREV,this.props.lang)}
               </button>
               
               <button 
                 className="btn-main-form-navigate btn-next" 
                 onClick={this.handleButtonNextClicked.bind(this)} >
-                    {_I18N('next',this.props.lang)}
+                    {_I18N(MSG.NEXT,this.props.lang)}
                 </button> 
             </nav>
         </footer>
