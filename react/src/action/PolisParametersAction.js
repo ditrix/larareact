@@ -113,8 +113,6 @@ export function actionOptionValuesChange(values){
     // расчет значений
 
 
-    console.log('actionOptionValuesChange: ',values.par)
-
    //const result = calculateOSGPO(values)
     const result = getResultOsgpo(180,values.par)
     values.resultPl = result

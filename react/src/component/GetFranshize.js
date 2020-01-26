@@ -1,5 +1,10 @@
 import React, {Component} from 'react'
 import {QuestionDropdown} from './templates/QuestionDropdown'
+
+
+import {MSG} from '../constants/messages'
+import {_I18N} from '../lib/i18n'
+
 class GetFranshize extends Component {
  
     handleFranshizeChange = event => this.props.getFeanshize(event.currentTarget.value)
@@ -7,7 +12,7 @@ class GetFranshize extends Component {
     render(){
         return(
             <div className="get-fransgize-widget">
-                <label  className="pl-summ">франшиза (грн):</label>
+                <label  className="pl-summ">{_I18N(MSG.FRANSHIZE,this.props.lang)}</label>
                 <div className="select-input block-value" defaultValue>
                     <select onChange={this.handleFranshizeChange.bind(this)} defaultValue={this.props.currentFranshize}>
                         <option value="2600">2600</option>
@@ -16,7 +21,7 @@ class GetFranshize extends Component {
                     </select>  
                 </div>
                 <label>
-                   {QuestionDropdown('Франшиза - це частина збитків, яка не підлягає відшкодуванню страховиком.')}
+                   {QuestionDropdown(_I18N(MSG.FRANSHIZE_CONTEXT,this.props.lang))}
                 </label>
             </div>
         )

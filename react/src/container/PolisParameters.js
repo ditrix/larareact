@@ -20,6 +20,8 @@ import IsOtk from '../component/IsOtk'
 import GetDateOtk from '../component/GetDateOtk'
 import FormHeader from './FormHeader'
 import ParametersNav from '../component/ParametersNav'
+
+import {MSG} from '../constants/messages'
 import {_I18N} from '../lib/i18n'
 
 // TODO: set state according values
@@ -127,7 +129,7 @@ class PolisParameters extends Component{
             this.props.nextTab()
     
         } else {
-            this.setState({validateMess:'відсутні данні стасовно типу ТЗ або міста реєстрації'})
+            this.setState({validateMess:MSG.ERROR_PARAMETERS_DATA})
         }
     }
  
@@ -149,7 +151,7 @@ render(){
     return(
         <div className="make-polis-dialog">
             <header>
-                <FormHeader title='' /> 
+                <FormHeader title=''  lang={this.props.lang} /> 
                 <ParametersNav  
                     lang={this.props.lang}
                     action={this.state.action} 
@@ -188,6 +190,7 @@ render(){
                     {/*  если мото,  легков -> покажем выбор льгот */}
                     
                     {(this.setDiscount(this.state.valueK1))&&<GetDiscount 
+                            lang={this.props.lang}
                             discount={this.props.parameters.valueDiscount} 
                             isDiscount={this.getDiscount.bind(this)} 
                         />
@@ -198,24 +201,32 @@ render(){
                      {(((this.props.calculate.par.k10 === "0")&&(['B1','B2','B3','B4','B5'].indexOf(this.props.calculate.par.k1) !== -1))
                         ||(['D1'].indexOf(this.props.calculate.par.k1) !== -1))?
                         <GetTaxi 
+                            lang={this.props.lang} 
                             getTaxi={this.getTaxi.bind(this)} 
                             valueTaxi={this.props.parameters.valueTaxi} 
                         />
                         :<></>} 
                     </div>
+                    {/* TODO OTK!!!! */}
                     <div className="check-select-block">
                     {/* если такси или грузовик автобус прицепы -> покажем выбор техосмотра */}
                     {((this.props.calculate.par.k3 === "3")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
-                        <IsOtk isOtk={this.props.parameters.isOtk} getOtk={this.getOtk.bind(this)} />    
-                        :<></>}
+                        <IsOtk 
+                            lang={this.props.lang} 
+                            isOtk={this.props.parameters.isOtk} 
+                            getOtk={this.getOtk.bind(this)} />    
+                        :<></>
+                    }
+
                     </div>
+
                     <div className="check-select-block">
                       {
-                          (this.state.isOtk === '1')&&<GetDateOtk 
+                          (this.state.isOtk === '1')?<GetDateOtk 
                             dateOtk={this.state.dateOtk} 
                             getDateOtk={this.getDateOtk.bind(this)}
 
-                          />
+                          />:<></>
                       }
                     </div>
                 </div>
@@ -227,9 +238,9 @@ render(){
             <nav  className="clearfix">
                 <button 
                     className="btn-main-form-navigate btn-next" 
-                    onClick={this.nextPage.bind(this)} >{_I18N('next',this.props.lang)}</button> 
+                    onClick={this.nextPage.bind(this)} >{_I18N(MSG.NEXT,this.props.lang)}</button> 
             </nav>
-            <span className="input-error-message">{this.state.validateMess}</span>
+            <span className="input-error-message">{_I18N(this.state.validateMess,this.props.lang)}</span>
             </footer>
         </div>
         )

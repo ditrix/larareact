@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 
 
+import {MSG} from '../constants/messages'
+import {_I18N} from '../lib/i18n'
 //  TODO: не позволять раньше текущей даты
 
 class IsOtk extends Component {
@@ -13,11 +15,11 @@ class IsOtk extends Component {
         return(
           <div className="otk-parameters">
             <div className="select-widget">
-              <label  className="block-label">отк:</label>
+              <label  className="block-label">{_I18N(MSG.OTK,this.props.lang)}</label>
               <div className="select-input" defaultValue>
               <select onChange={this.handleIsOtkChange.bind(this)} defaultValue={this.props.isOtk}>
-                  <option value="0">ні</option>
-                  <option value="1">так</option>
+                  <option value="0">{_I18N(MSG.NO,this.props.lang)}</option>
+                  <option value="1">{_I18N(MSG.YES,this.props.lang)}</option>
               </select>  
               </div>
             </div>
