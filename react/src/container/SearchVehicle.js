@@ -43,6 +43,11 @@ class SearchVehicle extends Component {
         this.setState({searchVehicleStr:'',loaded:false,message:'',request:false})
     }  
 
+    validInputData(){ 
+        return true;   // TODO! regular expressions
+    }
+        
+
     handleButtonVehicleClick(){
         if(this.state.searchVehicleStr === ''){
             return;
