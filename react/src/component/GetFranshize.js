@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {QuestionDropdown} from './templates/QuestionDropdown'
+import {TooltipIco} from './templates/TooltipIco'
 
 
 import {MSG} from '../constants/messages'
@@ -21,7 +21,7 @@ class GetFranshize extends Component {
                     </select>  
                 </div>
                 <label>
-                   {QuestionDropdown(_I18N(MSG.FRANSHIZE_CONTEXT,this.props.lang))}
+                   {TooltipIco(_I18N(MSG.FRANSHIZE_TOOLTIP_CONTENT,this.props.lang))}
                 </label>
             </div>
         )

@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {QuestionDropdown} from '../component/templates/QuestionDropdown'
+import {TooltipIco} from './templates/TooltipIco'
 // eslint-disable-next-line
 import {connect} from 'react-redux'
 
@@ -12,7 +12,7 @@ class DgoParameters extends Component {
         return(
             <div className="dgo-parameters">
             <label>{_I18N(MSG.DGO_TITLE,this.props.lang)}&nbsp;
-                {QuestionDropdown(_I18N(MSG.DGO_CONTEXT,this.props.lang))}</label>
+                {TooltipIco(_I18N(MSG.DGO_TOOLTIP_CONTENT,this.props.lang))}</label>
             <div className="dgo-values">
             <div className="form-input-row">
                 <div className="select-widget dgo-type">

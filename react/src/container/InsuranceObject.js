@@ -6,10 +6,10 @@ import {actionSaveInsObject} from '../action/InsObjectAction'
 import {checkIntegerStr,getCurrentYear} from '../lib/functions'
 
 import FormHeader from './FormHeader'
-import {QuestionDropdown} from '../component/templates/QuestionDropdown'
+import {TooltipIco} from '../component/templates/TooltipIco'
 
-//import {markDS} from '../data/markds.js'
-//import {modelDS} from '../data/modelds.js'
+// import {markDS} from '../data/markds.js'
+// import {modelDS} from '../data/modelds.js'
 
 import {markDS} from '../data/devmarkds.js'
 import {modelDS} from '../data/devmodelds.js'
@@ -198,14 +198,14 @@ class InsuranceObject extends Component {
         return(
             <div className="make-polis-dialog">
                 <header>
-                    <FormHeader title="Об`єкт страхування" lang={this.props.lang} />            
+                    <FormHeader title={_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)} lang={this.props.lang} />            
                 </header>
                 <form  className="tab-form">    
                 <main>
                
                 <div className="input-object-form-row form-input-row">
                     <div className="select-widget">
-                    <label className="block-label">марка:</label>
+                    <label className="block-label">{_I18N(MSG.VEHICLE_MARK,this.props.lang)}</label>
                     <div  className="select-input">
                     <select onChange={this.handleMarkaChanged.bind(this)} defaultValue={this.state.auto.DMarkID}>
                     <option key={0} value="0">---</option>
@@ -215,10 +215,10 @@ class InsuranceObject extends Component {
                     </select>
                     
                     </div>  
-                    <span className="input-error-message">{this.state.msgValidMarka}</span>
+                    <span className="input-error-message">{_I18N(this.state.msgValidMarka,this.props.lang)}</span>
                     </div>  
                     <div className="select-widget">
-                    <label className="block-label">модель:</label>
+                    <label className="block-label">{_I18N(MSG.VEHICLE_MODEL,this.props.lang)}</label>
                     <div  className="select-input">
                     <select onChange={this.handleModelChanged.bind(this)} defaultValue={this.state.auto.DModelID} >
                     <option key="0" value="0">---</option>
@@ -228,46 +228,46 @@ class InsuranceObject extends Component {
                     )}
                     </select>  
                     </div>
-                    <span className="input-error-message">{this.state.msgValidModel}</span>
+                    <span className="input-error-message">{_I18N(this.state.msgValidModel,this.props.lang)}</span>
                     </div>  
                 </div>                
                 <div className="input-object-form-row">
                     <div className="form-input-item-sm">
-                        <label className="block-label">рік випуску:</label>
+                        <label className="block-label">{_I18N(MSG.VEHICLE_YEAR,this.props.lang)}</label>
                         <input 
                             value={this.state.auto.ProdYear} 
                             onChange={this.handleYearChanged.bind(this)} 
                         />
-                        <span className="input-error-message">{this.state.msgValidYear}</span>
+                        <span className="input-error-message">{_I18N(this.state.msgValidYear,this.props.lang)}</span>
                     </div>
 
                     <div className="form-input-item-md">
-                        <label className="block-label">держномер:</label>
+                        <label className="block-label">{_I18N(MSG.VEHICLE_NO,this.props.lang)}</label>
                         <input 
                             value={this.state.auto.RegNo} 
                             onChange={this.handleNoChanged.bind(this)} 
                         />
-                        <span className="input-error-message">{this.state.msgValidNo}</span>
+                        <span className="input-error-message">{_I18N(this.state.msgValidNo,this.props.lang)}</span>
                     </div>   
                                  
                     <div className="form-input-item-md">
                         
-                        <label className="block-label">VIN:</label>
+                        <label className="block-label">{_I18N(MSG.VEHICLE_VIN,this.props.lang)}</label>
                         <div className="vin-widget">
                         <input 
                             value={this.state.auto.VIN} 
                             onChange={this.handleVINChanged.bind(this)} 
 
                         />
-                        {QuestionDropdown('Vehicle Identification Number (VIN) - це унікальний ідентифікаційний номер автомобіля, в якому міститься 17 символів.')} 
+                        {TooltipIco(_I18N(MSG.TOOLTIP_VPN_CONTENT,this.props.lang))} 
                         </div> 
-                        <span className="input-error-message">{this.state.msgValidVin}</span>
+                        <span className="input-error-message">{_I18N(this.state.msgValidVin,this.props.lang)}</span>
                     </div>                
 
                  </div>
 
                 <div className="input-object-form-row">        
-                    <label className="block-label">опис:</label>
+                    <label className="block-label">{_I18N(MSG.VEHICLE_DESCR,this.props.lang)}</label>
                     <input value={this.state.auto.AutoDescr} onChange={this.handleDescrChanged.bind(this)} />
                 </div>
 
@@ -277,10 +277,10 @@ class InsuranceObject extends Component {
                 <footer>
                     <nav  className="clearfix">
                         <button className="btn-main-form-navigate btn-prev" 
-                            onClick={this.props.prevTab} >попередня
+                            onClick={this.props.prevTab} >{_I18N(MSG.PREV,this.props.lang)}
                         </button>
                         <button className="btn-main-form-navigate btn-next" 
-                            onClick={this.handleNextButton.bind(this)} >оформити
+                            onClick={this.handleNextButton.bind(this)} >{_I18N(MSG.COMMIT_POLIS_BUTTON,this.props.lang)}
                         </button>
                     </nav>
             </footer>    
