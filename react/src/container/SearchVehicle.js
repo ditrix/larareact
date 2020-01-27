@@ -33,7 +33,6 @@ class SearchVehicle extends Component {
     }
     
     handleInputVehicleChange(e){
-        console.log(e.currentTarget.value)
         const tmpState = this.state
         tmpState.searchVehicleStr = filterInputVehickleNo(e.currentTarget.value)
         this.setState(tmpState)
@@ -44,7 +43,7 @@ class SearchVehicle extends Component {
     }  
 
     validInputData(){ 
-        return true;   // TODO! regular expressions
+        return this.state.searchVehicleStr.input.length >= 3   
     }
         
 

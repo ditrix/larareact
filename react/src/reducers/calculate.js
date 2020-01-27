@@ -28,7 +28,7 @@ const initialState = {
     // valueK8: '0',
 
     // valueFranshize: "0",
-    // valueDiscount: "0",
+ 
 }
 
 export const reducerCalculate = (state = initialState, action) => {

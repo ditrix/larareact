@@ -30,6 +30,7 @@ const initialState = {
             ProdYear:'',
         },
         validateMess:'',
+        valueDiscount:'0',
 }
 
 export const reducerPolisParameters = (state = initialState, action) => {
