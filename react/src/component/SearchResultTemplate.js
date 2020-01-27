@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const  SearchResultTemplate = data => {
+export const  SearchResultTemplate = (data,lang='ua') => {
     
     if(data){
  

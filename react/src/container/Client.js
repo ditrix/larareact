@@ -59,53 +59,53 @@ class Client extends Component {
             formValid = false
             //this.setState({msgLNameValid: _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)})
             //console.log(this.state.msgLNameValid)
-            tmpState.msgLNameValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgLNameValid= MSG.INVALID_DATA_MESSAGE
         }
         if(this.state.client.fname === ''){
             formValid = false
-            tmpState.msgFNameValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgFNameValid= MSG.INVALID_DATA_MESSAGE
         }
         if(this.state.client.sname === ''){
             formValid = false
-            tmpState.msgSNameValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgSNameValid= MSG.INVALID_DATA_MESSAGE
         }
         if(this.state.client.ipn.length !== 10){
             formValid = false
-            tmpState.msgIpnValid = _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgIpnValid = MSG.INVALID_DATA_MESSAGE
         }
         if(this.state.client.dob === undefined){
             formValid = false
-            tmpState.msgDOBValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgDOBValid= MSG.INVALID_DATA_MESSAGE
         }
 
         if(this.state.client.doc.no === ''){
             formValid = false
-            tmpState.msgDocNoValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgDocNoValid= MSG.INVALID_DATA_MESSAGE
         }
 
         if(this.state.client.doc.type === '0'){
             formValid = false
-            tmpState.msgDocTypeValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgDocTypeValid= MSG.INVALID_DATA_MESSAGE
         }
 
         if(this.state.client.doc.no === ''){
             formValid = false
-            tmpState.msgDocNoValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgDocNoValid= MSG.INVALID_DATA_MESSAGE
         }
      
         if(this.state.client.addr === ''){
             formValid = false
-            tmpState.msgAddrValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgAddrValid= MSG.INVALID_DATA_MESSAGE
         }
 
         if(this.state.client.phone === ''){
             formValid = false
-            tmpState.msgPhoneValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgPhoneValid= MSG.INVALID_DATA_MESSAGE
         }
 
         if(this.state.client.email === ''){
             formValid = false
-            tmpState.msgEmailValid= _I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)
+            tmpState.msgEmailValid= MSG.INVALID_DATA_MESSAGE
         }
      //   const tmpState = this.state;
         tmpState.formValid = formValid
@@ -271,7 +271,7 @@ class Client extends Component {
                         onKeyDown={this.filterEnterKeyCode}
                         type="text"
                     />
-                     <span className="input-error-message">{this.state.msgLNameValid}</span>
+                     <span className="input-error-message">{_I18N(this.state.msgLNameValid,this.props.lang)}</span>
                 </div>
                 <div className="form-input-item">
                     {/*<label className="block-label">Ім'я:</label>*/}
@@ -281,7 +281,7 @@ class Client extends Component {
                         onChange={this.handleFNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
                     />
-                    <span className="input-error-message">{this.state.msgFNameValid}</span>
+                    <span className="input-error-message">{_I18N(this.state.msgFNameValid,this.props.lang)}</span>
                 </div>                
                 <div className="form-input-item">
                     {/* <label className="block-label">По батькові:</label> */}
@@ -291,7 +291,7 @@ class Client extends Component {
                         onChange={this.handleSNameChanged.bind(this)} 
                         onKeyDown={this.filterEnterKeyCode}
                     />
-                    <span className="input-error-message">{this.state.msgSNameValid}</span>
+                    <span className="input-error-message">{_I18N(this.state.msgSNameValid,this.props.lang)}</span>
                 </div>                
 
                 <div className="form-input-row">
@@ -303,7 +303,7 @@ class Client extends Component {
                             onChange={this.handleIPNChanged.bind(this)} 
                             onKeyDown={this.filterEnterKeyCode}
                         />                        
-                        <span className="input-error-message">{this.state.msgIpnValid}</span>
+                        <span className="input-error-message">{_I18N(this.state.msgIpnValid,this.props.lang)}</span>
                     </div>
                     <div className="form-input-item input-dob">
                         <GetDatePicker 
@@ -312,7 +312,7 @@ class Client extends Component {
                             getDate={this.handleDOBChanged.bind(this)}
                             dateValue={this.state.client.dob}
                         />                
-                        <span className="input-error-message">{this.state.msgDOBValid}</span>
+                        <span className="input-error-message">{_I18N(this.state.msgDOBValid,this.props.lang)}</span>
                     </div>                
                 </div>
                 
@@ -334,7 +334,7 @@ class Client extends Component {
                                     {(this.props.discount === "4")&&<option value='9'>{_I18N(MSG.DOC_TYPE_9,this.props.lang)}</option>}
                                 </select>  
                             </div>
-                            <span className="input-error-message">{this.state.msgDocTypeValid}</span>
+                            <span className="input-error-message">{_I18N(this.state.msgDocTypeValid,this.props.lang)}</span>
                         </div>  
                     
                     
@@ -346,7 +346,7 @@ class Client extends Component {
                                 onChange={this.handleDocSeriaChanged.bind(this)} 
 
                                 />
-                            <span className="input-error-message">{this.state.msgDocSeriaValid}</span>
+                            <span className="input-error-message">{_I18N(this.state.msgDocSeriaValid,this.props.lang)}</span>
                         </div>       
                         <div className="item-doc-no">
                             {/* <label className="block-label">Номер:</label> */}
@@ -355,7 +355,7 @@ class Client extends Component {
                                 value={this.state.client.doc.no} 
                                 onChange={this.handleDocNoChanged.bind(this)} 
                             />
-                            <span className="input-error-message">{this.state.msgDocNoValid}</span>
+                            <span className="input-error-message">{_I18N(this.state.msgDocNoValid,this.props.lang)}</span>
                         </div> 
                     </div> 
                     <div className="form-input-row">     
@@ -366,7 +366,7 @@ class Client extends Component {
                                 value={this.state.client.doc.source} 
                                 onChange={this.handleDocSourceChanged.bind(this)}                                 
                             />
-                            <span className="input-error-message">{this.state.msgDocSourceValid}</span>
+                            <span className="input-error-message">{_I18N(this.state.msgDocSourceValid,this.props.lang)}</span>
                         </div>                     
                         <div className="item-date-get">
                             <GetDatePicker 
@@ -375,7 +375,7 @@ class Client extends Component {
                                 dateValue={dateGetDoc}
                                 getDate={this.handleDtGetChanged.bind(this)}
                             />
-                            <span className="input-error-message">{this.state.msgDocDtGetValid}</span>
+                            <span className="input-error-message">{_I18N(this.state.msgDocDtGetValid,this.props.lang)}</span>
                         </div>
                         
  
@@ -390,12 +390,12 @@ class Client extends Component {
                         onChange={this.handleAddrChanged.bind(this)} 
 
                     />
-                    <span className="input-error-message">{this.state.msgAddrValid}</span>
+                    <span className="input-error-message">{_I18N(this.state.msgAddrValid,this.props.lang)}</span>
                 </div>
                 <div className="form-input-item">
                     <label className="block-label">{_I18N(MSG.PHONE,this.props.lang)}</label>
                     <input type="tel" placeholder={'+38'}  value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
-                    <span className="input-error-message">{this.state.msgPhoneValid}</span>
+                    <span className="input-error-message">{_I18N(this.state.msgPhoneValid,this.props.lang)}</span>
                 </div>                
                 <div className="form-input-item">
                     {/* <label className="block-label">Email:</label> */}
@@ -404,7 +404,7 @@ class Client extends Component {
                         onChange={this.handleEmailChanged.bind(this)} 
                         placeholder={_I18N(MSG.EMAIL,this.props.lang)} 
                     />
-                    <span className="input-error-message">{this.state.msgEmailValid}</span>
+                    <span className="input-error-message">{_I18N(this.state.msgEmailValid,this.props.lang)}</span>
                 </div>                
                 </main>
                    

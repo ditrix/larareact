@@ -14,6 +14,12 @@ import {QuestionDropdown} from '../component/templates/QuestionDropdown'
 import {markDS} from '../data/devmarkds.js'
 import {modelDS} from '../data/devmodelds.js'
 
+
+import {MSG} from '../constants/messages'
+import {_I18N} from '../lib/i18n'
+
+// 
+
 // ввод даних про об'ект страхування
 class InsuranceObject extends Component {
     constructor(props){
@@ -88,27 +94,27 @@ class InsuranceObject extends Component {
         tmpState.dataValid = true
         if( ( +auto.ProdYear < 1950 ) || ( +auto.ProdYear > getCurrentYear()) ){
             tmpState.dataValid = false
-            tmpState.msgValidYear= 'незаповнені, або некоректні данні'
+            tmpState.msgValidYear= MSG.INVALID_DATA_MESSAGE
         }
 
         if( (auto.RegNo.length === 0)|| (auto.RegNo.length > 10) ){
             tmpState.dataValid = false
-            tmpState.msgValidNo = 'незаповнені, або некоректні данні'
+            tmpState.msgValidNo = MSG.INVALID_DATA_MESSAGE
         }
 
         if( (auto.VIN.length === 0)|| (auto.VIN.length > 20) ){
             tmpState.dataValid = false;
-            tmpState.msgValidVin= 'незаповнені, або некоректні данні'
+            tmpState.msgValidVin= MSG.INVALID_DATA_MESSAGE
         }
 
         if((auto.DMarkID === '')||(auto.DMarkID === '0')){
             tmpState.dataValid = false;
-            tmpState.msgValidMarka= 'незаповнені, або некоректні данні'
+            tmpState.msgValidMarka= MSG.INVALID_DATA_MESSAGE
         }
 
         if((auto.DModelID === '')||(auto.DModelID === '0')||(auto.DModelID === 0)){
             tmpState.dataValid = false;
-            tmpState.msgValidModel= 'незаповнені, або некоректні данні'
+            tmpState.msgValidModel= MSG.INVALID_DATA_MESSAGE
         }
         this.setState(tmpState)
       
@@ -192,7 +198,7 @@ class InsuranceObject extends Component {
         return(
             <div className="make-polis-dialog">
                 <header>
-                    <FormHeader title="Об`єкт страхування" />            
+                    <FormHeader title="Об`єкт страхування" lang={this.props.lang} />            
                 </header>
                 <form  className="tab-form">    
                 <main>
@@ -289,6 +295,7 @@ const mapStateToProps = store => {
     return {
         insobject: store.insobject,
         vehicle: store.parameters.vehicle,
+        lang: store.appstate.lang,
     }
 }
 

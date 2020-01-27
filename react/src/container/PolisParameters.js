@@ -164,8 +164,12 @@ render(){
                     <div className="vehicle-result">
                     {(this.state.action === ACTION_SEARCH_VEHICLE)?
                         <div>
-                            <SearchVehicle dataVehicle={this.state.vehicle}  getVehicle={this.getSearchResult.bind(this)} />
-                            {SearchResultTemplate(this.state.vehicle)}
+                            <SearchVehicle 
+                                dataVehicle={this.state.vehicle}  
+                                getVehicle={this.getSearchResult.bind(this)} 
+                                lang={this.props.lang}
+                            />
+                            {SearchResultTemplate(this.state.vehicle,this.props.lang)}
                         </div>    
                        :<div className='form-input-row'>
                             <GetK1 
