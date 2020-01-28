@@ -14,6 +14,10 @@ import {getTypeDocumentContent,
 import {actionCommitPolisData} from '../action/CommitActions'
 
 
+import {MSG} from '../constants/messages'
+import {_I18N} from '../lib/i18n'
+
+
 class CommitPage extends Component {
     handleButtonCommitClick(){
         console.log('DOIT!')
@@ -24,9 +28,7 @@ class CommitPage extends Component {
         return dataK1.filter(item => item.KO === type)[0]
     }
 
-    getBoolText(val){
-        return (val==='0')?'ні':'так'
-    }
+   
 
     render(){
 
@@ -39,7 +41,7 @@ class CommitPage extends Component {
             }
         return(
             <div className="make-polis-dialog">
-                <header><FormHeader title="Оформлення" /></header>
+                <header><FormHeader title="Оформлення" lang={this.props.lang} /></header>
                 <form  className="tab-form"> 
                      <main>
  
@@ -182,13 +184,13 @@ class CommitPage extends Component {
                     </main> 
                 </form>            
                 <footer>
-                <nav  className="clearfix">
-                        <button className="btn-main-form-navigate btn-prev" 
-                            onClick={this.props.prevTab} >попередня
-                        </button>
-                        <button className="btn-main-form-navigate btn-next" 
-                            onClick={this.props.nextTab} >надіслати заявку
-                        </button>
+                    <nav  className="clearfix form-nav">
+                            <button className="btn-main-form-navigate btn-prev" 
+                                onClick={this.props.prevTab} >{_I18N(MSG.PREV,this.props.lang)}
+                            </button>
+                            <button className="btn-main-form-navigate btn-next" 
+                                onClick={this.props.nextTab} >{_I18N(MSG.COMMIT_POLIS_BUTTON,this.props.lang)}
+                            </button>
                     </nav>
                 </footer>
             </div>    
@@ -209,6 +211,7 @@ const mapStateToProps = store => {
         insobject: store.parameters.vehicle,
         client: store.client,
         calculate: store.calculate,
+        lang: store.appstate.lang,
     }
 }
 

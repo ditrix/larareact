@@ -239,10 +239,11 @@ render(){
             
             <footer>
             
-            <nav  className="clearfix">
+            <nav  className="clearfix  form-parameters-nav">
                 <button 
-                    className="btn-main-form-navigate btn-next" 
-                    onClick={this.nextPage.bind(this)} >{_I18N(MSG.NEXT,this.props.lang)}</button> 
+                    className="btn-main-form-navigate" 
+                    onClick={this.nextPage.bind(this)} >{_I18N(MSG.NEXT,this.props.lang)}
+                </button> 
             </nav>
             <span className="input-error-message">{_I18N(this.state.validateMess,this.props.lang)}</span>
             </footer>

@@ -275,12 +275,12 @@ class InsuranceObject extends Component {
                 </main>
                 </form>
                 <footer>
-                    <nav  className="clearfix">
+                    <nav  className="clearfix form-nav">
                         <button className="btn-main-form-navigate btn-prev" 
                             onClick={this.props.prevTab} >{_I18N(MSG.PREV,this.props.lang)}
                         </button>
                         <button className="btn-main-form-navigate btn-next" 
-                            onClick={this.handleNextButton.bind(this)} >{_I18N(MSG.COMMIT_POLIS_BUTTON,this.props.lang)}
+                            onClick={this.handleNextButton.bind(this)} >{_I18N(MSG.NEXT,this.props.lang)}
                         </button>
                     </nav>
             </footer>    

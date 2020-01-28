@@ -410,7 +410,7 @@ class Client extends Component {
                    
             </form>
             <footer>
-            <nav  className="clearfix">
+            <nav  className="clearfix  form-nav">
             
               <button 
                 className="btn-main-form-navigate btn-prev" 
