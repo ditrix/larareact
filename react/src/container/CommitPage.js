@@ -32,6 +32,8 @@ class CommitPage extends Component {
 
     render(){
 
+       
+
         const data = {
                 parameters: this.props.parameters,
                 client: this.props.client,
@@ -41,67 +43,68 @@ class CommitPage extends Component {
             }
         return(
             <div className="make-polis-dialog">
-                <header><FormHeader title="Оформлення" lang={this.props.lang} /></header>
+                <header><FormHeader title={_I18N(MSG.COMMIT_SECTION_TITLE,this.props.lang)} lang={this.props.lang} /></header>
                 <form  className="tab-form"> 
                      <main>
  
                         <div className="tab-form-row">
                              {/* <h5>Параметри</h5>  */}
+                             <h5>{_I18N(MSG.VEHICLE_TITLE,this.props.lang)}</h5>
                             <div className="tab-form-block">
                                 <div className="parameters-data">
-                                    <label>тип транспортного засобу</label>
-                                    <span><h6>{getVehicleTypeNameContent(data.parameters.valueK1)}</h6></span>
+                                    <label>{_I18N(MSG.VEHICLE_TYPE,this.props.lang)}</label>
+                                    <span><h6>{getVehicleTypeNameContent(data.parameters.valueK1,this.props.lang)}</h6></span>
                                 </div>
 
                                 <div className="parameters-data">
-                                    <label>місто реєстрації власника ТЗ</label>
-                                    <span><h6>{getVehicleCityContent(data.parameters.city)}</h6></span>
+                                    <label>{_I18N(MSG.VEHICLE_CITY,this.props.lang)}</label>
+                                    <span><h6>{getVehicleCityContent(data.parameters.city,this.props.lang)}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                    <label>пільги</label>
+                                    <label>{_I18N(MSG.DISCOUNT,this.props.lang)}</label>
                                     <span>
-                                        <h6>{getDiscountContent(data.parameters.valueDiscount)}</h6>
+                                        <h6>{getDiscountContent(data.parameters.valueDiscount,this.props.lang)}</h6>
                                     </span>
                                 </div>
 
                                 <div className="parameters-data">
-                                    <label>таксі</label>
-                                    <span><h6>{getBoolTextContent(data.parameters.valueTaxi)}</h6></span>
+                                    <label>{_I18N(MSG.TAXI,this.props.lang)}</label>
+                                    <span><h6>{getBoolTextContent(data.parameters.valueTaxi,this.props.lang)}</h6></span>
                                 </div>
 
                                 <div className="parameters-data">
-                                    <label>отк</label>
-                                    <span><h6>{getBoolTextContent(data.parameters.isOtk)}</h6></span>
+                                    <label>{_I18N(MSG.OTK,this.props.lang)}</label>
+                                    <span><h6>{getBoolTextContent(data.parameters.isOtk,this.props.lang)}</h6></span>
                                 </div>
 
                                 <div className="parameters-data">
-                                    <label>дата отк</label>
+                                    <label>{_I18N(MSG.DATE_OTK,this.props.lang)}</label>
                                     <span><h6>{getDateUaStr(data.parameters.dateOtk)}</h6></span>
                                 </div>
                             </div>
                         </div>        
 
                         <div className="tab-form-row">
-                            <h5>Страхувальник</h5>
+                            <h5>{_I18N(MSG.INSURANT,this.props.lang)}</h5>
                             <div className="tab-form-block">
                                 <div className="parameters-data">
-                                <label>прізвище</label>
+                                <label>{_I18N(MSG.LAST_NAME,this.props.lang)}</label>
                                     <span><h6>{data.client.client.lname}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                <label>им'я</label>
+                                <label>{_I18N(MSG.FIRST_NAME,this.props.lang)}</label>
                                     <span><h6>{data.client.client.fname}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                <label>по батькові</label>
+                                <label>{_I18N(MSG.SECOND_NAME,this.props.lang)}</label>
                                     <span><h6>{data.client.client.sname}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                    <label>ипн</label>
+                                    <label>{_I18N(MSG.INN,this.props.lang)}</label>
                                     <span><h6>{data.client.client.ipn}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                    <label>дата народження</label>
+                                    <label>{_I18N(MSG.BIRTHDAY,this.props.lang)}</label>
                                     <span><h6>{getDateUaStr(data.client.client.dob)}</h6></span>
                                 </div>
 
@@ -109,45 +112,45 @@ class CommitPage extends Component {
                         </div>
 
                         <div className="tab-form-row">
-                            <h5>Документ</h5>
+                            <h5>{_I18N(MSG.DOCTITLE,this.props.lang)}</h5>
                             <div className="tab-form-block">
                                 <div className="parameters-data">
-                                <label>тип документа</label>
-                                    <span><h6>{getTypeDocumentContent(data.client.client.doc.type)}</h6></span>
+                                <label>{_I18N(MSG.DOC_TYPE,this.props.lang)}</label>
+                                    <span><h6>{getTypeDocumentContent(data.client.client.doc.type,this.props.lang)}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                <label>серія</label>
+                                <label>{_I18N(MSG.DOC_SERIA,this.props.lang)}</label>
                                     <span><h6>{data.client.client.doc.seria}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                <label>номер</label>
+                                <label>{_I18N(MSG.DOC_NUMBER,this.props.lang)}</label>
                                     <span><h6>{data.client.client.doc.no}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                    <label>дата видачі</label>
+                                    <label>{_I18N(MSG.DOC_DATE_GET,this.props.lang)}</label>
                                     <span><h6>{getDateUaStr(data.client.client.doc.dtget)}</h6></span>
                                 </div>
 
                                 <div className="parameters-data">
-                                    <label>ким виданий</label>
+                                    <label>{_I18N(MSG.DOC_SOURCE,this.props.lang)}</label>
                                     <span><h6>{data.client.client.doc.source}</h6></span>
                                 </div>
                                     
                             </div>    
                         </div>
                         <div className="tab-form-row">
-                            <h5>Контактна інформація:</h5>
+                            <h5>{_I18N(MSG.CONTACT_INFO,this.props.lang)}</h5>
                             <div className="tab-form-block">
                                 <div className="parameters-data">
-                                <label>Адреса:</label>
+                                <label>{_I18N(MSG.ADDRESS,this.props.lang)}</label>
                                     <span><h6>{data.client.client.addr}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                <label>Телефон:</label>
+                                <label>{_I18N(MSG.PHONE,this.props.lang)}</label>
                                     <span><h6>{data.client.client.phone}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                    <label>Eлектронна пошта:</label>
+                                    <label>{_I18N(MSG.EMAIL,this.props.lang)}</label>
                                     <span><h6>{data.client.client.email}</h6></span>
                                 </div>
                                     
@@ -155,27 +158,27 @@ class CommitPage extends Component {
                         </div>
 
                         <div className="tab-form-row">
-                            <h5>Об'єкт страхування</h5>
+                            <h5>{_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)}</h5>
                             <div className="tab-form-block">
                                 <div className="parameters-data">
-                                <label>Марка:</label>
+                                <label>{_I18N(MSG.VEHICLE_MARK,this.props.lang)}</label>
                                     <span><h6>{data.insobject.auto.DMarkName}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                <label>Модель:</label>
+                                <label>{_I18N(MSG.VEHICLE_MODEL,this.props.lang)}</label>
                                     <span><h6>{data.insobject.auto.DModelName}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                    <label>Рік випуску:</label>
+                                    <label>{_I18N(MSG.VEHICLE_YEAR,this.props.lang)}</label>
                                     <span><h6>{data.insobject.auto.ProdYear}</h6></span>
                                 </div>
                                 <div className="parameters-data">
-                                    <label>Держномер:</label>
+                                    <label>{_I18N(MSG.VEHICLE_NO,this.props.lang)}</label>
                                     <span><h6>{data.insobject.auto.RegNo}</h6></span>
                                 </div>
 
                                 <div className="parameters-data">
-                                    <label>VIN:</label>
+                                    <label>{_I18N(MSG.VEHICLE_VIN,this.props.lang)}</label>
                                     <span><h6>{data.insobject.auto.VIN}</h6></span>
                                 </div>
                                     

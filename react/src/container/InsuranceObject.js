@@ -15,6 +15,7 @@ import {markDS} from '../data/devmarkds.js'
 import {modelDS} from '../data/devmodelds.js'
 
 
+
 import {MSG} from '../constants/messages'
 import {_I18N} from '../lib/i18n'
 
@@ -233,7 +234,7 @@ class InsuranceObject extends Component {
                 </div>                
                 <div className="input-object-form-row">
                     <div className="form-input-item-sm">
-                        <label className="block-label">{_I18N(MSG.VEHICLE_YEAR,this.props.lang)}</label>
+                        <label className="block-label">{_I18N(MSG.VEHICLE_YEAR,this.props.lang)}</label>                       
                         <input 
                             value={this.state.auto.ProdYear} 
                             onChange={this.handleYearChanged.bind(this)} 
@@ -276,6 +277,7 @@ class InsuranceObject extends Component {
                 </form>
                 <footer>
                     <nav  className="clearfix form-nav">
+                        
                         <button className="btn-main-form-navigate btn-prev" 
                             onClick={this.props.prevTab} >{_I18N(MSG.PREV,this.props.lang)}
                         </button>

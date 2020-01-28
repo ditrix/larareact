@@ -549,6 +549,8 @@ nav button {
     background-color: white;
     position: relative;
     display: inline-block;   
+    z-index: 3;
+
   }
   
   .date-picker-widget label {
@@ -690,6 +692,12 @@ nav button {
 
   .parameters-data {
       line-height: 0.1px;
+  }
+
+  .parameters-data h6 {
+      color: var(--dark-blue-color);
+      font-size: 1.2rem;
+      font-style: italic;
   }
 
 .form-header {
