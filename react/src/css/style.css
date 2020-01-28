@@ -1,6 +1,6 @@
 :root {
     --common-blue-color: #1fb6ff;
-    --dark-blue-color: #0077d3;
+    --dark-blue-color: #5b88aa;
     
     --dark-gray-color: #40464b;
     --main-color: #4d4d4d;
@@ -16,12 +16,19 @@
     --red-button-color: #e21b2d;
     --dark-block-color: #2e3d4d;
     --common-dark-gray: #384657;
+    --body-background-color: #98b3d4;
   } 
   
+* {
+	margin: 0;
+	padding: 0;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
-    background-color:  lightgray;
+    background-color: var(--body-background-color);
+    /* background-image: linear-gradient(180deg,#082e75,#588abf,#d3d3d3); */
 }
 
 main header footer section aside article {
@@ -63,6 +70,8 @@ label {
 main {
     min-height: 460px;
 }
+
+
 
 .block-label { display:block;}
 

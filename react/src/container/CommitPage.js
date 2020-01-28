@@ -181,7 +181,6 @@ class CommitPage extends Component {
                                     <label>{_I18N(MSG.VEHICLE_VIN,this.props.lang)}</label>
                                     <span><h6>{data.insobject.auto.VIN}</h6></span>
                                 </div>
-                                    
                             </div>    
                         </div>
                     </main> 

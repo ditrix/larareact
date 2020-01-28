@@ -16,7 +16,7 @@ function App() {
   return (
     <Fragment>
       <header>
-        {/* <AskodsHeader />  */}
+        <AskodsHeader /> 
   
       </header>
       <main>
@@ -24,9 +24,10 @@ function App() {
         <Main />
         </Provider>
       </main>
-      <footer>
+      <footer className="main-footer clearfix">
 
        {/* <AskodsFooter/>  */}
+       
       </footer>
     </Fragment>
   );

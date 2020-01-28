@@ -61,8 +61,8 @@ class SearchVehicle extends Component {
         if(this.validInputData()){
             this.setState({loaded: true, vehicle:emptyVehical,request:true})
 
-            // fetch(url)
-            // .then(response => console.log('fetch response ',response.json())); 
+             fetch(url)
+             .then(response => console.log('fetch response ',response.json())); 
 
 
             axios.get(url)
@@ -88,7 +88,7 @@ class SearchVehicle extends Component {
                     this.setState({loaded:true,request:false, message:MSG.SEARCH_NOT_FOUND})
                     this.setState({emptyVehical})
                     this.props.getVehicle(emptyVehical)
-                 //   console.log('CATCH: ',error)
+                    console.log('CATCH: ',error)
                 })
         }
     }
@@ -97,14 +97,14 @@ class SearchVehicle extends Component {
         return(
         <div className="search-vehicle-wrapper">
             <div className='search-form'>
-                <label className="block-label">{_I18N(MSG.SEARCH_LABEL,this.props.lang)}</label>
+                {/* <label className="block-label">{_I18N(MSG.SEARCH_LABEL,this.props.lang)}</label> */}
                 <div className="input-group">
                     <input type="text" className="form-control" 
                         required 
                         onClick={this.handleVehicleClick.bind(this)} 
                         onKeyDown={this.handleVehicleKeyDown.bind(this)}
                         value={this.state.searchVehicleStr} 
-                        placeholder={_I18N(MSG.SEARCH_PLACEHOLDER)}
+                        placeholder={_I18N(MSG.SEARCH_PLACEHOLDER,this.props.lang)}
                         onChange={this.handleInputVehicleChange} />
                     <div className="input-group-append">
                         <span className="input-group-text">

@@ -65,9 +65,9 @@ class Main extends Component {
 
   render(){
     return (
-      <div className="main-container debug">
+      <div className="main-container">
         <div className="main-content">
-          <Lang />
+   
         <div className="main-form clearfix">
         
 
