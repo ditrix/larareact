@@ -45,23 +45,25 @@ export function getResultOsgpo(bp = 180 ,
         let valueK612 = 1
         let valueK613 = 1
 
+        // тип
         switch(par.k1){
-            case 'A1': valueK1 = 0.34;  valueK61 = 1;    break;
-            case 'A2': valueK1 = 0.68;  valueK61 = 1;    break;
+            case 'A1': valueK1 = 0.34;  valueK61 = 1; par.k3 = 1;   break;  
+            case 'A2': valueK1 = 0.68;  valueK61 = 1; par.k3 = 1;   break;
             case 'B1': valueK1 = 1;     valueK61 = 1;    break;
             case 'B2': valueK1 = 1.14;  valueK61 = 1;    break;
             case 'B3': valueK1 = 1.18;  valueK61 = 1;    break;
             case 'B4': valueK1 = 1.82;  valueK61 = 1;    break;
-            case 'BE': valueK1 = 0.9;   valueK61 = 1.11; break;
+            case 'B5': valueK1 = 0.9;   valueK61 = 1.11; break;
             case 'F':  valueK1 = 0.34;  valueK61 = 1;    break;
             case 'D1': valueK1 = 2.55;  valueK61 = 1.5;  break;
-            case 'D2': valueK1 = 3;     valueK61 = 1.5;  break;
-            case 'C1': valueK1 = 2;     valueK61 = 1.15; break;
-            case 'C2': valueK1 = 2.18;  valueK61 = 1.15; break;
-            case 'E':  valueK1 = 0.5;   valueK61 = 1;    break;
+            case 'D2': valueK1 = 3;     valueK61 = 1.5;  par.k3 = 1; break;
+            case 'C1': valueK1 = 2;     valueK61 = 1.15; par.k3 = 1; break;
+            case 'C2': valueK1 = 2.18;  valueK61 = 1.15; par.k3 = 1; break;
+            case 'E':  valueK1 = 0.5;   valueK61 = 1;    par.k3 = 1; break;
             default: valueK1 = valueK61 = 0;
         }
 
+        // город\зона
         switch(par.k2){
             case '1': valueK2 = 4.8;  valueK62 = 1.05; break;
             case '2': valueK2 = 3.5;  valueK62 = 1.05; break;
@@ -72,8 +74,6 @@ export function getResultOsgpo(bp = 180 ,
             default:  valueK2 = valueK62 = 0;
         }
 
-        
-
         // такси\нетакси
         switch(par.k3){
             case '1': valueK3 = 1;   valueK63 = 1;   break;    
@@ -81,23 +81,25 @@ export function getResultOsgpo(bp = 180 ,
             default:  valueK3 = 1;   valueK63 = 1;   break;
         }
 
+        // льготы    
         switch(par.k10){
             case '0': valueK10 = 1;   valueK610 = 1; break;
             case '1':
             case '2':
-            case '1':
-            case '1':         
+            case '3':
+            case '4':         
                 valueK10 = 0.5; valueK610 = 1; break;
             default:  valueK10 = 1;   valueK610 = 1; break;
         }
 
+        /* ko франшизы */ 
         switch(par.k12){
             case '2600': valueK12=1; valueK612 = 1; break;
-            case '1300': valueK12=1.07; valueK612 = 1.07; break;
-            case '0':    valueK12=1.14; valueK612 = 1.14; break;
+            case '1300': valueK12=1; valueK612 = 1.07; break;
+            case '0':    valueK12=1; valueK612 = 1.14; break;
         }
 
-        const valueK6 = 
+        let mulK6 = 
                 valueK61*
                 valueK62*
                 valueK63*
@@ -111,6 +113,7 @@ export function getResultOsgpo(bp = 180 ,
                 valueK611*
                 valueK612*
                 valueK613
+        const valueK6 = +mulK6.toFixed(2)
 
         const result = bp*
                 valueK1*
@@ -127,7 +130,41 @@ export function getResultOsgpo(bp = 180 ,
                 valueK12*
                 valueK13;
 
-        return Math.ceil(result)
+                // console.log('------------- valuesK6 ------------------')
+                // console.log('valueK61',valueK61)
+                // console.log('valueK62',valueK62)
+                // console.log('valueK63',valueK63)
+                // console.log('valueK64',valueK64)
+                // console.log('valueK65',valueK65)
+                // console.log('valueK66',valueK66)
+                // console.log('valueK67',valueK67)
+                // console.log('valueK68',valueK68)
+                // console.log('valueK69',valueK69)
+                // console.log('valueK610',valueK610)
+                // console.log('valueK611',valueK611)
+                // console.log('valueK612',valueK612)
+                // console.log('valueK613',valueK613)
+                // console.log('------------- valuesKo ------------------')
+                // console.log('valueK1',valueK1)
+                // console.log('valueK2',valueK2)
+                // console.log('valueK3',valueK3)
+                // console.log('valueK4',valueK4)
+                // console.log('valueK5',valueK5)
+                // console.log('valueK6',valueK6)
+                // console.log('valueK7',valueK7)
+                // console.log('valueK8',valueK8)
+                // console.log('valueK9',valueK9)
+                // console.log('valueK10',valueK10)
+                // console.log('valueK11',valueK11)
+                // console.log('valueK12',valueK12)
+                // console.log('valueK13',valueK13)
+                // console.log('---------------- results ------------')
+                // console.log('no round:',result)
+                // console.log('round:',Math.ceil(result))
+                                                    
+
+
+        return Math.round(result)
     }
 
     export function getResultDgo(pardgo={k2:'0',ss: '0'}){

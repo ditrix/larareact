@@ -61,8 +61,8 @@ class SearchVehicle extends Component {
         if(this.validInputData()){
             this.setState({loaded: true, vehicle:emptyVehical,request:true})
 
-             fetch(url)
-             .then(response => console.log('fetch response ',response.json())); 
+            //  fetch(url)
+            //  .then(response => console.log('fetch response ',response.json())); 
 
 
             axios.get(url)
@@ -88,7 +88,7 @@ class SearchVehicle extends Component {
                     this.setState({loaded:true,request:false, message:MSG.SEARCH_NOT_FOUND})
                     this.setState({emptyVehical})
                     this.props.getVehicle(emptyVehical)
-                    console.log('CATCH: ',error)
+                  //  console.log('CATCH: ',error)
                 })
         }
     }
