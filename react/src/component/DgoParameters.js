@@ -10,10 +10,12 @@ import {_I18N} from '../lib/i18n'
 class DgoParameters extends Component {
     render(){
         return(
-            <div className="dgo-parameters">
-            <label>{_I18N(MSG.DGO_TITLE,this.props.lang)}&nbsp;
-                {TooltipIco(_I18N(MSG.DGO_TOOLTIP_CONTENT,this.props.lang))}</label>
-            <div className="dgo-values">
+            <div className="form-header-parameters">
+                <header>
+                <label><h4>{_I18N(MSG.DGO_TITLE,this.props.lang)}</h4></label>
+                <label>{TooltipIco(_I18N(MSG.DGO_TOOLTIP_CONTENT,this.props.lang))}</label>
+                </header>
+ 
             <div className="form-input-row">
                 <div className="select-widget dgo-type">
                     <div className="select-input">
@@ -42,7 +44,6 @@ class DgoParameters extends Component {
                     </div>
                 </div>
                 </div>
-            </div>
         </div>
         )
     }

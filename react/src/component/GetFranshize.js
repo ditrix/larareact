@@ -11,18 +11,20 @@ class GetFranshize extends Component {
 
     render(){
         return(
-            <div className="get-fransgize-widget">
-                <label  className="pl-summ">{_I18N(MSG.FRANSHIZE,this.props.lang)}</label>
-                <div className="select-input block-value" defaultValue>
+            <div className="form-header-parameters">
+                <header>
+                    <label><h4>{_I18N(MSG.FRANSHIZE,this.props.lang)}</h4></label>
+                    <label>{TooltipIco(_I18N(MSG.FRANSHIZE_TOOLTIP_CONTENT,this.props.lang))}</label>
+                </header>
+                <div className="form-input-row">
+                <div className="select-input block-value">
                     <select onChange={this.handleFranshizeChange.bind(this)} defaultValue={this.props.currentFranshize}>
                         <option value="2600">2600</option>
                         <option value="1300">1300</option>
                         <option value="0">0</option>
                     </select>  
                 </div>
-                <label>
-                   {TooltipIco(_I18N(MSG.FRANSHIZE_TOOLTIP_CONTENT,this.props.lang))}
-                </label>
+                </div>
             </div>
         )
     }

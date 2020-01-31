@@ -199,7 +199,7 @@ class InsuranceObject extends Component {
         return(
             <div className="make-polis-dialog">
                 <header>
-                    <FormHeader title={_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)} lang={this.props.lang} />            
+                    {/* <FormHeader title={_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)} lang={this.props.lang} />             */}
                 </header>
                 <form  className="tab-form">    
                 <main>

@@ -12,9 +12,9 @@ export const PaySumm = (summ, title='') => {
 
 export const ItogSumm = (summ, title='') => {
     return(
-        <div className="pl-summ">
-            <strong>{title}</strong>
-            <h4>{summ} грн.</h4>
+        <div className="pl-summ-itog clearfix">
+            <h5>{title}</h5>
+            <h5>{summ} грн.</h5>
         </div>
     )
 }

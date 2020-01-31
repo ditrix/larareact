@@ -252,13 +252,7 @@ class Client extends Component {
         const dateGetDoc = (this.state.client.doc.dtget === undefined)?new Date():this.state.client.doc.dtget
         return(
             <div className="make-polis-dialog">
-                <header>
-                    <FormHeader 
-                        title={_I18N(MSG.CLIENT,this.props.lang)}
-
-                        lang={this.props.lang} 
-                    />
-                </header>
+ 
             <form className="tab-form">
                 
                 <main>

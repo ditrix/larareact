@@ -29,20 +29,12 @@ class FormHeader extends Component {
 
         return(
             <div className="form-header">
-                <div className="header-block title"><h3>{this.props.title}</h3></div>
-                <div  className="header-block axtra-calculate-options">
-                    <GetFranshize 
+                <GetFranshize 
                         lang={this.props.lang} 
                         getFeanshize={this.getFranshize.bind(this)} 
                         currentFranshize={this.props.calculate.k12} 
-                    />
-                    <DgoParameters lang={this.props.lang} />
-                </div>
-                <div className="header-block result">
-                    {PaySumm(this.props.resultOsgpo,_I18N(MSG.CALCLATE_OSAGO,this.props.lang))}
-                    {PaySumm(0,_I18N(MSG.CALCULATE_DGO,this.props.lang))}
-                    {ItogSumm(this.props.resultOsgpo,_I18N(MSG.RESULT_PAY,this.props.lang))}
-                </div>      
+                />
+                <DgoParameters lang={this.props.lang} />
             </div>
         )
     }

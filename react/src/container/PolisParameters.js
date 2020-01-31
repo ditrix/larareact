@@ -151,7 +151,7 @@ render(){
     return(
         <div className="make-polis-dialog">
             <header>
-                <FormHeader title=''  lang={this.props.lang} /> 
+                {/* <FormHeader title=''  lang={this.props.lang} />  */}
                 <ParametersNav  
                     lang={this.props.lang}
                     action={this.state.action} 
