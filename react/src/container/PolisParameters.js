@@ -150,14 +150,14 @@ class PolisParameters extends Component{
 render(){
     return(
         <div className="make-polis-dialog">
-            <header>
+            {/* <header> */}
                 {/* <FormHeader title=''  lang={this.props.lang} />  */}
                 <ParametersNav  
                     lang={this.props.lang}
                     action={this.state.action} 
                     setParameterAction={this.setParameterAction.bind(this)} 
                 />
-            </header>   
+            {/* </header>    */}
             <form className="tab-form">    
                 <div className="vehicle-parameters">
  

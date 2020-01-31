@@ -43,7 +43,7 @@ class CommitPage extends Component {
             }
         return(
             <div className="make-polis-dialog">
-                <header><FormHeader title={_I18N(MSG.COMMIT_SECTION_TITLE,this.props.lang)} lang={this.props.lang} /></header>
+                <header><h1>{_I18N(MSG.COMMIT_SECTION,this.props.lang)}</h1></header>
                 <form  className="tab-form"> 
                      <main>
  
@@ -112,7 +112,7 @@ class CommitPage extends Component {
                         </div>
 
                         <div className="tab-form-row">
-                            <h5>{_I18N(MSG.DOCTITLE,this.props.lang)}</h5>
+                            <h5>{_I18N(MSG.DOC_SECTION_TITLE,this.props.lang)}</h5>
                             <div className="tab-form-block">
                                 <div className="parameters-data">
                                 <label>{_I18N(MSG.DOC_TYPE,this.props.lang)}</label>

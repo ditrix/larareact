@@ -525,7 +525,7 @@ nav button {
 }
 
 .select-widget {
-    background-color: white;
+    background-color: inherit;
     position: relative;
     display: inline-block;
     width: 90%;
@@ -570,7 +570,7 @@ nav button {
 
 .date-picker-widget
   {
-    background-color: white;
+    background-color: inherit;
     position: relative;
     display: inline-block;   
     z-index: 3;
@@ -590,7 +590,7 @@ nav button {
     position: relative;
     display: inline-block;
     padding: 0px;
-    background-color: white;
+    background-color: inherit;
     width: 100%;
     z-index: 2;
   }
@@ -673,7 +673,7 @@ nav button {
 
 
   .item-doc-source {
-    width: 500px;
+    width: 300px;
 }
   .make-polis-dialog header {
       display: flex;
@@ -902,4 +902,15 @@ margin-left: 10px;
       justify-content: space-between;
       width: 960px;
       margin: 0 auto;
+  }
+
+  .make-polis-dialog header {
+    background-color: var(--common-blue-color);
+    padding: 10px;
+  } 
+
+  .make-polis-dialog h1 {
+      color: white;
+      margin: 0px auto;
+      font-size: 2.2em;
   }
