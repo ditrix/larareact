@@ -19,8 +19,16 @@ import {_I18N} from '../lib/i18n'
 
 
 class CommitPage extends Component {
-    handleButtonCommitClick(){
+    handleButtonCommitClick(data){
         console.log('DOIT!')
+        this.props.commitPolsData(
+            {
+                parameters: this.props.parameters,
+                insobject: this.props.insobject,
+                client:this.props.client,            
+                calculate: this.props.calculate,
+            }
+        )
     }
 
 
@@ -191,7 +199,7 @@ class CommitPage extends Component {
                                 onClick={this.props.prevTab} >{_I18N(MSG.PREV,this.props.lang)}
                             </button>
                             <button className="btn-main-form-navigate btn-next" 
-                                onClick={this.props.nextTab} >{_I18N(MSG.COMMIT_POLIS_BUTTON,this.props.lang)}
+                                onClick={this.handleButtonCommitClick.bind(this)} >{_I18N(MSG.COMMIT_POLIS_BUTTON,this.props.lang)}
                             </button>
                     </nav>
                 </footer>
@@ -219,7 +227,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        commitPolsData: () => dispatch(actionCommitPolisData()),
+        commitPolsData: (data) => dispatch(actionCommitPolisData(data)),
     }
 }
 
