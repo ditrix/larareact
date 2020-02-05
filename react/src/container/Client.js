@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux' 
-import {dateFormatApi, checkIpn} from '../lib/functions'
+import {dateFormatApi, checkIpn, checkPhone} from '../lib/functions'
 import GetDatePicker from '../component/GetDatePicker'
 import 'react-day-picker/lib/style.css';
 
@@ -230,10 +230,12 @@ class Client extends Component {
   
 
     handlePhoneChanged = (event) => { 
-        const client = this.state.client;
-        client.phone = event.currentTarget.value
-        this.setState({client:client, msgPhoneValid:''})
-        console.log(event.currentTarget.value.match(/^\+380\d{3}\d{2}\d{2}\d{2}$/))
+
+        if(checkPhone(event.currentTarget.value)){
+            const client = this.state.client;
+            client.phone = event.currentTarget.value
+            this.setState({client:client, msgPhoneValid:''})
+        }
     }
     
     handleEmailChanged = (event) => { 
@@ -290,7 +292,7 @@ class Client extends Component {
 
                 <div className="form-input-row">
                     <div className="form-input-item input-inn">
-                        {/* <label className="block-label">Індивідуальний податковий номер (ІПН):</label> */}
+                     
                         <input 
                             placeholder={_I18N(MSG.INN,this.props.lang)} 
                             value={this.state.client.ipn} 
@@ -386,19 +388,32 @@ class Client extends Component {
                     />
                     <span className="input-error-message">{_I18N(this.state.msgAddrValid,this.props.lang)}</span>
                 </div>
-                <div className="form-input-item">
-                    <label className="block-label">{_I18N(MSG.PHONE,this.props.lang)}</label>
-                    <input type="tel" placeholder={'+38'}  value={this.state.client.phone} onChange={this.handlePhoneChanged.bind(this)} />
+
+                <div className="phone-input-block">
+                    <div class="input-group mb-3 client-phone">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">+380</span>
+                            <input type="tel" placeholder={_I18N(MSG.PHONE,this.props.lang)}
+                                value={this.state.client.phone} 
+                                onChange={this.handlePhoneChanged.bind(this)} 
+                            />        
+                        </div>
+                    </div>
                     <span className="input-error-message">{_I18N(this.state.msgPhoneValid,this.props.lang)}</span>
-                </div>                
-                <div className="form-input-item">
+                </div>
+
+
+                
+                <div className="mb-3">
                     {/* <label className="block-label">Email:</label> */}
+                    <div class="input-group mb-3">
                     <input 
                         value={this.state.client.email} 
                         onChange={this.handleEmailChanged.bind(this)} 
                         placeholder={_I18N(MSG.EMAIL,this.props.lang)} 
                     />
                     <span className="input-error-message">{_I18N(this.state.msgEmailValid,this.props.lang)}</span>
+                    </div>
                 </div>                
                 </main>
                    

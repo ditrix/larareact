@@ -1,2 +1,7 @@
+const phoneStr  = 'qwerty'
+    
+const pattern =  /[0-9]{0,15}/
 
-console.log(new Date())
+console.log( pattern.test(phoneStr) )
+
+

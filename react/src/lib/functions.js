@@ -16,14 +16,24 @@ export const dateFormatApi = date => {
     return (date)?date.toLocaleDateString('en-CA'):new Date().toLocaleDateString('en-CA')    
 }
 
-export const getNowDateTime = () => {
-    return new Date()
-}
-
 export const getCurrentDate = () => {
     return new Date().toLocaleDateString('en-CA')    
 }
 
+export const checkEmail = emailstr => {
+    const pattern  = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return pattern.test(emailstr)
+}
+
+export const checkPhone = (value) => {
+    return checkIntegerStr(value,10)
+}
+
+export const getTomorrow = () => {
+    let date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date.toLocaleDateString('en-CA')+'T00:00:00Z'
+}
 
 export const getCurrentYear = () => {
     const today =  new Date();
@@ -39,3 +49,4 @@ export const getStrContent = (str = '') => {
     return (!str)?'':str
     
 }
+
