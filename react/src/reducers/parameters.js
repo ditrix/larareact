@@ -1,5 +1,5 @@
 import {SAVE_POLIS_PARAMETERS,ACTION_SEARCH_VEHICLE } from '../constants'
-import {getCurrentDate} from '../lib/functions'
+import {getCurrentDate, getNowDateTime} from '../lib/functions'
 
 const initialState = {
         valueK10: '0',
@@ -31,7 +31,7 @@ const initialState = {
         },
         validateMess:'',
         valueDiscount:'0',
-        valueStartDate: '',
+        valueStartDate: getNowDateTime(),
 }
 
 export const reducerPolisParameters = (state = initialState, action) => {

@@ -301,7 +301,7 @@ class Client extends Component {
                     </div>
                     <div className="form-input-item input-dob">
                         <GetDatePicker 
-                            lang ='ru' 
+                            lang = {this.props.lang} 
                             label = {_I18N(MSG.BIRTHDAY,this.props.lang)} 
                             getDate={this.handleDOBChanged.bind(this)}
                             dateValue={this.state.client.dob}
@@ -364,7 +364,7 @@ class Client extends Component {
                         </div>                     
                         <div className="item-date-get">
                             <GetDatePicker 
-                                lang='ua' 
+                                lang={this.props.lang}
                                 label={_I18N(MSG.DOC_DATE_GET,this.props.lang)} 
                                 dateValue={dateGetDoc}
                                 getDate={this.handleDtGetChanged.bind(this)}
