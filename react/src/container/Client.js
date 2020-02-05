@@ -390,9 +390,9 @@ class Client extends Component {
                 </div>
 
                 <div className="phone-input-block">
-                    <div class="input-group mb-3 client-phone">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">+380</span>
+                    <div className="input-group mb-3 client-phone">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="inputGroup-sizing-default">+380</span>
                             <input type="tel" placeholder={_I18N(MSG.PHONE,this.props.lang)}
                                 value={this.state.client.phone} 
                                 onChange={this.handlePhoneChanged.bind(this)} 
@@ -406,7 +406,7 @@ class Client extends Component {
                 
                 <div className="mb-3">
                     {/* <label className="block-label">Email:</label> */}
-                    <div class="input-group mb-3">
+                    <div className="input-group mb-3">
                     <input 
                         value={this.state.client.email} 
                         onChange={this.handleEmailChanged.bind(this)} 
