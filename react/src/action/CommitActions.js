@@ -20,7 +20,30 @@ const getApiDocumentType = valueId => {
     }
 }
 
+const getDVehicleTypeID = valueK1 => {
+    switch(valueK1){
+        case 'A1': return 5
+        case 'A2': return 6
+        case 'B1': return 1
+        case 'B2': return 2
+        case 'B3': return 3
+        case 'B4': return 4
+        case 'B5': return 17
+        case 'C1': return 7
+        case 'C2': return 8
+        case 'D1': return 9
+        case 'D2': return 10
+        case 'F': return 11
+        case 'E': return 12
+        default: 
+            return 0;
 
+    }
+}
+
+const getDPrivelegeID = valueId => {
+    return 0;
+}
 
 const getConfirmData = data => {
 
@@ -29,15 +52,21 @@ const getConfirmData = data => {
     calculate.valueDiscount = data.calculate.valueDiscount
     const client = data.client.client
     const city = data.parameters.city
+    const valueStartDate = data.parameters.valueStartDate  
     const vehicle = data.insobject
 
+
+    console.log('parameters: ',data)
     // console.log('calculate: ',calculate)
     // console.log('client: ',client)
     // console.log('city: ',city)
     // console.log('vehicle: ',vehicle)
 
+    // FIXME: StartDate -> undefine
+
+
     const apiData = {
-        StartDate: "2020-02-04T08:22:19Z",
+        StartDate: valueStartDate,
         DPeriodID: 1,
         DBonusMalusID: 0,
         k1: calculate.k1,
@@ -57,19 +86,19 @@ const getConfirmData = data => {
         PName: client.sname,
         BirthDate: client.dob,
         Address: client.addr,
-        DCityID: 0,
+        DCityID: city.id,
         RegNo: "string",
-        VIN: "string",
+        VIN: vehicle.VIN,
         DateNextTO: "2020-02-04",
-        DVehicleTypeID: 1,
-        DMarkID: 0,
-        DModelID: 0,
-        AutoDescr: "string",
+        DVehicleTypeID: getDVehicleTypeID(calculate.k1),
+        DMarkID: vehicle.DMarkID,
+        DModelID: vehicle.DModelID,
+        AutoDescr: vehicle.AutoDescr,
         DSphereUseID: 1,
-        ProdYear: 2020,
+        ProdYear: vehicle.ProdYear,
         DExpLimitID: 1,
         VehicleUsage: "stringstring",
-        contractId: "string",
+        contractId: "0",
         Phone: client.phone,
         Email: client.email,
         DocumentType: getApiDocumentType(client.doc.type),
