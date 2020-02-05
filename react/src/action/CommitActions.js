@@ -15,7 +15,7 @@ const getApiDocumentType = valueId => {
         case "7":   return "7"  // Посвiдчення особи постр ЧАЭС
         case "8":   return "6"  // Посвiдчення учасника ВВВ
         case "9":   return "2"  
-            default: "3"
+            default: return "3"
                 
     }
 }
