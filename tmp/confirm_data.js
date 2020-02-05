@@ -1,4 +1,4 @@
-
+const fake_data =
 {
     "parameters": {
       "valueDiscount": "0",
