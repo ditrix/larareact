@@ -32,7 +32,7 @@ export function actionOptionValuesChange(values){
 
    //const result = calculateOSGPO(values)
     const result = getResultOsgpo(180,values.par)
-    values.resultPl = result
+    values = result
 
     return {
         type: CALCULTATE_POLIS,

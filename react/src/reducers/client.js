@@ -17,7 +17,7 @@ const initialState = {
           source: 'nyc fbi',                  
         },
         addr: 'js fash',
-        phone: '',
+        phone: '123',
         email: 'ivan@mail.com',
     },
     msgLNameValid: '',
