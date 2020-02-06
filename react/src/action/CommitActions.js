@@ -48,6 +48,8 @@ const getDPrivelegeID = valueId => {
 const getConfirmData = data => {
 
     const calculate = data.calculate.par
+    const calcValues = calculate.calcValues 
+
     calculate.resultPl = data.calculate.resultPl
     calculate.valueDiscount = data.calculate.valueDiscount
     const client = data.client.client
@@ -63,21 +65,25 @@ const getConfirmData = data => {
     // console.log('vehicle: ',vehicle)
 
     // FIXME: StartDate -> undefine
-
-
+//
+//
+//    TODO: init correct values
+///   WRK WITH DATABASE
+///
+//
     const apiData = {
         StartDate: valueStartDate,
         DPeriodID: 1,
         DBonusMalusID: 0,
-        k1: calculate.k1,
-        k2: calculate.k2,
-        k3: calculate.k3,
-        k4: calculate.k4,
-        k5: calculate.k5,
-        k6: calculate.k6,
-        k7: calculate.k7,
+        k1: calcValues.k1,
+        k2: calcValues.k2,
+        k3: calcValues.k3,
+        k4: calcValues.k4,
+        k5: calcValues.k5,
+        k6: calcValues.k6,
+        k7: calcValues.k7,
         DPrivelegeID: calculate.valueDiscount,
-        Franchise: calculate.k12,
+        Franchise: calcValues.k12,
         InsPremium: calculate.resultPl,
         DCitizenStatusID: isResident(client.doc.type),
         IdentCode: client.ipn,
@@ -87,9 +93,9 @@ const getConfirmData = data => {
         BirthDate: client.dob,
         Address: client.addr,
         DCityID: city.id,
-        RegNo: "string",
+        RegNo: vehicle.RegNo,
         VIN: vehicle.VIN,
-        DateNextTO: "2020-02-04",
+      //   (...)? DateNextTO: "2020-02-04",  // ? зависит от такси ли нед
         DVehicleTypeID: getDVehicleTypeID(calculate.k1),
         DMarkID: vehicle.DMarkID,
         DModelID: vehicle.DModelID,
@@ -97,19 +103,19 @@ const getConfirmData = data => {
         DSphereUseID: 1,
         ProdYear: vehicle.ProdYear,
         DExpLimitID: 1,
-        VehicleUsage: "stringstring",
+        //  (...)? VehicleUsage: "stringstring",  не актуально для страхования обівателя
         contractId: "0",
         Phone: client.phone,
         Email: client.email,
         DocumentType: getApiDocumentType(client.doc.type),
-        DocSeries: "string",
+        DocSeries: "string",   // ? серия документа
         DocNumber: client.doc.no,
-        issued: "string",
-        issueDate: "2020-02-04",
+      // (...)?  issued: "string",       // кем відан ??
+      //  (...)? issueDate: "2020-02-04",  // дата відачи ???
         dgoInsurSum: 100000,
-        dgoPaySum: "string",
+        dgoPaySum: "string",  
         dgoType: 1,
-        k8: calculate.k8,
+        k8: calcValues.k8,
     }
 
     return apiData

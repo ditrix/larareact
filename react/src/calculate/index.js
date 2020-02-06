@@ -130,41 +130,15 @@ export function getResultOsgpo(bp = 180 ,
                 valueK12*
                 valueK13;
 
-                // console.log('------------- valuesK6 ------------------')
-                // console.log('valueK61',valueK61)
-                // console.log('valueK62',valueK62)
-                // console.log('valueK63',valueK63)
-                // console.log('valueK64',valueK64)
-                // console.log('valueK65',valueK65)
-                // console.log('valueK66',valueK66)
-                // console.log('valueK67',valueK67)
-                // console.log('valueK68',valueK68)
-                // console.log('valueK69',valueK69)
-                // console.log('valueK610',valueK610)
-                // console.log('valueK611',valueK611)
-                // console.log('valueK612',valueK612)
-                // console.log('valueK613',valueK613)
-                // console.log('------------- valuesKo ------------------')
-                // console.log('valueK1',valueK1)
-                // console.log('valueK2',valueK2)
-                // console.log('valueK3',valueK3)
-                // console.log('valueK4',valueK4)
-                // console.log('valueK5',valueK5)
-                // console.log('valueK6',valueK6)
-                // console.log('valueK7',valueK7)
-                // console.log('valueK8',valueK8)
-                // console.log('valueK9',valueK9)
-                // console.log('valueK10',valueK10)
-                // console.log('valueK11',valueK11)
-                // console.log('valueK12',valueK12)
-                // console.log('valueK13',valueK13)
-                // console.log('---------------- results ------------')
-                // console.log('no round:',result)
-                // console.log('round:',Math.ceil(result))
+    
                                                     
-
-
-        return Math.round(result)
+        const calcValues = {
+            calcValues:{k1:valueK1,k2:valueK2,k3:valueK3,k4:valueK4,k5:valueK5,k6:valueK6,k7:valueK7,k8:valueK8,k9:valueK9,
+                    k10:valueK10, k11:valueK11, k12:valueK12, k13:valueK13}
+        }
+      
+        calcValues.resultPl = Math.round(result) 
+        return calcValues
     }
 
     export function getResultDgo(pardgo={k2:'0',ss: '0'}){
