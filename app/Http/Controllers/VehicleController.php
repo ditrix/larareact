@@ -51,8 +51,7 @@ class VehicleController extends Controller {
 	}
 
 	public function postVehicle(Request $request){
-		//$vehicleNo = $request->val;
-		//$vehicleNo = 123;
+	
 
 		return response()->json(['result' => $request->data]);
 
