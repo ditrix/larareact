@@ -97,6 +97,8 @@ export function getResultOsgpo(bp = 180 ,
             case '2600': valueK12=1; valueK612 = 1; break;
             case '1300': valueK12=1; valueK612 = 1.07; break;
             case '0':    valueK12=1; valueK612 = 1.14; break;
+            default: 
+                valueK12=1; valueK612 = 1; break;
         }
 
         let mulK6 = 

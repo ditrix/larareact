@@ -1,5 +1,7 @@
 import {ACTION_COMMIT_DATA} from '../constants'
 
+// eslint-disable-next-line
+import {getCurrentDate, getTomorrow} from '../lib/functions'
 
 const isResident = typeDocumentValue => {
     return (typeDocumentValue !== '4')
@@ -41,38 +43,26 @@ const getDVehicleTypeID = valueK1 => {
     }
 }
 
-const getDPrivelegeID = valueId => {
-    return 0;
-}
 
-const getConfirmData = data => {
+const getReserveData = data => {
 
     const calculate = data.calculate.par
-    const calcValues = calculate.calcValues 
+    const calcValues = data.calculate.calcValues 
 
     calculate.resultPl = data.calculate.resultPl
     calculate.valueDiscount = data.calculate.valueDiscount
     const client = data.client.client
     const city = data.parameters.city
-    const valueStartDate = data.parameters.valueStartDate  
+
+    const parameters = data.parameters
+
+
     const vehicle = data.insobject
 
 
-    console.log('parameters: ',data)
-    // console.log('calculate: ',calculate)
-    // console.log('client: ',client)
-    // console.log('city: ',city)
-    // console.log('vehicle: ',vehicle)
 
-    // FIXME: StartDate -> undefine
-//
-//
-//    TODO: init correct values
-///   WRK WITH DATABASE
-///
-//
-    const apiData = {
-        StartDate: valueStartDate,
+    const reserveData = {
+        StartDate: parameters.valueStartDate,
         DPeriodID: 1,
         DBonusMalusID: 0,
         k1: calcValues.k1,
@@ -95,7 +85,6 @@ const getConfirmData = data => {
         DCityID: city.id,
         RegNo: vehicle.RegNo,
         VIN: vehicle.VIN,
-      //   (...)? DateNextTO: "2020-02-04",  // ? зависит от такси ли нед
         DVehicleTypeID: getDVehicleTypeID(calculate.k1),
         DMarkID: vehicle.DMarkID,
         DModelID: vehicle.DModelID,
@@ -103,28 +92,39 @@ const getConfirmData = data => {
         DSphereUseID: 1,
         ProdYear: vehicle.ProdYear,
         DExpLimitID: 1,
-        //  (...)? VehicleUsage: "stringstring",  не актуально для страхования обівателя
         contractId: "0",
         Phone: client.phone,
         Email: client.email,
         DocumentType: getApiDocumentType(client.doc.type),
-        DocSeries: "string",   // ? серия документа
         DocNumber: client.doc.no,
-      // (...)?  issued: "string",       // кем відан ??
-      //  (...)? issueDate: "2020-02-04",  // дата відачи ???
         dgoInsurSum: 100000,
-        dgoPaySum: "string",  
+        dgoPaySum: "100500",  
         dgoType: 1,
         k8: calcValues.k8,
     }
 
-    return apiData
+     if(parameters.valueK3 === '3'){
+        reserveData.DateNextTO = parameters.dateOtk 
+     }
+
+    if(client.doc.seria !== ''){
+        reserveData.DocSeries = client.doc.seria
+    }
+
+    if(client.doc.source !== ''){
+        reserveData.issued = client.doc.source
+    }
+    if(client.doc.dtget !== getCurrentDate()){
+        reserveData.issueDate = client.doc.dtget
+    }
+
+    return reserveData
 }
 
 
-export function actionCommitPolisData(data){
+export function actionReservePolis(data){
     // TODO send itog data to server
-    const confdata = getConfirmData(data)
+    const confdata = getReserveData(data)
     console.log(confdata)
     return {
         type: ACTION_COMMIT_DATA,

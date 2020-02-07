@@ -6,7 +6,7 @@ import 'react-day-picker/lib/style.css';
 
 //import {_I18N(MSG.INVALID_DATA_MESSAGE,this.props.lang)} from '../constants'
 import {actionSaveClient} from '../action/ClientAction'
-import FormHeader from './FormHeader'
+
 
 import {MSG} from '../constants/messages'
 import {_I18N} from '../lib/i18n'
