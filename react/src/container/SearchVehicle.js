@@ -98,7 +98,7 @@ class SearchVehicle extends Component {
         <div className="search-vehicle-wrapper">
             <div className='search-form'>
                 {/* <label className="block-label">{_I18N(MSG.SEARCH_LABEL,this.props.lang)}</label> */}
-                <div className="input-group">
+                <div className="input-group row col-sm-12 col-md-12" >
                     <input type="text" className="form-control" 
                         required 
                         onClick={this.handleVehicleClick.bind(this)} 

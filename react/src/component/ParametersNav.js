@@ -16,22 +16,43 @@ class ParametersNav extends Component {
 
     render(){
         return(
-            <ul className="nav parameters-nav">
-            <li className="parameters-nav-item">
-                <button 
-                    className={(this.props.action === ACTION_SEARCH_VEHICLE)?"parameters-link-active":"parameters-link-passive"} 
-                    onClick={this.searchVehicleClick.bind(this)}>
-                {_I18N(MSG.SEARCH_VEHICLE,this.props.lang)}
-                </button>
-            </li>
-            <li className="parameters-nav-item">
-                <button 
-                    className={(this.props.action === ACTION_GET_VEHICLE)?"parameters-link-active":"parameters-link-passive"}  
-                    onClick={this.parametersVehicleClick.bind(this)}>
-                {_I18N(MSG.INPUT_PARAMETERS,this.props.lang)}
-                </button>
-            </li>
-        </ul>           
+   
+            <div className="container">
+                {(this.props.action === ACTION_SEARCH_VEHICLE)?
+                    <div className="row parameter-nav">
+
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 active-parameter">
+                        <div className="_debug" onClick={this.searchVehicleClick.bind(this)}>
+                            <h5>{_I18N(MSG.SEARCH_VEHICLE,this.props.lang)}</h5>
+                        </div>
+                </div>
+
+
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 passive-parameter">
+                        <div className="_debug" onClick={this.parametersVehicleClick.bind(this)}>
+                        <h5>{_I18N(MSG.INPUT_PARAMETERS,this.props.lang)}</h5>
+                        </div>
+                </div>
+                </div>
+                :
+                <div className="row parameter-nav">
+
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 passive-parameter">
+                        <div className="_debug" onClick={this.searchVehicleClick.bind(this)}>
+                            <h5>{_I18N(MSG.SEARCH_VEHICLE,this.props.lang)}</h5>
+                        </div>
+                </div>
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 active-parameter">
+                        <div className="_debug" onClick={this.parametersVehicleClick.bind(this)}>
+                        <h5>{_I18N(MSG.INPUT_PARAMETERS,this.props.lang)}</h5>
+                        </div>
+                </div>
+                </div>
+                }   
+
+                </div>
+         
+  
         )
     }
 }

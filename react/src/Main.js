@@ -61,7 +61,7 @@ class Main extends Component {
 
   render(){
     return (
-      <div className="container debug">
+      <div className="container">
 
         <div className="row polis-container">
         
@@ -69,10 +69,10 @@ class Main extends Component {
 
           <div className="col-xl-10">
             <div className="row">
-                <div className="col-md-5 col-xl-4 debug order-md-2 col-sm-12">
+                <div className="col-md-5 col-xl-4 order-md-2 col-sm-12">
                   <ResultBlock lang={this.props.lang}/>
                 </div>
-                <div className="col-md-7  col-xl-8 debug order-md-1 col-sm-12">
+                <div className="col-md-7  col-xl-8 order-md-1 col-sm-12">
                   <FormHeader title={_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)} lang={this.props.lang} />
                   {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}  
                   {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
