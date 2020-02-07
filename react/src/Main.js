@@ -4,7 +4,7 @@ import './css/style.css'
 import PolisParameters from './container/PolisParameters'
 import Client from './container/Client'
 import InsuranceObject from './container/InsuranceObject'
-import CommitPage from './container/ReservePage'
+import ReservePage from './container/ReservePage'
 import FormHeader from './container/FormHeader'
 import ResultBlock from './container/ResultBlock'
 
@@ -61,21 +61,31 @@ class Main extends Component {
 
   render(){
     return (
-      <div className="main-container">
+      <div className="container debug">
 
-        <div className="make-polis-container">
-        <div className="main-form">
-          <FormHeader title={_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)} lang={this.props.lang} />   
-          {(this.state.currentTab === TAB_RESERVE)&&<CommitPage  nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
-          {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}
-          {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
-          {(this.state.currentTab === TAB_OBJECT)&&<InsuranceObject prevTab={this.actionPrevTab} nextTab={this.actionNextTab} />}
-        </div>
-        <div className="result-block-section">
-          <ResultBlock lang={this.props.lang}/>
-        </div>
-        </div>
-      </div>
+        <div className="row polis-container">
+        
+          <div className="col-xl-1"></div>
+
+          <div className="col-xl-10">
+            <div className="row">
+                <div className="col-md-5 col-xl-4 debug order-md-2 col-sm-12">
+                  <ResultBlock lang={this.props.lang}/>
+                </div>
+                <div className="col-md-7  col-xl-8 debug order-md-1 col-sm-12">
+                  <FormHeader title={_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)} lang={this.props.lang} />
+                  {(this.state.currentTab === TAB_PARAMETERS)&&<PolisParameters nextTab={this.actionNextTab} />}  
+                  {(this.state.currentTab === TAB_CLIENT)&&<Client nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
+                  {(this.state.currentTab === TAB_OBJECT)&&<InsuranceObject prevTab={this.actionPrevTab} nextTab={this.actionNextTab} />}
+                  {(this.state.currentTab === TAB_RESERVE)&&<ReservePage  nextTab={this.actionNextTab} prevTab={this.actionPrevTab} />}
+                </div>  
+            </div>
+          </div>  
+
+            <div className="col-xl-1"></div>
+
+        </div> 
+      </div> 
     )}
   
 }

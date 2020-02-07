@@ -201,6 +201,12 @@ main {
 
 .parameters-nav-item button {
     height: 100%;
+
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    
+
 }
 
 .form-input-valid input {
@@ -463,6 +469,9 @@ nav button {
 
 
 .form-parameters-nav button {
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
     width: 200px;
     float: right;
 }
@@ -473,6 +482,8 @@ nav button {
     font-weight: 400;
     width: 200px;
 }
+
+
 .btn-prev {
    float: left;
 }
@@ -903,6 +914,10 @@ margin-left: 10px;
       width: 960px;
       margin: 0 auto;
   }
+
+  .polis-container {
+    margin-top: 5em;
+}
 
   .make-polis-dialog header {
     background-color: var(--common-blue-color);
