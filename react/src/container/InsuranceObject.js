@@ -5,7 +5,6 @@ import {actionSaveInsObject} from '../action/InsObjectAction'
 
 import {checkIntegerStr,getCurrentYear} from '../lib/functions'
 
-import FormHeader from './FormHeader'
 import {TooltipIco} from '../component/templates/TooltipIco'
 
  //import {markDS} from '../data/markds.js'

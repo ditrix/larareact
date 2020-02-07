@@ -2,11 +2,14 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux' 
 import GetFranshize from '../component/GetFranshize'
+// eslint-disable-next-line
 import {PaySumm,ItogSumm} from '../component/PaySumm'
 import DgoParameters from '../component/DgoParameters'
 import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
 
+// eslint-disable-next-line
 import {MSG} from '../constants/messages'
+// eslint-disable-next-line
 import {_I18N} from '../lib/i18n'
 
 class FormHeader extends Component {

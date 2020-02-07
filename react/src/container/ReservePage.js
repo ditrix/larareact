@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {dataK1} from '../data/dataK1'
 // eslint-disable-next-line
 import {getDateUaStr,getStrContent} from '../lib/functions'
-import FormHeader from './FormHeader'
 import {getTypeDocumentContent, 
         getDiscountContent, 
         getVehicleTypeNameContent, 
@@ -11,14 +10,14 @@ import {getTypeDocumentContent,
         getVehicleCityContent
          } from '../component/templates/TemplatesStr'
 
-import {actionCommitPolisData} from '../action/CommitActions'
+import {actionReservePolis} from '../action/ReservePolisAction'
 
 
 import {MSG} from '../constants/messages'
 import {_I18N} from '../lib/i18n'
 
 
-class CommitPage extends Component {
+class ReservePage extends Component {
     handleButtonCommitClick(data){
         console.log('DOIT!')
         this.props.commitPolsData(
@@ -49,6 +48,7 @@ class CommitPage extends Component {
                     auto: this.props.insobject,
                 }
             }
+           
         return(
             <div className="make-polis-dialog">
                 <header><h1>{_I18N(MSG.COMMIT_SECTION,this.props.lang)}</h1></header>
@@ -155,7 +155,7 @@ class CommitPage extends Component {
                                 </div>
                                 <div className="parameters-data">
                                 <label>{_I18N(MSG.PHONE,this.props.lang)}</label>
-                                    <span><h6>{data.client.client.phone}</h6></span>
+                                    <span><h6>+380{data.client.client.phone}</h6></span>
                                 </div>
                                 <div className="parameters-data">
                                     <label>{_I18N(MSG.EMAIL,this.props.lang)}</label>
@@ -217,6 +217,7 @@ const mapStateToProps = store => {
             dateOtk: store.parameters.dateOtk,
             valueK1: store.parameters.valueK1,
             city:store.parameters.city,
+            valueStartDate:store.parameters.valueStartDate
         },        
         insobject: store.parameters.vehicle,
         client: store.client,
@@ -227,11 +228,11 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        commitPolsData: (data) => dispatch(actionCommitPolisData(data)),
+        commitPolsData: (data) => dispatch(actionReservePolis(data)),
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CommitPage)
+export default connect(mapStateToProps,mapDispatchToProps)(ReservePage)
 
 
 

@@ -32,6 +32,7 @@ const initialState = {
         validateMess:'',
         valueDiscount:'0',
         valueStartDate: getTomorrow(),
+        
 }
 
 export const reducerPolisParameters = (state = initialState, action) => {
