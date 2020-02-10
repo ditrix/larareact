@@ -28,16 +28,24 @@ class FormHeader extends Component {
         this.props.calculatePl(calculate)
     }
 
+    getDataDgo(value){
+        console.log('getDataDgo: ', value, '  TODO: calculate DGO PAY')
+    }
+
+
     render(){
 
         return(
             <div className="form-header">
                 <GetFranshize 
-                        lang={this.props.lang} 
-                        getFeanshize={this.getFranshize.bind(this)} 
-                        currentFranshize={this.props.calculate.k12} 
+                    lang={this.props.lang} 
+                    getFeanshize={this.getFranshize.bind(this)} 
+                    currentFranshize={this.props.calculate.k12} 
                 />
-                <DgoParameters lang={this.props.lang} />
+                <DgoParameters 
+                    lang={this.props.lang} 
+                    getDataDgo={this.getDataDgo.bind(this)}                         
+                />
             </div>
         )
     }
@@ -45,7 +53,6 @@ class FormHeader extends Component {
 
 const mapStateToProps = state => {
     return{
-        //parameters: store.parameters,
         calculate: state.calculate,
         currentFranshize: state.calculate.par.k12,
         resultOsgpo: state.calculate.resultPl,  
