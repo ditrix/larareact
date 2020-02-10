@@ -2,7 +2,7 @@ import {SAVE_CLIENT} from '../constants'
 import {getCurrentDate} from '../lib/functions'
 const initialState = {
     client:{ 
-        idResident: undefined, // вычисляется по типу документа
+        idResident: true, // вычисляется по типу документа
         lname: 'иванов',  // validate required, size & characters 
         sname: 'иванович',  // validate required, size & characters
         fname: 'иван',  // validate required, size & characters
@@ -12,7 +12,7 @@ const initialState = {
           type:'1',   // если   id-паспорт громодянина України  
                      // seria не спрашиваем для остальных - есть
           seria: '',
-          no:'',
+          no:'221',
           dtget: getCurrentDate(),
           source: 'nyc fbi',                  
         },

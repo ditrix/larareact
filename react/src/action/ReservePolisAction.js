@@ -4,7 +4,10 @@ import {ACTION_COMMIT_DATA} from '../constants'
 import {getCurrentDate, getTomorrow} from '../lib/functions'
 
 const isResident = typeDocumentValue => {
-    return (typeDocumentValue !== '4')
+    if(typeDocumentValue === '4'){ 
+        return 2
+    }
+    return 1
 }
 
 const getApiDocumentType = valueId => {
@@ -39,10 +42,19 @@ const getDVehicleTypeID = valueK1 => {
         case 'E': return 12
         default: 
             return 0;
-
     }
 }
 
+const getDSphereUseID = valueK3 => {
+    if(valueK3 === "3"){
+        return 2
+    }
+    return 1
+}
+
+const getPhone = valuePhone => {
+    return '+380'+ valuePhone
+}
 
 const getReserveData = data => {
 
@@ -72,8 +84,8 @@ const getReserveData = data => {
         k5: calcValues.k5,
         k6: calcValues.k6,
         k7: calcValues.k7,
-        DPrivelegeID: calculate.valueDiscount,
-        Franchise: calcValues.k12,
+        DPrivelegeID: parseInt(parameters.valueDiscount),
+        Franchise: parseInt(calculate.k12),
         InsPremium: calculate.resultPl,
         DCitizenStatusID: isResident(client.doc.type),
         IdentCode: client.ipn,
@@ -82,18 +94,17 @@ const getReserveData = data => {
         PName: client.sname,
         BirthDate: client.dob,
         Address: client.addr,
-        DCityID: city.id,
+        DCityID: parseInt(city.id),
         RegNo: vehicle.RegNo,
         VIN: vehicle.VIN,
         DVehicleTypeID: getDVehicleTypeID(calculate.k1),
-        DMarkID: vehicle.DMarkID,
-        DModelID: vehicle.DModelID,
-        AutoDescr: vehicle.AutoDescr,
-        DSphereUseID: 1,
-        ProdYear: vehicle.ProdYear,
+        DMarkID: parseInt(vehicle.DMarkID),
+        DModelID: parseInt(vehicle.DModelID),
+        DSphereUseID: getDSphereUseID(calculate.k3),
+        ProdYear: parseInt(vehicle.ProdYear),
         DExpLimitID: 1,
         contractId: "0",
-        Phone: client.phone,
+        Phone: getPhone(client.phone),
         Email: client.email,
         DocumentType: getApiDocumentType(client.doc.type),
         DocNumber: client.doc.no,
@@ -117,6 +128,12 @@ const getReserveData = data => {
     if(client.doc.dtget !== getCurrentDate()){
         reserveData.issueDate = client.doc.dtget
     }
+
+    if(vehicle.AutoDescr !== ''){
+        reserveData.AutoDescr = vehicle.AutoDescr
+    }
+    
+
 
     return reserveData
 }

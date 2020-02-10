@@ -8,9 +8,9 @@ const initialState = {
         marka: '',
         model: '',
         year: '',
-        no: '',
-        vin: '',
-        descr: '',
+        no: 'NO1223',
+        vin: 'VIN221',
+        descr: 'DESCR AUTO',
     },
  
     dataValid: false,

@@ -95,6 +95,7 @@ class PolisParameters extends Component{
         calculate.par.k3 = '0'
         this.props.calculatePl(calculate)
         this.setState({valueTaxi:(value ==='')?'0':'1',isOtk:(value!=='0')? value:'0',validateMess:''})
+        this.props.saveParameters(this.state)
     }
 
     getTaxi(value){

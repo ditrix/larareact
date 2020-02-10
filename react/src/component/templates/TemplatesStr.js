@@ -21,14 +21,17 @@ export const getTypeDocumentContent = (valueStr, lang='ua') => {
 
 
 export const getDiscountContent = (valueStr, lang='ua') => {
-    switch(valueStr){
-        case '0': return _I18N(MSG.DISCOUNT_NONE,lang)
-        case '1': return _I18N(MSG.DISCOUNT_WAR,lang)
-        case '2': return _I18N(MSG.DISCOUNT_INVAL,lang)
-        case '3': return _I18N(MSG.DISCOUNT_CHORNOBYL,lang)
-        case '4': return _I18N(MSG.DISCOUNT_PENSION,lang)
-        default:  return _I18N(MSG.DISCOUNT_NONE,lang)
-    }
+    //console.log('getDiscountContent.value =',va)
+
+    // switch(valueStr){
+    //     case '0': return _I18N(MSG.DISCOUNT_NONE,lang)
+    //     case '1': return _I18N(MSG.DISCOUNT_WAR,lang)
+    //     case '2': return _I18N(MSG.DISCOUNT_INVAL,lang)
+    //     case '3': return _I18N(MSG.DISCOUNT_CHORNOBYL,lang)
+    //     case '4': return _I18N(MSG.DISCOUNT_PENSION,lang)
+    //     default:  return _I18N(MSG.DISCOUNT_NONE,lang)
+    // }
+    return  _I18N('!!!!!!!!!!!!!!!!',lang)
 }
 
 

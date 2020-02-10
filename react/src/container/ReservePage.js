@@ -71,7 +71,9 @@ class ReservePage extends Component {
                                 <div className="parameters-data">
                                     <label>{_I18N(MSG.DISCOUNT,this.props.lang)}</label>
                                     <span>
-                                        <h6>{getDiscountContent(data.parameters.valueDiscount,this.props.lang)}</h6>
+                                        {/* <h6>{getDiscountContent(data.parameters.valueDiscount,this.props.lang)}</h6> */}
+                                        {(data.parameters.valueDiscount !== '0')?<h6>{_I18N(MSG.YES,this.props.lang)}</h6>
+                                        :<h6>{_I18N(MSG.DISCOUNT_NONE,this.props.lang)}</h6>}
                                     </span>
                                 </div>
 
@@ -80,10 +82,6 @@ class ReservePage extends Component {
                                     <span><h6>{getBoolTextContent(data.parameters.valueTaxi,this.props.lang)}</h6></span>
                                 </div>
 
-                                <div className="parameters-data">
-                                    <label>{_I18N(MSG.OTK,this.props.lang)}</label>
-                                    <span><h6>{getBoolTextContent(data.parameters.isOtk,this.props.lang)}</h6></span>
-                                </div>
 
                                 <div className="parameters-data">
                                     <label>{_I18N(MSG.DATE_OTK,this.props.lang)}</label>
