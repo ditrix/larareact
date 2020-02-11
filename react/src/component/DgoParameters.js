@@ -5,13 +5,7 @@ import {connect} from 'react-redux'
 
 import {MSG} from '../constants/messages'
 import {_I18N} from '../lib/i18n'
-/*возвращать {dgoType:  dgoInsurSum:  }
 
-    ДГО  === 1
-    ДГО+  === 2
-
-
-*/ 
 
 class DgoParameters extends Component {
 
@@ -76,14 +70,12 @@ class DgoParameters extends Component {
     render(){
         const dgoSum = this.state.dgo.dgoInsurSum
         const dgoPlusSum = this.state.dgoPlus.dgoInsurSum
-        console.log('this.props.dataDGO', this.props.dataDGO)
+ 
         return(
             <div className="form-header-parameters">
                 <header>
-                {this.props.dataDGO.dgoType}
-                {this.props.dataDGO.dgoInsurSum}
-                <label><h4>{_I18N(MSG.DGO_TITLE,this.props.lang)}</h4></label>
-                <label>{TooltipIco(_I18N(MSG.DGO_TOOLTIP_CONTENT,this.props.lang))}</label>
+                    <label><h4>{_I18N(MSG.DGO_TITLE,this.props.lang)}</h4></label>
+                    <label>{TooltipIco(_I18N(MSG.DGO_TOOLTIP_CONTENT,this.props.lang))}</label>
                 </header>
  
             <div className="form-input-row">
