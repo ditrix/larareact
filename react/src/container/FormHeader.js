@@ -6,6 +6,7 @@ import GetFranshize from '../component/GetFranshize'
 import {PaySumm,ItogSumm} from '../component/PaySumm'
 import DgoParameters from '../component/DgoParameters'
 import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
+import {actionCalcDGO} from '../action/ActionCalcDGO'
 
 // eslint-disable-next-line
 import {MSG} from '../constants/messages'
@@ -44,6 +45,7 @@ class FormHeader extends Component {
                 />
                 <DgoParameters 
                     lang={this.props.lang} 
+                    dataDGO={this.props.dataDGO}
                     getDataDgo={this.getDataDgo.bind(this)}                         
                 />
             </div>
@@ -56,13 +58,15 @@ const mapStateToProps = state => {
         calculate: state.calculate,
         currentFranshize: state.calculate.par.k12,
         resultOsgpo: state.calculate.resultPl,  
+        dataDGO: state.dgo,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         saveParameters: (parameters) => dispatch(actionSavePolisParameters(parameters)),
-        calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo))
+        calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo)),
+        calculateDgo:(valueDGO) => dispatch(actionCalcDGO(valueDGO))
     }
 }
 

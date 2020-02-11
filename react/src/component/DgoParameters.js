@@ -76,6 +76,7 @@ class DgoParameters extends Component {
     render(){
         const dgoSum = this.state.dgo.dgoInsurSum
         const dgoPlusSum = this.state.dgoPlus.dgoInsurSum
+        console.log('this.props.dataDGO', this.props.dataDGO)
         return(
             <div className="form-header-parameters">
                 <header>
