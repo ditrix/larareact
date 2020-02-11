@@ -1,4 +1,4 @@
-//export const APP_SITE_URL  = `http://larareact/`
+//export const APP_SITE_URL  = `http://epol/`
 export const APP_SITE_URL  = `http://test.askods.com/`
 
 export const REG_EXP_VEHICLE_NO = '^[a-zA-Zа-яА-ЯїЇіІ0-9./]{0,15}$'
@@ -28,3 +28,4 @@ export const CALCULTATE_POLIS = 'CALCULTATE_POLIS'
 export const ACTION_SWITCH_LANG = 'ACTION_SWITCH_LANG'
 
 export const ACTION_CALC_DGO  = 'ACTION_CALC_DGO'
+export const ACTION_GET_DGO = 'ACTION_GET_DGO'

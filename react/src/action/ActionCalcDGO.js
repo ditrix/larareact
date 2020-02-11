@@ -1,16 +1,16 @@
-import {ACTION_CALC_DGO} from '../constants'
+import {ACTION_CALC_DGO, ACTION_GET_DGO} from '../constants'
 
 const calculateDGO = param => {
     return {
-        dgoType: 1,
-        dgoPaySum: '100500',
-        dgoInsurSum: 500000,
+        dgoType:  param.dgoType,
+        dgoPaySum: param.dgoPaySum,
+        dgoInsurSum: param.dgoInsurSum,
     }
 }
 
-export const actionCalcDGO = dataDGO => {
+export const actionGetDGO = dataDGO => {
     return {
-        type: ACTION_CALC_DGO,
+        type: ACTION_GET_DGO,
         payload: calculateDGO(dataDGO)
     }
 }

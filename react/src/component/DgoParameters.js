@@ -80,6 +80,8 @@ class DgoParameters extends Component {
         return(
             <div className="form-header-parameters">
                 <header>
+                {this.props.dataDGO.dgoType}
+                {this.props.dataDGO.dgoInsurSum}
                 <label><h4>{_I18N(MSG.DGO_TITLE,this.props.lang)}</h4></label>
                 <label>{TooltipIco(_I18N(MSG.DGO_TOOLTIP_CONTENT,this.props.lang))}</label>
                 </header>
@@ -87,7 +89,10 @@ class DgoParameters extends Component {
             <div className="form-input-row">
                 <div className="select-widget dgo-type">
                     <div className="select-input">
-                        <select placeholder="" onChange={this.handleDgoChanged.bind(this)} value={this.state.dgo.dgoInsurSum} >
+                        <select placeholder="" 
+                            onChange={this.handleDgoChanged.bind(this)} 
+                            value={(this.props.dataDGO.dgoType === 1)?this.props.dataDGO.dgoInsurSum:0} 
+                            >
                             <option  value="0">{_I18N(MSG.DGO,this.props.lang)}</option>
                             <option  value="100000">100 000</option>
                             <option  value="200000">200 000</option>
@@ -101,7 +106,9 @@ class DgoParameters extends Component {
                 
                 <div className="select-widget dgo-type">
                     <div className="select-input">
-                        <select placeholder="" onChange={this.handleDgoPlusChanged.bind(this)} value={this.state.dgoPlus.dgoInsurSum} >
+                        <select placeholder="" 
+                            onChange={this.handleDgoPlusChanged.bind(this)} 
+                            value={(this.props.dataDGO.dgoType === 2)?this.props.dataDGO.dgoInsurSum.toString():'0'} >
                             <option  value="0">{_I18N(MSG.DGO_PLUS,this.props.lang)}</option>
                             <option  value="100000">100 000</option>
                             <option  value="200000">200 000</option>
