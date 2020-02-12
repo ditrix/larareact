@@ -20,6 +20,9 @@ const initialState = {
         k1:1,k2:1,k3:1, k4:1,k5:1,k6:1,k7:1,k8:1,k9:1,k10:1,k11:1,k12:1, k13:1,
 
     },
+    dataDGO:{
+        zone: '0'
+    }
     // valueBP: 180,
     // valueK1: '0',
     // valueK2: '0',

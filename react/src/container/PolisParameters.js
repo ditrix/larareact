@@ -12,6 +12,7 @@ import {SearchResultTemplate} from '../component/SearchResultTemplate'
 import {ACTION_SEARCH_VEHICLE} from '../action'
 
 import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
+import {actionCalculateDGO,actionGetDGO} from '../action/ActionCalcDGO'
 import {dateFormatApi} from '../lib/functions'
 
 import {emptyVehical} from '../data/emptyVehical'
@@ -143,6 +144,10 @@ class PolisParameters extends Component{
             const calculate = this.props.calculate
             calculate.valueK2 = value.zone
             calculate.par.k2 = value.zone
+            //calculate.dataDGO.zone = value.zone_dgo_askods
+            const dgo = this.props.dgo
+            dgo.zone = value.zone_dgo_askods
+            this.props.getDataDGO(dgo)
             this.props.calculatePl(calculate)
         }
 
@@ -254,6 +259,7 @@ const mapStateToProps = store => {
     return {
         parameters: store.parameters,
         calculate: store.calculate,
+        dgo: store.dgo,
         lang: store.appstate.lang,
     }
 }
@@ -262,7 +268,8 @@ const mapDispatchToProps = dispatch => {
 
     return {
         saveParameters: (parameters) => dispatch(actionSavePolisParameters(parameters)),
-        calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo))
+        calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo)),
+        getDataDGO: (data) => dispatch(actionGetDGO(data))
     }
 }
 
