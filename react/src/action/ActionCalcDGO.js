@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import {ACTION_CALC_DGO, ACTION_GET_DGO} from '../constants'
 
 const calculateDGO = param => {

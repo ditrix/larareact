@@ -4,6 +4,7 @@ import {dataK1} from '../data/dataK1'
 // eslint-disable-next-line
 import {getDateUaStr,getStrContent} from '../lib/functions'
 import {getTypeDocumentContent, 
+    // eslint-disable-next-line
         getDiscountContent, 
         getVehicleTypeNameContent, 
         getBoolTextContent,

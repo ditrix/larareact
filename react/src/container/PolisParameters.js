@@ -12,6 +12,8 @@ import {SearchResultTemplate} from '../component/SearchResultTemplate'
 import {ACTION_SEARCH_VEHICLE} from '../action'
 
 import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
+
+// eslint-disable-next-line
 import {actionCalculateDGO,actionGetDGO} from '../action/ActionCalcDGO'
 import {dateFormatApi} from '../lib/functions'
 
