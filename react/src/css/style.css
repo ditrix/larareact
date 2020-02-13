@@ -491,6 +491,11 @@ nav button {
     background-color: #e5e6ea;
 }
 
+.make-polis-dialog h6 {
+    color: var(--dark-blue-color);
+    font-style: italic;
+}
+
 .select-widget {
     background-color: inherit;
     position: relative;
@@ -960,6 +965,6 @@ margin-left: 10px;
       font-style: italic;
   }
 
-  .parameter-nav  {
-
-  }
+.group-info {
+    border: 1px gray solid;
+}

@@ -6,7 +6,6 @@ const initialState = {
         valueK3: '0',
         valueK1:'00',
         valueK2: '0',
-        isOtk: '0',
         dateOtk: getCurrentDate(),
         
         city: {

@@ -47,5 +47,6 @@ export const getVehicleCityContent = (city,lang='ua') => {
 
 export const getBoolTextContent = (val, lang='ua') => {
     // eslint-disable-next-line
+    
     return (lang='ua')?(val==='0')?'ні':'так':(val==='0')?'нет':'да'
 }

@@ -49,46 +49,45 @@ class ReservePage extends Component {
                     auto: this.props.insobject,
                 }
             }
+            console.log(data.parameters)
            
         return(
             <div className="make-polis-dialog">
                 <header><h1>{_I18N(MSG.COMMIT_SECTION,this.props.lang)}</h1></header>
                 <form  className="tab-form"> 
                      <main>
- 
+                        <div className="row">
+                            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+                                <label>{_I18N(MSG.VEHICLE_TYPE_LABEL,this.props.lang)}</label>
+                                <span><h6>{getVehicleTypeNameContent(data.parameters.valueK1,this.props.lang)}</h6></span>
+                            </div>
+                            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+                                <label>{_I18N(MSG.CITY_NAME_LABEL,this.props.lang)}</label>
+                                <span><h6>{(this.props.lang === 'ua')?data.parameters.city.nameUA:data.parameters.city.nameRU}</h6></span>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                        
+                            <div className="text-center col-4">
+                                <label>{_I18N(MSG.DISCOUNT,this.props.lang)}</label>
+                                <span><h6>{getBoolTextContent(data.parameters.valueDiscount,this.props.lang)}</h6></span>
+                            </div>
+                            <div className="text-center col-4">
+                                <label>{_I18N(MSG.TAXI,this.props.lang)}</label>
+                                <span><h6>{getBoolTextContent(data.parameters.valueTaxi,this.props.lang)}</h6></span>
+                            </div>
+                            <div className="text-center col-4">
+                                <label>{_I18N(MSG.DATE_OTK,this.props.lang)}</label>
+                                <span><h6>{getDateUaStr(data.client.client.dob)}</h6></span>
+                            </div>
+                           
+                        </div>
+
                         <div className="tab-form-row">
                              {/* <h5>Параметри</h5>  */}
-                             <h5>{_I18N(MSG.VEHICLE_TITLE,this.props.lang)}</h5>
-                            <div className="tab-form-block">
-                                <div className="parameters-data">
-                                    <label>{_I18N(MSG.VEHICLE_TYPE,this.props.lang)}</label>
-                                    <span><h6>{getVehicleTypeNameContent(data.parameters.valueK1,this.props.lang)}</h6></span>
-                                </div>
-
-                                <div className="parameters-data">
-                                    <label>{_I18N(MSG.VEHICLE_CITY,this.props.lang)}</label>
-                                    <span><h6>{getVehicleCityContent(data.parameters.city,this.props.lang)}</h6></span>
-                                </div>
-                                <div className="parameters-data">
-                                    <label>{_I18N(MSG.DISCOUNT,this.props.lang)}</label>
-                                    <span>
-                                        {/* <h6>{getDiscountContent(data.parameters.valueDiscount,this.props.lang)}</h6> */}
-                                        {(data.parameters.valueDiscount !== '0')?<h6>{_I18N(MSG.YES,this.props.lang)}</h6>
-                                        :<h6>{_I18N(MSG.DISCOUNT_NONE,this.props.lang)}</h6>}
-                                    </span>
-                                </div>
-
-                                <div className="parameters-data">
-                                    <label>{_I18N(MSG.TAXI,this.props.lang)}</label>
-                                    <span><h6>{getBoolTextContent(data.parameters.valueTaxi,this.props.lang)}</h6></span>
-                                </div>
-
-
-                                <div className="parameters-data">
-                                    <label>{_I18N(MSG.DATE_OTK,this.props.lang)}</label>
-                                    <span><h6>{getDateUaStr(data.parameters.dateOtk)}</h6></span>
-                                </div>
-                            </div>
+                            
+                           
                         </div>        
 
                         <div className="tab-form-row">

@@ -11,13 +11,13 @@ const initialState = {
         doc:{
           type:'1',   // если   id-паспорт громодянина України  
                      // seria не спрашиваем для остальных - есть
-          seria: '',
+          seria: 'seria',
           no:'221',
           dtget: getCurrentDate(),
-          source: 'nyc fbi',                  
+          source: 'кивским ровд',                  
         },
-        addr: 'js fash',
-        phone: '123',
+        addr: 'харьковская 12',
+        phone: '551234567',
         email: 'ivan@mail.com',
     },
     msgLNameValid: '',

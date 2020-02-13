@@ -19,7 +19,7 @@ import {dateFormatApi} from '../lib/functions'
 
 import {emptyVehical} from '../data/emptyVehical'
 
-import IsOtk from '../component/IsOtk'
+
 import GetDateOtk from '../component/GetDateOtk'
 
 import ParametersNav from '../component/ParametersNav'
@@ -221,24 +221,15 @@ render(){
                     <div className="check-select-block">
                     {/* если такси или грузовик автобус прицепы -> покажем выбор техосмотра */}
                     {((this.props.calculate.par.k3 === "3")||((['C1','C2','D1','D2','E','F'].indexOf(this.state.valueK1) !== -1)))?
-                        <IsOtk 
-                            lang={this.props.lang} 
-                            isOtk={this.props.parameters.isOtk} 
-                            getOtk={this.getOtk.bind(this)} />    
+                    <GetDateOtk 
+                            dateOtk={this.state.dateOtk} 
+                            getDateOtk={this.getDateOtk.bind(this)}
+                    />
                         :<></>
                     }
 
                     </div>
 
-                    <div className="check-select-block">
-                      {
-                          (this.state.isOtk === '1')?<GetDateOtk 
-                            dateOtk={this.state.dateOtk} 
-                            getDateOtk={this.getDateOtk.bind(this)}
-
-                          />:<></>
-                      }
-                    </div>
                 </div>
 
             </form>       
