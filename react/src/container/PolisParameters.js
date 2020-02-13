@@ -14,7 +14,7 @@ import {ACTION_SEARCH_VEHICLE} from '../action'
 import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
 
 // eslint-disable-next-line
-import {actionCalculateDGO,actionGetDGO} from '../action/ActionCalcDGO'
+import {actionCalculateDGO,actionGetDGO,actionGetZoneDGO} from '../action/ActionCalcDGO'
 import {dateFormatApi} from '../lib/functions'
 
 import {emptyVehical} from '../data/emptyVehical'
@@ -149,8 +149,9 @@ class PolisParameters extends Component{
             //calculate.dataDGO.zone = value.zone_dgo_askods
             const dgo = this.props.dgo
             dgo.zone = value.zone_dgo_askods
-            this.props.getDataDGO(dgo)
+         //   this.props.getZoneDGO(dgo.zone)
             this.props.calculatePl(calculate)
+            this.props.calculateDgo(dgo)
         }
 
     }
@@ -271,7 +272,8 @@ const mapDispatchToProps = dispatch => {
     return {
         saveParameters: (parameters) => dispatch(actionSavePolisParameters(parameters)),
         calculatePl:(valuesKo) => dispatch(actionOptionValuesChange(valuesKo)),
-        getDataDGO: (data) => dispatch(actionGetDGO(data))
+       // getZoneDGO: (data) => dispatch(actionGetZoneDGO(data)),
+        calculateDgo:(valueDGO) => dispatch(actionGetDGO(valueDGO))
     }
 }
 

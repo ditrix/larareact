@@ -23,119 +23,120 @@ const parametersOSGPO = {
         { valuePar:"6", valueValc:1, valueK6:1, isActive:1, descrRU: '', descrUA:''  },
     ]
 }
-
-const dataDGO1 = [
+//dgoInsurSum
+//dgoPaySum
+export const dataDGO1 = [
     {   
-        insutSum:'100000',
+        dgoInsurSum:'100000',
         paysMatrix:[
-            {zone:'1', valuePl:'180'},
-            {zone:'2', valuePl:'140'},
-            {zone:'3', valuePl:'130'},
-            {zone:'4', valuePl:'100'},
-            {zone:'5', valuePl:'90'},
-            {zone:'6', valuePl:'200'},
+            {zone:'1', dgoPaySum:'180'},
+            {zone:'2', dgoPaySum:'140'},
+            {zone:'3', dgoPaySum:'130'},
+            {zone:'4', dgoPaySum:'100'},
+            {zone:'5', dgoPaySum:'90'},
+            {zone:'6', dgoPaySum:'200'},
         ]
     },
     {   
-        insutSum:'200000',
+        dgoInsurSum:'200000',
         paysMatrix:[
-            {zone:'1', valuePl:'290'},
-            {zone:'2', valuePl:'230'},
-            {zone:'3', valuePl:'210'},
-            {zone:'4', valuePl:'170'},
-            {zone:'5', valuePl:'150'},
-            {zone:'6', valuePl:'320'},
+            {zone:'1', dgoPaySum:'290'},
+            {zone:'2', dgoPaySum:'230'},
+            {zone:'3', dgoPaySum:'210'},
+            {zone:'4', dgoPaySum:'170'},
+            {zone:'5', dgoPaySum:'150'},
+            {zone:'6', dgoPaySum:'320'},
         ]
     },
     {   
-        insutSum:'300000',
+        dgoInsurSum:'300000',
         paysMatrix:[
-            {zone:'1', valuePl:'390'},
-            {zone:'2', valuePl:'310'},
-            {zone:'3', valuePl:'280'},
-            {zone:'4', valuePl:'230'},
-            {zone:'5', valuePl:'200'},
-            {zone:'6', valuePl:'420'},
+            {zone:'1', dgoPaySum:'390'},
+            {zone:'2', dgoPaySum:'310'},
+            {zone:'3', dgoPaySum:'280'},
+            {zone:'4', dgoPaySum:'230'},
+            {zone:'5', dgoPaySum:'200'},
+            {zone:'6', dgoPaySum:'420'},
         ]
     },
     {   
-        insutSum:'400000',
+        dgoInsurSum:'400000',
         paysMatrix:[
-            {zone:'1', valuePl:'472'},
-            {zone:'2', valuePl:'372'},
-            {zone:'3', valuePl:'340'},
-            {zone:'4', valuePl:'270'},
-            {zone:'5', valuePl:'240'},
-            {zone:'6', valuePl:'500'},
+            {zone:'1', dgoPaySum:'472'},
+            {zone:'2', dgoPaySum:'372'},
+            {zone:'3', dgoPaySum:'340'},
+            {zone:'4', dgoPaySum:'270'},
+            {zone:'5', dgoPaySum:'240'},
+            {zone:'6', dgoPaySum:'500'},
         ]
     },
     {   
-        insutSum:'500000',
+        dgoInsurSum:'500000',
         paysMatrix:[
-            {zone:'1', valuePl:'540'},
-            {zone:'2', valuePl:'420'},
-            {zone:'3', valuePl:'390'},
-            {zone:'4', valuePl:'300'},
-            {zone:'5', valuePl:'270'},
-            {zone:'6', valuePl:'550'},
+            {zone:'1', dgoPaySum:'540'},
+            {zone:'2', dgoPaySum:'420'},
+            {zone:'3', dgoPaySum:'390'},
+            {zone:'4', dgoPaySum:'300'},
+            {zone:'5', dgoPaySum:'270'},
+            {zone:'6', dgoPaySum:'550'},
         ]
     },
 ]
 
-const dataDGO2 = [
+export const dataDGO2 = [
     {   
-        insutSum:'100000',
+        dgoInsurSum:'100000',
         paysMatrix:[
-            {zone:'1', valuePl:'422'},
-            {zone:'2', valuePl:'320'},
-            {zone:'3', valuePl:'290'},
-            {zone:'4', valuePl:'200'},
-            {zone:'5', valuePl:'150'},
-            {zone:'6', valuePl:'470'},
+            {zone:'1', dgoPaySum:'422'},
+            {zone:'2', dgoPaySum:'320'},
+            {zone:'3', dgoPaySum:'290'},
+            {zone:'4', dgoPaySum:'200'},
+            {zone:'5', dgoPaySum:'150'},
+            {zone:'6', dgoPaySum:'470'},
         ]
     },
     {   
-        insutSum:'200000',
+        dgoInsurSum:'200000',
         paysMatrix:[
-            {zone:'1', valuePl:'600'},
-            {zone:'2', valuePl:'490'},
-            {zone:'3', valuePl:'440'},
-            {zone:'4', valuePl:'340'},
-            {zone:'5', valuePl:'230'},
-            {zone:'6', valuePl:'670'},
+            {zone:'1', dgoPaySum:'600'},
+            {zone:'2', dgoPaySum:'490'},
+            {zone:'3', dgoPaySum:'440'},
+            {zone:'4', dgoPaySum:'340'},
+            {zone:'5', dgoPaySum:'230'},
+            {zone:'6', dgoPaySum:'670'},
         ]
     },
     {   
-        insutSum:'300000',
+        dgoInsurSum:'300000',
         paysMatrix:[
-            {zone:'1', valuePl:'760'},
-            {zone:'2', valuePl:'620'},
-            {zone:'3', valuePl:'560'},
-            {zone:'4', valuePl:'430'},
-            {zone:'5', valuePl:'285'},
-            {zone:'6', valuePl:'840'},
+            {zone:'1', dgoPaySum:'760'},
+            {zone:'2', dgoPaySum:'620'},
+            {zone:'3', dgoPaySum:'560'},
+            {zone:'4', dgoPaySum:'430'},
+            {zone:'5', dgoPaySum:'285'},
+            {zone:'6', dgoPaySum:'840'},
         ]
     },
     {   
-        insutSum:'400000',
+        dgoInsurSum:'400000',
         paysMatrix:[
-            {zone:'1', valuePl:'900'},
-            {zone:'2', valuePl:'720'},
-            {zone:'3', valuePl:'660'},
-            {zone:'4', valuePl:'500'},
-            {zone:'5', valuePl:'320'},
-            {zone:'6', valuePl:'980'},
+            {zone:'1', dgoPaySum:'900'},
+            {zone:'2', dgoPaySum:'720'},
+            {zone:'3', dgoPaySum:'660'},
+            {zone:'4', dgoPaySum:'500'},
+            {zone:'5', dgoPaySum:'320'},
+            {zone:'6', dgoPaySum:'980'},
         ]
     },
     {   
-        insutSum:'500000',
+        dgoInsurSum:'500000',
         paysMatrix:[
-            {zone:'1', valuePl:'1000'},
-            {zone:'2', valuePl:'800'},
-            {zone:'3', valuePl:'725'},
-            {zone:'4', valuePl:'550'},
-            {zone:'5', valuePl:'350'},
-            {zone:'6', valuePl:'1100'},
+            {zone:'1', dgoPaySum:'1000'},
+            {zone:'2', dgoPaySum:'800'},
+            {zone:'3', dgoPaySum:'725'},
+            {zone:'4', dgoPaySum:'550'},
+            {zone:'5', dgoPaySum:'350'},
+            {zone:'6', dgoPaySum:'1100'},
         ]
     },
 ]

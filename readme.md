@@ -28,3 +28,8 @@ Route::resource('vehicle', 'VehicleController@getVehicle');
 Route::resource('vehicleset', 'VehicleController@postVehicle');
 
 // минус! post невозможно отлаживать. т.е. кажд раз через сборку фронтенда
+
+
+TODO
+использовать
+https://laravel.ru/docs/v5/csrf св 

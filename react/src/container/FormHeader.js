@@ -31,7 +31,10 @@ class FormHeader extends Component {
 
     getDataDgo(value){
         console.log('getDataDgo: ', value, '  TODO: calculate DGO PAY')
-        this.props.calculateDgo(value)
+        const valuesDgo = this.props.dataDGO 
+        valuesDgo.dgoInsurSum = value.dgoInsurSum
+        valuesDgo.dgoType = value.dgoType
+        this.props.calculateDgo(valuesDgo)
     }
 
 
