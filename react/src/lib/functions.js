@@ -51,3 +51,28 @@ export const getStrContent = (str = '') => {
     
 }
 
+export const inArray = (value,arrValues) => {
+    return arrValues.indexOf(value) !== -1
+}
+
+export const inDGO = (valueK1) => {
+    return inArray(valueK1,['B1','B2','B3','B4','B5'])
+}
+
+export const getBoolTextContent = (val, lang='ua') => {
+    if(typeof(val)==='boolean'){
+        val = (val)?'1':'0'
+    }
+    if(typeof(val)==='number'){
+        val = (val === 0)?'0':'1'
+    }
+ 
+    let res = ''
+    if(lang ==='ua'){
+        (val === '0')?res = 'ні':res='так'
+    }else {
+        (val === '0')?res = 'нет':res='да'
+    }
+   
+    return res
+}

@@ -1,4 +1,5 @@
 // TODO: global after refactoring  
+// eslint-disable-next-line
 const parametersOSGPO = {
     k1: [
         { valuePar:"B1", valueValc:1, valueK6:1, isActive:1, descrRU: '', descrUA:''  },
@@ -23,8 +24,7 @@ const parametersOSGPO = {
         { valuePar:"6", valueValc:1, valueK6:1, isActive:1, descrRU: '', descrUA:''  },
     ]
 }
-//dgoInsurSum
-//dgoPaySum
+//dgoInsurSum dgoPaySum
 export const dataDGO1 = [
     {   
         dgoInsurSum:'100000',
