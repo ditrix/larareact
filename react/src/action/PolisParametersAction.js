@@ -16,7 +16,6 @@ export function actionSavePolisParameters(parameters){
     }
 }
 // 
-// TODO
 export function actionSearchVehicle(parameters){
     return {
         type: SAVE_POLIS_PARAMETERS,
@@ -25,12 +24,9 @@ export function actionSearchVehicle(parameters){
 }
 
 
-//?????????????????????????????
+
 export function actionOptionValuesChange(values){
     // расчет значений
-
-    console.log(values)
-   //const result = calculateOSGPO(values)
     const result = getResultOsgpo(180,values.par)
     values = result
 

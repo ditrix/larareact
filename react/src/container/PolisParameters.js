@@ -14,7 +14,7 @@ import {ACTION_SEARCH_VEHICLE} from '../action'
 import {actionSavePolisParameters,actionOptionValuesChange} from '../action/PolisParametersAction'
 
 // eslint-disable-next-line
-import {actionCalculateDGO,actionGetDGO,actionGetZoneDGO} from '../action/ActionCalcDGO'
+import {actionCalculateDGO,actionGetDGO, inDGO, actionGetZoneDGO} from '../action/ActionCalcDGO'
 import {dateFormatApi} from '../lib/functions'
 
 import {emptyVehical} from '../data/emptyVehical'
@@ -74,6 +74,10 @@ class PolisParameters extends Component{
             calculate.valueK1 = value  // TODO erase
             calculate.par.k1 = value
             this.props.calculatePl(calculate)
+            // TODO: setDGOActive
+            const dgo = this.props.dgo
+            dgo.active = inDGO(calculate.valueK1,calculate.valueK3)
+            this.props.calculateDgo(dgo)
         }
     }
 
@@ -87,6 +91,11 @@ class PolisParameters extends Component{
         const tmpState = this.state 
         tmpState.valueK1 = value.DVehicleTypeType
         tmpState.vehicle = value
+        // TODO: setDGOActive
+        const dgo = this.props.dgo
+        dgo.active = inDGO(calculate.valueK1,calculate.valueK3)
+        this.props.calculateDgo(dgo)
+
         this.setState(tmpState)
     }    
 
@@ -96,7 +105,13 @@ class PolisParameters extends Component{
         calculate.valueDiscount= value
         calculate.par.k10 = value
         calculate.par.k3 = '0'
+        calculate.valueK3 = '0'
+
+
         this.props.calculatePl(calculate)
+        const dgo = this.props.dgo
+        dgo.active = inDGO(calculate.valueK1,calculate.valueK3)
+        this.props.calculateDgo(dgo)        
         this.setState({valueTaxi:(value ==='')?'0':'1',isOtk:(value!=='0')? value:'0',validateMess:''})
         this.props.saveParameters(this.state)
     }
@@ -106,6 +121,11 @@ class PolisParameters extends Component{
         const calculate = this.props.calculate
         calculate.valueK3= value
         calculate.par.k3 = value
+        // TODO: setDGOActive
+        const dgo = this.props.dgo
+        dgo.active = inDGO(calculate.valueK1,calculate.valueK3)
+        this.props.calculateDgo(dgo)
+
         this.props.calculatePl(calculate)
     }
 

@@ -30,7 +30,6 @@ class FormHeader extends Component {
     }
 
     getDataDgo(value){
-        console.log('getDataDgo: ', value, '  TODO: calculate DGO PAY')
         const valuesDgo = this.props.dataDGO 
         valuesDgo.dgoInsurSum = value.dgoInsurSum
         valuesDgo.dgoType = value.dgoType
@@ -47,22 +46,24 @@ class FormHeader extends Component {
                     getFeanshize={this.getFranshize.bind(this)} 
                     currentFranshize={this.props.calculate.k12} 
                 />
+                {(this.props.dataDGO.active)?
                 <DgoParameters 
                     lang={this.props.lang} 
                     dataDGO={this.props.dataDGO}
                     getDataDgo={this.getDataDgo.bind(this)}                         
-                />
+                />:<span></span>
+                }
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
     return{
-        calculate: state.calculate,
-        currentFranshize: state.calculate.par.k12,
-        resultOsgpo: state.calculate.resultPl,  
-        dataDGO: state.dgo,
+        calculate: store.calculate,
+        currentFranshize: store.calculate.par.k12,
+        resultOsgpo: store.calculate.resultPl,  
+        dataDGO: store.dgo,
     }
 }
 

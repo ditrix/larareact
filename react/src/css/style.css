@@ -829,9 +829,6 @@ margin-left: 10px;
     background-color: white;
 }
 
-.main-content {
-
-}
 
 .result-block-section {
     width: 300px;
@@ -967,4 +964,8 @@ margin-left: 10px;
 
 .group-info {
     border: 1px gray solid;
+}
+
+.pl-summ-box {
+    height: 30px;
 }

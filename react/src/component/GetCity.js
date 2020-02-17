@@ -1,7 +1,18 @@
 import React,{Component} from 'react'
 
 import {cityDS} from '../data/cityds'
-import {initialCity} from '../reducers/city'
+
+const initialCity = () => {
+   
+    return {
+        "id": "0",
+        "nameRu": "--место регистрации--",
+        "nameUa": "--місце реєстрації--",
+        "zone": "0",
+        "zone_dgo": "0",
+        "zone_dgo_askods": "0",
+      }
+}
 
 class GetCity extends Component {
     constructor(props){

@@ -73,7 +73,3 @@ export const getBoolTextContent = (val, lang='ua') => {
    
     return res
 }
-
-export const inDGO = (valueK1) => {
-    return inArray(valueK1,['B1','B2','B3','B4','B5'])
-}

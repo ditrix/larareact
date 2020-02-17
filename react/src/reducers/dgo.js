@@ -1,6 +1,7 @@
 import {ACTION_CALC_DGO,ACTION_GET_DGO,ACTION_GET_ZONE_DGO} from '../constants'
 const initialState = {
-  
+
+        active: false,
         dgoInsurSum: 0,
         dgoPaySum: "0",
         dgoType: 0,
