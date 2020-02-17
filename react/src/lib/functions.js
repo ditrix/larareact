@@ -55,9 +55,6 @@ export const inArray = (value,arrValues) => {
     return arrValues.indexOf(value) !== -1
 }
 
-export const inDGO = (valueK1) => {
-    return inArray(valueK1,['B1','B2','B3','B4','B5'])
-}
 
 export const getBoolTextContent = (val, lang='ua') => {
     if(typeof(val)==='boolean'){
@@ -75,4 +72,8 @@ export const getBoolTextContent = (val, lang='ua') => {
     }
    
     return res
+}
+
+export const inDGO = (valueK1) => {
+    return inArray(valueK1,['B1','B2','B3','B4','B5'])
 }
