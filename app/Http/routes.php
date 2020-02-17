@@ -24,8 +24,8 @@ Route::controller('vehicle', 'VehicleController');
 Route::resource('vehicle', 'VehicleController@getVehicle');
 Route::resource('vehicleset', 'VehicleController@postVehicle');
 
-Route::resource('reserve','ReserveController@reserve');
-//Route::post('/reserve','ReserveController@reserve');
+//Route::resource('reserve','ReserveController@reserve');
+Route::post('reserve','ReserveController@reserve');
 
 /*
 Route::controllers([
