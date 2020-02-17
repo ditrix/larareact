@@ -1,7 +1,28 @@
 import {ACTION_COMMIT_DATA} from '../constants'
-
+import axios from 'axios'
+// eslint-disable-next-line
+import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 // eslint-disable-next-line
 import {getCurrentDate, getTomorrow} from '../lib/functions'
+
+
+//`${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
+
+const reserveData = data => {
+
+    const apiData = JSON.stringify(data)
+    //const url = `http://epol/public/reserve?data="${apiData}"`
+   
+    const url = `http://epol/public/reserve`
+    
+    //console.log(url)
+
+    //axios(url)
+    axios.post(url,apiData)
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
+
+}
 
 const isResident = typeDocumentValue => {
     if(typeDocumentValue === '4'){ 
@@ -139,9 +160,14 @@ const getReserveData = data => {
 }
 
 
+
+
 export function actionReservePolis(data){
     // TODO send itog data to server
     const confdata = getReserveData(data)
+
+    reserveData(confdata)
+
     console.log(confdata)
     return {
         type: ACTION_COMMIT_DATA,

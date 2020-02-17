@@ -18,6 +18,7 @@ import {MSG} from '../constants/messages'
 import {_I18N} from '../lib/i18n'
 
 
+
 class ReservePage extends Component {
     handleButtonCommitClick(data){
         console.log('DOIT!')

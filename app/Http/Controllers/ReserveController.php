@@ -81,4 +81,8 @@ class ReserveController extends Controller {
 		//
 	}
 
+	public function reserve(Request $request){
+		return response()->json(['result' => 'прошел']);
+	}
+
 }
