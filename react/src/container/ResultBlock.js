@@ -8,8 +8,7 @@ import {_I18N} from '../lib/i18n'
 
 class ResultBlock extends Component {
     render(){
-       console.log('this.props.resultOsgpo',this.props.resultOsgpo)
-       console.log('this.props.resultDgo',this.props.resultDgo)
+
        const resOsgpo = (this.props.resultOsgpo)?this.props.resultOsgpo:0
        const resDGO = (this.props.resultDgo)?this.props.resultDgo:0
         return(               

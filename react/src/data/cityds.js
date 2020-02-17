@@ -4,7 +4,7 @@ export const cityDS = [
     "nameRU": "--место регистрации владельца ТС--",
     "nameUA": "--місце реєстрації власника ТЗ--",
     "zone": "0",
-    "zone_dgo": "0","zone_dgo_askods": "4"
+    "zone_dgo": "0","zone_dgo_askods": "0"
   },
   {
     "id": "2",
