@@ -2,13 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux' 
 import {dataK1} from '../data/dataK1'
 // eslint-disable-next-line
-import {getDateUaStr,getStrContent} from '../lib/functions'
+import {getDateUaStr} from '../lib/functions'
 import {getTypeDocumentContent, 
-    // eslint-disable-next-line
-        getDiscountContent, 
         getVehicleTypeNameContent, 
         getBoolTextContent,
-        getVehicleCityContent
          } from '../component/templates/TemplatesStr'
 
 import {actionReservePolis} from '../action/ReservePolisAction'
@@ -21,13 +18,14 @@ import {_I18N} from '../lib/i18n'
 
 class ReservePage extends Component {
     handleButtonCommitClick(data){
-        console.log('DOIT!')
-        this.props.commitPolsData(
+  
+        this.props.commitPolisData(
             {
                 parameters: this.props.parameters,
                 insobject: this.props.insobject,
                 client:this.props.client,            
                 calculate: this.props.calculate,
+                dgo: this.props.dgo,
             }
         )
     }
@@ -50,8 +48,7 @@ class ReservePage extends Component {
                     auto: this.props.insobject,
                 }
             }
-            console.log(data.parameters)
-           
+  
         return(
             <div className="make-polis-dialog">
                 <header><h1>{_I18N(MSG.COMMIT_SECTION,this.props.lang)}</h1></header>
@@ -71,26 +68,27 @@ class ReservePage extends Component {
                         <div className="row">
                         
                             <div className="text-center col-4">
-                                <label>{_I18N(MSG.DISCOUNT,this.props.lang)}</label>
-                                <span><h6>{getBoolTextContent(data.parameters.valueDiscount,this.props.lang)}</h6></span>
+                                <div className="row">
+                                    <div className="col-sm-4">{_I18N(MSG.DISCOUNT,this.props.lang)}</div>
+                                    <div className="col-sm-3"><h6>{getBoolTextContent(data.parameters.valueDiscount,this.props.lang)}</h6></div>
+                                </div>
                             </div>
                             <div className="text-center col-4">
-                                <label>{_I18N(MSG.TAXI,this.props.lang)}</label>
-                                <span><h6>{getBoolTextContent(data.parameters.valueTaxi,this.props.lang)}</h6></span>
+                                <div className="row">
+                                    <div className="col-sm-4">{_I18N(MSG.TAXI,this.props.lang)}</div>
+                                    <div className="col-sm-3"><h6>{(this.props.calculate.par.k3 === "3")?_I18N(MSG.YES,this.props.lang):_I18N(MSG.NO,this.props.lang)}</h6></div>
+                                </div>
                             </div>
                             <div className="text-center col-4">
-                                <label>{_I18N(MSG.DATE_OTK,this.props.lang)}</label>
-                                <span><h6>{getDateUaStr(data.client.client.dob)}</h6></span>
+                                <div className="row">
+                                    <div className="col-sm-6"><label>{_I18N(MSG.DATE_OTK,this.props.lang)}</label></div>
+                                    <div className="col-sm-3"><span><h6>{getDateUaStr(data.client.client.dob)}</h6></span></div>
+                                </div>
                             </div>
                            
                         </div>
 
-                        <div className="tab-form-row">
-                             {/* <h5>Параметри</h5>  */}
-                            
-                           
-                        </div>        
-
+                        <div className="row">
                         <div className="tab-form-row">
                             <h5>{_I18N(MSG.INSURANT,this.props.lang)}</h5>
                             <div className="tab-form-block">
@@ -117,7 +115,8 @@ class ReservePage extends Component {
 
                             </div>    
                         </div>
-
+                        </div>
+                        <div className="row">
                         <div className="tab-form-row">
                             <h5>{_I18N(MSG.DOC_SECTION_TITLE,this.props.lang)}</h5>
                             <div className="tab-form-block">
@@ -145,8 +144,10 @@ class ReservePage extends Component {
                                     
                             </div>    
                         </div>
+                        </div>
+                        <div className="row">
                         <div className="tab-form-row">
-                            <h5>{_I18N(MSG.CONTACT_INFO,this.props.lang)}</h5>
+                            <h5>{_I18N(MSG.CONTACTS_INFO,this.props.lang)}</h5>
                             <div className="tab-form-block">
                                 <div className="parameters-data">
                                 <label>{_I18N(MSG.ADDRESS,this.props.lang)}</label>
@@ -163,7 +164,9 @@ class ReservePage extends Component {
                                     
                             </div>    
                         </div>
+                        </div>
 
+                        <div className="row">
                         <div className="tab-form-row">
                             <h5>{_I18N(MSG.TITLE_OBJECT_SECION,this.props.lang)}</h5>
                             <div className="tab-form-block">
@@ -189,6 +192,7 @@ class ReservePage extends Component {
                                     <span><h6>{data.insobject.auto.VIN}</h6></span>
                                 </div>
                             </div>    
+                        </div>
                         </div>
                     </main> 
                 </form>            
@@ -222,12 +226,13 @@ const mapStateToProps = store => {
         client: store.client,
         calculate: store.calculate,
         lang: store.appstate.lang,
+        dgo: store.dgo,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        commitPolsData: (data) => dispatch(actionReservePolis(data)),
+        commitPolisData: (data) => dispatch(actionReservePolis(data)),
     }
 }
 

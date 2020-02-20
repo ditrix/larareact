@@ -30,3 +30,5 @@ export const ACTION_SWITCH_LANG = 'ACTION_SWITCH_LANG'
 export const ACTION_CALC_DGO  = 'ACTION_CALC_DGO'
 export const ACTION_GET_DGO = 'ACTION_GET_DGO'
 export const ACTION_GET_ZONE_DGO = 'ACTION_GET_ZONE'
+
+export const APP_DEV_REGIM = 'dev'

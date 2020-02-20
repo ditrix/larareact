@@ -1,26 +1,36 @@
-import {ACTION_COMMIT_DATA} from '../constants'
+import {ACTION_COMMIT_DATA,APP_DEV_REGIM} from '../constants'
 import axios from 'axios'
 // eslint-disable-next-line
 import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 // eslint-disable-next-line
 import {getCurrentDate, getTomorrow} from '../lib/functions'
 
-
+const DEV_REGIM = 'dev'
 //`${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
 
 const reserveData = data => {
 
     const apiData = JSON.stringify(data)
+
+    let url = ''
     //const url = `http://epol/public/reserve?data="${apiData}"`
    
-    const url = `http://epol/public/reserve`
-    
-    //console.log(url)
-
-    //axios(url)
-    axios.post(url,apiData)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+     console.log('APP_DEV_REGIM',DEV_REGIM)   
+    {
+        if(DEV_REGIM === 'dev'){
+            console.log('is GET')
+            url = `http://epol/public/reserve?data=${apiData}`
+            axios(url)
+                .then(response => console.log(response))
+                .catch(error => console.log(error))      
+        } else {
+            console.log('is POST')
+            url = `http://epol/public/reserve`
+            axios.post(url,apiData)
+                .then(response => console.log(response))
+                .catch(error => console.log(error))
+        }
+    }
 
 }
 
@@ -89,7 +99,7 @@ const getReserveData = data => {
 
     const parameters = data.parameters
 
-
+    const dgo = data.dgo
     const vehicle = data.insobject
 
 
@@ -129,9 +139,9 @@ const getReserveData = data => {
         Email: client.email,
         DocumentType: getApiDocumentType(client.doc.type),
         DocNumber: client.doc.no,
-        dgoInsurSum: 100000,
-        dgoPaySum: "100500",  
-        dgoType: 1,
+        dgoInsurSum: dgo.dgoInsurSum,
+        dgoPaySum: dgo.dgoPaySum,  
+        dgoType: dgo.dgoType,
         k8: calcValues.k8,
     }
 
@@ -174,3 +184,12 @@ export function actionReservePolis(data){
         payload: {data,resutl:false}
     }
 }
+
+
+/*
+example
+
+{\"StartDate\":\"2020-02-21T00:00:00Z\",\"DPeriodID\":1,\"DBonusMalusID\":0,\"k1\":0.68,\"k2\":3.5,\"k3\":1,\"k4\":1.6,\"k5\":1,\"k6\":1.05,\"k7\":1,\"DPrivelegeID\":0,\"Franchise\":2600,\"InsPremium\":720,\"DCitizenStatusID\":1,\"IdentCode\":\"1234567890\",\"Surname\":\"иванов\",\"Name\":\"иван\",\"PName\":\"иванович\",\"BirthDate\":\"2020-02-20\",\"Address\":\"харьковская 12\",\"DCityID\":31,\"RegNo\":\"2\",\"VIN\":\"1\",\"DVehicleTypeID\":6,\"DMarkID\":3,\"DModelID\":659,\"DSphereUseID\":1,\"ProdYear\":1980,\"DExpLimitID\":1,\"contractId\":\"0\",\"Phone\":\"+380551234567\",\"Email\":\"ivan@mail.com\",\"DocumentType\":\"1\",\"DocNumber\":\"221\",\"dgoInsurSum\":100000,\"dgoPaySum\":\"100500\",\"dgoType\":1,\"k8\":1,\"DocSeries\":\"seria\",\"issued\":\"кивским ровд\"}
+
+
+*/

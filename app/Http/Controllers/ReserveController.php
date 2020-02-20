@@ -81,8 +81,16 @@ class ReserveController extends Controller {
 		//
 	}
 
+	
+
 	public function reserve(Request $request){
-		return response()->json(['result' => 'прошел']);
+		$reserve_data = json_decode($request->data);
+		
+		return response()->json(['result'=>'ok','PolisData.k1: ' => $reserve_data->k1]);
+		//return response()->json(['PolisData: ' => $reserve_data]);
 	}
+
+
+	
 
 }
