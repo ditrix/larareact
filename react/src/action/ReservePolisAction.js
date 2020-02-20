@@ -27,7 +27,7 @@ const reserveData = data => {
             console.log('is POST')
             console.log('POSTDATA',data)
             url = `http://epol/public/reservesend`
-            axios.post(url,data)
+            axios.post(url,{'data':'value'})
                 .then(response => console.log(response))
                 .catch(error => console.log(error))
         }
