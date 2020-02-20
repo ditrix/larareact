@@ -5,7 +5,7 @@ import {APP_SITE_URL,REG_EXP_VEHICLE_NO} from '../constants'
 // eslint-disable-next-line
 import {getCurrentDate, getTomorrow} from '../lib/functions'
 
-const DEV_REGIM = 'dev'
+const DEV_REGIM = 'get'
 //`${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
 
 const reserveData = data => {
@@ -17,7 +17,7 @@ const reserveData = data => {
    
      console.log('APP_DEV_REGIM',DEV_REGIM)   
     {
-        if(DEV_REGIM === 'dev'){
+        if(DEV_REGIM === 'get'){
             console.log('is GET')
             url = `http://epol/public/reserve?data=${apiData}`
             axios(url)
@@ -25,8 +25,9 @@ const reserveData = data => {
                 .catch(error => console.log(error))      
         } else {
             console.log('is POST')
-            url = `http://epol/public/reserve`
-            axios.post(url,apiData)
+            console.log('POSTDATA',data)
+            url = `http://epol/public/reservesend`
+            axios.post(url,data)
                 .then(response => console.log(response))
                 .catch(error => console.log(error))
         }
