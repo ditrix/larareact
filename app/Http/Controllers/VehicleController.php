@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller {
 
+
+//  https://stackoverflow.com/questions/51936967/api-login-500-error-laravel-react-login
+
 //CURLOPT_POSTFIELDS => "{\"PlateNum\": \"BH3003CM\"}",
 
 // TODO: URL tOKEN УЛОЖИТЬ В ENV !!!!

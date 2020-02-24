@@ -91,6 +91,8 @@ class ReserveController extends Controller {
 	}
 
 
-	
+	public function reserveSend(Request $request){
+		return reposnse()->json(['reserveSend.POST'=>'ok']);
+	}
 
 }

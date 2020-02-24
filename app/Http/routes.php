@@ -19,14 +19,14 @@ Route::get('home', 'HomeController@index');
 //Route::post('vehicle','VehicleComtrol@postVehicle');
 Route::controller('vehicle', 'VehicleController');
 /*Route::get('vehicle','VehicleComtrol@getVehicle');*/
+Route::controller('reserve', 'ReserveController');
 
 /* основной смысл обхода post\get ограничений - разные роуты в один контролер*/
 Route::resource('vehicle', 'VehicleController@getVehicle');
 Route::resource('vehicleset', 'VehicleController@postVehicle');
 
 Route::resource('reserve','ReserveController@reserve');
-//Route::post('reserve','ReserveController@reserve');
-
+//Route::post('reservesend','ReserveController@reserveSend');
 /*
 Route::controllers([
 	'auth' => 'Auth\AuthController',
