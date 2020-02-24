@@ -27,7 +27,6 @@ class SearchVehicle extends Component {
        this.handleInputVehicleChange = this.handleInputVehicleChange.bind(this)
     }
 
-    
     handleVehicleKeyDown(e){
         if(e.keyCode === 13){
           e.preventDefault()
@@ -60,11 +59,6 @@ class SearchVehicle extends Component {
         const url = `${APP_SITE_URL}public/vehicle?num=${this.state.searchVehicleStr}`
         if(this.validInputData()){
             this.setState({loaded: true, vehicle:emptyVehical,request:true})
-
-            //  fetch(url)
-            //  .then(response => console.log('fetch response ',response.json())); 
-
-
             axios.get(url)
                 .then(response => {
                     

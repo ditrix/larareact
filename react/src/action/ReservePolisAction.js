@@ -12,26 +12,30 @@ const reserveData = data => {
 
     const apiData = JSON.stringify(data)
 
-    let url = ''
-    //const url = `http://epol/public/reserve?data="${apiData}"`
+    //let url = ''
+    const url = `http://epol/public/reserve?data="${apiData}"`
    
-     console.log('APP_DEV_REGIM',DEV_REGIM)   
-    {
-        if(DEV_REGIM === 'get'){
-            console.log('is GET')
-            url = `http://epol/public/reserve?data=${apiData}`
-            axios(url)
-                .then(response => console.log(response))
-                .catch(error => console.log(error))      
-        } else {
-            console.log('is POST')
-            console.log('POSTDATA',data)
-            url = `http://epol/public/reservesend`
-            axios.post(url,{'data':'value'})
-                .then(response => console.log(response))
-                .catch(error => console.log(error))
-        }
-    }
+    //  console.log('APP_DEV_REGIM',DEV_REGIM)   
+    // {
+    //     if(DEV_REGIM === 'get'){
+    //         console.log('is GET')
+    //         url = `http://epol/public/reserve?data=${apiData}`
+    //         axios(url)
+    //             .then(response => console.log(response))
+    //             .catch(error => console.log(error))      
+    //     } else {
+    //         console.log('is POST')
+    //         console.log('POSTDATA',data)
+    //         url = `http://epol/public/reservesend`
+    //         axios.post(url,{'data':'value'})
+    //             .then(response => console.log(response))
+    //             .catch(error => console.log(error))
+    //     }
+    // }
+    //url = `http://epol/public/reserve?data=${apiData}`
+             axios.get(url)
+                 .then(response => console.log(response))
+                 .catch(error => console.log(error))      
 
 }
 
@@ -164,8 +168,6 @@ const getReserveData = data => {
     if(vehicle.AutoDescr !== ''){
         reserveData.AutoDescr = vehicle.AutoDescr
     }
-    
-
 
     return reserveData
 }
@@ -175,6 +177,7 @@ const getReserveData = data => {
 
 export function actionReservePolis(data){
     // TODO send itog data to server
+    console.log(data)
     const confdata = getReserveData(data)
 
     reserveData(confdata)
